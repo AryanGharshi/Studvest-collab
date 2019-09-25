@@ -1,14 +1,18 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:300&display=swap";
+
 body {
     background-color: #0F0816;
     font-family: 'Roboto';
     font-weight: normal;
     font-style: normal;
+    color: #CFCFCF;
+    text-align: center;
 }
+
 .titlebar {
-  background-color: #0F0816;
-  border-bottom: thick solid #2C7090;
-  color: #CFCFCF;
-  text-align: center;
-  font-size: 2.7vh;
-  padding: 2%;
+    display: block;
+    background-color: #0F0816;
+    border-bottom: thick solid #2C7090;
+    font-size: 2.6vh;
+    padding: 1.7vh;
 }

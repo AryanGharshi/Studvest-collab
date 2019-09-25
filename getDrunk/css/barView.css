@@ -1,0 +1,21 @@
+@import "main.css";
+
+.gallery {
+    display: block;
+    height: 30vh;
+    background-image: url("https://www.heidisbierbar.no/media/foedselsdag-no2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+}
+
+.links {
+    display: block;
+    height: 6vh;
+    border-bottom: medium solid #262143;
+}
+
+.barname {
+    font-size: 3.5vh;
+}
