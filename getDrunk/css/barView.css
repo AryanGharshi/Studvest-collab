@@ -4,7 +4,6 @@
     display: block;
     height: 30vh;
     background-image: url("https://www.heidisbierbar.no/media/foedselsdag-no2.png");
-    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     opacity: 0.9;
@@ -16,6 +15,87 @@
     border-bottom: medium solid #262143;
 }
 
+.linksTable {
+    padding: 0.5vh;
+    font-size: 1.3vh;
+    width: 100%;
+}
+
+.linksIcon {
+    height: 2vh;
+    margin: 0.5vh;
+}
+
 .barname {
-    font-size: 3.5vh;
+    font-size: 3.1vh;
+    padding: 1.7vh;
+}
+
+.menu {
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.menuSwitch {
+    display: block;
+    margin-bottom: 2vh;
+}
+
+.menuSwitchTable {
+    font-size: 2vh;
+    width: 100%;
+}
+
+.menuSwitchTable .colNormal {
+    height: 5vh;
+    color: #83758F;
+    border-bottom: medium solid #262143;
+}
+
+.menuSwitchTable .colHighlighted {
+    color: #55C8E3;
+    border-top: medium solid #262143;
+    border-left: medium solid #262143;
+    border-right: medium solid #262143;
+}
+
+.menuSwitchIcon {
+    height: 5vh;
+}
+
+.menuHeader {
+    font-size: 2.5vh;
+    padding-bottom: 2vh;
+}
+
+.menuBody {
+    display: block;
+    height: 34vh;
+    overflow: scroll;
+}
+
+.menuTable {
+    width: 100%;
+    font-size: 1.9vh;
+}
+
+.menuTable td {
+    padding: 0.8vh;
+    border-bottom-color: #262143;
+    border-bottom-style: solid;
+}
+
+.menuTable .firstCol {
+    text-align: left;
+    color: #83758F;
+}
+
+.menuTable .secCol {
+    text-align: center;
+    color: #83758F;
+}
+
+.menuTable .thirdCol {
+    text-align: right;
+    color: #55C8E3;
 }
