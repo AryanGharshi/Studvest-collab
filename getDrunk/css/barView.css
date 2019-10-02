@@ -1,17 +1,73 @@
 @import "main.css";
 
+
+
+/* GENERAL ELEMENTS */
+
+.icon {
+    height: 2vh;
+    margin: 0.5vh;
+}
+
+
+
+/* TITLE BAR */
+
+.iconButton {
+    width: 10vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    float:left;
+}
+
+.title {
+    width: 71vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    float:left;
+}
+
+
+
+/* GALLERY */
+
 .gallery {
-    display: block;
     height: 30vh;
-    background-image: url("https://www.heidisbierbar.no/media/foedselsdag-no2.png");
     background-size: cover;
     background-position: center;
     opacity: 0.9;
 }
 
+.galleryNavigation {
+    float:left;
+    width: 40vw;
+    font-size: 3vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 13.2vh;
+    padding-bottom: 13.2vh;
+}
+
+.galleryNavigationPrevious {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    text-align: left;
+}
+
+.galleryNavigationNext {
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    text-align: right;
+}
+
+
+/* LINK BAR */
+
 .links {
     display: block;
-    height: 6vh;
+    height: 7vh;
     border-bottom: medium solid #262143;
 }
 
@@ -21,15 +77,19 @@
     width: 100%;
 }
 
-.linksIcon {
-    height: 2vh;
-    margin: 0.5vh;
-}
+
+/* BAR NAME & DESCRIPTION */
 
 .barname {
     font-size: 3.1vh;
     padding: 1.7vh;
 }
+
+
+
+/* MENU */
+
+/* Menu Switch */
 
 .menu {
     padding-left: 3vw;
@@ -49,6 +109,9 @@
 .menuSwitchTable .colNormal {
     height: 5vh;
     color: #83758F;
+    border-top: medium solid #0F0816;
+    border-left: medium solid #0F0816;
+    border-right: medium solid #0F0816;
     border-bottom: medium solid #262143;
 }
 
@@ -57,20 +120,25 @@
     border-top: medium solid #262143;
     border-left: medium solid #262143;
     border-right: medium solid #262143;
+    border-bottom: medium solid #0F0816;
 }
 
 .menuSwitchIcon {
     height: 5vh;
 }
 
+/* Menu Header */
+
 .menuHeader {
     font-size: 2.5vh;
     padding-bottom: 2vh;
 }
 
+/* Menu Body */
+
 .menuBody {
     display: block;
-    height: 34vh;
+    height: 34.3vh;
     overflow: scroll;
 }
 
@@ -88,14 +156,17 @@
 .menuTable .firstCol {
     text-align: left;
     color: #83758F;
+    width: 60%;
 }
 
-.menuTable .secCol {
+.menuTable .secondCol {
     text-align: center;
     color: #83758F;
+    width: 20%;
 }
 
 .menuTable .thirdCol {
     text-align: right;
     color: #55C8E3;
+    width: 20%;
 }

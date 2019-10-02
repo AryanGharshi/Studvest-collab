@@ -15,5 +15,7 @@ body {
     background-color: #0F0816;
     border-bottom: thick solid #2C7090;
     font-size: 2.6vh;
-    padding: 1.7vh;
+    padding-top: 1vh;
+    overflow: hidden;
+    width: 100%;
 }

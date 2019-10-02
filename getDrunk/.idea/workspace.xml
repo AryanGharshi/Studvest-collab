@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a1fee69-856e-435d-b57d-838f6412c5f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Test/FileZilla_3.44.2_win64_sponsored-setup.exe" beforeDir="false" />
+    <list default="true" id="4baee00c-6bc9-4fbd-8c11-ca9dfb423483" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/js/barView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/barView.html" beforeDir="false" afterPath="$PROJECT_DIR$/barView.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/barView.css" afterDir="false" />
@@ -19,15 +19,20 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1RKgTM4mbgDcSTPiH1CJ409XdfA" />
+  <component name="ProjectId" id="1ReIJ7B1VAY9kqUfwbk1VQ6JhN1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -46,12 +51,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9a1fee69-856e-435d-b57d-838f6412c5f2" name="Default Changelist" comment="" />
-      <created>1569421207886</created>
+      <changelist id="4baee00c-6bc9-4fbd-8c11-ca9dfb423483" name="Default Changelist" comment="" />
+      <created>1570021061784</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1569421207886</updated>
-      <workItem from="1569421214902" duration="9820000" />
+      <updated>1570021061784</updated>
+      <workItem from="1570021067789" duration="8858000" />
     </task>
     <servers />
   </component>
