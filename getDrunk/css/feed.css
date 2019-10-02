@@ -1,0 +1,21 @@
+body {
+    background-color: #0F0816;
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-style: normal;
+}
+.titlebar {
+  background-color: #0F0816;
+  border-bottom: thick solid #2C7090;
+  color: #CFCFCF;
+  text-align: center;
+  font-size: 2.7vh;
+  padding: 2%;
+}
+
+.examplebar {
+  border-bottom: thin solid #2C7090;
+  padding: 20%;
+  color: #CFCFCF;
+  
+}
