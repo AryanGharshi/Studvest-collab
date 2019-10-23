@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4baee00c-6bc9-4fbd-8c11-ca9dfb423483" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/barView.js" afterDir="false" />
+    <list default="true" id="aeba6be4-f9d5-44d3-882b-cf5a5fd2e98d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/barView.html" beforeDir="false" afterPath="$PROJECT_DIR$/barView.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/barView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,17 +17,10 @@
       <executable />
     </execution>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1ReIJ7B1VAY9kqUfwbk1VQ6JhN1" />
+  <component name="ProjectId" id="1RyEHH32AvOKuSQTunlmXhHafKh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -51,12 +42,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4baee00c-6bc9-4fbd-8c11-ca9dfb423483" name="Default Changelist" comment="" />
-      <created>1570021061784</created>
+      <changelist id="aeba6be4-f9d5-44d3-882b-cf5a5fd2e98d" name="Default Changelist" comment="" />
+      <created>1570630847215</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1570021061784</updated>
-      <workItem from="1570021067789" duration="8858000" />
+      <updated>1570630847215</updated>
+      <workItem from="1570630853814" duration="2567000" />
     </task>
     <servers />
   </component>
