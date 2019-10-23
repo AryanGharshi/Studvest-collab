@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aeba6be4-f9d5-44d3-882b-cf5a5fd2e98d" name="Default Changelist" comment="">
+    <list default="true" id="450f43b1-f020-4085-94b1-7e59d01464ca" name="Default Changelist" comment="Merge branch 'master' of https://github.com/AryanGharshi/Studvest-collab&#10;&#10;# Conflicts:&#10;#&#9;getDrunk/barView.html">
+      <change afterPath="$PROJECT_DIR$/feed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/connection/conn.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barView.html" beforeDir="false" afterPath="$PROJECT_DIR$/barView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/barView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/feed.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/feed.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/heidis.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/media/pictures/heidis.jpeg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +23,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1RyEHH32AvOKuSQTunlmXhHafKh" />
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectId" id="1Sbe5ERVWpINSyGvQEOUYup8w0h" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -42,13 +46,21 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="aeba6be4-f9d5-44d3-882b-cf5a5fd2e98d" name="Default Changelist" comment="" />
-      <created>1570630847215</created>
+      <changelist id="450f43b1-f020-4085-94b1-7e59d01464ca" name="Default Changelist" comment="" />
+      <created>1571836538500</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1570630847215</updated>
-      <workItem from="1570630853814" duration="2567000" />
+      <updated>1571836538500</updated>
+      <workItem from="1571836543354" duration="242000" />
     </task>
+    <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/AryanGharshi/Studvest-collab&#10;&#10;# Conflicts:&#10;#&#9;getDrunk/barView.html">
+      <created>1571836776628</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571836776628</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -64,5 +76,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge branch 'master' of https://github.com/AryanGharshi/Studvest-collab&#10;&#10;# Conflicts:&#10;#&#9;getDrunk/barView.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/AryanGharshi/Studvest-collab&#10;&#10;# Conflicts:&#10;#&#9;getDrunk/barView.html" />
   </component>
 </project>
