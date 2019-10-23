@@ -44,6 +44,7 @@ $sql = "SELECT bar.id AS barid, bar.name AS barname, bar.description, bar.websit
 $result = ($conn->query($sql));
 
 if ($result->num_rows > 0) {
+if ($result->num_rows > 0) {
     $info = [];
     $menus = [];
 
@@ -100,8 +101,12 @@ echo "</ul>"
         </tr>
     </table>
 </div>
-<div class="barname">Heidi's Bier Bar</div>
-
+<div class="barInfo">
+    <div class="barName">Heidi's Bier Bar</div>
+    <div class="barDesc">
+        Excellent bar in Bergen! Very good atmosphere, good beers and correct price. We can also have photos taken with friends to keep good memories!
+    </div>
+</div>
 
 <div class="menu">
     <div class="menuSwitch" id="menuSwitch"></div>
