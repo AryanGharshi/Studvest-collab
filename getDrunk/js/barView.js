@@ -5,7 +5,7 @@ let galleryImgs = ['https://www.adressa.no/pluss/meninger/article13853663.ece/if
 gallery = document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[galleryImgID]+")";
 
 // Print default menu
-let menuTitles = ['Beers', 'Ciders'];
+//let menuTitles = ['Beers', 'Ciders'];
 let menu = [{'Category': 'Beers',
     'Drinks': ['Hansa', 'Haandbukk', 'Humlesus', 'Prestesonen'],
     'Fill':   ['0.4l', '0.4l', '0.5l', '0.5l'],
