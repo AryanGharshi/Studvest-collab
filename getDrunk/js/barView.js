@@ -47,7 +47,7 @@ function printMenu (tab) {
         else {
             newSwitchTable += "<td class='colNormal' onclick='printMenu("+i+")'>"
         }
-        newSwitchTable += "[" + menuTitles[i] + " Icon]";
+        newSwitchTable += menuTitles[i];
         newSwitchTable += "</td>";
     }
     newSwitchTable += "</tr></table>";

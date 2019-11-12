@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:100,300&display=swap";
 
 body {
-    background-color: #0F0816;
+    background-color: #1B1B1B;
     font-family: 'Roboto';
     font-weight: normal;
     font-style: normal;
@@ -12,10 +12,10 @@ body {
 
 .titlebar {
     display: block;
-    background-color: #0F0816;
+    background-color: #1B1B1B;
     border-bottom: thick solid #2C7090;
     font-size: 2.6vh;
-    padding-top: 1vh;
+    padding: 1vh;
     overflow: hidden;
     width: 100%;
 }

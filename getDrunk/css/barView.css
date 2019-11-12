@@ -1,13 +1,4 @@
-@import "main.css";
-
-
-
 /* GENERAL ELEMENTS */
-
-.icon {
-    height: 2vh;
-    margin: 0.5vh;
-}
 
 td a {
     display:block;
@@ -17,24 +8,19 @@ td a {
 }
 
 
-
 /* TITLE BAR */
 
-.iconButton {
-    width: 10vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
+.navigationIcon {
+    height: 5vh;
+    width: 5vh;
+    background-size: cover;
     float:left;
 }
 
 .title {
-    width: 71vw;
+    width: calc(100vw - 12vh);
     padding-top: 1vh;
     padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
     float:left;
 }
 
@@ -49,14 +35,8 @@ td a {
     opacity: 0.9;
 }
 
-.galleryNavigation {
-    float:left;
-    width: 40vw;
-    font-size: 3vh;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-top: 13.2vh;
-    padding-bottom: 13.2vh;
+.galleryTable {
+    width: 100%;
 }
 
 .galleryNavigationPrevious {
@@ -69,31 +49,52 @@ td a {
     text-align: right;
 }
 
+/* CONTENT */
+.content {
+
+}
+
 
 /* LINK BAR */
 
 .links {
     display: block;
     height: 7vh;
-    border-bottom: medium solid #262143;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 .linksTable {
-    padding: 0.5vh;
+    border-top: thin solid #2A2A2A;
+    border-bottom: thin solid #2A2A2A;
+    padding-bottom: 0.5vh;
+    padding-top: 0.5vh;
     font-size: 1.3vh;
     width: 100%;
+}
+
+.linkIcon {
+    height: 3vh;
+    width: 3vh;
+    background-size: cover;
 }
 
 
 /* BAR NAME & DESCRIPTION */
 
+#closeIcon {
+    visibility: hidden;
+}
+
 .barInfo {
     display: block;
     color: #CFCFCF;
-    padding-top: 2.2vh;
-    padding-bottom: 2.2vh;
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-top: 4vh;
+    padding-bottom: 1.5vh;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .barName {
@@ -112,8 +113,8 @@ td a {
 /* Menu Switch */
 
 .menu {
-    padding-left: 3vw;
-    padding-right: 3vw;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 .menuSwitch {
@@ -124,23 +125,20 @@ td a {
 .menuSwitchTable {
     font-size: 2vh;
     width: 100%;
+    table-layout: fixed;
 }
 
 .menuSwitchTable .colNormal {
     height: 5vh;
     color: #83758F;
-    border-top: medium solid #0F0816;
-    border-left: medium solid #0F0816;
-    border-right: medium solid #0F0816;
-    border-bottom: medium solid #262143;
+    border-bottom: thin solid #2A2A2A;
 }
 
 .menuSwitchTable .colHighlighted {
     color: #55C8E3;
-    border-top: medium solid #262143;
-    border-left: medium solid #262143;
-    border-right: medium solid #262143;
-    border-bottom: medium solid #0F0816;
+    border-top: thin solid #2A2A2A;
+    border-left: thin solid #2A2A2A;
+    border-right: thin solid #2A2A2A;
 }
 
 .menuSwitchIcon {
@@ -169,8 +167,9 @@ td a {
 
 .menuTable td {
     padding: 0.8vh;
-    border-bottom-color: #262143;
+    border-bottom-color: #2A2A2A;
     border-bottom-style: solid;
+    border-bottom-width: thin;
 }
 
 .menuTable .firstCol {
@@ -189,4 +188,44 @@ td a {
     text-align: right;
     color: #55C8E3;
     width: 20%;
+}
+
+
+
+/* OPTIMIZATION FOR WEB */
+
+@media screen and (orientation: landscape) {
+    .gallery {
+        float:left;
+        width: calc(90vw - 30vh);
+        height: 92.3vh;
+        padding: 0;
+    }
+
+    .galleryNavigation {
+        float:left;
+        height: inherit;
+    }
+
+    .content {
+        float:left;
+        width: calc(10vw + 30vh);
+        height: 92.4vh;
+    }
+
+    #backIcon {
+        visibility: hidden;
+    }
+
+    #closeIcon {
+        visibility: visible;
+    }
+
+    .menuBody::-webkit-scrollbar {
+        display: none;
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
 }
