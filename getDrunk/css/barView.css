@@ -35,18 +35,30 @@ td a {
     opacity: 0.9;
 }
 
-.galleryTable {
+.galleryNavigation {
+    display: flex;
     width: 100%;
+    height: 100%;
 }
 
 .galleryNavigationPrevious {
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-    text-align: left;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor:pointer;
 }
 
 .galleryNavigationNext {
     background: linear-gradient(-90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-    text-align: right;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor:pointer;
 }
 
 /* CONTENT */
@@ -126,6 +138,7 @@ td a {
     font-size: 2vh;
     width: 100%;
     table-layout: fixed;
+    cursor: pointer;
 }
 
 .menuSwitchTable .colNormal {
@@ -156,8 +169,12 @@ td a {
 
 .menuBody {
     display: block;
-    height: 34.3vh;
+    height: 25vh;
     overflow: scroll;
+}
+
+.menuBody::-webkit-scrollbar {
+    display: none;
 }
 
 .menuTable {
@@ -198,7 +215,7 @@ td a {
     .gallery {
         float:left;
         width: calc(90vw - 30vh);
-        height: 92.3vh;
+        height: 92.2vh;
         padding: 0;
     }
 
@@ -210,7 +227,7 @@ td a {
     .content {
         float:left;
         width: calc(10vw + 30vh);
-        height: 92.4vh;
+        height: 92.2vh;
     }
 
     #backIcon {
@@ -219,10 +236,6 @@ td a {
 
     #closeIcon {
         visibility: visible;
-    }
-
-    .menuBody::-webkit-scrollbar {
-        display: none;
     }
 
     body::-webkit-scrollbar {

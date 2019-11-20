@@ -19,16 +19,14 @@
     </div>
 
     <div class="gallery" id="galleryDiv">
-        <!--<table class="galleryTable">
-            <tr>
-                <td class="galleryNavigationPrevious" onclick="changeGalleryImage(-1)">
-                    <img class="navigationIcon" src="media/icons/back.png">
-                </td>
-                <td class="galleryNavigationNext" onclick="changeGalleryImage(+1)">
-                    <img class="navigationIcon" src="media/icons/back.png">
-                </td>
-            </tr>-->
-        </table>
+        <div class="galleryNavigation">
+            <span class="galleryNavigationPrevious" onclick="changeGalleryImage(-1)">
+                <img class="navigationIcon" src="media/icons/arrow_left.png">
+            </span>
+            <span class="galleryNavigationNext" onclick="changeGalleryImage(+1)">
+                <img class="navigationIcon" src="media/icons/arrow_right.png">
+            </span>
+        </div>
     </div>
 
     <div class="content">

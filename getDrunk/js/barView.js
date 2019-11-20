@@ -19,6 +19,9 @@ let menu = [{'Category': 'Beers',
 ];
 printMenu (0);
 
+// Start automatic slideshow
+automaticSlideshow();
+
 
 
 // Change Images in gallery
@@ -31,6 +34,11 @@ function changeGalleryImage (direction) {
     // Change gallery image
     let gallery = document.getElementById("galleryDiv");
     gallery.style.backgroundImage = "url("+galleryImgs[newGalleryImgID]+")";
+}
+
+function automaticSlideshow() {
+    setTimeout(automaticSlideshow, 5000); // Change image every 2 seconds
+    changeGalleryImage(+1);
 }
 
 
