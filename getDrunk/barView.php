@@ -80,19 +80,19 @@
             <table class="linksTable">
                 <tr>
                     <td>
-                        <a href="'"<?php echo $info['website']?>"'">
+                        <a href="<?php echo $info['website']?>">
                         <img class="linkIcon" src="media/icons/website.png"><br>
                         Website
                         </a>
                     </td>
                     <td>
-                        <a href="'"<?php echo $info['phone']?>"'">
+                        <a href="tel:<?php echo $info['phone']?>">
                         <img class="linkIcon" src="media/icons/call.png"><br>
                         Call
                         </a>
                     </td>
                     <td>
-                        <a href="'"<?php echo $info['location']?>"'">
+                        <a href=<?php echo $info['location']?>">
                         <img class="linkIcon" src="media/icons/location.png"><br>
                         Location
                         </a>
