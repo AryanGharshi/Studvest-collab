@@ -6,9 +6,9 @@ if (!defined("MAGICKEY")) {
 if (MAGICKEY == "ugugUGu221KHJBD84") {
 
     $host = "localhost";
-    $password = "GfkQOv0xe8V5vHgnFj";
-    $username = "u534907271_x";
-    $database = "u534907271_barpulsen";
+    $password = "XxlGUEQhle";
+    $username = "admin_bar";
+    $database = "admin_bar";
 
     $conn = new mysqli($host, $username, $password, $database);
 
