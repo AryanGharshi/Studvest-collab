@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/StudvestForm.css">
+    <script src="js/StudvestForm.js"></script>
+  </head>
+  <body>
+    <h2>Fill in your bar details:</h2>
+    <p>Bar name:</p>
+    <form action="/action_page.php" method="get" id="studvestForm">
+      <input type="text" name="barName">
+      <br>
+
+      <p>Description:</p>
+      <textarea name="Description" rows="8" cols="80"></textarea>
+
+      <p>Pictures of your bar:</p>
+        <input type="file" name="image" accept="image/*">
+        <input type="button" value="Upload image">
+
+        <br>
+        <h2>Business hours:</h2>
+         <p>Monday:<input type="checkbox" id="monday" name="chkname"/>
+         <span id="mondayohour">From:</span><input type="time" id="mondayohour" name="mondayohour"/><span id="mondayohour">To:</span><input type="time" id="mondayohour" name="mondayohour"/>
+         <span id="mondayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="mondayohour" min="1" max="100"></p>
+
+         <p>Tuesday:<input type="checkbox" id="tuesday" name="chkname"/>
+         <span id="tuesdayohour">From:</span><input type="time" id="tuesdayohour" name="tuesdayohour"/><span id="tuesdayohour">To:</span><input type="time" id="tuesdayohour" name="tuesdayohour"/>
+         <span id="tuesdayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="tuesdayohour" min="1" max="100"></p>
+
+         <p>Wednesday:<input type="checkbox" id="wednesday" name="chkname"/>
+         <span id="wednesdayohour">From:</span><input type="time" id="wednesdayohour" name="wednesdayohour"/><span id="wednesdayohour">To:</span><input type="time" id="wednesdayohour" name="wednesdayohour"/>
+         <span id="wednesdayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="wednesdayohour" min="1" max="100"></p>
+
+         <p>Thursday:<input type="checkbox" id="thursday" name="chkname"/>
+         <span id="wednesdayohour">From:</span><input type="time" id="thursdayohour" name="thursdayohour"/><span id="thursdayohour">To:</span><input type="time" id="thursdayohour" name="thursdayohour"/>
+         <span id="thursdayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="thursdayohour" min="1" max="100"></p>
+
+         <p>Friday:<input type="checkbox" id="friday" name="chkname"/>
+         <span id="fridayohour">From:</span><input type="time" id="fridayohour" name="fridayohour"/><span id="fridayohour">To:</span><input type="time" id="fridayohour" name="fridayohour"/>
+         <span id="fridayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="fridayohour" min="1" max="100"></p>
+
+         <p>Saturday:<input type="checkbox" id="saturday" name="chkname"/>
+         <span id="saturdayohour">From:</span><input type="time" id="saturdayohour" name="saturdayohour"/><span id="saturdayohour">To:</span><input type="time" id="saturdayohour" name="saturdayohour"/>
+         <span id="saturdayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="saturdayohour" min="1" max="100"></p>
+
+         <p>Sunday:<input type="checkbox" id="sunday" name="chkname"/>
+         <span id="sundayohour">From:</span><input type="time" id="sundayohour" name="sundayohour"/><span id="sundayohour">To:</span><input type="time" id="sundayohour" name="sundayohour"/>
+         <span id="sundayohour"><br>Add age limit:<br></span><input type="number" name="agelimit" id="sundayohour" min="1" max="100"></p>
+
+<h2>Menu</h2>
+<div class='label'>Drink 1:</div>
+<div id="aNewDrink" class="content">
+  <span>Name: <input type="text" style="width:48px;" name="DrinkName"/> </span>
+  <span>Size: <input type="text" style="width:48px;" name="size"/> </span>
+  <span>Price: <input type="text" style="width:48px;" name="Price"/></span>
+</div>
+<br>
+<button type="button" id="more_fields" onclick="add_fields();" value="Add drink">Add drink</button>
+<button type="button" id="less_fields" onclick="removeFields();" value="Remove drink">Remove drink</button>
+</form>
+<br>
+<button type="submit" form="studvestForm" value="Submit">Submit form</button>
+
+
+</body>
+</html>
