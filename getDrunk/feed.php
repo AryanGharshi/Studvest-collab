@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/feed.css">
@@ -28,6 +29,7 @@ $conn->close();
 
 <body>
 <div class="titlebar">App Name</div>
+<div class="wrapper">
 
 
 <?php
@@ -37,31 +39,17 @@ foreach ($bars as $elem){
     <div class="examplebar">
         <div class="barText">
             <h1>'.$elem.'</h1>
-            <div class="ellipse"></div>
+            </div>
+            <div class="ellipse">
             <div class="barlogo">
                 <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
             </div>
+          </div>
         </div>
-    </div>
-    <div class="underline"></div>
     ';
 }
 
 ?>
-
-<!--
-<div class="examplebar">
-    <div class="barText">
-        <h1>Heidi's Bier Bar</h1>
-        <div class="ellipse"></div>
-        <div class="barlogo">
-            <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
-        </div>
-    </div>
 </div>
-<div class="underline"></div>
-
--->
-
 </body>
 </html>
