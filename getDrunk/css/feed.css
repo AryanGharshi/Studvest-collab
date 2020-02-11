@@ -1,45 +1,68 @@
 @import "main.css";
 
+.wrapper {
+  display: grid;
+  grid-template-row: 50% 50%;
+  grid-row-gap: 30px;
+}
+
 .examplebar {
-  padding: 17%;
-  margin-bottom: 3em;
-  margin-top: 3em;
+  margin-top: 30px;
+  height: 250px;
   position: relative;
   background-image: url("https://media-cdn.tripadvisor.com/media/photo-s/13/4a/fb/95/dance-on-the-tables.jpg"); /* Fallback picture */
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%), url("https://media-cdn.tripadvisor.com/media/photo-s/13/4a/fb/95/dance-on-the-tables.jpg");
   background-size: cover;
   background-position: center;
+  border: thin solid #2C7090;
 }
 
 .examplebar .barText {
   position: absolute;
-  font-size: 1.2vh;
-  top: 74%;
-  left: 23%;
+  font-size: 12px;
+  bottom: 0px;
+  left: 140px;
 }
 
-.examplebar .barlogo img {
+.ellipse {
   position: absolute;
-  width: 70%;
-  height: 120%;
-  top: -35%;
-  left: -72%;
-}
-
-
-
-.examplebar .ellipse {
-  position: absolute;
-  height: 143%;
-  width: 60%;
-  top: -40%;
-  left: -67%;
-  background-color: white;
+  height: 100px;
+  width: 100px;
+  bottom: 0px;
+  left: 20px;
   border-radius: 50%;
+  background-color: white;
   display: inline-block;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(159, 159, 159, 0.901042) 0.01%, rgba(255, 255, 255, 0) 100%);
+}
+
+.ellipse .barlogo img {
+  position: absolute;
+  width: 100px;
+  height: 80px;
+  top: 7px;
+  left: 0;
 }
 
 .underline {
+  position: relative;
   border-bottom: thin solid #2C7090;
   color: #CFCFCF;
+  margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 900px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 30px;
+  }
+
+  .examplebar {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    align-content: space-around;
+    margin-right: 90px;
+    margin-left: 60px;
+  }
 }
