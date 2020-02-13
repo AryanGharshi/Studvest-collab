@@ -1,0 +1,63 @@
+.checked {
+  color: orange;
+}
+
+#mondayohour {
+    display:none;
+}
+
+#monday:checked ~ #mondayohour {
+    display:block;
+}
+
+#tuesdayohour {
+    display:none;
+}
+
+#tuesday:checked ~ #tuesdayohour {
+    display:block;
+}
+
+#wednesdayohour {
+    display:none;
+}
+
+#wednesday:checked ~ #wednesdayohour {
+    display:block;
+}
+
+#thursdayohour {
+    display:none;
+}
+
+#thursday:checked ~ #thursdayohour {
+    display:block;
+}
+
+#fridayohour {
+    display:none;
+}
+
+#friday:checked ~ #fridayohour {
+    display:block;
+}
+
+#saturdayohour {
+    display:none;
+}
+
+#saturday:checked ~ #saturdayohour {
+    display:block;
+}
+
+#sundayohour {
+    display:none;
+}
+
+#sunday:checked ~ #sundayohour {
+    display:block;
+}
+
+div {
+  padding: 10px;
+}
