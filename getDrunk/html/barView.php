@@ -12,9 +12,6 @@
 <body>
     <!--titlebar div should be moved to inc-->
     <div class="titlebar">
-        <a href="feed.php">
-            <img class="navigationIcon" id="backIcon" src="media/icons/back.png">
-        </a>
         <div class="title">Studvest Bar Pulse</div>
     </div>
 
