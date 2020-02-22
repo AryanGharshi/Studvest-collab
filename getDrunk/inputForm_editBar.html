@@ -16,52 +16,49 @@
 
         <h1>Edit Bar</h1>
         <form id="editBar">
-          Name: <input type="text" name="" value="">
-          <br>
-          Address <input type="text" name="" value="">
-          <br>
-          Website: <input type="text" name="" value="">
-          <br>
-          Phone: <input type="text" name="" value="">
-          <br>
-          Description: <input type="text" name="" value="">
-          <br>
+          <div class="aboutBar">
 
-          <div class="newDrink">
-            <label for="drink">Drink:</label>
-            <br>
-            <input type="text" name="" value="">
+          <label class="lab" for="name">Name:</label>
+          <input type="text" id="name" name="name">
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address">
+          <label for="website">Website:</label>
+          <input type="text" id="website" name="website">
+          <label for="phone">Phone:</label>
+          <input type="text" id="phone" name="phone">
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" value="">
           </div>
 
-          <div class="newDrink">
-            <label for="menu">Menu</label>
-            <br>
-            <input type="text" name="menu" value="">
-          </div>
-
-          <div class="newDrink">
-            <label for="vol">Vol</label>
-            <br>
-            <input type="text" name="vol" value="">
-          </div>
-
-          <div class="newDrink">
-            <label for="price">Price</label>
-            <br>
-            <input type="text" name="price" value="">
-            <button type="button" name="button">Add</button>
-          </div>
-        </form>
         <table id="existingDrinks">
+          <tr>
+            <th>Drink</th>
+            <th>Menu</th>
+            <th>Vol</th>
+            <th>Price</th>
+          </tr>
+          <tr>
+            <td><input type="text" name="drink" value=""></td>
+            <td><input type="text" name="menu" value=""></td>
+            <td><input type="text" name="vol" value=""></td>
+            <td><input type="text" name="price" value=""></td>
+            <td><button type="button" name="button">add</button></td>
+          </tr>
           <tr>
             <td>Bulmers Berries & Lime</td>
             <td>Cider</td>
             <td>0.4l</td>
             <td>79,-</td>
             <td><button type="button" name="button">edit</button></td>
-            <td><button type="button" name="button">delete</button></td></td>
+            <td><button type="button" name="button">delete</button></td>
           </tr>
-
+          <td>Bulmers Berries & Lime</td>
+          <td>Cider</td>
+          <td>0.4l</td>
+          <td>79,-</td>
+          <td><button type="button" name="button">edit</button></td>
+          <td><button type="button" name="button">delete</button></td>
+        </tr>
         </table>
 
         <button type="button" name="button">save & close</button>
