@@ -6,7 +6,6 @@ body {
     font-weight: normal;
     font-style: normal;
     color: #CFCFCF;
-    text-align: center;
     margin:0;
 }
 
@@ -17,5 +16,6 @@ body {
     font-size: 2.6vh;
     padding: 1vh;
     overflow: hidden;
+    text-align: center;
     width: 100%;
 }
