@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59655a89-55b2-4e5e-bab2-d55700c97acf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/css/inputForm.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/StudvestForm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/barView.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/feed.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/inputForm.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/arrow_left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/arrow_right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/call.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/icons/website.png" afterDir="false" />
+    <list default="true" id="2e736460-d325-49c8-b74b-32691012af97" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudvestForm.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/barView.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feed.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/barView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,32 +17,13 @@
       <executable />
     </execution>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1XkmMjnvMMB4lCKPBu0b5XatKZ4" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1YA3eSgPaqsAjreB5CCkoq5Wq5T" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/css" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\schneluc\OneDrive - adidas\private\Studvest-collab\getDrunk\css" />
-      <recent name="C:\Users\schneluc\OneDrive - adidas\private\Studvest-collab\getDrunk\html" />
-      <recent name="C:\Users\schneluc\OneDrive - adidas\private\Studvest-collab\getDrunk" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -74,13 +42,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="59655a89-55b2-4e5e-bab2-d55700c97acf" name="Default Changelist" comment="" />
-      <created>1581598421821</created>
+      <changelist id="2e736460-d325-49c8-b74b-32691012af97" name="Default Changelist" comment="" />
+      <created>1582371667667</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1581598421821</updated>
-      <workItem from="1581598425217" duration="84000" />
-      <workItem from="1581952765758" duration="3567000" />
+      <updated>1582371667667</updated>
+      <workItem from="1582371674257" duration="519000" />
     </task>
     <servers />
   </component>
@@ -92,15 +59,10 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

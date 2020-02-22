@@ -87,6 +87,10 @@ td a {
     width: 100%;
 }
 
+.linksTable td {
+    text-align: center;
+}
+
 .linkIcon {
     height: 3vh;
     width: 3vh;
@@ -112,10 +116,12 @@ td a {
 .barName {
     font-size: 3.1vh;
     padding-bottom: 0.5vh;
+    text-align: center;
 }
 
 .barDesc {
     font-size: 1.5vh;
+    text-align: center;
 }
 
 
@@ -145,6 +151,7 @@ td a {
     height: 5vh;
     color: #83758F;
     border-bottom: thin solid #2A2A2A;
+    text-align: center;
 }
 
 .menuSwitchTable .colHighlighted {
@@ -152,6 +159,7 @@ td a {
     border-top: thin solid #2A2A2A;
     border-left: thin solid #2A2A2A;
     border-right: thin solid #2A2A2A;
+    text-align: center;
 }
 
 .menuSwitchIcon {
