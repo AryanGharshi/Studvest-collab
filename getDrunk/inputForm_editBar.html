@@ -4,8 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        <link rel="stylesheet" href="css/input_welcome.css?version=<?= time() ?>">
         <link rel="stylesheet" href="css/main.css?version=<?= time() ?>">
-        <link rel="stylesheet" href="css/inputForm_editBar.css?version=<?= time() ?>">
+        <link href="https://fonts.googleapis.com/css?family=Chivo&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -13,54 +14,79 @@
         <div class="titlebar">
             <div class="title">Studvest Bar Pulse - Administration</div>
         </div>
+        <div class="mainEdit">
+          <h1>Edit Bar</h1>
+          <form id="editBar">
+            <div class="aboutBar">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" placeholder="Enter bar name">
+            </div>
+            <div class="aboutBar">
+              <label for="address">Address:</label>
+              <input type="text" id="address" name="address" placeholder="Enter address">
+            </div>
+            <div class="aboutBar">
+              <label for="website">Website:</label>
+              <input type="text" id="website" name="website" placeholder="Enter website">
+            </div>
 
-        <h1>Edit Bar</h1>
-        <form id="editBar">
-          <div class="aboutBar">
+            <div class="aboutBar">
+              <label for="phone">Phone:</label>
+              <input type="text" id="phone" name="phone" placeholder="Enter phone">
+            </div>
 
-          <label class="lab" for="name">Name:</label>
-          <input type="text" id="name" name="name">
-          <label for="address">Address:</label>
-          <input type="text" id="address" name="address">
-          <label for="website">Website:</label>
-          <input type="text" id="website" name="website">
-          <label for="phone">Phone:</label>
-          <input type="text" id="phone" name="phone">
-          <label for="description">Description:</label>
-          <input type="text" id="description" name="description" value="">
+            <div class="aboutBar">
+              <label for="description">Description:</label>
+              <input type="text" id="description" name="description" value="" placeholder="Enter description">
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="aboutBar">
+              <label for="">Menu:</label>
+              <table id="existingDrinks"  >
+                <tr>
+                  <th>Drink</th>
+                  <th>Menu</th>
+                  <th>Vol</th>
+                  <th>Price</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr class="drinkInp">
+                  <td><input type="text" id="drink" name="drink" value="" placeholder="Drink"></td>
+                  <td><input type="text" id="menu" name="menu" value="" placeholder="Menu"></td>
+                  <td><input type="text" id="vol"name="vol" value="" placeholder="Vol"></td>
+                  <td><input type="text" id="price"name="price" value="" placeholder="Price"></td>
+                  <td><button type="button" class="add">add</button></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Bulmers Berries & Lime</td>
+                  <td>Cider</td>
+                  <td>0.4l</td>
+                  <td>79,-</td>
+                  <td><button type="button" class="modify">edit</button></td>
+                  <td><button type="button" class="delete">delete</button></td>
+
+                </tr>
+                  <td>Bulmers Berries & Lime</td>
+                  <td>Cider</td>
+                  <td>0.4l</td>
+                  <td>79,-</td>
+                  <td><button type="button" class="modify">edit</button></td>
+                  <td><button type="button" class="delete">delete</button></td>
+                </tr>
+              </table>
+          </form>
           </div>
+            <br>
+            <!--
+          <div class="saveBtn">
+            <button type="button" name="button">save and close</button>
+          </div>
+        -->
 
-        <table id="existingDrinks">
-          <tr>
-            <th>Drink</th>
-            <th>Menu</th>
-            <th>Vol</th>
-            <th>Price</th>
-          </tr>
-          <tr>
-            <td><input type="text" name="drink" value=""></td>
-            <td><input type="text" name="menu" value=""></td>
-            <td><input type="text" name="vol" value=""></td>
-            <td><input type="text" name="price" value=""></td>
-            <td><button type="button" name="button">add</button></td>
-          </tr>
-          <tr>
-            <td>Bulmers Berries & Lime</td>
-            <td>Cider</td>
-            <td>0.4l</td>
-            <td>79,-</td>
-            <td><button type="button" name="button">edit</button></td>
-            <td><button type="button" name="button">delete</button></td>
-          </tr>
-          <td>Bulmers Berries & Lime</td>
-          <td>Cider</td>
-          <td>0.4l</td>
-          <td>79,-</td>
-          <td><button type="button" name="button">edit</button></td>
-          <td><button type="button" name="button">delete</button></td>
-        </tr>
-        </table>
-
-        <button type="button" name="button">save & close</button>
     </body>
 </html>
