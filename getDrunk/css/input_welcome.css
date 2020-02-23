@@ -163,12 +163,16 @@ body{
   border-radius: 1px;
 }
 
-#editBar, input, select, textarea{
+#editBar input, select, textarea{
   color: #FFFFFF;
 }
 
+#existingDrinks input,select,textarea{
+  color: black;
+}
+
 #existingDrinks input:focus{
-  color: #000000;
+  color: black;
 }
 
 ::placeholder{
