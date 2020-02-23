@@ -1,12 +1,9 @@
 body{
-  font-family: 'Archivo', sans-serif;
   font-size:13px;
   position: relative;
 }
 
-.welcome{
-  background-color: #282828;
-}
+
 .main{
   width:70vw;
   height: 100vh;
@@ -16,7 +13,7 @@ body{
 }
 .main h1{
   padding-top: 90px;
-  font-size: 21px;
+  font-size: 25px;
   color: #3895A9;
   font-style: normal;
   font-weight: normal;
@@ -137,7 +134,7 @@ body{
 
 .mainEdit h1{
   padding-top: 40px;
-  font-size: 21px;
+  font-size: 25px;
   padding-left: 40px;
   padding-bottom: 10px;
   color: #3895A9;
@@ -166,12 +163,60 @@ body{
   border-radius: 1px;
 }
 
+#editBar, input, select, textarea{
+  color: #FFFFFF;
+}
+
+#existingDrinks input:focus{
+  color: #000000;
+}
+
 ::placeholder{
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   color: #777777;
   line-height: normal;
 }
+
+
+.saveBtn button{
+  float: right;
+  margin-right: 120px;
+  margin-top: 15px;
+  border-radius: 3px;
+  background-color: inherit;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 18px;
+  padding-right: 18px;
+  color:#FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+.add{
+  border:none;
+  color: #1C7D20;
+  background-color: inherit;
+  border-radius: 3px;
+}
+
+#existingDrinks{
+  border-collapse: collapse;
+  color: #777777;
+}
+
+th{
+  font-size: 15px;
+}
+td,th{
+  border-bottom:1px solid rgba(255, 255, 255, 0.3);
+  padding: 3px;
+}
+
+input,text{
+  padding: 3px;
+}
+
 
 #drink{
   width: 250px;
@@ -204,29 +249,22 @@ body{
   text-align: left;
 }
 
-.saveBtn button{
-  float: right;
-  margin-right: 160px;
+.editBtn, .delBtn{
+  float:right;
+  outline: none;
+  margin-top: 6px;
+  margin-right:12px;
   border-radius: 3px;
   background-color: inherit;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 18px;
-  padding-right: 18px;
-  color:#FFFFFF;
-  border: 1px solid #FFFFFF;
+  font-size: inherit;
 }
 
-.add{
+.editBtn{
   border:none;
-  color: #1C7D20;
-  background-color: inherit;
-  border-radius: 3px;
+  color: #FFC700;
 }
 
-table{
-  border-collapse: collapse;
-}
-td,th{
-  border-bottom:1px solid rgba(255, 255, 255, 0.3);
+.delBtn{
+  border:none;
+  color:#CB1919 ;
 }

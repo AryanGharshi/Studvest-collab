@@ -6,7 +6,6 @@
         <title>Title</title>
         <link rel="stylesheet" href="css/input_welcome.css?version=<?= time() ?>">
         <link rel="stylesheet" href="css/main.css?version=<?= time() ?>">
-        <link href="https://fonts.googleapis.com/css?family=Chivo&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -55,8 +54,17 @@
                   <th></th>
                 </tr>
                 <tr class="drinkInp">
-                  <td><input type="text" id="drink" name="drink" value="" placeholder="Drink"></td>
-                  <td><input type="text" id="menu" name="menu" value="" placeholder="Menu"></td>
+                  <td><input type="text" id="drink" name="drink" value="" placeholder="Drink" list="drinkList"></td>
+                  <datalist id="drinkList">
+                    <option value="Bulmers Berries & Lime">
+                    <option value="Grevens Fruktsmak"></option>
+                  </datalist>
+                  <td><input type="text" id="menu" name="menu" value="" placeholder="Menu" list="menuList"></td>
+                  <datalist id="menuList">
+                    <option value="Øl"></option>
+                    <option value="Cider"></option>
+                  </datalist>
+
                   <td><input type="text" id="vol"name="vol" value="" placeholder="Vol"></td>
                   <td><input type="text" id="price"name="price" value="" placeholder="Price"></td>
                   <td><button type="button" class="add">add</button></td>
@@ -67,26 +75,25 @@
                   <td>Cider</td>
                   <td>0.4l</td>
                   <td>79,-</td>
-                  <td><button type="button" class="modify">edit</button></td>
-                  <td><button type="button" class="delete">delete</button></td>
+                  <td><button type="button" class="editBtn">edit</button></td>
+                  <td><button type="button" class="delBtn">delete</button></td>
 
                 </tr>
-                  <td>Bulmers Berries & Lime</td>
+                  <td>Grevens Fruktsmak</td>
                   <td>Cider</td>
-                  <td>0.4l</td>
-                  <td>79,-</td>
-                  <td><button type="button" class="modify">edit</button></td>
-                  <td><button type="button" class="delete">delete</button></td>
+                  <td>0.5l</td>
+                  <td>69,-</td>
+                  <td><button type="button" class="editBtn">edit</button></td>
+                  <td><button type="button" class="delBtn">delete</button></td>
                 </tr>
               </table>
           </form>
           </div>
             <br>
-            <!--
+
           <div class="saveBtn">
-            <button type="button" name="button">save and close</button>
+            <button type="submit" form="editBar">save and close</button>
           </div>
-        -->
 
     </body>
 </html>
