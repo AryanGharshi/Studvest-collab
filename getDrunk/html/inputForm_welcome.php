@@ -4,8 +4,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-        <link rel="stylesheet" href="css/input_welcome.css?version=<?= time() ?>">
-        <link rel="stylesheet" href="css/main.css?version=<?= time() ?>">
+        <link rel="stylesheet" href="../css/input_welcome.css?version=<?= time() ?>">
+        <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 
     </head>
 
@@ -18,8 +18,6 @@
                   array('id' => '5','name' => 'Downstairs'),
                   array('id' => '6','name' => 'Kava')
                 );
-
-        print($result_bar[0]['name'])
 
         $result_drink = array(
                   array('id' => '12','name' => 'Hansa', 'menu' => 'Beer'),

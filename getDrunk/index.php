@@ -13,14 +13,14 @@
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "inc/connection/conn.php";
 
-    $sql = "SELECT name FROM bar";
+    $sql = "SELECT id, name FROM bar";
     $result = ($conn->query($sql));
 
     if ($result->num_rows > 0) {
         $bars = [];
 
         while ($row = $result->fetch_assoc()) {
-            array_push($bars, $row["name"]);
+            array_push($bars, [$row["id"], $row["name"]]);
         }
     } else {
         echo "0 results";
@@ -31,8 +31,9 @@
 <body>
     <!--titlebar div should be moved to inc-->
     <div class="titlebar">
-        <div class="title">Studvest Bar Pulse</div>
+        Studvest Bar Pulse
     </div>
+
 
     <div class="wrapper">
 
@@ -41,16 +42,18 @@
 
         foreach ($bars as $elem) {
             echo '
-        <div class="examplebar">
-            <div class="barText">
-                <h1>' . $elem . '</h1>
+        <a href="html/barView.php?barID=' . $elem[0] . '"> 
+            <div class="examplebar">
+                <div class="barText">
+                    <h1>' . $elem[1] . '</h1>
                 </div>
                 <div class="ellipse">
-                <div class="barlogo">
-                    <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
+                    <div class="barlogo">
+                        <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
+                    </div>
                 </div>
-              </div>
             </div>
+        </a>    
         ';
         }
 

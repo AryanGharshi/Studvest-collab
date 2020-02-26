@@ -8,7 +8,7 @@ td a {
 }
 
 
-/* TITLE BAR */
+/* NAVIGATION */
 
 .navigationIcon {
     height: 5vh;
@@ -16,14 +16,6 @@ td a {
     background-size: cover;
     float:left;
 }
-
-.title {
-    width: calc(100vw - 12vh);
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    float:left;
-}
-
 
 
 /* GALLERY */
