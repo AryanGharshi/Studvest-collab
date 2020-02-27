@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-        <link rel="stylesheet" href="../css/input_welcome.css?version=<?= time() ?>">
+        <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
         <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 
     </head>
@@ -39,40 +39,40 @@
       ?>
 
         <div class="welcome">
-          
-        <div class="titlebar">
-            <div class="title">StudOut - Administration</div>
-        </div>
-        <div class="main">
 
-          <h1>Welcome back.</h1>
-          <button type="button" class="add">Add new bar</button>
-          <p>Modify the information for an existing bar</p>
-          <div class="item">
-            <p >Diskuterbar</p>
-            <button type="button" class="delete">delete</button>
-            <button type="button" class="modify">modify</button>
-          </div>
-          <div class="item">
-            <p >Kvarteret</p>
-            <button type="button" class="delete">delete</button>
-            <button type="button" class="modify">modify</button>
-          </div>
-          <div class="item">
-            <p>Heidis</p>
-            <button type="button" class="delete">delete</button>
-            <button type="button" class="modify">modify</button>
-          </div>
-          <div class="item">
-            <p>Integrarbar</p>
-            <button type="button" class="delete">delete</button>
-            <button type="button" class="modify">modify</button>
-          </div>
-          <div class="side_foot">
-            <button type="button">Mange drinks</button>
-            <button type="button">Mange tags</button>
-            <button type="button">Mange menus</button>
-          </div>
+            <div class="titlebar">
+                <div class="title">StudOut - Administration</div>
+            </div>
+            <div class="main">
+
+              <h1>Welcome back.</h1>
+              <button type="button" class="add">Add new bar</button>
+              <p>Modify the information for an existing bar</p>
+              <div class="item">
+                <p >Diskuterbar</p>
+                <button type="button" class="delete">delete</button>
+                <button type="button" class="modify">modify</button>
+              </div>
+              <div class="item">
+                <p >Kvarteret</p>
+                <button type="button" class="delete">delete</button>
+                <button type="button" class="modify">modify</button>
+              </div>
+              <div class="item">
+                <p>Heidis</p>
+                <button type="button" class="delete">delete</button>
+                <button type="button" class="modify">modify</button>
+              </div>
+              <div class="item">
+                <p>Integrarbar</p>
+                <button type="button" class="delete">delete</button>
+                <button type="button" class="modify">modify</button>
+              </div>
+              <div class="side_foot">
+                <button type="button">Mange drinks</button>
+                <button type="button">Mange tags</button>
+                <button type="button">Mange menus</button>
+              </div>
 
           </div>
         </div>
