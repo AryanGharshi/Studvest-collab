@@ -1,5 +1,3 @@
-@import "main.css";
-
 .wrapper {
   display: grid;
   grid-template-row: 50% 50%;
