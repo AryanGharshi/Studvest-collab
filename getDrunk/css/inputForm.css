@@ -11,10 +11,12 @@ body{
   background-color: #222222;
   text-align: center;
 }
+
 .main h1{
   padding-top: 90px;
   font-size: 25px;
   color: #3895A9;
+  margin-top: 0;
   font-style: normal;
   font-weight: normal;
 }
@@ -76,6 +78,41 @@ body{
   padding-left: 6px;
 }
 
+/************* pop_up ***********/
+.pop_up{
+  display:none;
+  width:448px;
+  height:auto;
+  border: 1px solid #888888;
+  border-radius: 5px;
+  position: absolute;
+  left:33vw;
+  top:300px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+}
+.pop_up h1{
+  padding:0;
+  margin-left:59px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.pop_up p{
+  margin-top: 0;
+  color:#777777;
+  text-align: left;
+}
+
+.pop_up img{
+  float:right;
+  width: 15px;
+  height: auto;
+  position: absolute;
+  right: 59px;
+}
+
+
 .side_foot{
       width: 70vw;
       height: 20vh;
@@ -84,6 +121,7 @@ body{
 }
 
 .side_foot button{
+  display:inline;
   margin-left:7.2px;
   border-radius: 3px;
   background-color: inherit;
@@ -140,6 +178,7 @@ body{
   color: #3895A9;
   font-style: normal;
   font-weight: normal;
+  margin: 0;
 }
 
 
@@ -243,6 +282,7 @@ input,text,textarea{
 }
 
 
+
 #existingDrinks input{
   background: #FFFFFF;
   height: 20px;
@@ -258,4 +298,25 @@ input,text,textarea{
 
 #existingDrinks th{
   text-align: left;
+}
+
+
+.editBtn, .delBtn{
+  float:right;
+  outline: none;
+  margin-top: 6px;
+  margin-right:12px;
+  border-radius: 3px;
+  background-color: inherit;
+  font-size: inherit;
+}
+
+.editBtn{
+  border:none;
+  color: #FFC700;
+}
+
+.delBtn{
+  border:none;
+  color:#CB1919 ;
 }

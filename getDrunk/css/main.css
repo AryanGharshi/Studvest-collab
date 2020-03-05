@@ -17,5 +17,18 @@ body {
     padding: 1vh;
     overflow: hidden;
     text-align: center;
-    width: 100%;
+}
+
+/* Hyperlinks */
+a:link {
+    color: inherit;
+}
+a:visited {
+    color: inherit;
+}
+a:hover {
+    color: #2C7090;
+}
+a:active {
+    color: #2C7090;
 }
