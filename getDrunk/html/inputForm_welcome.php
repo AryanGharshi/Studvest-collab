@@ -13,7 +13,7 @@
 <?php
 $result_bar = array(
     array('id' => '2', 'name' => 'diskuterbar'),
-    array('id' => '3', 'name' => 'Ricks'),
+    array('id' => '3', 'name' => 'Rick'),
     array('id' => '5', 'name' => 'Downstairs'),
     array('id' => '6', 'name' => 'Kava')
 );
