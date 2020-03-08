@@ -10,18 +10,17 @@
 
     <body>
 
-      <!--<?php
+      <?php
         $result_menu = array(
-            array('id' => '3', 'drink_name' = 'Hansa', 'menu_name' => 'Beer', 'price' => '85', 'size' => '0.5'),
-            array('id' => '4', 'drink_name' = 'Sommersby', 'menu_name' => 'Cider', 'price' => '95', 'size' => '0.5')
+            array('id' => '3', 'drink_name' => 'Hansa', 'menu_name' => 'Beer', 'price' => '85', 'size' => '0.5'),
+            array('id' => '4', 'drink_name' => 'Sommersby', 'menu_name' => 'Cider', 'price' => '95', 'size' => '0.5')
           );
 
         $result_bar = array(
             array('id' => '2','name' => 'diskuterbar','description' => 'digg bar med billige priser', 'website' => 'https://www.facebook.com/diskuterbar/','phone' => '40399114','location' => 'https://www.google.com/maps/place/Diskuterbar/@60.3884287,5.3234435,15z/data=!4m5!3m4!1s0x0:0x6a780df5601c78ce!8m2!3d60.3884287!4d5.3234435')
           );
-      ?>-->
+      ?>
 
-        <!--titlebar div should be moved to inc-->
         <div class="titlebar">
             <div class="title">Studvest Bar Pulse - Administration</div>
         </div>
@@ -56,7 +55,11 @@
             <br>
             <div class="aboutBar">
               <label for="">Menu:</label>
-              <table id="existingDrinks"  >
+              <?php
+
+              echo '
+
+              <table id="existingDrinks">
                 <tr>
                   <th>Drink</th>
                   <th>Menu</th>
@@ -83,7 +86,9 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td>Bulmers Berries & Lime</td>
+                ';
+                echo "<td>".$result_menu[0][drink_name]."</td>";
+                echo '
                   <td>Cider</td>
                   <td>0.4l</td>
                   <td>79,-</td>
@@ -98,7 +103,8 @@
                   <td><button type="button" class="modify">edit</button></td>
                   <td><button type="button" class="delete">delete</button></td>
                 </tr>
-              </table>
+              </table> '
+            ?>
           </form>
           </div>
             <br>
