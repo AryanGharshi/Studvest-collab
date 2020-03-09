@@ -19,8 +19,15 @@
         $result_bar = array(
             array('id' => '2','name' => 'diskuterbar','description' => 'digg bar med billige priser', 'website' => 'https://www.facebook.com/diskuterbar/','phone' => '40399114','location' => 'https://www.google.com/maps/place/Diskuterbar/@60.3884287,5.3234435,15z/data=!4m5!3m4!1s0x0:0x6a780df5601c78ce!8m2!3d60.3884287!4d5.3234435')
           );
+<<<<<<< HEAD
       ?>
 
+=======
+
+      ?>
+
+
+>>>>>>> Kornelija
         <div class="titlebar">
             <div class="title">Studvest Bar Pulse - Administration</div>
         </div>
@@ -55,10 +62,13 @@
             <br>
             <div class="aboutBar">
               <label for="">Menu:</label>
+<<<<<<< HEAD
               <?php
 
               echo '
 
+=======
+>>>>>>> Kornelija
               <table id="existingDrinks">
                 <tr>
                   <th>Drink</th>
@@ -85,6 +95,7 @@
                   <td><button type="button" class="add">add</button></td>
                   <td></td>
                 </tr>
+<<<<<<< HEAD
                 <tr>
                 ';
                 echo "<td>".$result_menu[0][drink_name]."</td>";
@@ -105,6 +116,20 @@
                 </tr>
               </table> '
             ?>
+=======
+                <?php
+                foreach ($result_menu as $drink) {
+                  echo "<tr>";
+                  echo "<td>".$drink[drink_name]."</td>";
+                  echo "<td>".$drink[menu_name]."</td>";
+                  echo "<td>".$drink[price]."</td>";
+                  echo "<td>".$drink[size]."</td>";
+                  echo "<td><button type='button' class='modify'>edit</button></td>";
+                  echo "<td><button type='button' class='delete'>delete</button></td>";
+                }
+                ?>
+              </table>
+>>>>>>> Kornelija
           </form>
           </div>
             <br>
