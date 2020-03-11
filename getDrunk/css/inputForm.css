@@ -68,48 +68,67 @@ body{
   color:#CB1919;
 }
 
-.main .item p{
-  float: left;
-  width:auto;
-  padding-bottom: 0;
-  margin-top:11px;
-  color: #777777;
-  border-bottom: none;
-  padding-left: 6px;
+.main .item input{
+margin: 0 auto;
+font-size: 13px;
+margin-bottom: 0;
+float: left;
+width: auto;
+padding-bottom: 0;
+margin-top: 11px;
+color: #777777;
+border-bottom: none;
+padding-left: 6px;
+background: none;
+border: none;
+text-decoration: none;
 }
 
 /************* pop_up ***********/
-.pop_up{
-  display:none;
+.popup{
+  margin: 0 auto;
   width:448px;
+  height: auto;
+  border: 1px solid #222222;
+  display:none;
+}
+
+.popup .content{
+  margin: 0 auto;
+  margin-top: 260px;
+  width:440px;
   height:auto;
   border: 1px solid #888888;
   border-radius: 5px;
-  position: absolute;
-  left:33vw;
-  top:300px;
   padding-top: 40px;
   padding-bottom: 40px;
-
 }
-.pop_up h1{
+
+.popup h1{
+  background: #222222;
+  float:left;
   padding:0;
   margin-left:59px;
   margin-bottom: 5px;
   text-align: left;
 }
-.pop_up p{
+.popup .content p{
+  text-align: left;
+}
+.popup .change input{
+  clear: both;
   margin-top: 0;
   color:#777777;
   text-align: left;
 }
 
-.pop_up img{
-  float:right;
-  width: 15px;
+.popup img{
+  float: right;
+  width: 20px;
   height: auto;
   position: absolute;
-  right: 59px;
+  margin-left: 46px;
+  padding: 0;
 }
 
 
@@ -280,7 +299,9 @@ input,text,textarea{
 #vol,#price{
   width: 100px;
 }
-
+#description{
+  height: 150px;
+}
 
 
 #existingDrinks input{
