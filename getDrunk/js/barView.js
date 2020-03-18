@@ -62,9 +62,6 @@ function printMenu (tab) {
     let menuSwitch = document.getElementById("menuSwitch");
     menuSwitch.innerHTML = newSwitchTable;
 
-    // Update menu title
-    let menuHeader = document.getElementById("menuHeader");
-    menuHeader.innerText = menuTitles[tab];
 
     // Update menu body
     let newMenuTable = "<table class='menuTable'>";

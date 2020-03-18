@@ -3,8 +3,6 @@
 td a {
     display:block;
     width:100%;
-    text-decoration: inherit;
-    color: inherit;
 }
 
 
@@ -25,6 +23,7 @@ td a {
     background-size: cover;
     background-position: center;
     opacity: 0.9;
+    overflow: visible;
 }
 
 .galleryNavigation {
@@ -75,17 +74,16 @@ td a {
     border-bottom: thin solid #2A2A2A;
     padding-bottom: 0.5vh;
     padding-top: 0.5vh;
-    font-size: 1.3vh;
+    font-size: calc(1.6vh - 0.2vw);
     width: 100%;
+    text-align: center;
+    table-layout: fixed;
 }
 
-.linksTable td {
-    text-align: center;
-}
 
 .linkIcon {
-    height: 3vh;
-    width: 3vh;
+    height: calc(4.5vh - 0.5vw);
+    width: calc(4.5vh - 0.5vw);
     background-size: cover;
 }
 
@@ -99,20 +97,20 @@ td a {
 .barInfo {
     display: block;
     color: #CFCFCF;
-    padding-top: 4vh;
+    padding-top: 3vh;
     padding-bottom: 1.5vh;
     padding-left: 10%;
     padding-right: 10%;
 }
 
 .barName {
-    font-size: 3.1vh;
+    font-size: calc(5vh - 1vw);
     padding-bottom: 0.5vh;
     text-align: center;
 }
 
 .barDesc {
-    font-size: 1.5vh;
+    font-size: calc(2.5vh - 0.5vw);
     text-align: center;
 }
 
@@ -122,10 +120,7 @@ td a {
 
 /* Menu Switch */
 
-.menu {
-    padding-left: 4%;
-    padding-right: 4%;
-}
+
 
 .menuSwitch {
     display: block;
@@ -133,7 +128,7 @@ td a {
 }
 
 .menuSwitchTable {
-    font-size: 2vh;
+    font-size: calc(2.7vh - 0.5vw);
     width: 100%;
     table-layout: fixed;
     cursor: pointer;
@@ -141,7 +136,7 @@ td a {
 
 .menuSwitchTable .colNormal {
     height: 5vh;
-    color: #83758F;
+    color: #838383;
     border-bottom: thin solid #2A2A2A;
     text-align: center;
 }
@@ -158,19 +153,12 @@ td a {
     height: 5vh;
 }
 
-/* Menu Header */
 
-.menuHeader {
-    font-size: 2.5vh;
-    padding-bottom: 2vh;
-}
 
 /* Menu Body */
 
 .menuBody {
     display: block;
-    height: 25vh;
-    overflow: scroll;
 }
 
 .menuBody::-webkit-scrollbar {
@@ -179,30 +167,34 @@ td a {
 
 .menuTable {
     width: 100%;
-    font-size: 1.9vh;
+    font-size: calc(2.7vh - 0.5vw);
+    border-spacing: 0;
 }
 
 .menuTable td {
     padding: 0.8vh;
-    border-bottom-color: #2A2A2A;
-    border-bottom-style: solid;
-    border-bottom-width: thin;
+}
+
+.menuTable tr:nth-child(odd) {
+    background: #2B2B2B
 }
 
 .menuTable .firstCol {
     text-align: left;
-    color: #83758F;
+    padding-left: 4vw;
+    color: #838383;
     width: 60%;
 }
 
 .menuTable .secondCol {
     text-align: center;
-    color: #83758F;
+    color: #838383;
     width: 20%;
 }
 
 .menuTable .thirdCol {
     text-align: right;
+    padding-right: 4vw;
     color: #55C8E3;
     width: 20%;
 }
@@ -236,6 +228,19 @@ td a {
 
     #closeIcon {
         visibility: visible;
+    }
+
+    .menu {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .menuTable .firstCol {
+        padding: 0.8vh;
+    }
+
+    .menuTable .thirdCol {
+        padding: 0.8vh;
     }
 
     body::-webkit-scrollbar {

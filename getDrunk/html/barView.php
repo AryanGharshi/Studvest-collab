@@ -12,7 +12,6 @@ $sql = "SELECT bar.id AS barid, bar.name AS barname, bar.description, bar.websit
                 INNER JOIN menu ON bar.id = menu.bar_id
                 WHERE bar.id = " . $barID;
 
-
 $result = ($conn->query($sql));
 
 if ($result->num_rows > 0) {
@@ -28,7 +27,8 @@ if ($result->num_rows > 0) {
         array_push($menus, $row["menuname"]);
     }
 } else {
-    echo "0 results";
+    header( "Location: 404.php" );
+    die;
 }
 $conn->close();
 ?>
@@ -42,10 +42,7 @@ $conn->close();
 
 
 <body>
-    <!--titlebar div should be moved to inc-->
-    <div class="titlebar">
-        Studvest Bar Pulse
-    </div>
+    <?php include('titlebar.php'); ?>
 
     <div class="gallery" id="galleryDiv">
         <div class="galleryNavigation">
@@ -65,7 +62,7 @@ $conn->close();
         </script>
 
         <div>
-            <a href="../index.php">
+            <a href="index.php">
                 <img class="navigationIcon" id="closeIcon" src="../media/icons/close.png">
             </a>
         </div>
@@ -77,24 +74,31 @@ $conn->close();
         <div class="links">
             <table class="linksTable">
                 <tr>
-                    <td>
-                        <a href="<?php echo $info['website']?>">
-                        <img class="linkIcon" src="../media/icons/website.png"><br>
-                        Website
-                        </a>
-                    </td>
-                    <td>
-                        <a href="tel:<?php echo $info['phone']?>">
-                        <img class="linkIcon" src="../media/icons/call.png"><br>
-                        Call
-                        </a>
-                    </td>
-                    <td>
-                        <a href=<?php echo $info['location']?>">
-                        <img class="linkIcon" src="../media/icons/location.png"><br>
-                        Location
-                        </a>
-                    </td>
+                <?php
+                    if($info['website']!='') {
+                        printf('<td>');
+                        printf('<a href="'.$info["website"].'">');
+                        printf('<img class="linkIcon" src="../media/icons/website.png"><br>');
+                        printf('Website');
+                        printf('</td>');
+                    }
+
+                    if($info['phone']!='') {
+                        printf('<td>');
+                        printf('<a href="tel:+47'.$info["phone"].'">');
+                        printf('<img class="linkIcon" src="../media/icons/call.png"><br>');
+                        printf('Call');
+                        printf('</td>');
+                    }
+
+                    if($info['location']!='') {
+                        printf('<td>');
+                        printf('<a href="'.$info["location"].'">');
+                        printf('<img class="linkIcon" src="../media/icons/location.png"><br>');
+                        printf('Location');
+                        printf('</td>');
+                    }
+                ?>
                 </tr>
             </table>
         </div>

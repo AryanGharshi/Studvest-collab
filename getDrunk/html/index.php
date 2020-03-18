@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet" href="css/main.css?version=<?= time() ?>">
-    <link rel="stylesheet" href="css/feed.css?version=<?= time() ?>">
+    <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
+    <link rel="stylesheet" href="../css/feed.css?version=<?= time() ?>">
 </head>
 
 
 <?php
     define("MAGICKEY", "ugugUGu221KHJBD84");
-    require "inc/connection/conn.php";
+    require "../inc/connection/conn.php";
 
     $sql = "SELECT id, name FROM bar";
     $result = ($conn->query($sql));
@@ -29,11 +29,7 @@
 ?>
 
 <body>
-    <!--titlebar div should be moved to inc-->
-    <div class="titlebar">
-        Studvest Bar Pulse
-    </div>
-
+    <?php include('titlebar.php'); ?>
 
     <div class="wrapper">
 
@@ -42,7 +38,7 @@
 
         foreach ($bars as $elem) {
             echo '
-        <a href="html/barView.php?barID=' . $elem[0] . '"> 
+        <a href="barView.php?barID=' . $elem[0] . '"> 
             <div class="examplebar">
                 <div class="barText">
                     <h1>' . $elem[1] . '</h1>
