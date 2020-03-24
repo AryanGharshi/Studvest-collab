@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <p id="demo">2</p>
 
 <?php
 $result_bar = array(
@@ -36,8 +37,8 @@ $result_menus = array(
 $result_tags = array(
     array('id' => '1', 'name' => 'cozy'),
     array('id' => '2', 'name' => 'dancefloor'),
-    array('id' => '1', 'name' => 'Loud-music'),
-    array('id' => '2', 'name' => 'For-student')
+    array('id' => '3', 'name' => 'Loud-music'),
+    array('id' => '4', 'name' => 'For-student')
 );
 ?>
 <div class="welcome">
@@ -53,14 +54,16 @@ $result_tags = array(
             <?php
             for ($i = 0; $i < count($result_bar); $i++) {
                 $name = $result_bar[$i]['name'];
-                echo "<div class='item'>";
-                echo " <input value=$name >";
-                echo "<button type='button' class='delete' onclick ='del($i)' >delete</button>
-                  <button type='button' class='modify'>modify</button>
-                </div>";
+                $id = $result_bar[$i]['id'];
+                $n = 'barname'.$id;
+                $input = 'barinput'.$id;
+                echo "<div class='item' id='$n' >
+                      <input value='$name' id='$input' disabled=false/>
+                      <button type='button' class='delete' onclick ='del($id)'>delete</button>
+                      <button type='button' class='modify' onclick ='reg($id)'>modify</button>
+                      </div> ";
             }
             ?>
-
         </div>
         <div id="popup_1" class="popup">
           <div  class="content">
@@ -70,11 +73,13 @@ $result_tags = array(
             <?php
             for ($i = 0; $i < count($result_drink); $i++) {
                 $name = $result_drink[$i]['name'];
-                $n=$i+count($result_bar);
-                echo "<div class='item' id='item'>";
-                echo " <input value=$name >";
-                echo "<button type='button' class='delete' onclick ='del($n)' > delete </button>
-                  <button type='button' class='modify'>modify</button>
+                $id=$result_drink[$i]['id'];
+                $n='drinks'.$id;
+                $input = 'drinksinput'.$id;
+                echo "<div class='item' id='$n'>";
+                echo " <input value=$name id='$input' disabled=false/>";
+                echo "<button type='button' class='delete' onclick ='del2($id)'> delete </button>
+                  <button type='button' class='modify' onclick ='reg_2($id)'>modify</button>
                 </div>";
             }
             ?>
@@ -89,11 +94,13 @@ $result_tags = array(
             <?php
             for ($i = 0; $i < count($result_tags); $i++) {
                 $name = $result_tags[$i]['name'];
-                $n_2=$i+count($result_bar)+count($result_drink);
-                echo "<div class='item'>";
-                echo " <input value=$name >";
-                echo "<button type='button' class='delete' onclick='del($n_2)'>delete</button>
-                      <button type='button' class='modify'>modify </button>
+                $id=$result_tags[$i]['id'];
+                $n='tags'.$id;
+                $input = 'tagsinput'.$id;
+                echo "<div class='item' id='$n'>";
+                echo " <input value=$name id='$input' disabled=false >";
+                echo "<button type='button' class='delete' onclick ='del3($id)'>delete</button>
+                      <button type='button' class='modify' onclick ='reg_3($id)'>modify </button>
                       </div>";
             }
             ?>
@@ -108,11 +115,13 @@ $result_tags = array(
               <?php
               for ($i = 0; $i < count($result_menus); $i++) {
                   $name = $result_menus[$i]['name'];
-                  $n_3=$i+count($result_bar)+count($result_drink)+count($result_tags);
-                  echo "<div class='item'>";
-                  echo " <input value=$name >";
-                  echo "<button type='button' class='delete' onclick='del($n_3)' >delete</button>
-                    <button type='button' class='modify'>modify</button>
+                  $id=$result_menus[$i]['id'];
+                  $n='menus'.$id;
+                  $input = 'menusinput'.$id;
+                  echo "<div class='item' id='$n'>";
+                  echo " <input value=$name  id='$input' disabled/>";
+                  echo "<button type='button' class='delete' onclick ='del4($id)' >delete</button>
+                    <button type='button' class='modify' onclick ='reg_3($id)'>modify</button>
                   </div>";
               }
               ?>
@@ -129,6 +138,7 @@ $result_tags = array(
 </div>
 
 <script type='text/javascript' src='../js/inputwelcome_1.js'></script>
+<script type='text/javascript' src='../js/input_reg.js'></script>
 <script type='text/javascript' src='../js/input_del.js'></script>
 
 </body>
