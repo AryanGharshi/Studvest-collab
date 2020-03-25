@@ -13,6 +13,7 @@ td a {
     width: 5vh;
     background-size: cover;
     float:left;
+    fill: red;
 }
 
 

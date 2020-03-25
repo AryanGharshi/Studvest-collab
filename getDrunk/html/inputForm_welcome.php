@@ -9,52 +9,39 @@
 </head>
 
 <body>
-  <p id="demo">2</p>
-
 <?php
-$result_bar = array(
-    array('id' => '2', 'name' => 'diskuterbar'),
-    array('id' => '3', 'name' => 'Ricks'),
-    array('id' => '5', 'name' => 'Downstairs'),
-    array('id' => '6', 'name' => 'Kava')
-);
+    define("MAGICKEY", "ugugUGu221KHJBD84");
+    require "../inc/connection/conn.php";
 
-$result_drink = array(
-    array('id' => '12', 'name' => 'Hansa', 'menu' => 'Beer'),
-    array('id' => '11', 'name' => 'Ipa', 'menu' => 'Cider'),
-    array('id' => '14', 'name' => 'Plumbers', 'menu' => 'Beer'),
-    array('id' => '15', 'name' => 'Somersby', 'menu' => 'Beer'),
-    array('id' => '13', 'name' => 'Tuborg', 'menu' => 'Beer')
-);
+    # Retrieve list of all bars
+    $sql_bar = "SELECT * FROM bar";
+    $result_bar = ($conn->query($sql_bar));
 
-$result_menus = array(
-    array('id' => '3', 'name' => 'Beer'),
-    array('id' => '4', 'name' => 'Cider'),
-    array('id' => '5', 'name' => 'Soft-drink'),
-    array('id' => '6', 'name' => 'Wine')
-);
+    # Retrieve list of all menus
+    $sql_menu = "SELECT * FROM menu";
+    $result_menu = ($conn->query($sql_menu));
 
-$result_tags = array(
-    array('id' => '1', 'name' => 'cozy'),
-    array('id' => '2', 'name' => 'dancefloor'),
-    array('id' => '3', 'name' => 'Loud-music'),
-    array('id' => '4', 'name' => 'For-student')
-);
+    # Retrieve list of all tags
+    $sql_tags = "SELECT * FROM tag";
+    $result_tags = ($conn->query($sql_tags));
+
+    # Retrieve list of all drinks
+    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, menu.name AS menu FROM drink INNER JOIN menu ON drink.menu_id = menu.id";
+    $result_drinks = ($conn->query($sql_drinks));
+
+    $conn->close();
 ?>
 <div class="welcome">
-
-    <div class="titlebar">
-        <div class="title">StudOut - Administration</div>
-    </div>
+    <?php include('titlebar.php'); ?>
     <div class="main">
         <div id="are">
             <h1>Welcome back.</h1>
             <button type="button" class="add">Add new bar</button>
             <p class="change">Modify the information for an existing bar</p>
             <?php
-            for ($i = 0; $i < count($result_bar); $i++) {
-                $name = $result_bar[$i]['name'];
-                $id = $result_bar[$i]['id'];
+            while($currentRow = mysqli_fetch_array($result_bar)) {
+                $name = $currentRow['name'];
+                $id = $currentRow['id'];
                 $n = 'barname'.$id;
                 $input = 'barinput'.$id;
                 echo "<div class='item' id='$n' >
@@ -71,9 +58,9 @@ $result_tags = array(
             <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
             <p>Change affect all bars with tags</p>
             <?php
-            for ($i = 0; $i < count($result_drink); $i++) {
-                $name = $result_drink[$i]['name'];
-                $id=$result_drink[$i]['id'];
+            while($currentRow = mysqli_fetch_array($result_drinks)) {
+                $name = $currentRow['name'];
+                $id=$currentRow['id'];
                 $n='drinks'.$id;
                 $input = 'drinksinput'.$id;
                 echo "<div class='item' id='$n'>";
@@ -92,9 +79,9 @@ $result_tags = array(
             <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
             <p class="change">Change affect all bars with tags</p>
             <?php
-            for ($i = 0; $i < count($result_tags); $i++) {
-                $name = $result_tags[$i]['name'];
-                $id=$result_tags[$i]['id'];
+            while($currentRow = mysqli_fetch_array($result_tags)) {
+                $name = $currentRow['name'];
+                $id=$currentRow['id'];
                 $n='tags'.$id;
                 $input = 'tagsinput'.$id;
                 echo "<div class='item' id='$n'>";
@@ -113,9 +100,9 @@ $result_tags = array(
               <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
               <p class="change">Change affect all bars with tags</p>
               <?php
-              for ($i = 0; $i < count($result_menus); $i++) {
-                  $name = $result_menus[$i]['name'];
-                  $id=$result_menus[$i]['id'];
+              while($currentRow = mysqli_fetch_array($result_menu)) {
+                  $name = $currentRow['name'];
+                  $id=$currentRow['id'];
                   $n='menus'.$id;
                   $input = 'menusinput'.$id;
                   echo "<div class='item' id='$n'>";

@@ -12,6 +12,8 @@ $sql = "SELECT bar.id AS barid, bar.name AS barname, bar.description, bar.websit
                 INNER JOIN menu ON bar.id = menu.bar_id
                 WHERE bar.id = " . $barID;
 
+#SELECT drink.id, drink.name, drink_relationship.price, drink_relationship.size, menu.name FROM drink_relationship LEFT JOIN drink ON drink_relationship.drink_id=drink.id LEFT JOIN menu ON drink.menu_id=menu.id WHERE drink_relationship.bar_id=2
+
 $result = ($conn->query($sql));
 
 if ($result->num_rows > 0) {
