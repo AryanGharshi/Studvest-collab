@@ -59,8 +59,8 @@ $result_tags = array(
                 $input = 'barinput'.$id;
                 echo "<div class='item' id='$n' >
                       <input value='$name' id='$input' disabled=false/>
-                      <button type='button' class='delete' onclick ='del($id)'>delete</button>
-                      <button type='button' class='modify' onclick ='reg($id)'>modify</button>
+                      <button type='button' class='delete' onclick ='del(".'"barname"'.",$id)'>delete</button>
+                      <button type='button' class='modify' onclick ='reg(".'"barinput"'.",$id)'>modify</button>
                       </div> ";
             }
             ?>
@@ -78,8 +78,8 @@ $result_tags = array(
                 $input = 'drinksinput'.$id;
                 echo "<div class='item' id='$n'>";
                 echo " <input value=$name id='$input' disabled=false/>";
-                echo "<button type='button' class='delete' onclick ='del2($id)'> delete </button>
-                  <button type='button' class='modify' onclick ='reg_2($id)'>modify</button>
+                echo "<button type='button' class='delete' onclick ='del(".'"drinks"'.",$id)'> delete </button>
+                  <button type='button' class='modify' onclick ='reg(".'"drinksinput"'.",$id)'>modify</button>
                 </div>";
             }
             ?>
@@ -99,8 +99,8 @@ $result_tags = array(
                 $input = 'tagsinput'.$id;
                 echo "<div class='item' id='$n'>";
                 echo " <input value=$name id='$input' disabled=false >";
-                echo "<button type='button' class='delete' onclick ='del3($id)'>delete</button>
-                      <button type='button' class='modify' onclick ='reg_3($id)'>modify </button>
+                echo "<button type='button' class='delete' onclick ='del(".'"tags"'.",$id)'>delete</button>
+                      <button type='button' class='modify' onclick ='reg(".'"tagsinput"'.",$id)'>modify </button>
                       </div>";
             }
             ?>
@@ -120,8 +120,8 @@ $result_tags = array(
                   $input = 'menusinput'.$id;
                   echo "<div class='item' id='$n'>";
                   echo " <input value=$name  id='$input' disabled/>";
-                  echo "<button type='button' class='delete' onclick ='del4($id)' >delete</button>
-                    <button type='button' class='modify' onclick ='reg_3($id)'>modify</button>
+                  echo "<button type='button' class='delete' onclick ='del(".'"menus"'.",$id)'>delete</button>
+                    <button type='button' class='modify' onclick ='reg(".'"menusinput"'.",$id)'>modify</button>
                   </div>";
               }
               ?>
