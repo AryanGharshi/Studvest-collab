@@ -4,24 +4,10 @@ let numberOfGalleryImgs = 2;
 let galleryImgs = ['https://www.adressa.no/pluss/meninger/article13853663.ece/iftmam/BINARY/w980/HeidisBierBarOslo01.jpg', "https://www.heidisbierbar.no/media/foedselsdag-no2.png"];
 gallery = document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[galleryImgID]+")";
 
-// Print default menu
-//let menuTitles = ['Beers', 'Ciders'];
-let menu = [{'Category': 'Beers',
-    'Drinks': ['Hansa', 'Haandbukk', 'Humlesus', 'Prestesonen'],
-    'Fill':   ['0.4l', '0.4l', '0.5l', '0.5l'],
-    'Prices': ['42,-', '59,-', '79,-', '89,-']
-},
-    {'Category': 'Ciders',
-        'Drinks': ['Bulmers', 'Grevens', 'Seattle Cider Dry'],
-        'Fill':   ['0.5l', '0.5l', '0.5l'],
-        'Prices': ['79,-', '89,-', '109,-']
-    }
-];
 printMenu (0);
 
 // Start automatic slideshow
 automaticSlideshow();
-
 
 
 // Change Images in gallery
@@ -48,6 +34,7 @@ function printMenu (tab) {
 
     // Update menu switch
     let newSwitchTable = "<table class='menuSwitchTable'><tr>";
+    let menuTitles = Object.keys(menus);
     for (let i=0; i<menuTitles.length; i++) {
         if(i==tab) {
             newSwitchTable += "<td class='colHighlighted' onclick='printMenu("+i+")'>"
@@ -61,16 +48,14 @@ function printMenu (tab) {
     newSwitchTable += "</tr></table>";
     let menuSwitch = document.getElementById("menuSwitch");
     menuSwitch.innerHTML = newSwitchTable;
-
-
-    // Update menu body
+    
+    // Update menu body with drinks
     let newMenuTable = "<table class='menuTable'>";
-    let relevantMenuItems = menu[tab];
-    for (let i=0; i<relevantMenuItems.Drinks.length; i++) {
+    for (let i=0; i<menus[menuTitles[tab]].length; i++) {
         newMenuTable += "<tr>"
-        newMenuTable += "<td class='firstCol'>"  + relevantMenuItems.Drinks[i] + "</td>"
-        newMenuTable += "<td class='secondCol'>" + relevantMenuItems.Fill[i]   + "</td>"
-        newMenuTable += "<td class='thirdCol'>"  + relevantMenuItems.Prices[i] + "</td>"
+        newMenuTable += "<td class='firstCol'>"  + menus[menuTitles[tab]][i]['drink_name'] + "</td>"
+        newMenuTable += "<td class='secondCol'>" + menus[menuTitles[tab]][i]['size'] + "l</td>"
+        newMenuTable += "<td class='thirdCol'>"  + menus[menuTitles[tab]][i]['price'] + ".-</td>"
         newMenuTable += "</tr>"
     }
     newMenuTable += "</table";

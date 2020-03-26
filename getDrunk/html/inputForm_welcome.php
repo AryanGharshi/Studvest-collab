@@ -13,19 +13,25 @@
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
-    # Retrieve list of all bars
+    # Code below just creates a new, random bar (useful to test deletion)
+    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('11', 'Only delete this bar', NULL, NULL, '', '', '');";
+    $conn->query($sql_addBar);
+
+    # Process POST-statements to delete/modify
+    if(isset($_POST['del'])){
+        $id = (int) $_POST['del'];
+        $section = $_POST['section'];
+        $sql_del = "DELETE FROM $section WHERE id=$id";
+        $conn->query($sql_del);
+    }
+
+    # Retrieve data from the database
     $sql_bar = "SELECT * FROM bar";
     $result_bar = ($conn->query($sql_bar));
-
-    # Retrieve list of all menus
     $sql_menu = "SELECT * FROM menu";
     $result_menu = ($conn->query($sql_menu));
-
-    # Retrieve list of all tags
     $sql_tags = "SELECT * FROM tag";
     $result_tags = ($conn->query($sql_tags));
-
-    # Retrieve list of all drinks
     $sql_drinks = "SELECT drink.id AS id, drink.name AS name, menu.name AS menu FROM drink INNER JOIN menu ON drink.menu_id = menu.id";
     $result_drinks = ($conn->query($sql_drinks));
 
@@ -46,7 +52,10 @@
                 $input = 'barinput'.$id;
                 echo "<div class='item' id='$n' >
                       <input value='$name' id='$input' disabled=false/>
-                      <button type='button' class='delete' onclick ='del(".'"barname"'.",$id)'>delete</button>
+                      <form action='' method='post'>
+                          <input type='hidden' name='section' value='bar'>
+                          <button type='submit' class='delete' name='del' value=$id>delete</button>
+                      </form>
                       <button type='button' class='modify' onclick ='reg(".'"barinput"'.",$id)'>modify</button>
                       </div> ";
             }

@@ -8,31 +8,58 @@ require "../inc/connection/conn.php";
 
 $barID = $_GET['barID'];
 
-$sql = "SELECT bar.id AS barid, bar.name AS barname, bar.description, bar.website, bar.phone, bar.location, menu.id AS menuid, menu.name AS menuname FROM bar
-                INNER JOIN menu ON bar.id = menu.bar_id
-                WHERE bar.id = " . $barID;
+# Get list of bar infos from database
+$sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location   
+                 FROM bar  
+                 WHERE bar.id=$barID";
+$result_barInfos = ($conn->query($sql_barInfos));
 
-#SELECT drink.id, drink.name, drink_relationship.price, drink_relationship.size, menu.name FROM drink_relationship LEFT JOIN drink ON drink_relationship.drink_id=drink.id LEFT JOIN menu ON drink.menu_id=menu.id WHERE drink_relationship.bar_id=2
+# Get list of drinks from database
+$sql_drinks = "SELECT drink.id, drink.name AS drink_name, drink_relationship.price, drink_relationship.size, menu.name AS menu_name
+               FROM drink_relationship 
+               LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
+               LEFT JOIN menu ON drink.menu_id=menu.id 
+               WHERE drink_relationship.bar_id=$barID
+               ORDER BY menu_name, drink_name";
+$result_drinks = ($conn->query($sql_drinks));
 
-$result = ($conn->query($sql));
+$conn->close();
 
-if ($result->num_rows > 0) {
-    $info = [];
-    $menus = [];
+# Check if bar exists
+if ($result_barInfos->num_rows > 0) {
 
-    while ($row = $result ->fetch_assoc()) {
+    # Store the informations about the bar
+    while ($row = $result_barInfos ->fetch_assoc()) {
         $info["name"] = $row["barname"];
         $info["description"] = $row["description"];
         $info["website"] = $row["website"];
         $info["phone"] = $row["phone"];
         $info["location"] = $row["location"];
-        array_push($menus, $row["menuname"]);
     }
+
+    # Store the drinks
+    $menus = [];
+    while ($row = $result_drinks ->fetch_assoc()) {
+
+        # Retrieve name of the menu for the respective drink
+        $menu_name = $row["menu_name"];
+
+        # Check if there's already a menu for this type of drink, else create new menu
+        if(array_key_exists($menu_name, $menus)) { $menu = $menus[$menu_name]; }
+        else {                                     $menu = []; }
+
+        # Add drink to the menu
+        array_push($menu, $row);
+
+        # Store the menu
+        $menus[$menu_name] = $menu;
+    }
+
 } else {
+    # If bar with passed bar_id does not exist, forward to error page
     header( "Location: 404.php" );
     die;
 }
-$conn->close();
 ?>
 
 <head>
@@ -58,11 +85,6 @@ $conn->close();
     </div>
 
     <div class="content">
-
-        <script type="text/javascript">
-            let menuTitles = <?php echo json_encode($menus); ?>;
-        </script>
-
         <div>
             <a href="index.php">
                 <img class="navigationIcon" id="closeIcon" src="../media/icons/close.png">
@@ -111,6 +133,9 @@ $conn->close();
             <div class="menuBody" id="menuBody"></div>
         </div>
     </div>
-<script src="../js/barView.js?version=<?= time() ?>"></script>
+
+    <!-- Transform menu array into javascript format -->
+    <script type="text/javascript">let menus = <?php echo json_encode($menus); ?>;</script>
+    <script src="../js/barView.js?version=<?= time() ?>"></script>
 </body>
 </html>
