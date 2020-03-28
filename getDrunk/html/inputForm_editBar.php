@@ -9,7 +9,6 @@
     </head>
 
     <body>
-
       <?php
         $result_menu = array(
             array('id' => '3', 'drink_name' => 'Hansa', 'menu_name' => 'Beer', 'price' => '85', 'size' => '0.5'),
@@ -53,6 +52,19 @@
             </div>
             <br>
             <br>
+
+            <!--
+            $result_tags = array(
+                array('id' => '1', 'name' => 'cozy'),
+                array('id' => '2', 'name' => 'dancefloor')
+            );
+          -->
+            <div class="aboutBar">
+              <label for="tags">Tags:</label>
+              <input type="text" name="menu" value="" placeholder="Add new tag">
+              <span><button type="button" class="add" name="submit">add</button></span>
+            
+            </div>
             <br>
             <br>
             <div class="aboutBar">
