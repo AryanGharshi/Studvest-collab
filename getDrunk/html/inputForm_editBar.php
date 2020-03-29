@@ -63,7 +63,6 @@
               <label for="tags">Tags:</label>
               <input type="text" name="menu" value="" placeholder="Add new tag">
               <span><button type="button" class="add" name="submit">add</button></span>
-            
             </div>
             <br>
             <br>
@@ -99,9 +98,9 @@
                 foreach ($result_menu as $drink) {
                   echo "<tr>";
                   echo "<td>".$drink[drink_name]."</td>";
-                  echo "<td>".$drink[menu_name]."</td>";
-                  echo "<td>".$drink[price]."</td>";
+                  echo "<td id="cob of column and id">".$drink[menu_name]."</td>";
                   echo "<td>".$drink[size]."</td>";
+                  echo "<td>".$drink[price]."</td>";
                   echo "<td><button type='button' class='modify'>edit</button></td>";
                   echo "<td><button type='button' class='delete'>delete</button></td>";
                 }
