@@ -76,20 +76,15 @@ if ($result_barInfos->num_rows > 0) {
     <div class="gallery" id="galleryDiv">
         <div class="galleryNavigation">
             <span class="galleryNavigationPrevious" onclick="changeGalleryImage(-1)">
-                <img class="navigationIcon" src="../media/icons/arrow_left.png">
+                <img class="galleryIcon" src="../media/icons/arrow_left.png">
             </span>
             <span class="galleryNavigationNext" onclick="changeGalleryImage(+1)">
-                <img class="navigationIcon" src="../media/icons/arrow_right.png">
+                <img class="galleryIcon" src="../media/icons/arrow_right.png">
             </span>
         </div>
     </div>
 
     <div class="content">
-        <div>
-            <a href="index.php">
-                <img class="navigationIcon" id="closeIcon" src="../media/icons/close.png">
-            </a>
-        </div>
         <div class="barInfo">
             <div class="barName"><?php echo $info['name']?></div>
             <div class="barDesc"><?php echo $info['description']?></div>
@@ -98,10 +93,10 @@ if ($result_barInfos->num_rows > 0) {
         <div class="links">
             <table class="linksTable">
                 <tr>
-                <?php
+                    <?php
                     if($info['website']!='') {
                         printf('<td>');
-                        printf('<a href="'.$info["website"].'">');
+                        printf('<a href="'.$info["website"].'" target="_blank">');
                         printf('<img class="linkIcon" src="../media/icons/website.png"><br>');
                         printf('Website');
                         printf('</td>');
@@ -109,7 +104,7 @@ if ($result_barInfos->num_rows > 0) {
 
                     if($info['phone']!='') {
                         printf('<td>');
-                        printf('<a href="tel:+47'.$info["phone"].'">');
+                        printf('<a href="tel:+47'.$info["phone"].'" target="_blank">');
                         printf('<img class="linkIcon" src="../media/icons/call.png"><br>');
                         printf('Call');
                         printf('</td>');
@@ -117,20 +112,39 @@ if ($result_barInfos->num_rows > 0) {
 
                     if($info['location']!='') {
                         printf('<td>');
-                        printf('<a href="'.$info["location"].'">');
+                        printf('<a href="'.$info["location"].'" target="_blank">');
                         printf('<img class="linkIcon" src="../media/icons/location.png"><br>');
                         printf('Location');
                         printf('</td>');
                     }
-                ?>
+                    ?>
                 </tr>
             </table>
         </div>
 
         <div class="menu">
-            <div class="menuSwitch" id="menuSwitch"></div>
-            <div class="menuHeader" id="menuHeader"></div>
-            <div class="menuBody" id="menuBody"></div>
+            <?php
+            foreach ($menus as $menu_name => $drinks) {
+                echo("<table class='menuTable'>");
+                echo("<tr>");
+                echo("<td class='menuName'>$menu_name</td>");
+                echo("<td class='header' id='headerVolume'>Volume</td>");
+                echo("<td class='header' id='headerPrice'>Price</td>");
+                echo("</tr>");
+
+                foreach ($drinks as $drink) {
+                    echo("<tr>");
+                    echo("<td class='drinkName'>$drink[drink_name]</td>");
+                    echo("<td class='volume'>$drink[size]l</td>");
+                    echo("<td class='price'>$drink[price],-</td>");
+                    echo("</tr>");
+                }
+                echo("</table>");
+            }
+            ?>
+            <!--<div class="menuSwitch" id="menuSwitch"></div>
+               <div class="menuHeader" id="menuHeader"></div>
+               <div class="menuBody" id="menuBody"></div>-->
         </div>
     </div>
 

@@ -4,8 +4,6 @@ let numberOfGalleryImgs = 2;
 let galleryImgs = ['https://www.adressa.no/pluss/meninger/article13853663.ece/iftmam/BINARY/w980/HeidisBierBarOslo01.jpg', "https://www.heidisbierbar.no/media/foedselsdag-no2.png"];
 gallery = document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[galleryImgID]+")";
 
-printMenu (0);
-
 // Start automatic slideshow
 automaticSlideshow();
 
@@ -23,14 +21,14 @@ function changeGalleryImage (direction) {
 }
 
 function automaticSlideshow() {
-    setTimeout(automaticSlideshow, 5000); // Change image every 2 seconds
+    setTimeout(automaticSlideshow, 5000); // Change image every 5 seconds
     changeGalleryImage(+1);
 }
 
 
 
 // Print menu
-function printMenu (tab) {
+/*function printMenu (tab) {
 
     // Update menu switch
     let newSwitchTable = "<table class='menuSwitchTable'><tr>";
@@ -61,4 +59,4 @@ function printMenu (tab) {
     newMenuTable += "</table";
     let menuBody = document.getElementById("menuBody");
     menuBody.innerHTML = newMenuTable;
-}
+}*/

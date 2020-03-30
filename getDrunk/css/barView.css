@@ -6,14 +6,10 @@ td a {
 }
 
 
-/* NAVIGATION */
 
-.navigationIcon {
-    height: 5vh;
-    width: 5vh;
-    background-size: cover;
-    float:left;
-    fill: red;
+/* TITLEBAR */
+.titlebar #buttonLeft {
+    visibility: visible;
 }
 
 
@@ -34,7 +30,7 @@ td a {
 }
 
 .galleryNavigationPrevious {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(+90deg, rgba(27, 27, 27, 0.8) 0%, rgba(27, 27, 27, 0.3) 100%);
     width: 50%;
     height: 100%;
     display: flex;
@@ -44,7 +40,7 @@ td a {
 }
 
 .galleryNavigationNext {
-    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(-90deg, rgba(27, 27, 27, 0.8) 0%, rgba(27, 27, 27, 0.3) 100%);
     width: 50%;
     height: 100%;
     display: flex;
@@ -53,9 +49,16 @@ td a {
     cursor:pointer;
 }
 
+.gallery .galleryIcon{
+    width: 5vh;
+    height: 5vh;
+}
+
+
 /* CONTENT */
 .content {
-
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 
@@ -66,8 +69,6 @@ td a {
     height: 7vh;
     margin-top: 2vh;
     margin-bottom: 2vh;
-    padding-left: 4%;
-    padding-right: 4%;
 }
 
 .linksTable {
@@ -91,78 +92,33 @@ td a {
 
 /* BAR NAME & DESCRIPTION */
 
-#closeIcon {
-    visibility: hidden;
-}
-
 .barInfo {
     display: block;
     color: #CFCFCF;
-    padding-top: 3vh;
+    padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-    padding-left: 10%;
-    padding-right: 10%;
 }
 
 .barName {
     font-size: calc(5vh - 1vw);
     padding-bottom: 0.5vh;
-    text-align: center;
+    color: var(--color-highlight);
 }
 
 .barDesc {
     font-size: calc(2.5vh - 0.5vw);
-    text-align: center;
 }
 
 
 
-/* MENU */
 
-/* Menu Switch */
+/* Drink Menu */
 
-
-
-.menuSwitch {
-    display: block;
-    margin-bottom: 2vh;
-}
-
-.menuSwitchTable {
-    font-size: calc(2.7vh - 0.5vw);
-    width: 100%;
-    table-layout: fixed;
-    cursor: pointer;
-}
-
-.menuSwitchTable .colNormal {
-    height: 5vh;
-    color: #838383;
-    border-bottom: thin solid #2A2A2A;
-    text-align: center;
-}
-
-.menuSwitchTable .colHighlighted {
-    color: #55C8E3;
-    border-top: thin solid #2A2A2A;
-    border-left: thin solid #2A2A2A;
-    border-right: thin solid #2A2A2A;
-    text-align: center;
-}
-
-.menuSwitchIcon {
-    height: 5vh;
-}
-
-
-
-/* Menu Body */
-
-.menuBody {
+.menu {
     display: block;
 }
 
-.menuBody::-webkit-scrollbar {
+.menu::-webkit-scrollbar {
     display: none;
 }
 
@@ -176,26 +132,46 @@ td a {
     padding: 0.8vh;
 }
 
-.menuTable tr:nth-child(odd) {
-    background: #2B2B2B
+.menuTable tr:nth-child(even) {
+    background: #2A2A2A
 }
 
-.menuTable .firstCol {
+.menuTable .menuName {
     text-align: left;
-    padding-left: 4vw;
+    padding-bottom: 2vh;
+    padding-top: 5vh;
+    padding-left: 0.4vh;
+    font-size: calc(3.3vh - 0.7vw);
+}
+
+.menuTable .header {
+    font-size: calc(2.0vh - 0.3vw);
+    color: #555555;
+    vertical-align: bottom;
+}
+
+.menuTable #headerVolume {
+    text-align: center;
+}
+
+.menuTable #headerPrice {
+    text-align: right;
+}
+
+.menuTable .drinkName {
+    text-align: left;
     color: #838383;
     width: 60%;
 }
 
-.menuTable .secondCol {
+.menuTable .volume {
     text-align: center;
     color: #838383;
     width: 20%;
 }
 
-.menuTable .thirdCol {
+.menuTable .price {
     text-align: right;
-    padding-right: 4vw;
     color: #55C8E3;
     width: 20%;
 }
@@ -208,7 +184,7 @@ td a {
     .gallery {
         float:left;
         width: calc(90vw - 30vh);
-        height: 92.2vh;
+        height: 92.4vh;
         padding: 0;
     }
 
@@ -217,34 +193,30 @@ td a {
         height: inherit;
     }
 
-    .content {
-        float:left;
-        width: calc(10vw + 30vh);
-        height: 92.2vh;
-    }
-
-    #backIcon {
+    .galleryIcon {
         visibility: hidden;
     }
 
-    #closeIcon {
-        visibility: visible;
-    }
-
-    .menu {
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-
-    .menuTable .firstCol {
-        padding: 0.8vh;
-    }
-
-    .menuTable .thirdCol {
-        padding: 0.8vh;
+    .content {
+        float: left;
+        width: calc((10vw + 30vh)*0.92);
+        padding-top: 3vh;
+        padding-left: calc((10vw + 30vh)*0.04);
+        padding-right: calc((10vw + 30vh)*0.04);
+        text-align: center;
     }
 
     body::-webkit-scrollbar {
         display: none;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .content {
+        top: -10vh;
+        position: relative;
+        z-index: 10;
+        padding-top: 5vh;
+        background: linear-gradient(-180deg, rgba(27, 27, 27, 0) 0vh, rgba(27, 27, 27, 100) 10vh);
     }
 }
