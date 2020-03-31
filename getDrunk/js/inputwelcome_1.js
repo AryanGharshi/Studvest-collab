@@ -5,7 +5,17 @@ var modal={
   foot : document.getElementById('side_foot'),
   btn:document.getElementsByClassName('btn'),
   close:document.getElementsByClassName('close'),
+  welcome:document.getElementById('main'),
+  add:document.getElementById('addNewBar'),
+  edit:document.getElementById('editForm'),
 }
+modal.add.addEventListener('click',
+  function() {
+        modal.welcome.style.display='none';
+        modal.edit.style.display='block';
+
+  }
+);
 
 modal.btn[0].addEventListener('click',
   function() {
