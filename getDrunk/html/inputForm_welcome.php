@@ -14,7 +14,15 @@
     require "../inc/connection/conn.php";
 
     # Code below just creates a new, random bar (useful to test deletion)
-    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('11', 'Only delete this bar', NULL, NULL, '', '', '');";
+    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('1', 'bar1', NULL, NULL, '', '', '');";
+    $conn->query($sql_addBar);
+    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('2', 'bar2', NULL, NULL, '', '', '');";
+    $conn->query($sql_addBar);
+    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('3', 'bar3', NULL, NULL, '', '', '');";
+    $conn->query($sql_addBar);
+    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('4', 'bar4', NULL, NULL, '', '', '');";
+    $conn->query($sql_addBar);
+    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('5', 'bar5', NULL, NULL, '', '', '');";
     $conn->query($sql_addBar);
 
     # Process POST-statements to delete/modify
