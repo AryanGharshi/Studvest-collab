@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b8799e1-ee01-4388-bc13-f965cee29866" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Studvest-collab.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/Dotwork 2a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/einar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/fav.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/forrige-h.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/forrige.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/halvard.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/mockup-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/neste-d.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/neste-h.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/neste.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/noise.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/studvest-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/Credit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/Panel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/TextAssist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/valgomat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valgomat/2020/valgomat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getDrunk/html/inputForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/inputForm.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585670497662</updated>
-      <workItem from="1585670498890" duration="1350000" />
+      <workItem from="1585670498890" duration="2022000" />
     </task>
     <servers />
   </component>
