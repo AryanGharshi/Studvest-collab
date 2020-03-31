@@ -2,7 +2,27 @@
 
 :root {
     --color-background: #1B1B1B;
-    --color-highlight: #3895A9;
+    --color-primary: #CFCFCF;
+    --color-secondary: #666666;
+    --color-highlight-background: #2C7090 ;
+    --color-highlight-text: #3895A9;
+    --relSize-900: calc(9.00vh - 1.80vw);
+    --relSize-700: calc(7.00vh - 1.60vw);
+    --relSize-500: calc(5.00vh - 1.00vw);
+    --relSize-450: calc(4.50vh - 0.90vw);
+    --relSize-400: calc(4.00vh - 0.80vw);
+    --relSize-350: calc(3.50vh - 0.70vw);
+    --relSize-300: calc(3.00vh - 0.60vw);
+    --relSize-275: calc(2.75vh - 0.55vw);
+    --relSize-250: calc(2.50vh - 0.50vw);
+    --relSize-225: calc(2.25vh - 0.45vw);
+    --relSize-200: calc(2.00vh - 0.40vw);
+    --relSize-175: calc(1.75vh - 0.35vw);
+    --relSize-150: calc(1.50vh - 0.30vw);
+    --relSize-125: calc(1.25vh - 0.25vw);
+    --relSize-100: calc(1.00vh - 0.20vw);
+    --relSize-075: calc(0.75vh - 0.15vw);
+    --relSize-050: calc(0.50vh - 0.10vw);
 }
 
 body {
@@ -16,7 +36,7 @@ body {
 
 .titlebar {
     /*Total height: 6vh*/
-    background-color: #2C7090;
+    background-color: var(--color-highlight-background);
     height: 5.6vh;
     padding: 1vh;
     position: sticky;
@@ -41,7 +61,7 @@ body {
     float: left;
 }
 
-.titlebar #LeftArrow {
+.titlebar #left-arrow {
     fill: white;
     background-size: cover;
     height: 100%;

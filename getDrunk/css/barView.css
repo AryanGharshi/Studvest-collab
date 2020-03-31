@@ -49,9 +49,10 @@ td a {
     cursor:pointer;
 }
 
-.gallery .galleryIcon{
+.galleryIcon{
     width: 5vh;
     height: 5vh;
+    color: var(--color-primary);
 }
 
 
@@ -67,8 +68,7 @@ td a {
 .links {
     display: block;
     height: 7vh;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    display: none;
 }
 
 .linksTable {
@@ -76,17 +76,30 @@ td a {
     border-bottom: thin solid #2A2A2A;
     padding-bottom: 0.5vh;
     padding-top: 0.5vh;
-    font-size: calc(1.6vh - 0.2vw);
+    font-size: var(--relSize-225);
     width: 100%;
     text-align: center;
     table-layout: fixed;
 }
 
+.linksTable .linkIcon {
+    height: 4vh;
+    width: 4vh;
+}
 
-.linkIcon {
-    height: calc(4.5vh - 0.5vw);
-    width: calc(4.5vh - 0.5vw);
-    background-size: cover;
+.linkButton {
+    height: 12vw;
+    width:  12vw;
+    border-radius: 11vw;
+    border-width: 0;
+    background-color: var(--color-highlight-background);
+    float: right;
+    padding: 1vw;
+}
+
+.linkButton .linkIcon {
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -94,22 +107,36 @@ td a {
 
 .barInfo {
     display: block;
-    color: #CFCFCF;
     padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
+    padding-bottom: 2.5vh;
 }
 
 .barName {
-    font-size: calc(5vh - 1vw);
-    padding-bottom: 0.5vh;
-    color: var(--color-highlight);
+    font-size: var(--relSize-500);
+    padding-bottom: 1.5vh;
+    color: var(--color-highlight-text);
 }
 
 .barDesc {
-    font-size: calc(2.5vh - 0.5vw);
+    font-size: var(--relSize-275);
+    color: var(--color-primary);
+    padding-bottom: 1.5vh;
 }
 
 
+
+/* Tags */
+
+.tag{
+    font-size: var(--relSize-200);
+    background-color: inherit;
+    border: solid var(--color-secondary) 1px;
+    padding: var(--relSize-075);
+    border-radius: var(--relSize-100);
+    color: var(--color-secondary);
+    margin-right: var(--relSize-075);
+    margin-bottom: var(--relSize-075);
+}
 
 
 /* Drink Menu */
@@ -124,7 +151,7 @@ td a {
 
 .menuTable {
     width: 100%;
-    font-size: calc(2.7vh - 0.5vw);
+    font-size: var(--relSize-275);
     border-spacing: 0;
 }
 
@@ -141,12 +168,13 @@ td a {
     padding-bottom: 2vh;
     padding-top: 5vh;
     padding-left: 0.4vh;
-    font-size: calc(3.3vh - 0.7vw);
+    font-size: var(--relSize-300);
+    color: var(--color-highlight-text);
 }
 
 .menuTable .header {
-    font-size: calc(2.0vh - 0.3vw);
-    color: #555555;
+    font-size: var(--relSize-200);
+    color:var(--color-secondary);
     vertical-align: bottom;
 }
 
@@ -172,7 +200,7 @@ td a {
 
 .menuTable .price {
     text-align: right;
-    color: #55C8E3;
+    color: var(--color-highlight-text);
     width: 20%;
 }
 
@@ -209,6 +237,10 @@ td a {
     body::-webkit-scrollbar {
         display: none;
     }
+
+    #links_web {
+        display: block;
+    }
 }
 
 @media screen and (orientation: portrait) {
@@ -218,5 +250,14 @@ td a {
         z-index: 10;
         padding-top: 5vh;
         background: linear-gradient(-180deg, rgba(27, 27, 27, 0) 0vh, rgba(27, 27, 27, 100) 10vh);
+    }
+
+    .barInfo {
+        width: 70vw;
+        float: left;
+    }
+
+    #links_mobile {
+        display: block;
     }
 }

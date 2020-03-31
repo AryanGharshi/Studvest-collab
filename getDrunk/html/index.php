@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>StudOut</title>
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/feed.css?version=<?= time() ?>">
+    <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
 </head>
 
 
