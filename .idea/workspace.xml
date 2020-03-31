@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="239406d2-5239-424c-9e91-af1746e3e91f" name="Default Changelist" comment="" />
+    <list default="true" id="6b8799e1-ee01-4388-bc13-f965cee29866" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Studvest-collab.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/Dotwork 2a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/einar.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/fav.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/forrige-h.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/forrige.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/halvard.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/mockup-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/neste-d.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/neste-h.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/neste.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/noise.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/img/studvest-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/Credit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/Panel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/TextAssist.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/js/valgomat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valgomat/2020/valgomat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="width" value="1390" />
-    <option name="height" value="1776" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Studvest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Studvest" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1Ztu1jMmQkOsD8n1pqSC8rV4Ios" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -57,44 +62,27 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="239406d2-5239-424c-9e91-af1746e3e91f" name="Default Changelist" comment="" />
-      <created>1568826173596</created>
+      <changelist id="6b8799e1-ee01-4388-bc13-f965cee29866" name="Default Changelist" comment="" />
+      <created>1585670497662</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1568826173596</updated>
-      <workItem from="1568826174986" duration="189000" />
-      <workItem from="1568826421683" duration="79000" />
+      <updated>1585670497662</updated>
+      <workItem from="1585670498890" duration="1350000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532124" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
