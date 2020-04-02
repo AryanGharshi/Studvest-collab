@@ -129,13 +129,14 @@ td a {
 
 .tag{
     font-size: var(--relSize-200);
-    background-color: inherit;
-    border: solid var(--color-secondary) 1px;
-    padding: var(--relSize-075);
-    border-radius: var(--relSize-100);
-    color: var(--color-secondary);
+    background-color: var(--color-highlight-background);
+    border-width: 0;
+    padding: var(--relSize-100);
+    border-radius: var(--relSize-300);
+    color: var(--color-background);
     margin-right: var(--relSize-075);
     margin-bottom: var(--relSize-075);
+    text-transform: lowercase;
 }
 
 
