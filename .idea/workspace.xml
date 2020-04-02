@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="153906b2-0aeb-426b-add9-f97921e5d814" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/css/barView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getDrunk/html/inputForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/inputForm.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585818501240</updated>
-      <workItem from="1585818505242" duration="621000" />
+      <workItem from="1585818505242" duration="2932000" />
     </task>
     <servers />
   </component>

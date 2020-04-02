@@ -13,17 +13,17 @@
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
-    # Code below just creates a new, random bar (useful to test deletion)
-    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('1', 'bar1', NULL, NULL, '', '', '');";
-    $conn->query($sql_addBar);
-    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('2', 'bar2', NULL, NULL, '', '', '');";
-    $conn->query($sql_addBar);
-    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('3', 'bar3', NULL, NULL, '', '', '');";
-    $conn->query($sql_addBar);
-    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('4', 'bar4', NULL, NULL, '', '', '');";
-    $conn->query($sql_addBar);
-    $sql_addBar = "INSERT INTO `bar` (`id`, `name`, `description`, `rating`, `website`, `phone`, `location`) VALUES ('5', 'bar5', NULL, NULL, '', '', '');";
-    $conn->query($sql_addBar);
+    function addDataEntry($section, $name) {
+        return "INSERT INTO $section (name) VALUES ('$name') ON DUPLICATE KEY UPDATE name='$name'";
+    }
+    $conn -> query(addDataEntry('bar', 'test_bar1'));
+    $conn -> query(addDataEntry('bar', 'test_bar2'));
+    $conn -> query(addDataEntry('tag', 'test_tag1'));
+    $conn -> query(addDataEntry('tag', 'test_tag2'));
+    $conn -> query(addDataEntry('drink', 'test_drink1'));
+    $conn -> query(addDataEntry('drink', 'test_drink2'));
+    $conn -> query(addDataEntry('menu', 'test_menu1'));
+    $conn -> query(addDataEntry('menu', 'test_menu2'));
 
     # Process POST-statements to delete/modify
     if(isset($_POST['del'])){
@@ -45,7 +45,7 @@
     $sql_bar = "SELECT * FROM bar";
     $result_bar = ($conn->query($sql_bar));
     $sql_menu = "SELECT * FROM menu";
-    $result_menu = ($conn->query($sql_menu));
+    $result_menus = ($conn->query($sql_menu));
     $sql_tags = "SELECT * FROM tag";
     $result_tags = ($conn->query($sql_tags));
     $sql_drinks = "SELECT drink.id AS id, drink.name AS name, menu.name AS menu FROM drink INNER JOIN menu ON drink.menu_id = menu.id";
@@ -134,11 +134,11 @@
         </div>
         <div id="popup_3" class="popup">
             <div  class="content">
-              <h1>Mange drinks</h1>
+              <h1>Mange menus</h1>
               <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
               <p class="change">Change affect all bars with tags</p>
               <?php
-              while($currentRow = mysqli_fetch_array($result_menu)) {
+              while($currentRow = mysqli_fetch_array($result_menus)) {
                   $name = $currentRow['name'];
                   $id=$currentRow['id'];
                   $n='menus'.$id;
