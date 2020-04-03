@@ -1,14 +1,6 @@
-/* GENERAL ELEMENTS */
+/* HEADER */
 
-td a {
-    display:block;
-    width:100%;
-}
-
-
-
-/* TITLEBAR */
-.titlebar #buttonLeft {
+.header #btn-back {
     visibility: visible;
 }
 
@@ -16,111 +8,63 @@ td a {
 /* GALLERY */
 
 .gallery {
-    height: 30vh;
-    background-size: cover;
-    background-position: center;
+    display: flex;
     opacity: 0.9;
     overflow: visible;
-}
-
-.galleryNavigation {
-    display: flex;
     width: 100%;
+    height: 30vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.gallery .nav {
+    display: flex;
+    align-items: center;
+    width: 50%;
     height: 100%;
 }
 
-.galleryNavigationPrevious {
-    background: linear-gradient(+90deg, rgba(27, 27, 27, 0.8) 0%, rgba(27, 27, 27, 0.3) 100%);
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+.gallery #nav-prev {
     justify-content: flex-start;
-    cursor:pointer;
+    background: linear-gradient(+90deg, rgba(27, 27, 27, 0.8) 0%, rgba(27, 27, 27, 0.3) 100%);
 }
 
-.galleryNavigationNext {
-    background: linear-gradient(-90deg, rgba(27, 27, 27, 0.8) 0%, rgba(27, 27, 27, 0.3) 100%);
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+.gallery #nav-next {
     justify-content: flex-end;
-    cursor:pointer;
+    background: linear-gradient(-90deg, rgba(27, 27, 27, 0.8) 0%, rgba(27, 27, 27, 0.3) 100%);
 }
 
-.galleryIcon{
+.gallery .icon {
     width: 5vh;
     height: 5vh;
     color: var(--color-primary);
 }
 
 
-/* CONTENT */
+/* CONTENT (INCL. BAR NAME, DESCRIPTION, TAGS & MENU) */
 .content {
     padding-left: 4%;
     padding-right: 4%;
 }
 
 
-/* LINK BAR */
-
-.links {
-    display: block;
-    height: 7vh;
-    display: none;
-}
-
-.linksTable {
-    border-top: thin solid #2A2A2A;
-    border-bottom: thin solid #2A2A2A;
-    padding-bottom: 0.5vh;
-    padding-top: 0.5vh;
-    font-size: var(--relSize-225);
-    width: 100%;
-    text-align: center;
-    table-layout: fixed;
-}
-
-.linksTable .linkIcon {
-    height: 4vh;
-    width: 4vh;
-}
-
-.linkButton {
-    height: 12vw;
-    width:  12vw;
-    border-radius: 11vw;
-    border-width: 0;
-    background-color: var(--color-highlight-background);
-    float: right;
-    padding: 1vw;
-}
-
-.linkButton .linkIcon {
-    height: 100%;
-    width: 100%;
-}
-
-
 /* BAR NAME & DESCRIPTION */
 
-.barInfo {
-    display: block;
+.bar-info {
     padding-top: 1.5vh;
     padding-bottom: 2.5vh;
 }
 
-.barName {
-    font-size: var(--relSize-500);
+.bar-info #name {
     padding-bottom: 1.5vh;
     color: var(--color-highlight-text);
+    font-size: var(--relSize-500);
 }
 
-.barDesc {
-    font-size: var(--relSize-275);
-    color: var(--color-primary);
+.bar-info #desc {
     padding-bottom: 1.5vh;
+    color: var(--color-primary);
+    font-size: var(--relSize-275);
 }
 
 
@@ -128,81 +72,110 @@ td a {
 /* Tags */
 
 .tag{
-    font-size: var(--relSize-200);
-    background-color: var(--color-highlight-background);
-    border-width: 0;
     padding: var(--relSize-100);
-    border-radius: var(--relSize-300);
-    color: var(--color-background);
     margin-right: var(--relSize-075);
     margin-bottom: var(--relSize-075);
+    border-width: 0;
+    border-radius: var(--relSize-300);
+    background-color: var(--color-highlight-background);
+    font-size: var(--relSize-225);
     text-transform: lowercase;
+    color: var(--color-background);
 }
 
 
-/* Drink Menu */
+/* LINKS */
+
+.links {
+    display: block;
+    height: 7vh;
+}
+
+#links-web .table {
+    width: 100%;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    table-layout: fixed;
+    border-top: thin solid #2A2A2A;
+    border-bottom: thin solid #2A2A2A;
+    font-size: var(--relSize-225);
+    text-align: center;
+}
+
+#links-web .icon {
+    width: 4vh;
+    height: 4vh;
+}
+
+#links-mobile .btn {
+    width:  12vw;
+    height: 12vw;
+    border-radius: 11vw;
+    border-width: 0;
+    background-color: var(--color-highlight-background);
+    float: right;
+    padding: 1vw;
+}
+
+
+
+/* MENU WITH DRINKS */
 
 .menu {
     display: block;
 }
 
-.menu::-webkit-scrollbar {
-    display: none;
-}
-
-.menuTable {
+.menu .table {
     width: 100%;
-    font-size: var(--relSize-275);
     border-spacing: 0;
+    font-size: var(--relSize-275);
 }
 
-.menuTable td {
+.menu .table td {
     padding: 0.8vh;
 }
 
-.menuTable tr:nth-child(even) {
+.menu .table tr:nth-child(even) {
     background: #2A2A2A
 }
 
-.menuTable .menuName {
-    text-align: left;
-    padding-bottom: 2vh;
-    padding-top: 5vh;
-    padding-left: 0.4vh;
+.menu .table .menu-title {
+    padding: 5vh 0.8vh 2vh 0.4vh;
     font-size: var(--relSize-300);
+    text-align: left;
     color: var(--color-highlight-text);
 }
 
-.menuTable .header {
+.menu .table .table-header {
+    vertical-align: bottom;
     font-size: var(--relSize-200);
     color:var(--color-secondary);
-    vertical-align: bottom;
 }
 
-.menuTable #headerVolume {
+.menu .table #header-volume {
     text-align: center;
 }
 
-.menuTable #headerPrice {
+.menu .table #header-price {
     text-align: right;
 }
 
-.menuTable .drinkName {
+.menu .table .col-drink {
+    width: 60%;
     text-align: left;
     color: #838383;
-    width: 60%;
 }
 
-.menuTable .volume {
+.menu .table .col-volume {
+    width: 20%;
     text-align: center;
     color: #838383;
-    width: 20%;
 }
 
-.menuTable .price {
+.menu .table .col-price {
+    width: 20%;
     text-align: right;
     color: var(--color-highlight-text);
-    width: 20%;
 }
 
 
@@ -210,55 +183,64 @@ td a {
 /* OPTIMIZATION FOR WEB */
 
 @media screen and (orientation: landscape) {
+
+    /* make gallery floating to fit gallery and content box next to each other */
     .gallery {
         float:left;
-        width: calc(90vw - 30vh);
         height: 92.4vh;
+        width: calc(90vw - 30vh);
         padding: 0;
     }
 
-    .galleryNavigation {
-        float:left;
-        height: inherit;
-    }
-
-    .galleryIcon {
-        visibility: hidden;
-    }
-
+    /* make content box floating to fit gallery and content box next to each other */
     .content {
         float: left;
         width: calc((10vw + 30vh)*0.92);
         padding-top: 3vh;
-        padding-left: calc((10vw + 30vh)*0.04);
         padding-right: calc((10vw + 30vh)*0.04);
+        padding-left: calc((10vw + 30vh)*0.04);
         text-align: center;
     }
 
+    /* disable mobile-specific elements*/
+    #links-mobile,
+    .gallery .icon {
+        display: none
+    }
+
+    /* disable scrollbar */
     body::-webkit-scrollbar {
         display: none;
     }
-
-    #links_web {
-        display: block;
+    body {
+        -ms-overflow-style: none;
     }
 }
 
+
+
+/* OPTIMIZATION FOR WEB */
+
 @media screen and (orientation: portrait) {
+
+    /* make content box floating into the image */
     .content {
-        top: -10vh;
         position: relative;
         z-index: 10;
+        top: -10vh;
         padding-top: 5vh;
         background: linear-gradient(-180deg, rgba(27, 27, 27, 0) 0vh, rgba(27, 27, 27, 100) 10vh);
     }
 
-    .barInfo {
-        width: 70vw;
+    /* reduce the width of the bar-info to fit call button next to */
+    .bar-info {
         float: left;
+        width: 75vw;
     }
 
-    #links_mobile {
-        display: block;
+    /* disable web-specific elements */
+    #logo-studvest,
+    #links-web {
+        display: none;
     }
 }

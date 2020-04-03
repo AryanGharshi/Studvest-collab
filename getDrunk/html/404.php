@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?php include('titlebar.php'); ?>
+    <?php include('header.php'); ?>
 
     <table>
         <tr>

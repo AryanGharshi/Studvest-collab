@@ -59,7 +59,7 @@
     );
 ?>
 <div class="welcome" >
-    <?php include('titlebar.php'); ?>
+    <?php include('header.php'); ?>
     <div class="main" id='main' >
         <div id="are">
             <h1>Welcome back.</h1>

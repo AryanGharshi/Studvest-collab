@@ -1,11 +1,15 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:100,300&display=swap";
 
 :root {
-    --color-background: #1B1B1B;
-    --color-primary: #CFCFCF;
-    --color-secondary: #666666;
-    --color-highlight-background: #2C7090 ;
-    --color-highlight-text: #3489A1;
+
+    /* Default background colors*/
+    --color-primary: #a0a0a0;
+    --color-secondary: #666;
+    --color-background: #1b1b1b;
+    --color-highlight-text: #3489a1;
+    --color-highlight-background: #2c7090 ;
+
+    /* Default sizing variables */
     --relSize-900: calc(9.00vh - 1.80vw);
     --relSize-700: calc(7.00vh - 1.60vw);
     --relSize-500: calc(5.00vh - 1.00vw);
@@ -26,80 +30,82 @@
 }
 
 body {
-    background-color: #1B1B1B;
-    font-family: 'Roboto';
+    margin:0;
+    background-color: var(--color-background);
+    font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-style: normal;
-    color: #CFCFCF;
-    margin:0;
-}
-
-.titlebar {
-    /*Total height: 6vh*/
-    background-color: var(--color-highlight-background);
-    height: 5.6vh;
-    padding: 1vh;
-    position: sticky;
-    position: -webkit-sticky; /* Safari */
-    top: 0;
-
-    /*Text*/
-    color: var(--color-background);
-    font-size: 3.4vh;
-    text-align: center;
-}
-
-.titlebar .backbutton {
-    height: 5.6vh;
-    width: 5.6vh;
-    float: left;
-}
-
-.titlebar .applogo {
-    height: 100%;
-    width: calc(100vw - 5.6vh*2 - 1vh*2);
-    float: left;
-}
-
-.titlebar #left-arrow {
-    fill: white;
-    background-size: cover;
-    height: 100%;
-}
-
-.titlebar .logo {
-    height: 100%;
+    color: var(--color-primary);
 }
 
 
-/* Hyperlinks */
+
+/* HYPERLINKS */
+
+
 a:link {
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
+
 }
+
 a:visited {
     color: inherit;
 }
+
 a:active {
     color: inherit;
 }
 
 
+
+/* ICONS */
+
+.icon, .logo {
+    height: 100%;
+}
+
+
+
+/* HEADER */
+
+.header {
+    position: sticky;
+    position: -webkit-sticky; /* Safari */
+    top: 0;
+    height: 5.6vh;
+    padding: 1vh;
+    background-color: var(--color-highlight-background);
+    font-size: 3.4vh;
+    text-align: center;
+    color: var(--color-background);
+}
+
+.header .container{
+    float: left;
+    height: 100%;
+}
+
+.header #app-logo {
+    width: calc(100vw - 5.6vh*2 - 1vh*2);
+}
+
+
+
 /* OPTIMIZATION FOR WEB */
 
 @media screen and (orientation: landscape) {
-    .titlebar {
-        /*Total height: 7.6vh instead of 6vh*/
-        height: 5.6vh;
-        padding: 1vh;
-        font-size: 3.4vh;
-    }
+
 }
+
 
 
 /* OPTIMIZATION FOR MOBILE */
 
 @media screen and (orientation: portrait) {
+
+    /* disable studvest logo due to space */
     #titlelogo_studvest {
         display: none;
     }

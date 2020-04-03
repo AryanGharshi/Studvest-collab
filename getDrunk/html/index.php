@@ -30,7 +30,7 @@
 ?>
 
 <body>
-    <?php include('titlebar.php'); ?>
+    <?php include('header.php'); ?>
 
     <div class="wrapper">
 

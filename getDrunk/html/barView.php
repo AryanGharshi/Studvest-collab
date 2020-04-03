@@ -101,21 +101,19 @@ $conn->close();
 
     <!-- TITLE BAR -->
 
-    <?php include('titlebar.php'); ?>
+    <?php include('header.php'); ?>
 
 
 
     <!-- GALLERY -->
 
     <div class="gallery" id="galleryDiv">
-        <div class="galleryNavigation">
-            <span class="galleryNavigationPrevious" onclick="changeGalleryImage(-1)">
-                <img class="galleryIcon" src="../media/icons/left-arrow_white.png">
-            </span>
-            <span class="galleryNavigationNext" onclick="changeGalleryImage(+1)">
-                <img class="galleryIcon" src="../media/icons/right-arrow_white.png">
-            </span>
-        </div>
+        <span class="nav" id="nav-prev" onclick="changeGalleryImage(-1)">
+            <img class="icon" src="../media/icons/left-arrow_white.png">
+        </span>
+        <span class="nav" id="nav-next" onclick="changeGalleryImage(+1)">
+                <img class="icon" src="../media/icons/right-arrow_white.png">
+        </span>
     </div>
 
     <script>
@@ -145,9 +143,9 @@ $conn->close();
 
         <!-- GENERAL INFORMATION ABOUT BAR (NAME, DESCRIPTION, TAGS) -->
 
-        <div class="barInfo">
-            <div class="barName"><?php echo $info['name']?></div>
-            <div class="barDesc"><?php echo $info['description']?></div>
+        <div class="bar-info">
+            <div id="name"><?php echo $info['name']?></div>
+            <div id="desc"><?php echo $info['description']?></div>
             <?php
             while ($tag = $result_tags ->fetch_assoc()) {
                 printf("<button type='button' class='tag'>".$tag['tag_name']."</button>");
@@ -158,21 +156,21 @@ $conn->close();
 
 
 
-        <!-- BUTTONS (CALL, LOCATION, WEBSITE) -->
+        <!-- LINKS (CALL, LOCATION, WEBSITE) -->
 
-        <div class="links" id="links_mobile">
-            <a type='button' class="linkButton" href="<?php echo($info["location"]) ?>>">
-                <img class="linkIcon" src="../media/icons/location_black.png">
+        <div class="links" id="links-mobile">
+            <a type='button' class="btn" href="<?php echo($info["location"]) ?>>">
+                <img class="icon" src="../media/icons/location_black.png">
             </a>
         </div>
-        <div class="links" id="links_web">
-            <table class="linksTable" >
+        <div class="links" id="links-web">
+            <table class="table" >
                 <tr>
                     <?php
                     if($info['website']!='') {
                         printf('<td>');
                         printf('<a href="'.$info["website"].'" target="_blank">');
-                        printf('<img class="linkIcon" src="../media/icons/web_white.png"><br>');
+                        printf('<img class="icon" src="../media/icons/web_white.png"><br>');
                         printf('Website');
                         printf('</td>');
                     }
@@ -180,7 +178,7 @@ $conn->close();
                     if($info['phone']!='') {
                         printf('<td>');
                         printf('<a href="tel:+47'.$info["phone"].'" target="_blank">');
-                        printf('<img class="linkIcon" src="../media/icons/call_white.png"><br>');
+                        printf('<img class="icon" src="../media/icons/call_white.png"><br>');
                         printf('Call');
                         printf('</td>');
                     }
@@ -188,7 +186,7 @@ $conn->close();
                     if($info['location']!='') {
                         printf('<td>');
                         printf('<a href="'.$info["location"].'" target="_blank">');
-                        printf('<img class="linkIcon" src="../media/icons/location_white.png"><br>');
+                        printf('<img class="icon" src="../media/icons/location_white.png"><br>');
                         printf('Location');
                         printf('</td>');
                     }
@@ -204,18 +202,18 @@ $conn->close();
         <div class="menu">
             <?php
             foreach ($menus as $menu_name => $drinks) {
-                echo("<table class='menuTable'>");
+                echo("<table class='table'>");
                 echo("<tr>");
-                echo("<td class='menuName'>$menu_name</td>");
-                echo("<td class='header' id='headerVolume'>Volume</td>");
-                echo("<td class='header' id='headerPrice'>Price</td>");
+                echo("<td class='menu-title'>$menu_name</td>");
+                echo("<td class='table-header' id='header-volume'>Volume</td>");
+                echo("<td class='table-header' id='header-price'>Price</td>");
                 echo("</tr>");
 
                 foreach ($drinks as $drink) {
                     echo("<tr>");
-                    echo("<td class='drinkName'>$drink[drink_name]</td>");
-                    echo("<td class='volume'>$drink[size]l</td>");
-                    echo("<td class='price'>$drink[price],-</td>");
+                    echo("<td class='col-drink'>$drink[drink_name]</td>");
+                    echo("<td class='col-volume'>$drink[size]l</td>");
+                    echo("<td class='col-price'>$drink[price],-</td>");
                     echo("</tr>");
                 }
                 echo("</table>");
