@@ -31,18 +31,23 @@ if ($result_barInfos->num_rows > 0) {
     }
 
     # Load list of drinks
-    $sql_drinks = "SELECT drink.id, drink.name AS drink_name, drink_relationship.price, drink_relationship.size, menu.name AS menu_name
+    $sql_drinks = "SELECT drink.id, 
+                          drink.name AS drink_name, 
+                          CONCAT(drink_relationship.price, ',-') AS price, 
+                          CONCAT(drink_relationship.student_price, ',-') AS student_price, 
+                          CONCAT(drink_relationship.size, 'l') AS volume, 
+                          drink_type.name AS drink_type
                    FROM drink_relationship 
                    LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
-                   LEFT JOIN menu ON drink.menu_id=menu.id 
+                   LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
                    WHERE drink_relationship.bar_id=$barID
-                   ORDER BY menu_name, drink_name";
+                   ORDER BY drink_type, drink_name";
     $result_drinks = ($conn->query($sql_drinks));
 
     # Put drinks into separate menus
     $menus = [];
     while ($drink = $result_drinks ->fetch_assoc()) {
-        $menu_name = $drink["menu_name"];
+        $menu_name = $drink["drink_type"];
         # If the menu for the drink already exists: Append the drink to the menu
         if(array_key_exists($menu_name, $menus)) {
             array_push($menus[$menu_name], $drink);
@@ -206,14 +211,16 @@ $conn->close();
                 echo("<tr>");
                 echo("<td class='menu-title'>$menu_name</td>");
                 echo("<td class='table-header' id='header-volume'>Volume</td>");
-                echo("<td class='table-header' id='header-price'>Price</td>");
+                echo("<td class='table-header' id='header-price'>Students</td>");
+                echo("<td class='table-header' id='header-price'>Normal</td>");
                 echo("</tr>");
 
                 foreach ($drinks as $drink) {
                     echo("<tr>");
                     echo("<td class='col-drink'>$drink[drink_name]</td>");
-                    echo("<td class='col-volume'>$drink[size]l</td>");
-                    echo("<td class='col-price'>$drink[price],-</td>");
+                    echo("<td class='col-normal'>$drink[volume]</td>");
+                    echo("<td class='col-normal'>$drink[student_price]</td>");
+                    echo("<td class='col-highlight'>$drink[price]</td>");
                     echo("</tr>");
                 }
                 echo("</table>");
