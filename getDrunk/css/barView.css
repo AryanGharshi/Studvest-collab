@@ -123,50 +123,72 @@
 
 .menu {
     display: block;
+    padding-top: 10vh;
 }
 
-.menu .table {
+.menu #menu_title{
+    font-size: var(--relSize-400);
     width: 100%;
+    float: none;
+}
+
+.menu #tabs table {
+    font-size: var(--relSize-175);
+    table-layout: fixed;
+    border-top: thin solid #2A2A2A;
+    border-bottom: thin solid #2A2A2A;
+    width: 100%;
+    text-align: center;
+}
+
+.menu #tabs .tab_icon_active, .tab_icon_inactive {
+    width: 4vh;
+    height: 4vh;
+}
+
+.menu #drinks table {
     border-spacing: 0;
+    width: 100%;
+    text-align: center;
     font-size: var(--relSize-275);
 }
 
-.menu .table td {
+.menu #drinks td {
     padding: 0.8vh;
 }
 
-.menu .table tr:nth-child(even) {
+.menu #drinks tr:nth-child(even) {
     background: #2A2A2A
 }
 
-.menu .table .menu-title {
+.menu #drinks .menu-title {
     padding: 5vh 0.8vh 2vh 0.4vh;
     font-size: var(--relSize-300);
     text-align: left;
     color: var(--color-highlight-text);
 }
 
-.menu .table .table-header {
+.menu #drinks .table-header {
     vertical-align: bottom;
     font-size: var(--relSize-200);
     color:var(--color-secondary);
     text-align: center;
 }
 
-.menu .table .col-drink {
+.menu #drinks .col-drink {
     width: 60%;
     text-align: left;
     color: #838383;
 }
 
-.menu .table .col-normal {
+.menu #drinks .col-normal {
     width: 15%;
     text-align: center;
     color: #838383;
 }
 
-.menu .table .col-highlight {
-    width: 20%;
+.menu #drinks .col-highlight {
+    width: 15%;
     text-align: center;
     color: var(--color-highlight-text);
 }

@@ -30,33 +30,32 @@ if ($result_barInfos->num_rows > 0) {
         $info["location"] = $row["location"];
     }
 
+    # Load list of drink types
+    $sql_drink_types = "SELECT DISTINCT drink_type.name AS name,
+                                        drink_type.id AS id,
+                                        drink_type.img_url_inactive AS url_inactive,
+                                        drink_type.img_url_active AS url_active
+                        FROM drink_relationship 
+                        LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
+                        LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
+                        WHERE drink_relationship.bar_id=$barID";
+    $result_drink_types = ($conn->query($sql_drink_types));
+
     # Load list of drinks
     $sql_drinks = "SELECT drink.id, 
                           drink.name AS drink_name, 
                           CONCAT(drink_relationship.price, ',-') AS price, 
                           CONCAT(drink_relationship.student_price, ',-') AS student_price, 
                           CONCAT(drink_relationship.size, 'l') AS volume, 
-                          drink_type.name AS drink_type
+                          drink_relationship.menu AS menu,
+                          drink_type.name AS drink_type,
+                          drink_type.id AS drink_type_id
                    FROM drink_relationship 
                    LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
                    LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
                    WHERE drink_relationship.bar_id=$barID
-                   ORDER BY drink_type, drink_name";
+                   ORDER BY drink_type, menu, drink_name";
     $result_drinks = ($conn->query($sql_drinks));
-
-    # Put drinks into separate menus
-    $menus = [];
-    while ($drink = $result_drinks ->fetch_assoc()) {
-        $menu_name = $drink["drink_type"];
-        # If the menu for the drink already exists: Append the drink to the menu
-        if(array_key_exists($menu_name, $menus)) {
-            array_push($menus[$menu_name], $drink);
-        }
-        # Else: Create a new menu with just that drink
-        else {
-            $menus[$menu_name] = [$drink];
-        }
-    }
 
     # Load pictures of bar
     $sql_pictures = "SELECT id, bar_id, path
@@ -205,28 +204,89 @@ $conn->close();
         <!-- MENU WITH DRINKS-->
 
         <div class="menu">
-            <?php
-            foreach ($menus as $menu_name => $drinks) {
-                echo("<table class='table'>");
-                echo("<tr>");
-                echo("<td class='menu-title'>$menu_name</td>");
-                echo("<td class='table-header' id='header-volume'>Volume</td>");
-                echo("<td class='table-header' id='header-price'>Students</td>");
-                echo("<td class='table-header' id='header-price'>Normal</td>");
-                echo("</tr>");
+            <div id="tabs">
+                <table class="table">
+                    <tr>
+                        <?php
+                        while ($drink_type = $result_drink_types->fetch_assoc()) {
+                            echo("<td class='tab_cell' id='tab_cell_".$drink_type['id']."'  onclick='show_drink_tab(".$drink_type['id'].")'>");
+                            echo('<img class="tab_icon_active" id="tab_icon_active_'.$drink_type['id'].'" src="'.$drink_type['url_active'].'">');
+                            echo('<img class="tab_icon_inactive" id="tab_icon_inactive_'.$drink_type['id'].'" src="'.$drink_type['url_inactive'].'">');
+                            echo('<br>'.$drink_type['name']);
+                            echo("</td>");
+                        }
+                        ?>
+                    </tr>
+                </table>
+            </div>
+            <div id="drinks">
+                <?php
 
-                foreach ($drinks as $drink) {
-                    echo("<tr>");
-                    echo("<td class='col-drink'>$drink[drink_name]</td>");
-                    echo("<td class='col-normal'>$drink[volume]</td>");
-                    echo("<td class='col-normal'>$drink[student_price]</td>");
-                    echo("<td class='col-highlight'>$drink[price]</td>");
-                    echo("</tr>");
+                while ($drink = $result_drinks->fetch_assoc()) {
+
+                    $tab_name = $drink['drink_type'];
+
+                    # Print separate table for that drink type
+                    echo '<table class="drinks_table" id="drinks_table_'.$drink['drink_type_id'].'">';
+
+                    while ($tab_name === $drink['drink_type']) {
+
+                        $menu_name = $drink['menu'];
+
+                        # Print header row of table
+                        echo("<tr>");
+                        echo("<td class='menu-title'>$menu_name</td>");
+                        echo("<td class='table-header' id='header-volume'>Volume</td>");
+                        echo("<td class='table-header' id='header-price'>Students</td>");
+                        echo("<td class='table-header' id='header-price'>Normal</td>");
+                        echo("</tr>");
+
+                        while ($menu_name === $drink['menu']) {
+
+                            echo("<tr>");
+                            echo("<td class='col-drink'>$drink[drink_name]</td>");
+                            echo("<td class='col-normal'>$drink[volume]</td>");
+                            echo("<td class='col-normal'>$drink[student_price]</td>");
+                            echo("<td class='col-highlight'>$drink[price]</td>");
+                            echo("</tr>");
+
+                            $drink = $result_drinks->fetch_assoc();
+                        }
+                    }
+                    echo '</table>';
                 }
-                echo("</table>");
-            }
-            ?>
+                ?>
+            </div>
         </div>
+
+        <script>
+
+            show_drink_tab(3)
+
+            function show_drink_tab(id) {
+
+                // Disable all tabs
+                let all_tab_cells = document.getElementsByClassName("tab_cell");
+                let all_drink_tables = document.getElementsByClassName("drinks_table");
+                let all_tab_icons_active = document.getElementsByClassName("tab_icon_active");
+                let all_tab_icons_inactive = document.getElementsByClassName("tab_icon_inactive");
+
+                for (let i = 0; i < all_tab_cells.length; i++) {
+                    all_tab_cells[i].style.color = 'var(--color-secondary)';
+                    all_drink_tables[i].style.display = 'none';
+                    all_tab_icons_active[i].style.display = 'none';
+                    all_tab_icons_inactive[i].style.display = 'inline';
+                }
+
+                // Highlight selected tab
+                document.getElementById("tab_cell_"+id).style.color = 'var(--color-highlight-text)';
+                document.getElementById("drinks_table_"+id).style.display = 'inline';
+                document.getElementById("tab_icon_inactive_"+id).style.display = 'none';
+                document.getElementById("tab_icon_active_"+id).style.display = 'inline';
+            }
+        </script>
+
+
     </div>
 </body>
 </html>
