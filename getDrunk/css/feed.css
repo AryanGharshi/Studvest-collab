@@ -17,11 +17,13 @@
 }
 
 .barTags{
-  display: grid;
+  position: absolute;
   background-color: rgb(255,255,255);opacity: 0.8;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   height: 80px;
+  width: 100%;
+  bottom: 0px;
 }
 
 .examplebar .barText {

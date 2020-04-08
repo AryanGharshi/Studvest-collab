@@ -47,8 +47,8 @@
                         <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
                     </div>
                 </div>
+                <span class="barTags">Hello</span>
             </div>
-            <div class="barTags">Hello</div>
         </a>
         ';
         }
