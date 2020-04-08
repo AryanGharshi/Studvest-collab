@@ -39,7 +39,7 @@
 
         foreach ($bars as $elem) {
             echo '
-        <a href="barView.php?barID=' . $elem[0] . '"> 
+        <a href="barView.php?barID=' . $elem[0] . '">
             <div class="examplebar">
                 <div class="barText">
                     <h1>' . $elem[1] . '</h1>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-        </a>    
+        </a>
         ';
         }
 
