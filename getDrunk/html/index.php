@@ -31,7 +31,6 @@
 
 <body>
     <?php include('header.php'); ?>
-    <h1>HELLO TEST TEST</h1>
     <div class="wrapper">
 
 
@@ -50,6 +49,7 @@
                     </div>
                 </div>
             </div>
+            <div class="barTags">Hello</div>
         </a>
         ';
         }
