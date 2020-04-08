@@ -13,6 +13,15 @@
   background-size: cover;
   background-position: center;
   border: thin solid #2C7090;
+  border-radius: 15px;
+}
+
+.barTags{
+  display: grid;
+  background-color: rgb(255,255,255);opacity: 0.8;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 80px;
 }
 
 .examplebar .barText {
