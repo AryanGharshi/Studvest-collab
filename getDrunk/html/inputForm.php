@@ -22,8 +22,8 @@
     $conn -> query(addDataEntry('tag', 'test_tag2'));
     $conn -> query(addDataEntry('drink', 'test_drink1'));
     $conn -> query(addDataEntry('drink', 'test_drink2'));
-    $conn -> query(addDataEntry('menu', 'test_menu1'));
-    $conn -> query(addDataEntry('menu', 'test_menu2'));
+    $conn -> query(addDataEntry('drink_type', 'test_type1'));
+    $conn -> query(addDataEntry('drink_type', 'test_type2'));
 
     # Process POST-statements to delete/modify
     if(isset($_POST['del'])){
@@ -33,22 +33,14 @@
         $conn->query($sql_del);
     }
 
-    if(isset($_POST['reg'])){
-        $id = (int) $_POST['del'];
-        $section = $_POST['section'];
-        $sql_del = "DELETE FROM $section WHERE id=$id";
-        $conn->query($sql_del);
-    }
-
-
     # Retrieve data from the database
     $sql_bar = "SELECT * FROM bar";
     $result_bar = ($conn->query($sql_bar));
-    $sql_menu = "SELECT * FROM menu";
-    $result_menus = ($conn->query($sql_menu));
+    $sql_drink_type = "SELECT * FROM drink_type";
+    $result_drink_type = ($conn->query($sql_drink_type));
     $sql_tags = "SELECT * FROM tag";
     $result_tags = ($conn->query($sql_tags));
-    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, menu.name AS menu FROM drink INNER JOIN menu ON drink.menu_id = menu.id";
+    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, drink_type.name AS drink_type FROM drink INNER JOIN drink_type ON drink.drink_type_id = drink_type.id";
     $result_drinks = ($conn->query($sql_drinks));
 
     $conn->close();
@@ -134,11 +126,11 @@
         </div>
         <div id="popup_3" class="popup">
             <div  class="content">
-              <h1>Mange menus</h1>
+              <h1>Mange drink types.</h1>
               <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
-              <p class="change">Change affect all bars with tags</p>
+              <p class="change">Change affect all bars.</p>
               <?php
-              while($currentRow = mysqli_fetch_array($result_menus)) {
+              while($currentRow = mysqli_fetch_array($result_drink_type)) {
                   $name = $currentRow['name'];
                   $id=$currentRow['id'];
                   $n='menus'.$id;
@@ -146,7 +138,7 @@
                   echo "<div class='item' id='$n'>
                         <input value='$name' id='$input' disabled=false/>
                         <form action='' method='post'>
-                        <input type='hidden' name='section' value='menu'>
+                        <input type='hidden' name='section' value='drink_type'>
                         <button type='submit' class='delete' name='del' value=$id>delete</button>
                         </form>
                         <button type='button' class='modify' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
@@ -253,7 +245,7 @@
         <div class='side_foot' id='side_foot'>
         <button type='button' class='btn'>Mange drinks</button>
         <button type='button' class='btn'>Mange tags</button>
-        <button type='button' class='btn'>Mange menus</button>
+        <button type='button' class='btn'>Mange drink types</button>
     </div>
     </div>
   </div>

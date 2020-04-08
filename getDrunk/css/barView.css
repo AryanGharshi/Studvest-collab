@@ -150,14 +150,7 @@
     vertical-align: bottom;
     font-size: var(--relSize-200);
     color:var(--color-secondary);
-}
-
-.menu .table #header-volume {
     text-align: center;
-}
-
-.menu .table #header-price {
-    text-align: right;
 }
 
 .menu .table .col-drink {
@@ -166,15 +159,15 @@
     color: #838383;
 }
 
-.menu .table .col-volume {
-    width: 20%;
+.menu .table .col-normal {
+    width: 15%;
     text-align: center;
     color: #838383;
 }
 
-.menu .table .col-price {
+.menu .table .col-highlight {
     width: 20%;
-    text-align: right;
+    text-align: center;
     color: var(--color-highlight-text);
 }
 
