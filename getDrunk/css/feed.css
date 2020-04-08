@@ -72,4 +72,15 @@
     margin-right: 90px;
     margin-left: 60px;
   }
+
+  .barTags{
+    display: grid;
+    background-color: rgb(255,255,255);opacity: 0.8;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 80px;
+    grid-template-columns: 15% 70% 15%;
+    margin-right: 90px;
+    margin-left: 60px;
+  }
 }

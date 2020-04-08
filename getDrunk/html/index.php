@@ -35,7 +35,6 @@
 
 
         <?php
-
         foreach ($bars as $elem) {
             echo '
         <a href="barView.php?barID=' . $elem[0] . '">
