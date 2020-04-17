@@ -44,9 +44,11 @@
                     <h1>' . $elem[1] . '</h1>
                 </div>
                 <div class="ellipse">
+                <!--
                     <div class="barlogo">
                         <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
                     </div>
+                    -->
                 </div>
                 <span class="barTags">
 

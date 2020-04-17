@@ -80,6 +80,7 @@ a:active {
     font-size: 3.4vh;
     text-align: center;
     color: var(--color-background);
+    z-index: 1;
 }
 
 .header .container{
