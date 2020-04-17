@@ -1,80 +1,23 @@
-console.log(document.getElementById('addNewBar'));
-
-var modal={
-  popup: document.getElementsByClassName('popup'),
-  main : document.getElementById('are'),
-  foot : document.getElementById('side_foot'),
-  btn : document.getElementsByClassName('btn'),
-  close : document.getElementsByClassName('close'),
-  welcome : document.getElementById('main'),
-  add : document.getElementById('addNewBar'),
-}
 
 
-modal.btn[0].addEventListener('click',
-    function() {
-        modal.popup[0].style.display='block';
-        modal.main.style.display='none';
-        modal.foot.style.display='none';
+document.addEventListener('click', function(e) {
+    // event listener listens on every single object of the document
+    console.log(e);
+    let clicked_object = e.target;
+                                                 // checks which element was clicked
+    if(clicked_object.matches('.btn') || clicked_object.matches('.add')) {       // checks if the clicked element is from class 'btn'
+        let target_popup_id = clicked_object.getAttribute('value')
+        console.log(target_popup_id);              // reads the id of the target popup from value attribute (<button type='button' class='btn' value="popup_1">)
+        let target_popup = document.getElementById(target_popup_id);             // retrieves the object with the respective id
+        target_popup.style.display='block';                                      // displays the popup
+        document.getElementById('are').style.display='none';           // hides the main div
+        document.getElementById('side_foot').style.display='none';     // hides the footer
     }
 
-);
-
-modal.close[0].addEventListener('click',
-    function() {
-        modal.foot.style.display='block';
-        modal.popup[0].style.display='none';
-        modal.main.style.display='block';
+    if(clicked_object.matches('.close')) {                                       // checks if the clicked element is from class 'close'
+        let current_popup = clicked_object.parentElement.parentElement;          // takes the parent of the parent element (in our case that's the div for the entire popup)
+        current_popup.style.display='none';                                      // hides the popup
+        document.getElementById('are').style.display='block';          // displays the main div
+        document.getElementById('side_foot').style.display='block';    // displays the footer
     }
-);
-
-modal.btn[1].addEventListener('click',
-  function() {
-        modal.popup[1].style.display='block';
-        modal.main.style.display='none';
-        modal.foot.style.display='none';
-  }
-
-);
-
-modal.close[1].addEventListener('click',
-  function() {
-        modal.foot.style.display='block';
-        modal.popup[1].style.display='none';
-        modal.main.style.display='block';
-  }
-);
-
-
-modal.btn[2].addEventListener('click',
-  function() {
-        modal.popup[2].style.display='block';
-        modal.main.style.display='none';
-        modal.foot.style.display='none';
-  }
-
-);
-
-modal.close[2].addEventListener('click',
-  function() {
-        modal.foot.style.display='block';
-        modal.popup[2].style.display='none';
-        modal.main.style.display='block';
-  }
-);
-
-modal.add.addEventListener('click',
-  function() {
-      modal.popup[3].style.display='block';
-      modal.main.style.display='none';
-      modal.foot.style.display='none';
-  }
-);
-
-modal.close[3].addEventListener('click',
-  function() {
-        modal.foot.style.display='block';
-        modal.popup[3].style.display='none';
-        modal.main.style.display='block';
-  }
-);
+}, false);

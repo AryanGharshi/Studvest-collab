@@ -21,7 +21,7 @@
         $bars = [];
 
         while ($row = $result->fetch_assoc()) {
-            array_push($bars, [$row["id"], $row["name"]]);
+            array_push($bars, [$row["id"], $row["name"],  $row["path"]]);
         }
     } else {
         echo "0 results";
