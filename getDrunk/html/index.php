@@ -31,9 +31,10 @@
 
 <body>
     <?php include('header.php'); ?>
+    <div class="title">
+
+    </div>
     <div class="wrapper">
-
-
         <?php
         foreach ($bars as $elem) {
             echo '
@@ -47,13 +48,17 @@
                         <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
                     </div>
                 </div>
-                <span class="barTags">Hello</span>
+                <span class="barTags">
+
+                </span>
             </div>
         </a>
         ';
         }
-
         ?>
+    </div>
+    <div class="background">
+      <img class="city" src="../media/pictures/CityStudout.png">
     </div>
 </body>
 </html>
