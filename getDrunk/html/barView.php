@@ -107,186 +107,189 @@ $conn->close();
 
     <?php include('header.php'); ?>
 
+    <div class="main">
 
 
-    <!-- GALLERY -->
+        <!-- GALLERY -->
 
-    <div class="gallery" id="galleryDiv">
+        <div class="gallery" id="galleryDiv">
         <span class="nav" id="nav-prev" onclick="changeGalleryImage(-1)">
             <img class="icon" src="../media/icons/left-arrow_white.png">
         </span>
-        <span class="nav" id="nav-next" onclick="changeGalleryImage(+1)">
+            <span class="nav" id="nav-next" onclick="changeGalleryImage(+1)">
                 <img class="icon" src="../media/icons/right-arrow_white.png">
         </span>
-    </div>
+        </div>
 
-    <script>
-        let galleryImgs = <?php echo json_encode($info['pictures']); ?>;
-        let currImgID = 0;
+        <script>
+            let galleryImgs = <?php echo json_encode($info['pictures']); ?>;
+            let currImgID = 0;
 
-        // Start slideshow
-        automaticSlideshow();
+            // Start slideshow
+            automaticSlideshow();
 
-        // Function to change gallery pictures (direction=-1: previous picture; direction=+1: next picture)
-        function changeGalleryImage (direction) {
-            currImgID = (currImgID+direction+galleryImgs.length)%galleryImgs.length;
-            document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[currImgID]+")";
-        }
-
-        // Function for automatic slideshow
-        function automaticSlideshow() {
-            setTimeout(automaticSlideshow, 5000); // Change image every 5 seconds
-            changeGalleryImage(+1);
-        }
-    </script>
-
-
-
-
-    <div class="content">
-
-        <!-- GENERAL INFORMATION ABOUT BAR (NAME, DESCRIPTION, TAGS) -->
-
-        <div class="bar-info">
-            <div id="name"><?php echo $info['name']?></div>
-            <div id="desc"><?php echo $info['description']?></div>
-            <?php
-            while ($tag = $result_tags ->fetch_assoc()) {
-                printf("<button type='button' class='tag'>".$tag['tag_name']."</button>");
+            // Function to change gallery pictures (direction=-1: previous picture; direction=+1: next picture)
+            function changeGalleryImage (direction) {
+                currImgID = (currImgID+direction+galleryImgs.length)%galleryImgs.length;
+                document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[currImgID]+")";c
             }
-            ?>
-        </div>
+
+            // Function for automatic slideshow
+            function automaticSlideshow() {
+                setTimeout(automaticSlideshow, 5000); // Change image every 5 seconds
+                changeGalleryImage(+1);
+            }
+        </script>
 
 
 
 
-        <!-- LINKS (CALL, LOCATION, WEBSITE) -->
+        <div class="content">
 
-        <div class="links" id="links-mobile">
-            <a type='button' class="btn" href="<?php echo($info["location"]) ?>>">
-                <img class="icon" src="../media/icons/location_black.png">
-            </a>
-        </div>
-        <div class="links" id="links-web">
-            <table class="table" >
-                <tr>
-                    <?php
-                    if($info['website']!='') {
-                        printf('<td>');
-                        printf('<a href="'.$info["website"].'" target="_blank">');
-                        printf('<img class="icon" src="../media/icons/web_white.png"><br>');
-                        printf('Website');
-                        printf('</td>');
-                    }
+            <!-- GENERAL INFORMATION ABOUT BAR (NAME, DESCRIPTION, TAGS) -->
 
-                    if($info['phone']!='') {
-                        printf('<td>');
-                        printf('<a href="tel:+47'.$info["phone"].'" target="_blank">');
-                        printf('<img class="icon" src="../media/icons/call_white.png"><br>');
-                        printf('Call');
-                        printf('</td>');
-                    }
-
-                    if($info['location']!='') {
-                        printf('<td>');
-                        printf('<a href="'.$info["location"].'" target="_blank">');
-                        printf('<img class="icon" src="../media/icons/location_white.png"><br>');
-                        printf('Location');
-                        printf('</td>');
-                    }
-                    ?>
-                </tr>
-            </table>
-        </div>
+            <div class="bar-info">
+                <div id="name"><?php echo $info['name']?></div>
+                <div id="desc"><?php echo $info['description']?></div>
+                <?php
+                while ($tag = $result_tags ->fetch_assoc()) {
+                    printf("<button type='button' class='tag'>".$tag['tag_name']."</button>");
+                }
+                ?>
+            </div>
 
 
 
-        <!-- MENU WITH DRINKS-->
 
-        <div class="menu">
-            <div id="tabs">
-                <table class="table">
+            <!-- LINKS (CALL, LOCATION, WEBSITE) -->
+
+            <div class="links" id="links-mobile">
+                <a type='button' class="btn" href="<?php echo($info["location"]) ?>>">
+                    <img class="icon" src="../media/icons/location_black.png">
+                </a>
+            </div>
+            <div class="links" id="links-web">
+                <table class="table" >
                     <tr>
                         <?php
-                        while ($drink_type = $result_drink_types->fetch_assoc()) {
-                            echo("<td class='tab_cell' id='tab_cell_".$drink_type['id']."'  onclick='show_drink_tab(".$drink_type['id'].")'>");
-                            echo('<img class="tab_icon_active" id="tab_icon_active_'.$drink_type['id'].'" src="'.$drink_type['url_active'].'">');
-                            echo('<img class="tab_icon_inactive" id="tab_icon_inactive_'.$drink_type['id'].'" src="'.$drink_type['url_inactive'].'">');
-                            echo('<br>'.$drink_type['name']);
-                            echo("</td>");
+                        if($info['website']!='') {
+                            printf('<td>');
+                            printf('<a href="'.$info["website"].'" target="_blank">');
+                            printf('<img class="icon" src="../media/icons/web_white.png"><br>');
+                            printf('Website');
+                            printf('</td>');
+                        }
+
+                        if($info['phone']!='') {
+                            printf('<td>');
+                            printf('<a href="tel:+47'.$info["phone"].'" target="_blank">');
+                            printf('<img class="icon" src="../media/icons/call_white.png"><br>');
+                            printf('Call');
+                            printf('</td>');
+                        }
+
+                        if($info['location']!='') {
+                            printf('<td>');
+                            printf('<a href="'.$info["location"].'" target="_blank">');
+                            printf('<img class="icon" src="../media/icons/location_white.png"><br>');
+                            printf('Location');
+                            printf('</td>');
                         }
                         ?>
                     </tr>
                 </table>
             </div>
-            <div id="drinks">
-                <?php
 
-                while ($drink = $result_drinks->fetch_assoc()) {
 
-                    $tab_name = $drink['drink_type'];
 
-                    # Print separate table for that drink type
-                    echo '<table class="drinks_table" id="drinks_table_'.$drink['drink_type_id'].'">';
+            <!-- MENU WITH DRINKS-->
 
-                    while ($tab_name === $drink['drink_type']) {
+            <div class="menu">
+                <div id="tabs">
+                    <table class="table">
+                        <tr>
+                            <?php
+                            while ($drink_type = $result_drink_types->fetch_assoc()) {
+                                echo("<td class='tab_cell' id='tab_cell_".$drink_type['id']."'  onclick='show_drink_tab(".$drink_type['id'].")'>");
+                                echo('<img class="tab_icon_active" id="tab_icon_active_'.$drink_type['id'].'" src="'.$drink_type['url_active'].'">');
+                                echo('<img class="tab_icon_inactive" id="tab_icon_inactive_'.$drink_type['id'].'" src="'.$drink_type['url_inactive'].'">');
+                                echo('<br>'.$drink_type['name']);
+                                echo("</td>");
+                            }
+                            ?>
+                        </tr>
+                    </table>
+                </div>
+                <div id="drinks">
+                    <?php
 
-                        $menu_name = $drink['menu'];
+                    while ($drink = $result_drinks->fetch_assoc()) {
 
-                        # Print header row of table
-                        echo("<tr>");
-                        echo("<td class='menu-title'>$menu_name</td>");
-                        echo("<td class='table-header' id='header-volume'>Volume</td>");
-                        echo("<td class='table-header' id='header-price'>Students</td>");
-                        echo("<td class='table-header' id='header-price'>Normal</td>");
-                        echo("</tr>");
+                        $tab_name = $drink['drink_type'];
 
-                        while ($menu_name === $drink['menu']) {
+                        # Print separate table for that drink type
+                        echo '<table class="drinks_table" id="drinks_table_'.$drink['drink_type_id'].'">';
 
+                        while ($tab_name === $drink['drink_type']) {
+
+                            $menu_name = $drink['menu'];
+
+                            # Print header row of table
                             echo("<tr>");
-                            echo("<td class='col-drink'>$drink[drink_name]</td>");
-                            echo("<td class='col-normal'>$drink[volume]</td>");
-                            echo("<td class='col-normal'>$drink[student_price]</td>");
-                            echo("<td class='col-highlight'>$drink[price]</td>");
+                            echo("<td class='menu-title'>$menu_name</td>");
+                            echo("<td class='table-header' id='header-volume'>Volume</td>");
+                            echo("<td class='table-header' id='header-price'>Students</td>");
+                            echo("<td class='table-header' id='header-price'>Normal</td>");
                             echo("</tr>");
 
-                            $drink = $result_drinks->fetch_assoc();
+                            while ($menu_name === $drink['menu']) {
+
+                                echo("<tr>");
+                                echo("<td class='col-drink'>$drink[drink_name]</td>");
+                                echo("<td class='col-normal'>$drink[volume]</td>");
+                                echo("<td class='col-normal'>$drink[student_price]</td>");
+                                echo("<td class='col-highlight'>$drink[price]</td>");
+                                echo("</tr>");
+
+                                $drink = $result_drinks->fetch_assoc();
+                            }
                         }
+                        echo '</table>';
                     }
-                    echo '</table>';
-                }
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
 
-        <script>
+            <script>
 
-            show_drink_tab(3)
+                show_drink_tab(3)
 
-            function show_drink_tab(id) {
+                function show_drink_tab(id) {
 
-                // Disable all tabs
-                let all_tab_cells = document.getElementsByClassName("tab_cell");
-                let all_drink_tables = document.getElementsByClassName("drinks_table");
-                let all_tab_icons_active = document.getElementsByClassName("tab_icon_active");
-                let all_tab_icons_inactive = document.getElementsByClassName("tab_icon_inactive");
+                    // Disable all tabs
+                    let all_tab_cells = document.getElementsByClassName("tab_cell");
+                    let all_drink_tables = document.getElementsByClassName("drinks_table");
+                    let all_tab_icons_active = document.getElementsByClassName("tab_icon_active");
+                    let all_tab_icons_inactive = document.getElementsByClassName("tab_icon_inactive");
 
-                for (let i = 0; i < all_tab_cells.length; i++) {
-                    all_tab_cells[i].style.color = 'var(--color-secondary)';
-                    all_drink_tables[i].style.display = 'none';
-                    all_tab_icons_active[i].style.display = 'none';
-                    all_tab_icons_inactive[i].style.display = 'inline';
+                    for (let i = 0; i < all_tab_cells.length; i++) {
+                        all_tab_cells[i].style.color = 'var(--color-secondary)';
+                        all_drink_tables[i].style.display = 'none';
+                        all_tab_icons_active[i].style.display = 'none';
+                        all_tab_icons_inactive[i].style.display = 'inline';
+                    }
+
+                    // Highlight selected tab
+                    document.getElementById("tab_cell_"+id).style.color = 'var(--color-highlight-text)';
+                    document.getElementById("drinks_table_"+id).style.display = 'inline';
+                    document.getElementById("tab_icon_inactive_"+id).style.display = 'none';
+                    document.getElementById("tab_icon_active_"+id).style.display = 'inline';
                 }
-
-                // Highlight selected tab
-                document.getElementById("tab_cell_"+id).style.color = 'var(--color-highlight-text)';
-                document.getElementById("drinks_table_"+id).style.display = 'inline';
-                document.getElementById("tab_icon_inactive_"+id).style.display = 'none';
-                document.getElementById("tab_icon_active_"+id).style.display = 'inline';
-            }
-        </script>
+            </script>
 
 
+        </div>
     </div>
+
 </body>
 </html>
