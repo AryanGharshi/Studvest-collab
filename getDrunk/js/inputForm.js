@@ -19,5 +19,9 @@ document.addEventListener('click', function(e) {
         current_popup.style.display='none';                                      // hides the popup
         document.getElementById('are').style.display='block';          // displays the main div
         document.getElementById('side_foot').style.display='block';    // displays the footer
+        var n = document.getElementsByClass('add').length();
+        for (var i = 0; i < n.length; i++) {
+          n = document.getElementsByClass('add')[n].style.display='none';
+        }
     }
-}, false);
+  }
