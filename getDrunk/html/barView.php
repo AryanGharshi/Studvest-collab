@@ -163,43 +163,31 @@ $conn->close();
 
             <!-- LINKS (CALL, LOCATION, WEBSITE) -->
 
-            <div class="links" id="links-mobile">
-                <a type='button' class="btn" href="<?php echo($info["location"]) ?>>">
-                    <img class="icon" src="../media/icons/location_black.png">
-                </a>
+            <div class="links">
+                <?php
+                if($info['location']!='') {
+                    printf('<div class="btn" id="btn-location">');
+                    printf('<a href="'.$info["loaction"].'">');
+                    printf('<img class="icon" src="../media/icons/location_black.png"><br>');
+                    printf('</a>');
+                    printf('</div>');
+                }
+                if($info['website']!='') {
+                    printf('<div class="btn" id="btn-website">');
+                    printf('<a href="'.$info["website"].'">');
+                    printf('<img class="icon" src="../media/icons/web_black.png"><br>');
+                    printf('</a>');
+                    printf('</div>');
+                }
+                if($info['phone']!='') {
+                    printf('<div class="btn" id="btn-call">');
+                    printf('<a href="tel:+47'.$info["phone"].'">');
+                    printf('<img class="icon" src="../media/icons/call_black.png"><br>');
+                    printf('</a>');
+                    printf('</div>');
+                }
+                ?>
             </div>
-            <div class="links" id="links-web">
-                <table class="table" >
-                    <tr>
-                        <?php
-                        if($info['website']!='') {
-                            printf('<td>');
-                            printf('<a href="'.$info["website"].'" target="_blank">');
-                            printf('<img class="icon" src="../media/icons/web_white.png"><br>');
-                            printf('Website');
-                            printf('</td>');
-                        }
-
-                        if($info['phone']!='') {
-                            printf('<td>');
-                            printf('<a href="tel:+47'.$info["phone"].'" target="_blank">');
-                            printf('<img class="icon" src="../media/icons/call_white.png"><br>');
-                            printf('Call');
-                            printf('</td>');
-                        }
-
-                        if($info['location']!='') {
-                            printf('<td>');
-                            printf('<a href="'.$info["location"].'" target="_blank">');
-                            printf('<img class="icon" src="../media/icons/location_white.png"><br>');
-                            printf('Location');
-                            printf('</td>');
-                        }
-                        ?>
-                    </tr>
-                </table>
-            </div>
-
 
 
             <!-- MENU WITH DRINKS-->

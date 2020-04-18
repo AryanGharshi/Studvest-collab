@@ -268,12 +268,8 @@
     </div>
   </div>
 
-
-
-
-
-<script type='text/javascript' src='../js/inputForm.js'> </script>
-<script type='text/javascript' src='../js/input_del.js'></script>
+<script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
+<script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>
 
 </body>
 </html>

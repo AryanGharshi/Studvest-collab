@@ -10,23 +10,23 @@
     --color-highlight-background: #2c7090 ;
 
     /* Default sizing variables */
-    --relSize-900: calc(9.00vh - 1.80vw);
-    --relSize-700: calc(7.00vh - 1.60vw);
-    --relSize-500: calc(5.00vh - 1.00vw);
-    --relSize-450: calc(4.50vh - 0.90vw);
-    --relSize-400: calc(4.00vh - 0.80vw);
-    --relSize-350: calc(3.50vh - 0.70vw);
-    --relSize-300: calc(3.00vh - 0.60vw);
-    --relSize-275: calc(2.75vh - 0.55vw);
-    --relSize-250: calc(2.50vh - 0.50vw);
-    --relSize-225: calc(2.25vh - 0.45vw);
-    --relSize-200: calc(2.00vh - 0.40vw);
-    --relSize-175: calc(1.75vh - 0.35vw);
-    --relSize-150: calc(1.50vh - 0.30vw);
-    --relSize-125: calc(1.25vh - 0.25vw);
-    --relSize-100: calc(1.00vh - 0.20vw);
-    --relSize-075: calc(0.75vh - 0.15vw);
-    --relSize-050: calc(0.50vh - 0.10vw);
+    --relSize-900: 2.7em;
+    --relSize-700: 2.1em;
+    --relSize-500: 1.5em;
+    --relSize-450: 1.35em;
+    --relSize-400: 1.2em;
+    --relSize-350: 1.05em;
+    --relSize-300: 0.9em;
+    --relSize-275: 0.825em;
+    --relSize-250: 0.75em;
+    --relSize-225: 0.675em;
+    --relSize-200: 0.6em;
+    --relSize-175: 0.525em;
+    --relSize-150: 0.45em;
+    --relSize-125: 0.375em;
+    --relSize-100: 0.3em;
+    --relSize-075: 0.225em;
+    --relSize-050: 0.15em;
 }
 
 body {
@@ -74,10 +74,9 @@ a:active {
     position: sticky;
     position: -webkit-sticky; /* Safari */
     top: 0;
-    height: 5.6vh;
-    padding: 1vh;
+    height: 2.5em;
+    padding: 0.5em;
     background-color: var(--color-highlight-background);
-    font-size: 3.4vh;
     text-align: center;
     color: var(--color-background);
     z-index: 1;
@@ -90,51 +89,14 @@ a:active {
 }
 
 .header #app-logo {
-    width: calc(100vw - 5.6vh*2 - 1vh*2);
-}
-
-
-
-/* OPTIMIZATION FOR WEB */
-
-@media screen and (orientation: landscape) {
-
+    width: calc(100vw - 2.5em*2 - 0.5em*2);
 }
 
 
 
 /* OPTIMIZATION FOR MOBILE */
 
-@media screen and (orientation: portrait) {
-
-    :root {
-
-        /* Default background colors*/
-        --color-primary: #a0a0a0;
-        --color-secondary: #666;
-        --color-background: #1b1b1b;
-        --color-highlight-text: #3489a1;
-        --color-highlight-background: #2c7090 ;
-
-        /* Default sizing variables */
-        --relSize-900: 12.60vw;
-        --relSize-700: 10.50vw;
-        --relSize-500:  7.00vw;
-        --relSize-450:  6.30vw;
-        --relSize-400:  5.60vw;
-        --relSize-350:  5.25vw;
-        --relSize-300:  4.20vw;
-        --relSize-275:  3.85vw;
-        --relSize-250:  3.50vw;
-        --relSize-225:  3.15vw;
-        --relSize-200:  2.80vw;
-        --relSize-175:  2.45vw;
-        --relSize-150:  2.10vw;
-        --relSize-125:  1.75vw;
-        --relSize-100:  1.40vw;
-        --relSize-075:  1.05vw;
-        --relSize-050:  0.70vw;
-    }
+@media screen and (max-aspect-ratio: 4/5) {
 
     /* disable studvest logo due to space */
     #logo-studvest {
