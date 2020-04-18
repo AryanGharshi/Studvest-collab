@@ -106,5 +106,5 @@ h1{
 }
 
 #btn-back {
-  display:none;
+  visibility:hidden;
 }
