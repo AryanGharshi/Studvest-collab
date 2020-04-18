@@ -78,15 +78,14 @@
                 $n = 'barname'.$id;
                 $input = 'barinput'.$id;
                 echo "<div class='item' id='$n' >
-                      
-                      <form action='' method='post'>
+
+                      <form action='' method='post' onsubmit='return sub(".'"barinput"'.",$id,$input)'>
                           <input name='barName' value='$name' id='$input' disabled=false/>
                           <input type='hidden' name='section' value='bar'>
                           <button type='submit' class='delete' name='del' value=$id>delete</button>
                           <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"barinput"'.",$id,$input)'>modify</button>
-                          <button type='submit' class='add' name='add' value=$id id='submit$input'>add</button>
+                          <button type='submit' class='add_btn' name='add' value=$id id='submit$input' onclick='sub(".'"barinput"'.",$id,$input)'>add</button>
                       </form>
-
                       </div> ";
             }
             ?>
@@ -104,11 +103,12 @@
                 $n='drinks'.$id;
                 $input = 'drinksinput'.$id;
                 echo "<div class='item' id='$n'>
-                      <input value='$name' id='$input' disabled=false/>
+                      <input name='$name' value='$name' id='$input' disabled=false/>
                       <form action='' method='post'>
                       <input type='hidden' name='section' value='drink'>
                       <button type='submit' class='delete' name='del' value=$id>delete</button>
                       <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input)'>modify</button>
+                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                       </form>
                       </div>";
             }
@@ -133,6 +133,7 @@
                       <input type='hidden' name='section' value='tag'>
                       <button type='submit' class='delete' name='del' value=$id>delete</button>
                       <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input)'>modify</button>
+                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                       </form>
                       </div>";
             }
@@ -157,6 +158,7 @@
                         <input type='hidden' name='section' value='menu'>
                         <button type='submit' class='delete' name='del' value=$id>delete</button>
                         <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
+                        <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                         </form>
                         </div>";
               }
@@ -271,7 +273,6 @@
 
 
 <script type='text/javascript' src='../js/inputForm.js'> </script>
-<script type='text/javascript' src='../js/input_reg.js'></script>
 <script type='text/javascript' src='../js/input_del.js'></script>
 
 </body>
