@@ -1,3 +1,4 @@
+
 .background{
   display: grid;
   height: 50%;
@@ -102,4 +103,8 @@ h1{
     height: 80px;
     grid-template-columns: 15% 70% 15%;
   }
+}
+
+#btn-back {
+  visibility:hidden;
 }
