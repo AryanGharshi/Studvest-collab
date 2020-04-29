@@ -1,0 +1,61 @@
+.background{
+  display: grid;
+  height: 50%;
+  position: fixed;
+  z-index: -1;
+  bottom: 0;
+}
+
+.city{
+  max-width: 100%;
+  margin-top: auto;
+}
+
+#studv{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+	opacity:0;
+	-webkit-animation:fadeIn ease-in 1;
+	-moz-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+
+	-webkit-animation-fill-mode:forwards;
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+
+	-webkit-animation-duration:2s;
+	-moz-animation-duration:2s;
+	animation-duration:2s;
+}
+
+.line {
+  display:block;
+  position:absolute;
+  top:45%;
+  left:50%;
+  border-bottom:4px solid #2c7090;
+  width:0%;
+  text-align:center;
+  animation: line 1s linear forwards;
+}
+
+@keyframes line {
+  from {
+    left:50%;
+    width:0%;
+  }
+  to {
+    left:5%;
+    width:90%;
+  }
+}
