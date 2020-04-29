@@ -28,23 +28,21 @@
     # Process POST-statements to delete/modify
     if(isset($_POST['del'])){
         $id = (int) $_POST['del'];
-        $section = $_POST['section'];
+        /**$section = $_POST['section'];**/
         $sql_del = "DELETE FROM $section WHERE id=$id";
         $conn->query($sql_del);
     }
 
-    if(isset($_POST['add'])){
-        $newName = $_POST['barName'];
+    if(isset($_POST['regi'])){
+        $id = (int) $_POST['regi'];
         $section = $_POST['section'];
-        $id = $_POST['add'];
+        $newName = $name;
         $sql_regi = "UPDATE $section
-                    SET $section.name='$newName'
+                    SET $section.name=$newName
                     WHERE $section.id=$id";
-        print($sql_regi);
+        console.log($name);
         $conn->query($sql_regi);
     }
-
-    $sql= "UPDATE bar SET bar.name='new Name' WHERE bar.id='1'";
 
 
     # Retrieve data from the database
@@ -78,14 +76,13 @@
                 $n = 'barname'.$id;
                 $input = 'barinput'.$id;
                 echo "<div class='item' id='$n' >
-
-                      <form action='' method='post' onsubmit='return sub(".'"barinput"'.",$id,$input)'>
-                          <input name='barName' value='$name' id='$input' disabled=false/>
+                      <input value='$name' id='$input' disabled=false/>
+                      <form action='' method='post'>
                           <input type='hidden' name='section' value='bar'>
                           <button type='submit' class='delete' name='del' value=$id>delete</button>
                           <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"barinput"'.",$id,$input)'>modify</button>
-                          <button type='submit' class='add_btn' name='add' value=$id id='submit$input' onclick='sub(".'"barinput"'.",$id,$input)'>add</button>
                       </form>
+
                       </div> ";
             }
             ?>
@@ -94,7 +91,7 @@
         <div id="popup_1" class="popup">
           <div  class="content">
             <h1>Mange drinks</h1>
-            <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+            <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
             <p>Change affect all bars with tags</p>
             <?php
             while($currentRow = mysqli_fetch_array($result_drinks)) {
@@ -103,12 +100,11 @@
                 $n='drinks'.$id;
                 $input = 'drinksinput'.$id;
                 echo "<div class='item' id='$n'>
-                      <input name='$name' value='$name' id='$input' disabled=false/>
+                      <input value='$name' id='$input' disabled=false/>
                       <form action='' method='post'>
                       <input type='hidden' name='section' value='drink'>
                       <button type='submit' class='delete' name='del' value=$id>delete</button>
                       <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input)'>modify</button>
-                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                       </form>
                       </div>";
             }
@@ -119,7 +115,7 @@
         <div id="popup_2" class="popup">
           <div  class="content">
             <h1>Mange tags</h1>
-            <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+            <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
             <p class="change">Change affect all bars with tags</p>
             <?php
             while($currentRow = mysqli_fetch_array($result_tags)) {
@@ -133,7 +129,6 @@
                       <input type='hidden' name='section' value='tag'>
                       <button type='submit' class='delete' name='del' value=$id>delete</button>
                       <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input)'>modify</button>
-                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                       </form>
                       </div>";
             }
@@ -144,7 +139,7 @@
         <div id="popup_3" class="popup">
             <div  class="content">
               <h1 >Mange menus</h1>
-              <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+              <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
               <p class="change">Change affect all bars with tags</p>
               <?php
               while($currentRow = mysqli_fetch_array($result_menus)) {
@@ -158,7 +153,6 @@
                         <input type='hidden' name='section' value='menu'>
                         <button type='submit' class='delete' name='del' value=$id>delete</button>
                         <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
-                        <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                         </form>
                         </div>";
               }
@@ -170,7 +164,7 @@
         <div id="popup_4" >
             <div>
                 <h1>Edit Bar</h1>
-                <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+                <img src="../media/icons/close.png" alt="cancel" class="close" id="close">
                 <form id="editBar">
                     <div class="aboutBar">
                         <label for="name">Name:</label>
@@ -268,8 +262,13 @@
     </div>
   </div>
 
-<script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
-<script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>
+
+
+
+
+<script type='text/javascript' src='../js/inputForm.js'> </script>
+<script type='text/javascript' src='../js/input_reg.js'></script>
+<script type='text/javascript' src='../js/input_del.js'></script>
 
 </body>
 </html>
