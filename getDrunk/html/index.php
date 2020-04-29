@@ -14,20 +14,23 @@
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
-    $sql = "SELECT id, name FROM bar";
+    $sql = "SELECT bar_id, name, path FROM bar INNER JOIN picture ON bar.id = picture.bar_id WHERE picture.is_cover=1";
     $result = ($conn->query($sql));
 
     if ($result->num_rows > 0) {
         $bars = [];
 
         while ($row = $result->fetch_assoc()) {
-            array_push($bars, [$row["id"], $row["name"],  $row["path"]]);
+            array_push($bars, [$row["bar_id"], $row["name"],  $row["path"]]);
         }
     } else {
         echo "0 results";
     }
     $conn->close();
+
 ?>
+
+
 
 <body>
     <?php include('header.php'); ?>
@@ -39,7 +42,7 @@
         foreach ($bars as $elem) {
             echo '
         <a href="barView.php?barID=' . $elem[0] . '">
-            <div class="examplebar">
+            <div class="examplebar" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%), url(' . $elem[2] . ')">
                 <div class="barText">
                     <h1>' . $elem[1] . '</h1>
                 </div>
