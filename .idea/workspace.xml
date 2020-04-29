@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d0c93ec6-13ec-4320-b284-e34db9ea7d5e" name="Default Changelist" comment="">
+    <list default="true" id="86370fb7-9d2c-4e2d-84a3-1605d2415229" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getDrunk/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/css/barView.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getDrunk/html/barView.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/barView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getDrunk/inc/connection/conn.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/inc/connection/conn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valgomat/2020/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/valgomat/2020/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valgomat/2020/js/valgomat.js" beforeDir="false" afterPath="$PROJECT_DIR$/valgomat/2020/js/valgomat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valgomat/2020/valgomat.css" beforeDir="false" afterPath="$PROJECT_DIR$/valgomat/2020/valgomat.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +20,6 @@
     <execution>
       <executable />
     </execution>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1aG4Q7VDnpC3DzeLqijrk7LcWvr" />
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -41,13 +38,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d0c93ec6-13ec-4320-b284-e34db9ea7d5e" name="Default Changelist" comment="" />
-      <created>1586348579037</created>
+      <changelist id="86370fb7-9d2c-4e2d-84a3-1605d2415229" name="Default Changelist" comment="" />
+      <created>1588104486391</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586348579037</updated>
-      <workItem from="1586348582689" duration="12635000" />
-      <workItem from="1586361564058" duration="3672000" />
+      <updated>1588104486391</updated>
+      <workItem from="1588104487546" duration="2787000" />
     </task>
     <servers />
   </component>
@@ -59,9 +55,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
