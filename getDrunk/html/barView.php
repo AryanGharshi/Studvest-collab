@@ -92,7 +92,7 @@ $conn->close();
 <!-- HEADER -->
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><?php echo $info["name"]; ?> - StudOut</title>
     <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
@@ -191,7 +191,6 @@ $conn->close();
 
 
             <!-- MENU WITH DRINKS-->
-
             <div class="menu">
                 <div id="tabs">
                     <table class="table">

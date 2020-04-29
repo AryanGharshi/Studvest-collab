@@ -11,6 +11,7 @@ if (MAGICKEY == "ugugUGu221KHJBD84") {
     $database = "admin_bar";
 
     $conn = new mysqli($host, $username, $password, $database);
+    $conn -> set_charset("utf8");
 
     if ($conn->connect_error) {
         die("connection failed: " . $conn->connect_error);
