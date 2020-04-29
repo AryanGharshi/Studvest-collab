@@ -22,6 +22,7 @@
 
         while ($row = $result->fetch_assoc()) {
             array_push($bars, [$row["bar_id"], $row["name"],  $row["path"]]);
+            if path is not there push another path
         }
     } else {
         echo "0 results";
