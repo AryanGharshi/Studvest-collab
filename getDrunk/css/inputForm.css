@@ -48,8 +48,7 @@ body{
 }
 
 
-.modify, .delete, .add_btn{
-  float:right;
+.modify, .delete, .add_btn, .tag{
   outline: none;
   margin-top: 6px;
   margin-right:12px;
@@ -59,21 +58,29 @@ body{
 }
 
 .modify{
+  float:right;
   border: #FFC700 solid 1px;
   color: #FFC700;
 }
 
 .delete{
+  float:right;
   border: #CB1919 solid 1px;
   color:#CB1919;
 }
 
 .add_btn{
+  float:right;
   display: none;
   padding-left: 16px;
   padding-right: 16px;
   color: green;
   border: 1px solid green;
+}
+
+.tag {
+  border: 1px solid grey;
+  color: grey;
 }
 
 .main .item input{
@@ -137,24 +144,6 @@ text-decoration: none;
   position: absolute;
   margin-left: 46px;
   padding: 0;
-}
-
-#popup_4{
-  display:none;
-}
-
-#popup_4 h1{
-  float: left;
-  margin-left: 3em;
-}
-
-#popup_4 img{
-  float: right;
-  width: 20px;
-  height: auto;
-  margin-top: 90px;
-  margin-right: 5vw;
-
 }
 
 #editBar{

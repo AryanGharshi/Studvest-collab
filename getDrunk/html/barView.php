@@ -131,7 +131,7 @@ $conn->close();
             // Function to change gallery pictures (direction=-1: previous picture; direction=+1: next picture)
             function changeGalleryImage (direction) {
                 currImgID = (currImgID+direction+galleryImgs.length)%galleryImgs.length;
-                document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[currImgID]+")";c
+                document.getElementById("galleryDiv").style.backgroundImage = "url("+galleryImgs[currImgID]+")";
             }
 
             // Function for automatic slideshow
@@ -148,22 +148,8 @@ $conn->close();
 
             <!-- GENERAL INFORMATION ABOUT BAR (NAME, DESCRIPTION, TAGS) -->
 
-            <div class="bar-info">
+            <div class="bar-header">
                 <div id="name"><?php echo $info['name']?></div>
-                <div id="desc"><?php echo $info['description']?></div>
-                <?php
-                while ($tag = $result_tags ->fetch_assoc()) {
-                    printf("<button type='button' class='tag'>".$tag['tag_name']."</button>");
-                }
-                ?>
-            </div>
-
-
-
-
-            <!-- LINKS (CALL, LOCATION, WEBSITE) -->
-
-            <div class="links">
                 <?php
                 if($info['location']!='') {
                     printf('<div class="btn" id="btn-location">');
@@ -188,6 +174,23 @@ $conn->close();
                 }
                 ?>
             </div>
+
+            <!-- GENERAL INFORMATION ABOUT BAR (DESCRIPTION, TAGS) -->
+
+            <div class="bar-info">
+                <?php
+                while ($tag = $result_tags ->fetch_assoc()) {
+                    printf("<button type='button' class='tag'>".$tag['tag_name']."</button>");
+                }
+                ?>
+                <div id="desc"><?php echo $info['description']?></div>
+            </div>
+
+
+
+
+            <!-- LINKS (CALL, LOCATION, WEBSITE) -->
+
 
 
             <!-- MENU WITH DRINKS-->
@@ -215,18 +218,23 @@ $conn->close();
                         $tab_name = $drink['drink_type'];
 
                         # Print separate table for that drink type
-                        echo '<table class="drinks_table" id="drinks_table_'.$drink['drink_type_id'].'">';
+                        echo '<div class="drinks_tab" id="drinks_tab_'.$drink['drink_type_id'].'">';
 
                         while ($tab_name === $drink['drink_type']) {
 
                             $menu_name = $drink['menu'];
 
+                            echo ("<div class='menu-title'>$menu_name</div>");
+
+                            # Print separate table for that drink type
+                            echo '<table class="drinks_table" id="drinks_table_'.$menu_name.'">';
+
                             # Print header row of table
                             echo("<tr>");
-                            echo("<td class='menu-title'>$menu_name</td>");
-                            echo("<td class='table-header' id='header-volume'>Volume</td>");
-                            echo("<td class='table-header' id='header-price'>Students</td>");
-                            echo("<td class='table-header' id='header-price'>Normal</td>");
+                            echo("<th></th>");
+                            echo("<th>Volume</th>");
+                            echo("<th>Students</td>");
+                            echo("<th>Normal</td>");
                             echo("</tr>");
 
                             while ($menu_name === $drink['menu']) {
@@ -240,8 +248,9 @@ $conn->close();
 
                                 $drink = $result_drinks->fetch_assoc();
                             }
+                            echo '</table>';
                         }
-                        echo '</table>';
+                        echo '</div>';
                     }
                     ?>
                 </div>
@@ -255,20 +264,20 @@ $conn->close();
 
                     // Disable all tabs
                     let all_tab_cells = document.getElementsByClassName("tab_cell");
-                    let all_drink_tables = document.getElementsByClassName("drinks_table");
+                    let all_drink_tabs = document.getElementsByClassName("drinks_tab");
                     let all_tab_icons_active = document.getElementsByClassName("tab_icon_active");
                     let all_tab_icons_inactive = document.getElementsByClassName("tab_icon_inactive");
 
                     for (let i = 0; i < all_tab_cells.length; i++) {
                         all_tab_cells[i].style.color = 'var(--color-secondary)';
-                        all_drink_tables[i].style.display = 'none';
+                        all_drink_tabs[i].style.display = 'none';
                         all_tab_icons_active[i].style.display = 'none';
                         all_tab_icons_inactive[i].style.display = 'inline';
                     }
 
                     // Highlight selected tab
                     document.getElementById("tab_cell_"+id).style.color = 'var(--color-highlight-text)';
-                    document.getElementById("drinks_table_"+id).style.display = 'inline';
+                    document.getElementById("drinks_tab_"+id).style.display = 'inline';
                     document.getElementById("tab_icon_inactive_"+id).style.display = 'none';
                     document.getElementById("tab_icon_active_"+id).style.display = 'inline';
                 }
@@ -277,6 +286,8 @@ $conn->close();
 
         </div>
     </div>
-
+    <div class="background">
+        <img class="city" src="../media/pictures/CityStudout.png">
+    </div>
 </body>
 </html>

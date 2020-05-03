@@ -1,10 +1,3 @@
-
-function reg(n){
-  var item=String('barinput'+n);
-  item=document.getElementById(item);
-  item.removeAttribute('disabled');
-}
-
 function reg_2(n){
   var item=String('drinksinput'+n);
   item=document.getElementById(item);

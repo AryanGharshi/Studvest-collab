@@ -1,5 +1,3 @@
-
-
 document.addEventListener('click', function(e) {
     // event listener listens on every single object of the document
     console.log(e);
@@ -7,7 +5,6 @@ document.addEventListener('click', function(e) {
                                                  // checks which element was clicked
     if(clicked_object.matches('.btn') || clicked_object.matches('.add')) {       // checks if the clicked element is from class 'btn'
         let target_popup_id = clicked_object.getAttribute('value')
-        console.log(target_popup_id);              // reads the id of the target popup from value attribute (<button type='button' class='btn' value="popup_1">)
         let target_popup = document.getElementById(target_popup_id);             // retrieves the object with the respective id
         target_popup.style.display='block';                                      // displays the popup
         document.getElementById('are').style.display='none';           // hides the main div
