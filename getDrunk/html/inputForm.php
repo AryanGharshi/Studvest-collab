@@ -22,8 +22,8 @@
     $conn -> query(addDataEntry('tag', 'test_tag2'));
     $conn -> query(addDataEntry('drink', 'test_drink1'));
     $conn -> query(addDataEntry('drink', 'test_drink2'));
-    $conn -> query(addDataEntry('menu', 'test_menu1'));
-    $conn -> query(addDataEntry('menu', 'test_menu2'));
+    $conn -> query(addDataEntry('drink_type', 'test_type1'));
+    $conn -> query(addDataEntry('drink_type', 'test_type2'));
 
     # Process POST-statements to delete/modify
     if(isset($_POST['del'])){
@@ -50,19 +50,14 @@
     # Retrieve data from the database
     $sql_bar = "SELECT * FROM bar";
     $result_bar = ($conn->query($sql_bar));
-    $sql_menu = "SELECT * FROM menu";
-    $result_menus = ($conn->query($sql_menu));
+    $sql_drink_type = "SELECT * FROM drink_type";
+    $result_drink_types = ($conn->query($sql_drink_type));
     $sql_tags = "SELECT * FROM tag";
     $result_tags = ($conn->query($sql_tags));
-    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, menu.name AS menu FROM drink INNER JOIN menu ON drink.menu_id = menu.id";
+    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, drink_type.name AS drink_type FROM drink INNER JOIN drink_type ON drink.drink_type_id = drink_type.id";
     $result_drinks = ($conn->query($sql_drinks));
 
     $conn->close();
-
-    $result_menu = array(
-        array('id' => '3', 'drink_name' => 'Hansa', 'menu_name' => 'Beer', 'price' => '85', 'size' => '0.5'),
-        array('id' => '4', 'drink_name' => 'Sommersby', 'menu_name' => 'Cider', 'price' => '95', 'size' => '0.5')
-    );
 ?>
 <div class="welcome" >
     <?php include('header.php'); ?>
@@ -94,7 +89,7 @@
           <div  class="content">
             <h1>Mange drinks</h1>
             <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-            <p>Change affect all bars with tags</p>
+            <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
             <?php
             while($currentRow = mysqli_fetch_array($result_drinks)) {
                 $name = $currentRow['name'];
@@ -119,7 +114,7 @@
           <div  class="content">
             <h1>Mange tags</h1>
             <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-            <p class="change">Change affect all bars with tags</p>
+            <p class="change">Please be careful! Your changes will affect all bars that have this tag assigned.</p>
             <?php
             while($currentRow = mysqli_fetch_array($result_tags)) {
                 $name = $currentRow['name'];
@@ -142,11 +137,11 @@
         </div>
         <div id="popup_3" class="popup">
             <div  class="content">
-              <h1 >Mange menus</h1>
+              <h1 >Mange types of drinks</h1>
               <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-              <p class="change">Change affect all bars with tags</p>
+              <p class="change">Please be careful! Your changes will affect all bars.</p>
               <?php
-              while($currentRow = mysqli_fetch_array($result_menus)) {
+              while($currentRow = mysqli_fetch_array($result_drink_types)) {
                   $name = $currentRow['name'];
                   $id=$currentRow['id'];
                   $n='menus'.$id;
@@ -154,7 +149,7 @@
                   echo "<div class='item' id='$n'>
                         <form action='' method='post'>
                         <input name='name' value='$name' id='$input' disabled=false/>
-                        <input type='hidden' name='section' value='menu'>
+                        <input type='hidden' name='section' value='drink_type'>
                         <button type='submit' class='delete' name='del' value=$id>delete</button>
                         <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
                         <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
@@ -169,7 +164,7 @@
         <div class='side_foot' id='side_foot'>
         <button type='button' class='btn' section="drinks" value="popup_1">Mange drinks</button>
         <button type='button' class='btn' section="tags" value="popup_2">Mange tags</button>
-        <button type='button' class='btn' section="menus" value="popup_3">Mange menus</button>
+        <button type='button' class='btn' section="drink_type" value="popup_3">Mange types of drink</button>
     </div>
     </div>
   </div>
@@ -183,7 +178,7 @@
                  </script>";
       }
 
-      elseif ($_POST['section']=='menu') {
+      elseif ($_POST['section']=='drink_type') {
           echo "<script>
                   document.getElementById('are').style.display='none';           // hides the main div
                   document.getElementById('side_foot').style.display='none';     // hides the footer
