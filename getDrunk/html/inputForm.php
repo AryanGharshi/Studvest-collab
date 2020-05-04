@@ -34,7 +34,7 @@
     }
 
     if(isset($_POST['add'])){
-        $newName = $_POST['barName'];
+        $newName = $_POST['name'];
         $section = $_POST['section'];
         $id = $_POST['add'];
         $sql_regi = "UPDATE $section
@@ -103,7 +103,7 @@
                 $input = 'drinksinput'.$id;
                 echo "<div class='item' id='$n'>
                       <form action='' method='post'>
-                      <input name='drink' value='$name' id='$input' disabled=false/>
+                      <input name='name' value='$name' id='$input' disabled=false/>
                       <input type='hidden' name='section' value='drink'>
                       <button type='submit' class='delete' name='del' value=$id>delete</button>
                       <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input)'>modify</button>
@@ -128,7 +128,7 @@
                 $input = 'tagsinput'.$id;
                 echo "<div class='item' id='$n'>
                       <form action='' method='post'>
-                      <input name='tag' value='$name' id='$input' disabled=false/>
+                      <input name='name' value='$name' id='$input' disabled=false/>
                       <input type='hidden' name='section' value='tag'>
                       <button type='submit' class='delete' name='del' value=$id>delete</button>
                       <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input)'>modify</button>
@@ -153,7 +153,7 @@
                   $input = 'menusinput'.$id;
                   echo "<div class='item' id='$n'>
                         <form action='' method='post'>
-                        <input name='menu' value='$name' id='$input' disabled=false/>
+                        <input name='name' value='$name' id='$input' disabled=false/>
                         <input type='hidden' name='section' value='menu'>
                         <button type='submit' class='delete' name='del' value=$id>delete</button>
                         <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
