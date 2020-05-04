@@ -48,7 +48,7 @@ body{
 }
 
 
-.modify, .delete{
+.modify, .delete, .add_btn{
   float:right;
   outline: none;
   margin-top: 6px;
@@ -57,7 +57,9 @@ body{
   background-color: inherit;
   font-size: inherit;
 }
-
+.add_btn{
+  display:none;
+}
 .modify{
   border: #FFC700 solid 1px;
   color: #FFC700;
@@ -66,6 +68,14 @@ body{
 .delete{
   border: #CB1919 solid 1px;
   color:#CB1919;
+}
+
+.add_btn{
+  display: none;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: green;
+  border: 1px solid green;
 }
 
 .main .item input{
@@ -85,7 +95,7 @@ text-decoration: none;
 }
 
 /************* pop_up ***********/
-.popup{
+#popup_1,#popup_2,#popup_3{
   margin: 0 auto;
   width:448px;
   height: auto;
@@ -129,6 +139,35 @@ text-decoration: none;
   position: absolute;
   margin-left: 46px;
   padding: 0;
+}
+
+#popup_4{
+  display:none;
+}
+
+#popup_4 h1{
+  float: left;
+  margin-left: 3em;
+  margin-top: 40px;
+}
+
+#popup_4 img{
+  float: right;
+  width: 20px;
+  height: auto;
+  margin-top: 40px;
+  margin-right: 5vw;
+
+}
+
+#editBar{
+  clear: both;
+  padding: 80px;
+  padding-left: 3em;
+}
+
+.aboutBar label{
+  text-align: left;
 }
 
 
@@ -222,6 +261,7 @@ text-decoration: none;
 }
 
 #editBar input, textarea, select{
+  clear:both;
   color: #FFFFFF;
   font-size: 13px;
 }
@@ -340,4 +380,12 @@ input,text,textarea{
 .delBtn{
   border:none;
   color:#CB1919 ;
+}
+
+#popup_4 .popup{
+  margin:none;
+}
+
+#aboutBar .distance{
+  margin-left: 510px;
 }
