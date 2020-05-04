@@ -24,3 +24,4 @@ document.addEventListener('click', function(e) {
           n = document.getElementsByClass('add')[n].style.display='none';
         }
     }
+  })

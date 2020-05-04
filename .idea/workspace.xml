@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="956b8b0e-212a-4972-8574-642468deffb0" name="Default Changelist" comment="">
+    <list default="true" id="86370fb7-9d2c-4e2d-84a3-1605d2415229" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getDrunk/css/barView.css" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/css/barView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/html/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/404.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getDrunk/html/barView.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/barView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/html/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/html/inputForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/inputForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDrunk/html/titlebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/html/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getDrunk/inc/connection/conn.php" beforeDir="false" afterPath="$PROJECT_DIR$/getDrunk/inc/connection/conn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valgomat/2020/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/valgomat/2020/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valgomat/2020/js/valgomat.js" beforeDir="false" afterPath="$PROJECT_DIR$/valgomat/2020/js/valgomat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valgomat/2020/valgomat.css" beforeDir="false" afterPath="$PROJECT_DIR$/valgomat/2020/valgomat.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,13 +20,6 @@
     <execution>
       <executable />
     </execution>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1a2jBTX3nyzHeJppcXfFodQCY2B" />
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -46,13 +38,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="956b8b0e-212a-4972-8574-642468deffb0" name="Default Changelist" comment="" />
-      <created>1585940448214</created>
+      <changelist id="86370fb7-9d2c-4e2d-84a3-1605d2415229" name="Default Changelist" comment="" />
+      <created>1588104486391</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1585940448214</updated>
-      <workItem from="1585940454048" duration="2827000" />
-      <workItem from="1585943574032" duration="3328000" />
+      <updated>1588104486391</updated>
+      <workItem from="1588104487546" duration="2787000" />
     </task>
     <servers />
   </component>
@@ -64,9 +55,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>

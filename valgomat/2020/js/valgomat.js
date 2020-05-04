@@ -11,8 +11,8 @@ SP.panels = [];
 
 SP.ol = [];
 
-let qURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTj8EZpU2z43WPrTghBpq2_ykA1TVz4LWL5HBOYzUpU3ngVynSrHBrI-hQ4DZHZ9VK6Uk34BH6gbIo8/pub?gid=0&single=true&output=tsv";
-let bylineURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTj8EZpU2z43WPrTghBpq2_ykA1TVz4LWL5HBOYzUpU3ngVynSrHBrI-hQ4DZHZ9VK6Uk34BH6gbIo8/pub?gid=1754245989&single=true&output=tsv";
+let qURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoobhwD3I7P91WbdSTkGNw_B3av2fOvq1kpCpzcAgLKvj6nIemsVUXirrfTktxTcaRttWbNKR2iUPp/pub?gid=0&single=true&output=tsv";
+let bylineURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoobhwD3I7P91WbdSTkGNw_B3av2fOvq1kpCpzcAgLKvj6nIemsVUXirrfTktxTcaRttWbNKR2iUPp/pub?gid=1387737430&single=true&output=tsv";
 
 let a; // For testing purposes
 
