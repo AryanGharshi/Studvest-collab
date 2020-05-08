@@ -14,6 +14,23 @@
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
+    $sql_tags = "SELECT bar.id as bar_id, tag.name as tag_name
+                 FROM tag_relationship
+                 INNER JOIN bar ON tag_relationship.bar_id=bar.id
+                 INNER JOIN tag ON tag_relationship.tag_id=tag.id
+                 WHERE bar.id= bar.id
+                 ORDER BY tag_name";
+    $result_tags = ($conn->query($sql_tags));
+
+    if ($result_tags->num_rows > 0) {
+        $tags = [];
+
+      while ($row = $result_tags -> fetch_assoc()) {
+        array_push($tags, [$row["bar_id"], $row["tag_name"]]);
+      }
+    }
+
+
     $sql = "SELECT bar_id, name, path FROM bar INNER JOIN picture ON bar.id = picture.bar_id WHERE picture.is_cover=1";
     $result = ($conn->query($sql));
 
@@ -22,7 +39,6 @@
 
         while ($row = $result->fetch_assoc()) {
             array_push($bars, [$row["bar_id"], $row["name"],  $row["path"]]);
-            if path is not there push another path
         }
     } else {
         echo "0 results";
@@ -54,14 +70,24 @@
                     </div>
                     -->
                 </div>
-                <span class="barTags">
 
-                </span>
+                <span class="barTags">
+                ';
+                foreach ($tags as $i) {
+                  if ($i[0] == $elem[0]){
+                    printf("<button type='button' class='tag'>".$i['tag_name']."</button>");
+                  }
+                }
+                echo '
+
+               </span>
             </div>
         </a>
+
         ';
         }
         ?>
+
     </div>
     <div class="background">
       <img class="city" src="../media/pictures/CityStudout.png">

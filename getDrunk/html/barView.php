@@ -13,8 +13,8 @@ require "../inc/connection/conn.php";
 $barID = $_GET['barID'];
 
 # Get list of bar infos from database
-$sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location   
-                 FROM bar  
+$sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location
+                 FROM bar
                  WHERE bar.id=$barID";
 $result_barInfos = ($conn->query($sql_barInfos));
 
@@ -35,31 +35,31 @@ if ($result_barInfos->num_rows > 0) {
                                         drink_type.id AS id,
                                         drink_type.img_url_inactive AS url_inactive,
                                         drink_type.img_url_active AS url_active
-                        FROM drink_relationship 
-                        LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
-                        LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
+                        FROM drink_relationship
+                        LEFT JOIN drink ON drink_relationship.drink_id=drink.id
+                        LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                         WHERE drink_relationship.bar_id=$barID";
     $result_drink_types = ($conn->query($sql_drink_types));
 
     # Load list of drinks
-    $sql_drinks = "SELECT drink.id, 
-                          drink.name AS drink_name, 
-                          CONCAT(drink_relationship.price, ',-') AS price, 
-                          CONCAT(drink_relationship.student_price, ',-') AS student_price, 
-                          CONCAT(drink_relationship.size, 'l') AS volume, 
+    $sql_drinks = "SELECT drink.id,
+                          drink.name AS drink_name,
+                          CONCAT(drink_relationship.price, ',-') AS price,
+                          CONCAT(drink_relationship.student_price, ',-') AS student_price,
+                          CONCAT(drink_relationship.size, 'l') AS volume,
                           drink_relationship.menu AS menu,
                           drink_type.name AS drink_type,
                           drink_type.id AS drink_type_id
-                   FROM drink_relationship 
-                   LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
-                   LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
+                   FROM drink_relationship
+                   LEFT JOIN drink ON drink_relationship.drink_id=drink.id
+                   LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                    WHERE drink_relationship.bar_id=$barID
                    ORDER BY drink_type, menu, drink_name";
     $result_drinks = ($conn->query($sql_drinks));
 
     # Load pictures of bar
     $sql_pictures = "SELECT id, bar_id, path
-                     FROM picture 
+                     FROM picture
                      WHERE bar_id=$barID";
     $result_pictures = ($conn->query($sql_pictures));
 
@@ -70,10 +70,10 @@ if ($result_barInfos->num_rows > 0) {
     }
 
     # Load tags
-    $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name 
-                 FROM tag_relationship 
+    $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name
+                 FROM tag_relationship
                  INNER JOIN bar ON tag_relationship.bar_id=bar.id
-                 INNER JOIN tag ON tag_relationship.tag_id=tag.id 
+                 INNER JOIN tag ON tag_relationship.tag_id=tag.id
                  WHERE bar.id=$barID
                  ORDER BY tag_name";
     $result_tags = ($conn->query($sql_tags));
@@ -92,7 +92,7 @@ $conn->close();
 <!-- HEADER -->
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
     <title><?php echo $info["name"]; ?> - StudOut</title>
     <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
@@ -191,6 +191,7 @@ $conn->close();
 
 
             <!-- MENU WITH DRINKS-->
+
             <div class="menu">
                 <div id="tabs">
                     <table class="table">

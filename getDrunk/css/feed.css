@@ -44,11 +44,26 @@ h1{
   bottom: 0px;
 }
 
+
 .examplebar .barText {
   position: absolute;
   font-size: 12px;
-  bottom: 70px;
+  bottom: 30px;
   left: 150px;
+  z-index: 1;
+}
+
+.tag{
+    padding: var(--relSize-100);
+    margin-right: var(--relSize-075);
+    margin-bottom: var(--relSize-075);
+    border-width: 0;
+    border-radius: var(--relSize-300);
+    background-color: var(--color-highlight-background);
+    font-size: var(--relSize-225);
+    text-transform: lowercase;
+    color: var(--color-background);
+    opacity: 1.0;
 }
 
 .ellipse {
@@ -61,6 +76,7 @@ h1{
   background-color: white;
   display: inline-block;
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(159, 159, 159, 0.901042) 0.01%, rgba(255, 255, 255, 0) 100%);
+  visibility: hidden;
 }
 
 .ellipse .barlogo img {
@@ -93,14 +109,6 @@ h1{
     margin-left: 60px;
   }
 
-  .barTags{
-    display: grid;
-    background-color: rgb(27,27,27);opacity: 0.8;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    height: 80px;
-    grid-template-columns: 15% 70% 15%;
-  }
 }
 
 #btn-back {
