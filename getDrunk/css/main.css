@@ -8,25 +8,6 @@
     --color-background: #1b1b1b;
     --color-highlight-text: #3489a1;
     --color-highlight-background: #2c7090 ;
-
-    /* Default sizing variables */
-    --relSize-900: 2.7em;
-    --relSize-700: 2.1em;
-    --relSize-500: 1.5em;
-    --relSize-450: 1.35em;
-    --relSize-400: 1.2em;
-    --relSize-350: 1.05em;
-    --relSize-300: 0.9em;
-    --relSize-275: 0.825em;
-    --relSize-250: 0.75em;
-    --relSize-225: 0.675em;
-    --relSize-200: 0.6em;
-    --relSize-175: 0.525em;
-    --relSize-150: 0.45em;
-    --relSize-125: 0.375em;
-    --relSize-100: 0.3em;
-    --relSize-075: 0.225em;
-    --relSize-050: 0.15em;
 }
 
 body {
@@ -90,6 +71,10 @@ a:active {
 
 .header #app-logo {
     width: calc(100vw - 2.5em*2 - 0.5em*2);
+}
+
+.header #btn-back {
+    width: 2.5em;
 }
 
 

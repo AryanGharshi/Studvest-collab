@@ -8,14 +8,27 @@ body::-webkit-scrollbar {
 }
 
 :root {
-    --main-width: min(max(calc(100vh*0.8), 50vw), 100vw);
+    --main-width: min(35em, 100vw);
 }
-
 
 /* HEADER */
 
 .header #btn-back {
-    visibility: visible;
+    background-image: url("../media/icons/left-arrow_white.png");
+    background-size: cover;
+}
+
+.background{
+    display: grid;
+    height: 50%;
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+}
+
+.city{
+    max-width: 100%;
+    margin-top: auto;
 }
 
 
@@ -37,7 +50,7 @@ body::-webkit-scrollbar {
     opacity: 0.9;
     overflow: visible;
     width: 100%;
-    height: 40vh;
+    height: 15em;
     background-position: center;
     background-size: cover;
 }
@@ -60,8 +73,8 @@ body::-webkit-scrollbar {
 }
 
 .gallery .icon {
-    width: 5vh;
-    height: 5vh;
+    width: 2em;
+    height: 2em;
     color: var(--color-primary);
 }
 
@@ -72,58 +85,29 @@ body::-webkit-scrollbar {
     padding-right: 0.75em;
     position: relative;
     z-index: 10;
-    top: -10vh;
-    padding-top: 5vh;
-    background: linear-gradient(-180deg, rgba(27, 27, 27, 0) 0vh, rgba(27, 27, 27, 100) 10vh);
+    top: -4em;
+    padding-top: 2em;
+    background: linear-gradient(-180deg, rgba(27, 27, 27, 0) 0, rgba(27, 27, 27, 100) 4em);
 }
 
 
-/* BAR NAME & DESCRIPTION */
 
-.bar-info {
-    padding-top: 1.5vh;
-    padding-bottom: 2.5vh;
-    float: left;
-    width: calc(var(--main-width) - 13em);
+/* BAR HEADER (TITLE & LINKS */
+
+.bar-header {
+    padding-top: 0.5em;
+    padding-bottom: 0.7em;
 }
 
-.bar-info #name {
-    padding-bottom: 1.5vh;
+.bar-header #name {
+    padding-top: 0.3em;
+    padding-bottom: 0.2em;
     color: var(--color-highlight-text);
-    font-size: var(--relSize-500);
+    font-size: 2em;
+    float: left;
 }
 
-.bar-info #desc {
-    padding-bottom: 1.5vh;
-    color: var(--color-primary);
-    font-size: var(--relSize-275);
-}
-
-
-
-/* Tags */
-
-.tag{
-    padding: var(--relSize-100);
-    margin-right: var(--relSize-075);
-    margin-bottom: var(--relSize-075);
-    border-width: 0;
-    border-radius: var(--relSize-300);
-    background-color: var(--color-highlight-background);
-    font-size: var(--relSize-225);
-    text-transform: lowercase;
-    color: var(--color-background);
-}
-
-
-/* LINKS */
-
-.links {
-    display: block;
-    height: 7vh;
-}
-
-.links .btn {
+.bar-header .btn {
     border-width: 0;
     background-color: var(--color-highlight-background);
     float: right;
@@ -134,9 +118,35 @@ body::-webkit-scrollbar {
     margin: 0.25em;
 }
 
-.links .icon {
+.bar-header .icon {
     width: 100%;
     height: 100%;
+}
+
+
+
+/* BAR NAME & DESCRIPTION */
+
+.bar-info {
+    display: inline-block;
+}
+
+.bar-info #desc {
+    padding-top: 0.7em;
+    color: var(--color-primary);
+    font-size: 0.9em;
+}
+
+.tag{
+    padding: 0.3em;
+    margin-right: 0.3em;
+    margin-bottom: 0.3em;
+    border-width: 0;
+    border-radius: 1.2em;
+    background-color: var(--color-highlight-background);
+    font-size: 0.8em;
+    text-transform: lowercase;
+    color: var(--color-background);
 }
 
 
@@ -144,18 +154,13 @@ body::-webkit-scrollbar {
 /* MENU WITH DRINKS */
 
 .menu {
-    display: block;
-    padding-top: 10vh;
+    display: inline-block;
+    padding-top: 2.5em;
 }
 
-.menu #menu_title{
-    font-size: var(--relSize-400);
-    width: 100%;
-    float: none;
-}
 
 .menu #tabs table {
-    font-size: var(--relSize-175);
+    font-size: 0.7em;
     table-layout: fixed;
     border-top: thin solid #2A2A2A;
     border-bottom: thin solid #2A2A2A;
@@ -164,53 +169,52 @@ body::-webkit-scrollbar {
 }
 
 .menu #tabs .tab_icon_active, .tab_icon_inactive {
-    width: 4vh;
-    height: 4vh;
+    width: 2.7em;
+    height: 2.7em;
+}
+
+.menu #drinks .menu-title {
+    padding: 2.2em 0em 0.5em 0em;
+    text-align: center;
 }
 
 .menu #drinks table {
     border-spacing: 0;
-    width: 100%;
     text-align: center;
-    font-size: var(--relSize-275);
+    font-size: 1.0em;
+}
+
+.menu #drinks th {
+    vertical-align: bottom;
+    font-size: 0.7em;
+    color:var(--color-secondary);
+    text-align: center;
+    font-weight: normal;
+    padding: 0.3em;
 }
 
 .menu #drinks td {
-    padding: 0.8vh;
+    padding: 0.3em;
 }
 
 .menu #drinks tr:nth-child(even) {
     background: #2A2A2A
 }
 
-.menu #drinks .menu-title {
-    padding: 5vh 0.8vh 2vh 0.4vh;
-    font-size: var(--relSize-300);
-    text-align: left;
-    color: var(--color-highlight-text);
-}
-
-.menu #drinks .table-header {
-    vertical-align: bottom;
-    font-size: var(--relSize-200);
-    color:var(--color-secondary);
-    text-align: center;
-}
-
 .menu #drinks .col-drink {
-    width: 60%;
+    width: 79em;
     text-align: left;
     color: #838383;
 }
 
 .menu #drinks .col-normal {
-    width: 15%;
+    width: 7em;
     text-align: center;
     color: #838383;
 }
 
 .menu #drinks .col-highlight {
-    width: 15%;
+    width: 7em;
     text-align: center;
     color: var(--color-highlight-text);
 }
@@ -226,7 +230,7 @@ body::-webkit-scrollbar {
         display: none;
     }
 
-    .bar-info {
-        width: calc(var(--main-width) - 6em);
+    .bar-header #name{
+        width: calc(100% - 2.5em);
     }
 }

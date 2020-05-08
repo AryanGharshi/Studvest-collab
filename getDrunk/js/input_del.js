@@ -19,3 +19,11 @@ function reg(section,id,input){
   item.style.background="white";
   item.style.color="#000000";
 }
+
+function sub(section,id,input) {
+  var add_txt=String('#submit'+section+id);
+  console.log(add_txt);
+  $(String(add_txt)).ajaxSubmit(function () {
+        window.alert('hi');
+    });
+}
