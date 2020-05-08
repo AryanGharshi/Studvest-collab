@@ -44,8 +44,23 @@
         $conn->query($sql_regi);
     }
 
-    $sql= "UPDATE bar SET bar.name='new Name' WHERE bar.id='1'";
-
+    # Process POST-statements to delete/modify
+    if(isset($_POST['update_bar'])){
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $website = $_POST['website'];
+        $phone = $_POST['phone'];
+        $location = $_POST['location'];
+        $id = $_POST['barID'];
+        $sql = "UPDATE bar 
+                SET name='$name', 
+                    description='$description',
+                    website='$website',
+                    phone=$phone,
+                    location='$location'
+                WHERE id=$id";
+        $conn->query($sql);
+    }
 
     # Retrieve data from the database
     $sql_bar = "SELECT * FROM bar";
