@@ -5,7 +5,6 @@ function del(section,id){
 }
 
 function reg(section,id,input,itemlist_id){
-/*  var itemlist_id=document.getElementById(itemlist_id_txt);*/
   var itemlist_id_txt=String('tags'+id);
   var modify_txt=String('modify'+section+id);
   var modify_btn=document.getElementById(modify_txt);
@@ -39,7 +38,8 @@ function reg(section,id,input,itemlist_id){
     var delete_defalult=document.getElementById(String('deletedrinksinput'+id));
     item_default.style.background="none";
     delete_defalult.style.border="#CB1919 solid 1px";
-    delete_defalult.style.color="#CB1919";
+    delete_defalult.style.color="#CB1919";d
+    delete_defalult.removeAttribute('disabled');
 
   }
   else if (section=='menusinput') {
@@ -48,6 +48,7 @@ function reg(section,id,input,itemlist_id){
     item_default.style.background="none";
     delete_defalult.style.border="#CB1919 solid 1px";
     delete_defalult.style.color="#CB1919";
+    delete_defalult.removeAttribute('disabled');
   }
   else if (section=='tagsinput') {
     var item_default=document.getElementById(String('tags'+id));
@@ -55,6 +56,7 @@ function reg(section,id,input,itemlist_id){
     item_default.style.background="none";
     delete_defalult.style.border="#CB1919 solid 1px";
     delete_defalult.style.color="#CB1919";
+    delete_defalult.removeAttribute('disabled');
 
   }
 
