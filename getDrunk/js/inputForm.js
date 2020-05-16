@@ -15,13 +15,8 @@ document.addEventListener('click', function(e) {
     }
 
     if(clicked_object.matches('.close')) {                                       // checks if the clicked element is from class 'close'
-        let current_popup = clicked_object.parentElement.parentElement;          // takes the parent of the parent element (in our case that's the div for the entire popup)
-        current_popup.style.display='none';                                      // hides the popup
-        document.getElementById('are').style.display='block';          // displays the main div
-        document.getElementById('side_foot').style.display='block';    // displays the footer
-        var n = document.getElementsByClass('add').length();
-        for (var i = 0; i < n.length; i++) {
-          n = document.getElementsByClass('add')[n].style.display='none';
-        }
+      window.location.replace("http://i.studvest.no/barguide/html/inputForm.php")
+
+
     }
   })
