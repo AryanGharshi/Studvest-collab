@@ -31,6 +31,17 @@
         $section = $_POST['section'];
         $sql_del = "DELETE FROM $section WHERE id=$id";
         $conn->query($sql_del);
+
+        if($section=='bar') {
+            $picture_directory = "../media/pictures/$id/";
+            if(is_dir($picture_directory)) {
+                $files = glob($picture_directory . '*', GLOB_MARK); //GLOB_MARK adds a slash to directories returned
+                foreach ($files as $file) {
+                    unlink($file);
+                }
+                rmdir($picture_directory);
+            }
+        }
     }
 
     if(isset($_POST['add'])){
@@ -92,38 +103,38 @@
                           <input name='barName' value='$name' id='$input' disabled=false/>
                           <input type='hidden' name='barID' value='$id' id='$input'>
                           <input type='hidden' name='section' value='bar'>
-                          <button type='submit' class='delete' name='del' value=$id>delete</button>
+                          <button type='submit' class='delete' name='req_del' value=$id>delete</button>
                           <button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button>
                       </form>
                       </div> ";
             }
             ?>
-            </div>
+        </div>
 
-        <div id="popup_1" class="popup">
-          <div  class="content">
-            <h1>Mange drinks</h1>
-            <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-            <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
-            <?php
-            while($currentRow = mysqli_fetch_array($result_drinks)) {
-                $name = $currentRow['name'];
-                $id=$currentRow['id'];
-                $n='drinks'.$id;
-                $input = 'drinksinput'.$id;
-                echo "<div class='item' id='$n'>
-                      <form action='' method='post'>
-                      <input name='name' value='$name' id='$input' disabled=false/>
-                      <input type='hidden' name='section' value='drink'>
-                      <button type='submit' class='delete' name='del' value=$id>delete</button>
-                      <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input)'>modify</button>
-                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
-                      </form>
-                      </div>";
-            }
-            ?>
+                <div id="popup_1" class="popup">
+              <div  class="content">
+                <h1>Mange drinks</h1>
+                <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+                <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
+                <?php
+                while($currentRow = mysqli_fetch_array($result_drinks)) {
+                    $name = $currentRow['name'];
+                    $id=$currentRow['id'];
+                    $n='drinks'.$id;
+                    $input = 'drinksinput'.$id;
+                    echo "<div class='item' id='$n'>
+                          <form action='' method='post'>
+                          <input name='name' value='$name' id='$input' disabled=false/>
+                          <input type='hidden' name='section' value='drink'>
+                          <button type='submit' class='delete' name='req_del' value=$id>delete</button>
+                          <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input)'>modify</button>
+                          <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
+                          </form>
+                          </div>";
+                }
+                ?>
 
-          </div>
+              </div>
         </div>
         <div id="popup_2" class="popup">
           <div  class="content">
@@ -140,7 +151,7 @@
                       <form action='' method='post'>
                       <input name='name' value='$name' id='$input' disabled=false/>
                       <input type='hidden' name='section' value='tag'>
-                      <button type='submit' class='delete' name='del' value=$id>delete</button>
+                      <button type='submit' class='delete' name='req_del' value=$id>delete</button>
                       <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input)'>modify</button>
                       <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                       </form>
@@ -165,24 +176,41 @@
                         <form action='' method='post'>
                         <input name='name' value='$name' id='$input' disabled=false/>
                         <input type='hidden' name='section' value='drink_type'>
-                        <button type='submit' class='delete' name='del' value=$id>delete</button>
+                        <button type='submit' class='delete' name='req_del' value=$id>delete</button>
                         <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
                         <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                         </form>
                         </div>";
               }
               ?>
+            </div>
+        </div>
+
+        <div id="popup_confirmation" class="popup">
+            <div  class="content">
+                <h1>Are you sure?</h1>
+                <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+                <p class="change">This action cannot be undone. Do you really want to delete this item?.</p>
+                <?php
+                $id = (int) $_POST['req_del'];
+                $section = $_POST['section'];
+                echo "<form action='' method='post'>
+                          <input type='hidden' name='section' value='$section'>
+                          <button type='submit' class='delete' name='del' value=$id>delete</button>
+                          <button type='submit' class='modify' name='keep'>keep</button>
+                      </form>";
+                ?>
 
             </div>
         </div>
 
         <div class='side_foot' id='side_foot'>
-        <button type='button' class='btn' section="drinks" value="popup_1">Mange drinks</button>
-        <button type='button' class='btn' section="tags" value="popup_2">Mange tags</button>
-        <button type='button' class='btn' section="drink_type" value="popup_3">Mange types of drink</button>
+            <button type='button' class='btn' section="drinks" value="popup_1">Mange drinks</button>
+            <button type='button' class='btn' section="tags" value="popup_2">Mange tags</button>
+            <button type='button' class='btn' section="drink_type" value="popup_3">Mange types of drink</button>
+        </div>
     </div>
-    </div>
-  </div>
+</div>
   <?php
       if($_POST['section']=='tag') {
           echo "<script>
@@ -208,6 +236,13 @@
                   let target_popup = document.getElementById('popup_1');             // retrieves the object with the respective id
                   target_popup.style.display='block';
                  </script>";
+      }
+      if(isset($_POST['req_del'])){
+          echo "<script>
+                  document.getElementById('are').style.display='none';           // hides the main div
+                  document.getElementById('side_foot').style.display='none';     // hides the footer
+                  document.getElementById('popup_confirmation').style.display='block';             
+                </script>";
       }
   ?>
 

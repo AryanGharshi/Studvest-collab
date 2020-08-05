@@ -38,7 +38,8 @@ if ($result_barInfos->num_rows > 0) {
                         FROM drink_relationship
                         LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                         LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
-                        WHERE drink_relationship.bar_id=$barID";
+                        WHERE drink_relationship.bar_id=$barID
+                        ORDER BY id, name";
     $result_drink_types = ($conn->query($sql_drink_types));
 
     # Load list of drinks
@@ -200,13 +201,16 @@ $conn->close();
                     <table class="table">
                         <tr>
                             <?php
-                            while ($drink_type = $result_drink_types->fetch_assoc()) {
+                            $drink_type = $result_drink_types->fetch_assoc();
+                            $min_drink_id = $drink_type['id'];
+                            do {
                                 echo("<td class='tab_cell' id='tab_cell_".$drink_type['id']."'  onclick='show_drink_tab(".$drink_type['id'].")'>");
                                 echo('<img class="tab_icon_active" id="tab_icon_active_'.$drink_type['id'].'" src="'.$drink_type['url_active'].'">');
                                 echo('<img class="tab_icon_inactive" id="tab_icon_inactive_'.$drink_type['id'].'" src="'.$drink_type['url_inactive'].'">');
                                 echo('<br>'.$drink_type['name']);
                                 echo("</td>");
                             }
+                            while ($drink_type = $result_drink_types->fetch_assoc());
                             ?>
                         </tr>
                     </table>
@@ -218,7 +222,7 @@ $conn->close();
 
                         $tab_name = $drink['drink_type'];
 
-                        # Print separate table for that drink type
+                        # Print separate table for each drink type
                         echo '<div class="drinks_tab" id="drinks_tab_'.$drink['drink_type_id'].'">';
 
                         while ($tab_name === $drink['drink_type']) {
@@ -259,7 +263,7 @@ $conn->close();
 
             <script>
 
-                show_drink_tab(3)
+                show_drink_tab(<?php print($min_drink_id); ?>)
 
                 function show_drink_tab(id) {
 

@@ -102,7 +102,7 @@ text-decoration: none;
 }
 
 /************* pop_up ***********/
-#popup_1,#popup_2,#popup_3{
+.popup {
   margin: 0 auto;
   width:448px;
   height: auto;

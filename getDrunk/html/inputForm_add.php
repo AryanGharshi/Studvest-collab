@@ -68,6 +68,34 @@ if(isset($_POST['remove_tag'])) {
     $conn->query($sql);
 }
 
+# Add images
+if(isset($_POST['add_image']) and $_FILES['uploaddatei']['name'] <> "") {
+    #Create directory if not exists
+    $target_directory = "../media/pictures/$barID/";
+    if (!is_dir($target_directory)) {
+        mkdir($target_directory);
+    }
+    $target_file = $target_directory . $_FILES['uploaddatei']['name'];
+    # Store file on the server
+    move_uploaded_file ($_FILES['uploaddatei']['tmp_name'] , $target_file);
+    # Update the database
+    $sql = "INSERT INTO picture(bar_id, path)
+                         VALUES($barID, '$target_file')
+                         ON DUPLICATE KEY UPDATE bar_id=bar_id;";
+    $conn->query($sql);
+}
+
+# Remove image
+if(isset($_POST['remove_image'])) {
+    $target_file = $_POST['remove_image'];
+    # Remove file from server
+    unlink($target_file);
+    # Update the database
+    $sql = "DELETE FROM picture 
+            WHERE bar_id=$barID AND path='$target_file'";
+    $conn->query($sql);
+}
+
 # Load the bar information, if there a barID is defined
 if (isset($barID)) {
 
@@ -133,10 +161,6 @@ if (isset($barID)) {
                          FROM picture 
                          WHERE bar_id=$barID";
         $result_pictures = ($conn->query($sql_pictures));
-        $info['pictures'] = [];
-        while ($picture = $result_pictures->fetch_assoc()) {
-            array_push($info['pictures'], $picture['path']);
-        }
 
         # Load tags
         $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name 
@@ -160,7 +184,8 @@ $conn->close();
     <div class="mainEdit">
         <div>
             <h1>Edit Bar</h1>
-            <form id="editBar" method="post">
+
+            <form id="editBar" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="barID" value=<?php echo($barID); ?>>
                 <table class="aboutBar">
                     <tr>
@@ -203,11 +228,28 @@ if (isset($_POST['barID'])) {
     echo '   
                         </td>
                     </tr>
+                    <tr>
+                        <td><label for="images">Images:</label></td>
+                        <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
+                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>                
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>';
+                        if ($result_pictures->num_rows > 0) {
+                            while ($picture = $result_pictures->fetch_assoc()) {
+                                printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  " X</button>");
+                            }
+                        }
+    echo '   
+                        </td>
+                    </tr>
                 </table>
                 <div class="saveBtn">
                     <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">save & close</button>
                 </div>';
 }
+
 else {
     echo '
                     <tr>
