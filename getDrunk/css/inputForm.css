@@ -1,6 +1,7 @@
 body{
   font-size:13px;
-  position: relative;
+  /*position: relative;*/
+  position: fixed;
 }
 
 
@@ -33,11 +34,11 @@ body{
 }
 .main p{
     margin: 0 auto;
-    width:330px;
+    width:360px;
     margin-top: 34.56px;
     padding-bottom: 30px;
     margin-bottom: 0;
-    border-bottom: solid #777777 1px;
+    border-bottom: solid #777777 2px;
 }
 .main .item{
   margin: 0 auto;
@@ -101,6 +102,14 @@ border: none;
 text-decoration: none;
 }
 
+#are .input{
+  height:300px;
+  width:360px;
+  margin: 0 auto;
+  overflow:scroll;
+  border-bottom: solid #777777 2px;
+}
+
 /************* pop_up ***********/
 .popup {
   margin: 0 auto;
@@ -112,20 +121,20 @@ text-decoration: none;
 
 .popup .content{
   margin: 0 auto;
-  margin-top: 260px;
+  margin-top:180px;
   width:440px;
-  height:auto;
   border: 1px solid #888888;
   border-radius: 5px;
   padding-top: 40px;
   padding-bottom: 40px;
+  overflow:scroll;
 }
 
 .popup h1{
   background: #222222;
   float:left;
   padding:0;
-  margin-left:59px;
+  margin-left:40px;
   margin-bottom: 5px;
   text-align: left;
 }
@@ -140,12 +149,19 @@ text-decoration: none;
 }
 
 .popup img{
+  display: block;
   float: right;
   width: 20px;
   height: auto;
-  position: absolute;
-  margin-left: 46px;
+  margin-right: 40px;
   padding: 0;
+}
+.popup .itemblock{
+  height:279px;
+  overflow:scroll;
+  width: 360px;
+  margin:0 auto;
+  border-bottom:1px solid #888888;
 }
 
 #editBar{
@@ -171,7 +187,7 @@ text-decoration: none;
   padding-left: 18px;
   padding-right: 18px;
   color:#777777;
-  border: 1px solid #777777;
+
 }
 
 @media only screen and (max-width: 580px){

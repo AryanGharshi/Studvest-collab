@@ -63,8 +63,8 @@
         $phone = $_POST['phone'];
         $location = $_POST['location'];
         $id = $_POST['barID'];
-        $sql = "UPDATE bar 
-                SET name='$name', 
+        $sql = "UPDATE bar
+                SET name='$name',
                     description='$description',
                     website='$website',
                     phone=$phone,
@@ -92,6 +92,7 @@
             <h1>Welcome back.</h1>
             <a href="inputForm_add.php" class="add" id='addNewBar'>Add new bar</a>
             <p class="change">Modify the information for an existing bar</p>
+            <div class="input">
             <?php
             while($currentRow = mysqli_fetch_array($result_bar)) {
                 $name = $currentRow['name'];
@@ -109,38 +110,42 @@
                       </div> ";
             }
             ?>
+            </div>
+          </div>
+
+        <div id="popup_1" class="popup">
+          <div  class="content">
+            <h1>Mange drinks</h1>
+            <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
+            <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
+            <div class='itemblock'>
+            <?php
+            while($currentRow = mysqli_fetch_array($result_drinks)) {
+                $name = $currentRow['name'];
+                $id=$currentRow['id'];
+                $n='drinks'.$id;
+                $input = 'drinksinput'.$id;
+                echo "<div class='item' id='$n'>
+                      <form action='' method='post'>
+                      <input name='name' value='$name' id='$input' disabled=false/>
+                      <input type='hidden' name='section' value='drink'>
+                      <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
+                      <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input,$n)'>modify</button>
+                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
+                      </form>
+                      </div>";
+            }
+            ?>
+            </div>
+          </div>
         </div>
 
-                <div id="popup_1" class="popup">
-              <div  class="content">
-                <h1>Mange drinks</h1>
-                <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-                <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
-                <?php
-                while($currentRow = mysqli_fetch_array($result_drinks)) {
-                    $name = $currentRow['name'];
-                    $id=$currentRow['id'];
-                    $n='drinks'.$id;
-                    $input = 'drinksinput'.$id;
-                    echo "<div class='item' id='$n'>
-                          <form action='' method='post'>
-                          <input name='name' value='$name' id='$input' disabled=false/>
-                          <input type='hidden' name='section' value='drink'>
-                          <button type='submit' class='delete' name='req_del' value=$id>delete</button>
-                          <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input)'>modify</button>
-                          <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
-                          </form>
-                          </div>";
-                }
-                ?>
-
-              </div>
-        </div>
         <div id="popup_2" class="popup">
           <div  class="content">
             <h1>Mange tags</h1>
             <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
             <p class="change">Please be careful! Your changes will affect all bars that have this tag assigned.</p>
+            <div class='itemblock'>
             <?php
             while($currentRow = mysqli_fetch_array($result_tags)) {
                 $name = $currentRow['name'];
@@ -151,21 +156,23 @@
                       <form action='' method='post'>
                       <input name='name' value='$name' id='$input' disabled=false/>
                       <input type='hidden' name='section' value='tag'>
-                      <button type='submit' class='delete' name='req_del' value=$id>delete</button>
-                      <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input)'>modify</button>
+                      <button type='submit' class='delete' id='delete$input' name='req_del' value=$id>delete</button>
+                      <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input,$n)'>modify</button>
                       <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                       </form>
                       </div>";
             }
             ?>
+            </div>
           </div>
-
         </div>
+
         <div id="popup_3" class="popup">
             <div  class="content">
               <h1 >Mange types of drinks</h1>
               <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
               <p class="change">Please be careful! Your changes will affect all bars.</p>
+              <div class='itemblock'>
               <?php
               while($currentRow = mysqli_fetch_array($result_drink_types)) {
                   $name = $currentRow['name'];
@@ -176,13 +183,14 @@
                         <form action='' method='post'>
                         <input name='name' value='$name' id='$input' disabled=false/>
                         <input type='hidden' name='section' value='drink_type'>
-                        <button type='submit' class='delete' name='req_del' value=$id>delete</button>
-                        <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input)'>modify</button>
+                        <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
+                        <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input,$n)'>modify</button>
                         <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
                         </form>
                         </div>";
               }
               ?>
+              </div>
             </div>
         </div>
 
@@ -241,7 +249,7 @@
           echo "<script>
                   document.getElementById('are').style.display='none';           // hides the main div
                   document.getElementById('side_foot').style.display='none';     // hides the footer
-                  document.getElementById('popup_confirmation').style.display='block';             
+                  document.getElementById('popup_confirmation').style.display='block';
                 </script>";
       }
   ?>
