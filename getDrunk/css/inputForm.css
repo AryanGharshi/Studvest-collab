@@ -75,8 +75,8 @@ body{
 
 .add_btn{
   display: none;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 14.3px;
+  padding-right: 14.3px;
   color: green;
   border: 1px solid green;
 }
@@ -111,7 +111,7 @@ text-decoration: none;
 }
 
 /************* pop_up ***********/
-.popup {
+#popup_1,#popup_2,#popup_3{
   margin: 0 auto;
   width:448px;
   height: auto;
@@ -218,6 +218,11 @@ text-decoration: none;
 
 
 /* EDIT BAR CSS */
+.edit{
+  width:470px;
+  /*border: 1px white solid;*/
+  margin: 0 auto;
+}
 
 .mainEdit{
   width:70vw;
@@ -229,7 +234,7 @@ text-decoration: none;
 .mainEdit h1{
   padding-top: 40px;
   font-size: 25px;
-  padding-left: 40px;
+  /*padding-left: 40px;*/
   padding-bottom: 10px;
   color: #3895A9;
   font-style: normal;
@@ -239,7 +244,7 @@ text-decoration: none;
 
 
 .aboutBar label{
-  padding-left: 40px;
+  /*padding-left: 40px;*/
   color:  #999999;
   font-size: 15px;
   line-height: 18px;
@@ -267,7 +272,7 @@ text-decoration: none;
 #description{
   color:#FFFFFF;
   font-family: 'Roboto';
-  width: 450px;
+  /*width: 450px;*/
   height: 100px;
 }
 #existingDrinks input,select,textarea{
@@ -289,7 +294,7 @@ text-decoration: none;
 
 .saveBtn button{
   float: right;
-  margin-right: 120px;
+  margin-right: 178px;
   margin-top: 15px;
   border-radius: 3px;
   background-color: inherit;
@@ -379,6 +384,9 @@ input,text,textarea{
   border:none;
   color:#CB1919 ;
 }
+.create_btn td{
+  border-bottom:none;
+}
 
 #popup_4 .popup{
   margin:none;
@@ -386,4 +394,8 @@ input,text,textarea{
 
 #aboutBar .distance{
   margin-left: 510px;
+}
+
+.header{
+  width:100vw;
 }
