@@ -1,36 +1,36 @@
 body{
-  font-size:13px;
-  /*position: relative;*/
-  position: fixed;
+    font-size:13px;
+    /*position: relative;*/
+    position: fixed;
 }
 
 
 .main{
-  width:70vw;
-  height: 100vh;
-  margin: 0 auto;
-  background-color: #222222;
-  text-align: center;
+    width:70vw;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #222222;
+    text-align: center;
 }
 
 .main h1{
-  padding-top: 90px;
-  font-size: 25px;
-  color: #3895A9;
-  margin-top: 0;
-  font-style: normal;
-  font-weight: normal;
+    padding-top: 90px;
+    font-size: 25px;
+    color: #3895A9;
+    margin-top: 0;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .main .add{
-  font-size: 12px;
-  background-color: inherit;
-  outline: none;
-  margin-top: 34.56px;
-  color: white;
-  border: solid white 1px;
-  padding:7.2px;
-  border-radius: 3px;
+    font-size: 12px;
+    background-color: inherit;
+    outline: none;
+    margin-top: 34.56px;
+    color: white;
+    border: solid white 1px;
+    padding:7.2px;
+    border-radius: 3px;
 }
 .main p{
     margin: 0 auto;
@@ -41,349 +41,361 @@ body{
     border-bottom: solid #777777 2px;
 }
 .main .item{
-  margin: 0 auto;
-  margin-top: 0;
-  border-bottom: solid #777777 1px;
-  width:330px;
-  height: 35px;
+    margin: 0 auto;
+    margin-top: 0;
+    border-bottom: solid #777777 1px;
+    width:330px;
+    height: 35px;
 }
 
 
 .modify, .delete, .add_btn, .tag{
-  outline: none;
-  margin-top: 6px;
-  margin-right:12px;
-  border-radius: 3px;
-  background-color: inherit;
-  font-size: inherit;
-  float:right;
+    outline: none;
+    margin-top: 6px;
+    margin-right:12px;
+    border-radius: 3px;
+    background-color: inherit;
+    font-size: inherit;
+    float:right;
 }
 .add_btn{
-  display:none;
+    display:none;
 }
 .modify{
-  float:right;
-  border: #FFC700 solid 1px;
-  color: #FFC700;
+    float:right;
+    border: #FFC700 solid 1px;
+    color: #FFC700;
 }
 
 .delete{
-  float:right;
-  border: #CB1919 solid 1px;
-  color:#CB1919;
+    float:right;
+    border: #CB1919 solid 1px;
+    color:#CB1919;
 }
 
 .add_btn{
-  display: none;
-  padding-left: 16px;
-  padding-right: 16px;
-  color: green;
-  border: 1px solid green;
+    display: none;
+    padding-left: 14.3px;
+    padding-right: 14.3px;
+    color: green;
+    border: 1px solid green;
 }
 
 .tag {
-  border: 1px solid grey;
-  color: grey;
+    border: 1px solid grey;
+    color: grey;
 }
 
 .main .item input{
-margin: 0 auto;
-font-size: 13px;
-margin-bottom: 0;
-float: left;
-width: auto;
-padding-bottom: 0;
-margin-top: 6px;
-color: #777777;
-border-bottom: none;
-padding-left: 6px;
-background: none;
-border: none;
-text-decoration: none;
+    margin: 0 auto;
+    font-size: 13px;
+    margin-bottom: 0;
+    float: left;
+    width: auto;
+    padding-bottom: 0;
+    margin-top: 6px;
+    color: #777777;
+    border-bottom: none;
+    padding-left: 6px;
+    background: none;
+    border: none;
+    text-decoration: none;
 }
 
 #are .input{
-  height:300px;
-  width:360px;
-  margin: 0 auto;
-  overflow:scroll;
-  border-bottom: solid #777777 2px;
+    height:300px;
+    width:360px;
+    margin: 0 auto;
+    overflow:scroll;
+    border-bottom: solid #777777 2px;
 }
 
 /************* pop_up ***********/
-.popup {
-  margin: 0 auto;
-  width:448px;
-  height: auto;
-  border: 1px solid #222222;
-  display:none;
+.popup{
+    margin: 0 auto;
+    width:448px;
+    height: auto;
+    border: 1px solid #222222;
+    display:none;
 }
 
 .popup .content{
-  margin: 0 auto;
-  margin-top:180px;
-  width:440px;
-  border: 1px solid #888888;
-  border-radius: 5px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  overflow:scroll;
+    margin: 0 auto;
+    margin-top:180px;
+    width:440px;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    overflow:scroll;
 }
 
 .popup h1{
-  background: #222222;
-  float:left;
-  padding:0;
-  margin-left:40px;
-  margin-bottom: 5px;
-  text-align: left;
+    background: #222222;
+    float:left;
+    padding:0;
+    margin-left:40px;
+    margin-bottom: 5px;
+    text-align: left;
 }
 .popup .content p{
-  text-align: left;
+    text-align: left;
 }
 .popup .change input{
-  clear: both;
-  margin-top: 0;
-  color:#777777;
-  text-align: left;
+    clear: both;
+    margin-top: 0;
+    color:#777777;
+    text-align: left;
 }
 
 .popup img{
-  display: block;
-  float: right;
-  width: 20px;
-  height: auto;
-  margin-right: 40px;
-  padding: 0;
+    display: block;
+    float: right;
+    width: 20px;
+    height: auto;
+    margin-right: 40px;
+    padding: 0;
 }
 .popup .itemblock{
-  height:279px;
-  overflow:scroll;
-  width: 360px;
-  margin:0 auto;
-  border-bottom:1px solid #888888;
+    height:279px;
+    overflow:scroll;
+    width: 360px;
+    margin:0 auto;
+    border-bottom:1px solid #888888;
 }
 
 #editBar{
-  clear: both;
+    clear: both;
 }
 
 
 .side_foot{
-      width: 70vw;
-      height: 20vh;
-      position: absolute;
-      bottom: 0;
+    width: 70vw;
+    height: 20vh;
+    position: absolute;
+    bottom: 0;
 }
 
 .side_foot button{
-  display:inline;
-  margin-left:7.2px;
-  border-radius: 3px;
-  background-color: inherit;
-  font-size: inherit;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 18px;
-  padding-right: 18px;
-  color:#777777;
+    display:inline;
+    margin-left:7.2px;
+    border-radius: 3px;
+    background-color: inherit;
+    font-size: inherit;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 18px;
+    padding-right: 18px;
+    color:#777777;
 
 }
 
 @media only screen and (max-width: 580px){
 
 
-  .side_foot{
+    .side_foot{
         margin-left: 20vw;
         width: 50vw;
         height: 20vh;
         position: absolute;
         bottom: 0;
-  }
+    }
 
-  .side_foot button{
-    margin-bottom: 2vh;
-}
-  .main{
-  width:90vw;
-  height: 100vh;
-  margin: 0 auto;
-  background-color: #222222;
-  }
+    .side_foot button{
+        margin-bottom: 2vh;
+    }
+    .main{
+        width:90vw;
+        height: 100vh;
+        margin: 0 auto;
+        background-color: #222222;
+    }
 
-  .main .item, .main p{
-    width:73vw;
-  }
+    .main .item, .main p{
+        width:73vw;
+    }
 }
 
 
 /* EDIT BAR CSS */
+.edit{
+    width:470px;
+    /*border: 1px white solid;*/
+    margin: 0 auto;
+}
 
 .mainEdit{
-  width:70vw;
-  height: 100vh;
-  margin: 0 auto;
-  background-color: #222222;
+    width:70vw;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #222222;
 }
 
 .mainEdit h1{
-  padding-top: 40px;
-  font-size: 25px;
-  padding-left: 40px;
-  padding-bottom: 10px;
-  color: #3895A9;
-  font-style: normal;
-  font-weight: normal;
-  margin: 0;
+    padding-top: 40px;
+    font-size: 25px;
+    /*padding-left: 40px;*/
+    padding-bottom: 10px;
+    color: #3895A9;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
 }
 
 
 .aboutBar label{
-  padding-left: 40px;
-  color:  #999999;
-  font-size: 15px;
-  line-height: 18px;
+    /*padding-left: 40px;*/
+    color:  #999999;
+    font-size: 15px;
+    line-height: 18px;
 }
 .aboutBar{
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: 180px 60px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 180px 60px;
 }
 
 .aboutBar input,textarea{
-  width: 360px;
-  height: 29px;
-  background: #292929;
-  border: #292929;
-  border-radius: 1px;
+    width: 360px;
+    height: 29px;
+    background: #292929;
+    border: #292929;
+    border-radius: 1px;
 }
 
 #editBar input, textarea, select{
-  clear:both;
-  color: #FFFFFF;
-  font-size: 13px;
+    clear:both;
+    color: #FFFFFF;
+    font-size: 13px;
 }
 
 #description{
-  color:#FFFFFF;
-  font-family: 'Roboto';
-  width: 450px;
-  height: 100px;
+    color:#FFFFFF;
+    font-family: 'Roboto';
+    /*width: 450px;*/
+    height: 100px;
 }
 #existingDrinks input,select,textarea{
-  color: black;
+    color: black;
 }
 
 #existingDrinks input:focus{
-  color: black;
+    color: black;
 }
 
 ::placeholder{
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: normal;
-  color: #777777;
-  line-height: normal;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: normal;
+    color: #777777;
+    line-height: normal;
 }
 
 
 .saveBtn button{
-  float: right;
-  margin-right: 120px;
-  margin-top: 15px;
-  border-radius: 3px;
-  background-color: inherit;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 18px;
-  padding-right: 18px;
-  color:#FFFFFF;
-  border: 1px solid #FFFFFF;
+    float: right;
+    margin-right: 178px;
+    margin-top: 15px;
+    border-radius: 3px;
+    background-color: inherit;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 18px;
+    padding-right: 18px;
+    color:#FFFFFF;
+    border: 1px solid #FFFFFF;
 }
 
 .add{
-  color: #1C7D20;
-  background-color: inherit;
-  border-radius: 3px;
-  border: #1C7D20 solid 1px;
+    color: #1C7D20;
+    background-color: inherit;
+    border-radius: 3px;
+    border: #1C7D20 solid 1px;
 }
 
 #existingDrinks{
-  border-collapse: collapse;
-  color: #777777;
+    border-collapse: collapse;
+    color: #777777;
 }
 
 th{
-  font-size: 15px;
+    font-size: 15px;
 }
 td,th{
-  border-bottom:1px solid rgba(255, 255, 255, 0.3);
-  padding: 3px;
+    border-bottom:1px solid rgba(255, 255, 255, 0.3);
+    padding: 3px;
 }
 
 input,text,textarea{
-  padding: 3px;
+    padding: 3px;
 }
 
 
 #drink{
-  width: 250px;
+    width: 250px;
 }
 
 #menu{
-  width: 150px;
+    width: 150px;
 }
 
 #vol,#price{
-  width: 100px;
+    width: 100px;
 }
 #description{
-  height: 150px;
+    height: 150px;
 }
 
 
 #existingDrinks input{
-  background: #FFFFFF;
-  height: 20px;
-  text-align: left;
-  border-radius: 1px;
-  border: none;
+    background: #FFFFFF;
+    height: 20px;
+    text-align: left;
+    border-radius: 1px;
+    border: none;
 }
 
 #existingDrinks ::placeholder{
-  color: #000000;
+    color: #000000;
 }
 
 
 #existingDrinks th{
-  text-align: left;
+    text-align: left;
 }
 
 
 .editBtn, .delBtn{
-  float:right;
-  outline: none;
-  margin-top: 6px;
-  margin-right:12px;
-  border-radius: 3px;
-  background-color: inherit;
-  font-size: inherit;
+    float:right;
+    outline: none;
+    margin-top: 6px;
+    margin-right:12px;
+    border-radius: 3px;
+    background-color: inherit;
+    font-size: inherit;
 }
 
 .editBtn{
-  border:none;
-  color: #FFC700;
+    border:none;
+    color: #FFC700;
 }
 
 .delBtn{
-  border:none;
-  color:#CB1919 ;
+    border:none;
+    color:#CB1919 ;
+}
+.create_btn td{
+    border-bottom:none;
 }
 
 #popup_4 .popup{
-  margin:none;
+    margin:none;
 }
 
 #aboutBar .distance{
-  margin-left: 510px;
+    margin-left: 510px;
+}
+
+.header{
+    width:100vw;
 }

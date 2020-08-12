@@ -179,10 +179,12 @@ if (isset($barID)) {
 }
 $conn->close();
 ?>
+
+<?php include('header.php'); ?>
 <div class="welcome">
-    <?php include('header.php'); ?>
     <div class="mainEdit">
         <div>
+            <div class="edit">
             <h1>Edit Bar</h1>
 
             <form id="editBar" method="post" enctype="multipart/form-data">
@@ -308,6 +310,7 @@ else {
                         }
                     </table>
                 </div>-->
+            </div>
         </div>
         <br>
     </div>

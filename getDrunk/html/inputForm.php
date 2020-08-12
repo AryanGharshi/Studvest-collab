@@ -104,7 +104,7 @@
                           <input name='barName' value='$name' id='$input' disabled=false/>
                           <input type='hidden' name='barID' value='$id' id='$input'>
                           <input type='hidden' name='section' value='bar'>
-                          <button type='submit' class='delete' name='req_del' value=$id>delete</button>
+                          <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
                           <button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button>
                       </form>
                       </div> ";
@@ -115,7 +115,7 @@
 
         <div id="popup_1" class="popup">
           <div  class="content">
-            <h1>Mange drinks</h1>
+            <h1>Manage drinks</h1>
             <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
             <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
             <div class='itemblock'>
@@ -123,11 +123,12 @@
             while($currentRow = mysqli_fetch_array($result_drinks)) {
                 $name = $currentRow['name'];
                 $id=$currentRow['id'];
+                $type=$currentRow['drink_type'];
                 $n='drinks'.$id;
                 $input = 'drinksinput'.$id;
                 echo "<div class='item' id='$n'>
                       <form action='' method='post'>
-                      <input name='name' value='$name' id='$input' disabled=false/>
+                      <input name='name' value='$name ($type)' id='$input' disabled=false/>
                       <input type='hidden' name='section' value='drink'>
                       <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
                       <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input,$n)'>modify</button>
@@ -151,6 +152,7 @@
                 $name = $currentRow['name'];
                 $id=$currentRow['id'];
                 $n='tags'.$id;
+                $type=$currentRow['drink_type'];
                 $input = 'tagsinput'.$id;
                 echo "<div class='item' id='$n'>
                       <form action='' method='post'>
