@@ -63,8 +63,36 @@ if(isset($_POST['add_tag'])) {
 # Remove tag
 if(isset($_POST['remove_tag'])) {
     $tagID = $_POST['remove_tag'];
-    $sql = "DELETE FROM tag_relationship
+    $sql = "DELETE FROM tag_relationship 
             WHERE bar_id=$barID AND tag_id=$tagID;";
+    $conn->query($sql);
+}
+
+# Add images
+if(isset($_POST['add_image']) and $_FILES['uploaddatei']['name'] <> "") {
+    #Create directory if not exists
+    $target_directory = "../media/pictures/$barID/";
+    if (!is_dir($target_directory)) {
+        mkdir($target_directory);
+    }
+    $target_file = $target_directory . $_FILES['uploaddatei']['name'];
+    # Store file on the server
+    move_uploaded_file ($_FILES['uploaddatei']['tmp_name'] , $target_file);
+    # Update the database
+    $sql = "INSERT INTO picture(bar_id, path)
+                         VALUES($barID, '$target_file')
+                         ON DUPLICATE KEY UPDATE bar_id=bar_id;";
+    $conn->query($sql);
+}
+
+# Remove image
+if(isset($_POST['remove_image'])) {
+    $target_file = $_POST['remove_image'];
+    # Remove file from server
+    unlink($target_file);
+    # Update the database
+    $sql = "DELETE FROM picture 
+            WHERE bar_id=$barID AND path='$target_file'";
     $conn->query($sql);
 }
 
@@ -72,8 +100,8 @@ if(isset($_POST['remove_tag'])) {
 if (isset($barID)) {
 
     # Load bar infos
-    $sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location
-                     FROM bar
+    $sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location   
+                     FROM bar  
                      WHERE bar.id=$barID";
     $result_barInfos = ($conn->query($sql_barInfos));
 
@@ -105,24 +133,24 @@ if (isset($barID)) {
                                             drink_type.id AS id,
                                             drink_type.img_url_inactive AS url_inactive,
                                             drink_type.img_url_active AS url_active
-                            FROM drink_relationship
-                            LEFT JOIN drink ON drink_relationship.drink_id=drink.id
-                            LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
+                            FROM drink_relationship 
+                            LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
+                            LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
                             WHERE drink_relationship.bar_id=$barID";
             $result_drink_types = ($conn->query($sql_drink_types));
 
             # Load list of drinks
-            $sql_drinks = "SELECT drink.id,
-                              drink.name AS drink_name,
-                              CONCAT(drink_relationship.price, ',-') AS price,
-                              CONCAT(drink_relationship.student_price, ',-') AS student_price,
-                              CONCAT(drink_relationship.size, 'l') AS volume,
+            $sql_drinks = "SELECT drink.id, 
+                              drink.name AS drink_name, 
+                              CONCAT(drink_relationship.price, ',-') AS price, 
+                              CONCAT(drink_relationship.student_price, ',-') AS student_price, 
+                              CONCAT(drink_relationship.size, 'l') AS volume, 
                               drink_relationship.menu AS menu,
                               drink_type.name AS drink_type,
                               drink_type.id AS drink_type_id
-                       FROM drink_relationship
-                       LEFT JOIN drink ON drink_relationship.drink_id=drink.id
-                       LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
+                       FROM drink_relationship 
+                       LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
+                       LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
                        WHERE drink_relationship.bar_id=$barID
                        ORDER BY drink_type, menu, drink_name";
             $result_drinks = ($conn->query($sql_drinks));
@@ -130,19 +158,15 @@ if (isset($barID)) {
 
         # Load and store the pictures of the bar
         $sql_pictures = "SELECT id, bar_id, path
-                         FROM picture
+                         FROM picture 
                          WHERE bar_id=$barID";
         $result_pictures = ($conn->query($sql_pictures));
-        $info['pictures'] = [];
-        while ($picture = $result_pictures->fetch_assoc()) {
-            array_push($info['pictures'], $picture['path']);
-        }
 
         # Load tags
-        $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name
-                     FROM tag_relationship
+        $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name 
+                     FROM tag_relationship 
                      INNER JOIN bar ON tag_relationship.bar_id=bar.id
-                     INNER JOIN tag ON tag_relationship.tag_id=tag.id
+                     INNER JOIN tag ON tag_relationship.tag_id=tag.id 
                      WHERE bar.id=$barID
                      ORDER BY tag_name";
         $result_tags = ($conn->query($sql_tags));
@@ -155,12 +179,13 @@ if (isset($barID)) {
 }
 $conn->close();
 ?>
-<?php include('header.php'); ?>
 <div class="welcome">
+    <?php include('header.php'); ?>
     <div class="mainEdit">
-        <div class="edit">
+        <div>
             <h1>Edit Bar</h1>
-            <form id="editBar" method="post">
+
+            <form id="editBar" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="barID" value=<?php echo($barID); ?>>
                 <table class="aboutBar">
                     <tr>
@@ -200,7 +225,23 @@ if (isset($_POST['barID'])) {
                                 printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] ."'>" . $tag['tag_name'] .  " X</button>");
                             }
                         }
-    echo '
+    echo '   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="images">Images:</label></td>
+                        <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
+                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>                
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>';
+                        if ($result_pictures->num_rows > 0) {
+                            while ($picture = $result_pictures->fetch_assoc()) {
+                                printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  " X</button>");
+                            }
+                        }
+    echo '   
                         </td>
                     </tr>
                 </table>
@@ -208,11 +249,12 @@ if (isset($_POST['barID'])) {
                     <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">save & close</button>
                 </div>';
 }
+
 else {
     echo '
-                    <tr class="create_btn">
-                        <td ></td>
-                        <td >
+                    <tr>
+                        <td></td>
+                        <td>
                         <div class="saveBtn">
                             <button type="submit" name="create_bar" value="submit" formaction="">create bar</button>
                         </div>
@@ -246,6 +288,7 @@ else {
                                 <option value="Øl"></option>
                                 <option value="Cider"></option>
                             </datalist>
+
                             <td><input type="text" id="vol" name="vol" value="" placeholder="Vol"></td>
                             <td><input type="text" id="price" name="price" value="" placeholder="Price"></td>
                             <td>
