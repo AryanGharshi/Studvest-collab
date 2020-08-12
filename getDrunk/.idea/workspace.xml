@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d51aa3e2-ca28-4fd1-9f9e-7a7260cc794e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/inputForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/inputForm.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/inputForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/html/inputForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/inputForm_add.php" beforeDir="false" afterPath="$PROJECT_DIR$/html/inputForm_add.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +48,8 @@
       <option name="presentableId" value="Default" />
       <updated>1596626536426</updated>
       <workItem from="1596626545930" duration="11627000" />
-      <workItem from="1597228583831" duration="630000" />
+      <workItem from="1597228583831" duration="1663000" />
+      <workItem from="1597230747483" duration="274000" />
     </task>
     <servers />
   </component>

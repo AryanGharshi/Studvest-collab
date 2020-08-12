@@ -26,7 +26,7 @@
         $tags = [];
 
       while ($row = $result_tags -> fetch_assoc()) {
-        array_push($tags, [$row["bar_id"], $row["tag_name"]]);
+          array_push($tags, [$row["bar_id"], $row["tag_name"]]);
       }
     }
 
@@ -75,7 +75,7 @@
                 ';
                 foreach ($tags as $i) {
                   if ($i[0] == $elem[0]){
-                    printf("<button type='button' class='tag'>".$i['tag_name']."</button>");
+                    printf("<button type='button' class='tag'>".$i[1]."</button>");
                   }
                 }
                 echo '
