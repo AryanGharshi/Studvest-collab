@@ -26,7 +26,7 @@
         $tags = [];
 
       while ($row = $result_tags -> fetch_assoc()) {
-        array_push($tags, [$row["bar_id"], $row["tag_name"]]);
+          array_push($tags, [$row["bar_id"], $row["tag_name"]]);
       }
     }
 

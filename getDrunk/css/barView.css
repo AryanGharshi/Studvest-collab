@@ -169,8 +169,18 @@ body::-webkit-scrollbar {
 }
 
 .menu #tabs .tab_icon_active, .tab_icon_inactive {
-    width: 2.7em;
-    height: 2.7em;
+    width: auto;
+    height: 2.3em;
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
+}
+
+.menu #tabs .tab_icon_active {
+    display: none;
+}
+
+.menu #tabs .tab_cell {
+    color: var(--color-secondary);
 }
 
 .menu #drinks .menu-title {
