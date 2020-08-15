@@ -54,16 +54,15 @@ h1{
 }
 
 .tag{
-    padding: var(--relSize-100);
-    margin-right: var(--relSize-075);
-    margin-bottom: var(--relSize-075);
+    padding: 0.3em;
+    margin-right: 0.3em;
+    margin-bottom: 0.3em;
     border-width: 0;
-    border-radius: var(--relSize-300);
+    border-radius: 1.2em;
     background-color: var(--color-highlight-background);
-    font-size: var(--relSize-225);
+    font-size: 0.8em;
     text-transform: lowercase;
     color: var(--color-background);
-    opacity: 1.0;
 }
 
 .ellipse {

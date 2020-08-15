@@ -75,7 +75,7 @@
                 ';
                 foreach ($tags as $i) {
                   if ($i[0] == $elem[0]){
-                    printf("<button type='button' class='tag'>".$i['tag_name']."</button>");
+                    printf("<button type='button' class='tag'>".$i[1]."</button>");
                   }
                 }
                 echo '
