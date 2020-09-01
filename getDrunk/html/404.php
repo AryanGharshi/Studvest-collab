@@ -18,7 +18,7 @@
                 <h1>404</h1>
                 Sorry. Looks like the page doesn't exist.<br><br><br>
 
-                    <button type='button' class='btn'><a href="index.php">Go back to start page</a></button>
+                    <button type='button' class='btn'><a href="feed.php">Go back to start page</a></button>
 
             </th>
         </tr>

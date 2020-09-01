@@ -10,7 +10,7 @@
   </head>
   <body>
 
-    <div>
+    <div id="load">
       <img id="studv" class="fadeIn" src="../media/logos/logo_studvest.svg">
     </div>
 

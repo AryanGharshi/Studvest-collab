@@ -31,14 +31,14 @@
     }
 
 
-    $sql = "SELECT bar_id, name, path FROM bar INNER JOIN picture ON bar.id = picture.bar_id WHERE picture.is_cover=1";
+    $sql = "SELECT bar.id, bar.name, picture.path FROM bar LEFT JOIN (SELECT picture.bar_id, picture.path FROM picture WHERE picture.is_cover=1) AS picture ON bar.id=picture.bar_id";
     $result = ($conn->query($sql));
 
     if ($result->num_rows > 0) {
         $bars = [];
 
         while ($row = $result->fetch_assoc()) {
-            array_push($bars, [$row["bar_id"], $row["name"],  $row["path"]]);
+            array_push($bars, [$row["id"], $row["name"],  $row["path"]]);
         }
     } else {
         echo "0 results";
@@ -57,6 +57,9 @@
     <div class="wrapper">
         <?php
         foreach ($bars as $elem) {
+          if($elem[2]==NULL){
+            $elem[2]='http://www.bagherra.eu/wp-content/uploads/2016/11/orionthemes-placeholder-image-1-1024x683.png';
+          }
             echo '
         <a href="barView.php?barID=' . $elem[0] . '">
             <div class="examplebar" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%), url(' . $elem[2] . ')">
