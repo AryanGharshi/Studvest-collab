@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit bar details</title>
-    <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
-    <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
-</head>
-
-<body>
-
 
 <?php
 define("MAGICKEY", "ugugUGu221KHJBD84");
@@ -63,7 +51,7 @@ if(isset($_POST['add_tag'])) {
 # Remove tag
 if(isset($_POST['remove_tag'])) {
     $tagID = $_POST['remove_tag'];
-    $sql = "DELETE FROM tag_relationship 
+    $sql = "DELETE FROM tag_relationship
             WHERE bar_id=$barID AND tag_id=$tagID;";
     $conn->query($sql);
 }
@@ -91,7 +79,7 @@ if(isset($_POST['remove_image'])) {
     # Remove file from server
     unlink($target_file);
     # Update the database
-    $sql = "DELETE FROM picture 
+    $sql = "DELETE FROM picture
             WHERE bar_id=$barID AND path='$target_file'";
     $conn->query($sql);
 }
@@ -100,8 +88,8 @@ if(isset($_POST['remove_image'])) {
 if (isset($barID)) {
 
     # Load bar infos
-    $sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location   
-                     FROM bar  
+    $sql_barInfos = "SELECT bar.name AS barname, bar.description, bar.website, bar.phone, bar.location
+                     FROM bar
                      WHERE bar.id=$barID";
     $result_barInfos = ($conn->query($sql_barInfos));
 
@@ -133,24 +121,24 @@ if (isset($barID)) {
                                             drink_type.id AS id,
                                             drink_type.img_url_inactive AS url_inactive,
                                             drink_type.img_url_active AS url_active
-                            FROM drink_relationship 
-                            LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
-                            LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
+                            FROM drink_relationship
+                            LEFT JOIN drink ON drink_relationship.drink_id=drink.id
+                            LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                             WHERE drink_relationship.bar_id=$barID";
             $result_drink_types = ($conn->query($sql_drink_types));
 
             # Load list of drinks
-            $sql_drinks = "SELECT drink.id, 
-                              drink.name AS drink_name, 
-                              CONCAT(drink_relationship.price, ',-') AS price, 
-                              CONCAT(drink_relationship.student_price, ',-') AS student_price, 
-                              CONCAT(drink_relationship.size, 'l') AS volume, 
+            $sql_drinks = "SELECT drink.id,
+                              drink.name AS drink_name,
+                              CONCAT(drink_relationship.price, ',-') AS price,
+                              CONCAT(drink_relationship.student_price, ',-') AS student_price,
+                              CONCAT(drink_relationship.size, 'l') AS volume,
                               drink_relationship.menu AS menu,
                               drink_type.name AS drink_type,
                               drink_type.id AS drink_type_id
-                       FROM drink_relationship 
-                       LEFT JOIN drink ON drink_relationship.drink_id=drink.id 
-                       LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id 
+                       FROM drink_relationship
+                       LEFT JOIN drink ON drink_relationship.drink_id=drink.id
+                       LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                        WHERE drink_relationship.bar_id=$barID
                        ORDER BY drink_type, menu, drink_name";
             $result_drinks = ($conn->query($sql_drinks));
@@ -158,15 +146,15 @@ if (isset($barID)) {
 
         # Load and store the pictures of the bar
         $sql_pictures = "SELECT id, bar_id, path
-                         FROM picture 
+                         FROM picture
                          WHERE bar_id=$barID";
         $result_pictures = ($conn->query($sql_pictures));
 
         # Load tags
-        $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name 
-                     FROM tag_relationship 
+        $sql_tags = "SELECT tag.id as tag_id, tag.name as tag_name
+                     FROM tag_relationship
                      INNER JOIN bar ON tag_relationship.bar_id=bar.id
-                     INNER JOIN tag ON tag_relationship.tag_id=tag.id 
+                     INNER JOIN tag ON tag_relationship.tag_id=tag.id
                      WHERE bar.id=$barID
                      ORDER BY tag_name";
         $result_tags = ($conn->query($sql_tags));
@@ -179,6 +167,16 @@ if (isset($barID)) {
 }
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo $info["name"]; ?></title>
+    <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
+    <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
+</head>
 
 <?php include('header.php'); ?>
 <div class="welcome">
@@ -227,13 +225,13 @@ if (isset($_POST['barID'])) {
                                 printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] ."'>" . $tag['tag_name'] .  " X</button>");
                             }
                         }
-    echo '   
+    echo '
                         </td>
                     </tr>
                     <tr>
                         <td><label for="images">Images:</label></td>
                         <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
-                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>                
+                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -243,7 +241,7 @@ if (isset($_POST['barID'])) {
                                 printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  " X</button>");
                             }
                         }
-    echo '   
+    echo '
                         </td>
                     </tr>
                 </table>
