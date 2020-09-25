@@ -57,6 +57,7 @@ body{
     background-color: inherit;
     font-size: inherit;
     float:right;
+    cursor: pointer;
 }
 .add_btn{
     display:none;
@@ -79,12 +80,18 @@ body{
     padding-right: 14.3px;
     color: green;
     border: 1px solid green;
+    cursor: pointer;
 }
 
 .tag {
     border: 1px solid grey;
     color: grey;
+    float: left;
+    margin-left: 3px;
+    margin-bottom: 7px;
+    cursor: pointer;
 }
+
 
 .main .item input{
     margin: 0 auto;
@@ -304,6 +311,7 @@ body{
     padding-right: 18px;
     color:#FFFFFF;
     border: 1px solid #FFFFFF;
+    cursor: pointer;
 }
 
 .add{
@@ -311,6 +319,7 @@ body{
     background-color: inherit;
     border-radius: 3px;
     border: #1C7D20 solid 1px;
+    cursor: pointer;
 }
 
 #existingDrinks{

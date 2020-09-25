@@ -1,4 +1,5 @@
 
+
 <?php
 define("MAGICKEY", "ugugUGu221KHJBD84");
 require "../inc/connection/conn.php";
@@ -215,14 +216,14 @@ if (isset($_POST['barID'])) {
                     <tr>
                         <td><label for="tags">Tags:</label></td>
                         <td><input type="text" name="tag" value="" placeholder="Add new tag"><br></td>
-                        <td><button type="submit" class="add" name="add_tag" value="submit" formaction="">add</button></td>
+                        <td><button type="submit" class="add" name="add_tag" value="submit" formaction="">Add tag</button></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>';
                         if ($result_tags->num_rows > 0) {
                             while ($tag = $result_tags->fetch_assoc()) {
-                                printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] ."'>" . $tag['tag_name'] .  " X</button>");
+                                printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] ."'>" . $tag['tag_name'] .  "  &#10006;</button>");
                             }
                         }
     echo '
@@ -231,14 +232,14 @@ if (isset($_POST['barID'])) {
                     <tr>
                         <td><label for="images">Images:</label></td>
                         <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
-                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>
+                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">Upload picture</button></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>';
                         if ($result_pictures->num_rows > 0) {
                             while ($picture = $result_pictures->fetch_assoc()) {
-                                printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  " X</button>");
+                                printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  "  &#10006;</button>");
                             }
                         }
     echo '
@@ -246,7 +247,7 @@ if (isset($_POST['barID'])) {
                     </tr>
                 </table>
                 <div class="saveBtn">
-                    <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">save & close</button>
+                    <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
                 </div>';
 }
 
@@ -256,7 +257,7 @@ else {
                         <td></td>
                         <td>
                         <div class="saveBtn">
-                            <button type="submit" name="create_bar" value="submit" formaction="">create bar</button>
+                            <button type="submit" name="create_bar" value="submit" formaction="">Create bar</button>
                         </div>
                         </td>
                     </tr>
