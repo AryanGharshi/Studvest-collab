@@ -176,7 +176,11 @@ $conn->close();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $info["name"]; ?></title>
+    <title><?php if (isset($info["name"])) {
+      echo $info["name"];
+    } else {
+      echo "Edit bar";
+    } ?></title>
     <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 </head>
