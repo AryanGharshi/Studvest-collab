@@ -15,19 +15,23 @@ if(isset($_POST['barID'])) {
     $barID = $_POST['barID'];
 }
 
-# Add new bar entry into the database
+# Create a new bar into the database
 if(isset($_POST['create_bar'])) {
+
+    echo "new bar";
 
     # Load information from the input form
     $name = $_POST['name'];
     $description = $_POST['description'];
     $website = $_POST['website'];
     $phone = $_POST['phone'];
+    if ($phone='') {$phone='Null';}
     $location = $_POST['location'];
 
     # Add bar into the database
     $sql = "INSERT INTO bar (name, description, website, phone, location)
             VALUES ('$name', '$description', '$website', $phone, '$location')";
+    echo $sql;
     $conn->query($sql);
     $barID = $conn->insert_id;
 }
@@ -117,16 +121,13 @@ if (isset($barID)) {
                 $info["location"] = $row["location"];
             }
 
-            # Load list of drink types
-            $sql_drink_types = "SELECT DISTINCT drink_type.name AS name,
-                                            drink_type.id AS id,
-                                            drink_type.img_url_inactive AS url_inactive,
-                                            drink_type.img_url_active AS url_active
-                            FROM drink_relationship
-                            LEFT JOIN drink ON drink_relationship.drink_id=drink.id
-                            LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
-                            WHERE drink_relationship.bar_id=$barID";
-            $result_drink_types = ($conn->query($sql_drink_types));
+            # Load list of all drink types
+            $sql_all_drink_types = "SELECT drink_type.name, id FROM drink_type;";
+            $result_all_drink_types = ($conn->query($sql_all_drink_types));
+
+            # Load list of all drinks
+            $sql_all_drinks = "SELECT id, name FROM drink;";
+            $result_all_drinks = ($conn->query($sql_all_drinks));
 
             # Load list of drinks
             $sql_drinks = "SELECT drink.id,
@@ -161,9 +162,10 @@ if (isset($barID)) {
         $result_tags = ($conn->query($sql_tags));
     }
     else {
+        echo "error";
         # If bar with passed bar_id does not exist, forward to error page
-        header("Location: 404.php");
-        die;
+        #header("Location: 404.php");
+        #die;
     }
 }
 $conn->close();
@@ -182,8 +184,7 @@ $conn->close();
 <?php include('header.php'); ?>
 <div class="welcome">
     <div class="mainEdit">
-        <div>
-            <div class="edit">
+        <div class="edit">
             <h1>Edit Bar</h1>
 
             <form id="editBar" method="post" enctype="multipart/form-data">
@@ -203,7 +204,7 @@ $conn->close();
                     </tr>
                     <tr>
                         <td><label for="phone">Phone:</label></td>
-                        <td><input type="text" id="phone" name="phone" value="<?php echo($info["phone"]); ?>" placeholder="Enter phone"></td>
+                        <td><input type="number" id="phone" name="phone" value="<?php echo($info["phone"]); ?>" placeholder="Enter phone"></td>
                     </tr>
                     <tr>
                         <td><label for="description">Description:</label></td>
@@ -246,6 +247,52 @@ if (isset($_POST['barID'])) {
                         </td>
                     </tr>
                 </table>
+                
+                <table id="existingDrinks" class="aboutBar">
+                    <tr>
+                        <th>Drink</th>
+                        <th>Menu</th>
+                        <th>Volume (in ml)</th>
+                        <th>Price (in kr)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="drinkInp">
+                        <td>
+                            <input type="text" id="drink" name="drink" placeholder="Drink" list="drinkList">
+                        </td>
+                        <datalist id="drinkList">';
+    foreach ($result_all_drinks as $drink) {
+       echo '               <option value="'. $drink['name'] . '">';
+    }
+
+    echo '              </datalist>
+                        <td>
+                            <input type="text" id="menu" name="menu" value="" placeholder="Menu" list="menuList">
+                        </td>
+                        <datalist id="menuList">';
+    foreach ($result_all_drink_types as $drink_type) {
+        echo '               <option value="'. $drink_type['name'] . '">';
+    }
+
+    echo '              </datalist>
+                        <td><input type="number" id="vol" name="vol" placeholder="ml" min=2 step=1"></td>
+                        <td><input type="number" id="price" value="" placeholder="in kr" min=10 step=1"></td>                     
+                        <td><button type="button" class="add">add</button></td>
+                        <td></td>
+                    </tr>';
+    foreach ($result_drinks as $drink) {
+        echo "      <tr>
+                        <td>" . $drink['drink_name'] . "</td>
+                        <td>" . $drink['drink_type'] . "</td>
+                        <td>" . $drink['volume'] . "</td>
+                        <td>" . $drink['price'] . "</td>
+                        <td><button type='button' class='modify'>edit</button></td>
+                        <td><button type='button' class='delete'>delete</button></td>
+                    </tr>";
+    }
+                    
+    echo '      </table>
                 <div class="saveBtn">
                     <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
                 </div>';
@@ -267,51 +314,9 @@ else {
             </form>
                 <!--<div class="aboutBar">
                     <label for="">Menu:</label>
-                    <table id="existingDrinks">
-                        <tr>
-                            <th>Drink</th>
-                            <th>Menu</th>
-                            <th>Vol</th>
-                            <th>Price</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr class="drinkInp">
-                            <td><input type="text" id="drink" name="drink" value="" placeholder="Drink"
-                                       list="drinkList"></td>
-                            <datalist id="drinkList">
-                                <option value="Bulmers Berries & Lime">
-                                <option value="Grevens Fruktsmak"></option>
-                            </datalist>
-                            <td><input type="text" id="menu" name="menu" value="" placeholder="Menu" list="menuList">
-                            </td>
-                            <datalist id="menuList">
-                                <option value="Øl"></option>
-                                <option value="Cider"></option>
-                            </datalist>
-
-                            <td><input type="text" id="vol" name="vol" value="" placeholder="Vol"></td>
-                            <td><input type="text" id="price" name="price" value="" placeholder="Price"></td>
-                            <td>
-                                <button type="button" class="add">add</button>
-                            </td>
-                            <td></td>
-                        </tr>
-                        foreach ($result_menu as $drink) {
-                            echo "<tr>";
-                            echo "<td>" . $drink[drink_name] . "</td>";
-                            echo "<td>" . $drink[menu_name] . "</td>";
-                            echo "<td>" . $drink[size] . "</td>";
-                            echo "<td>" . $drink[price] . "</td>";
-                            echo "<td><button type='button' class='modify'>edit</button></td>";
-                            echo "<td><button type='button' class='delete'>delete</button></td>";
-                            echo "</tr>";
-                        }
-                    </table>
+                    
                 </div>-->
-            </div>
         </div>
-        <br>
     </div>
 </div>
 
