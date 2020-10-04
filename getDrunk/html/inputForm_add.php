@@ -53,6 +53,44 @@ if(isset($_POST['add_tag'])) {
     $conn->query($sql);
 }
 
+#Add drink to bar
+if(isset($_POST['add_drink'])) {
+    $drink = $_POST['drink'];
+    $drink_type = $_POST['menu'];
+    $price = $_POST['price'];
+    $volume = $_POST['vol'];
+
+    # Add new drink to drink table
+    $sql = "INSERT INTO drink(name)
+                        VALUES('$drink')
+                        ON DUPLICATE KEY UPDATE id=id;";
+
+    # Add new drink type to drink_type table
+    $sql = "INSERT INTO drink_type(name)
+                        VALUES('$drink_type')
+                        ON DUPLICATE KEY UPDATE id=id;";
+    $conn->query($sql);
+
+    # Connect drink name to drink_type ID
+    $sql = "INSERT INTO drink(name, drink_type_id)
+                        VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type'));";
+    $conn->query($sql);
+
+    # Connect drink table to drink_relationship table
+    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, size)
+                        VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$drink_type', '$price', '$volume');";
+    $conn->query($sql);
+}
+
+#Remove drink
+if(isset($_POST['delete_drink'])) {
+  $drinkID = $_POST['delete_drink'];
+  $sql = "DELETE FROM drink_relationship
+          WHERE drink_id=$drinkID AND bar_id=$barID;";
+  $conn->query($sql);
+}
+
+
 # Remove tag
 if(isset($_POST['remove_tag'])) {
     $tagID = $_POST['remove_tag'];
@@ -251,7 +289,7 @@ if (isset($_POST['barID'])) {
                         </td>
                     </tr>
                 </table>
-                
+
                 <table id="existingDrinks" class="aboutBar">
                     <tr>
                         <th>Drink</th>
@@ -281,8 +319,8 @@ if (isset($_POST['barID'])) {
 
     echo '              </datalist>
                         <td><input type="number" id="vol" name="vol" placeholder="ml" min=2 step=1"></td>
-                        <td><input type="number" id="price" value="" placeholder="in kr" min=10 step=1"></td>                     
-                        <td><button type="button" class="add">add</button></td>
+                        <td><input type="number" id="price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td><button type="submit" class="add" name="add_drink" value="submit" formaction="">Add drink</button></td>
                         <td></td>
                     </tr>';
     foreach ($result_drinks as $drink) {
@@ -292,10 +330,10 @@ if (isset($_POST['barID'])) {
                         <td>" . $drink['volume'] . "</td>
                         <td>" . $drink['price'] . "</td>
                         <td><button type='button' class='modify'>edit</button></td>
-                        <td><button type='button' class='delete'>delete</button></td>
+                        <td><button type='button' class='delete' name='delete_drink'>delete</button></td>
                     </tr>";
     }
-                    
+
     echo '      </table>
                 <div class="saveBtn">
                     <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
@@ -318,7 +356,7 @@ else {
             </form>
                 <!--<div class="aboutBar">
                     <label for="">Menu:</label>
-                    
+
                 </div>-->
         </div>
     </div>
