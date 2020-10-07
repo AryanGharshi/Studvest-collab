@@ -223,6 +223,8 @@ $conn->close();
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 </head>
 
+<body id="body-add">
+
 <?php include('header.php'); ?>
 <div class="welcome">
     <div class="mainEdit">

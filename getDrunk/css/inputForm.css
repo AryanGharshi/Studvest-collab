@@ -1,9 +1,15 @@
 body{
     font-size:13px;
-    /*position: relative;*/
     position: fixed;
 }
 
+#body-add {
+    position: relative;
+}
+
+#body-main {
+    position: fixed;
+}
 
 .main{
     width:70vw;
