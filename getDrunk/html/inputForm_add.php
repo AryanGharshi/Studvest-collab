@@ -25,7 +25,7 @@ if(isset($_POST['create_bar'])) {
     $description = $_POST['description'];
     $website = $_POST['website'];
     $phone = $_POST['phone'];
-    if ($phone='') {$phone='Null';}
+    if ($phone=='') {$phone='Null';}
     $location = $_POST['location'];
 
     # Add bar into the database
