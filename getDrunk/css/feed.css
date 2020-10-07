@@ -1,3 +1,7 @@
+:root {
+  --main-width: min(60em, 100vw);
+}
+
 
 .background{
   display: grid;
@@ -18,64 +22,40 @@ h1{
 
 .wrapper {
   display: grid;
+  margin-top: 2em;
   grid-template-row: 50% 50%;
-  grid-row-gap: 30px;
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  width: var(--main-width);
+  margin-left: calc((100vw - var(--main-width))/2);
+  margin-right: calc((100vw - var(--main-width))/2);
 }
 
-.examplebar {
-  margin-top: 30px;
-  height: 220px;
+.bar-container {
+  height: 18em;
   position: relative;
   background-size: cover;
   background-position: center;
-  margin-left: 3vh;
-  margin-right: 3vh;
-  border-radius: 15px;
+  border-radius: 0.3em;
   box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
 }
 
-.barTags{
+.bar-container .bar-details{
   position: absolute;
-  background-color: rgb(27,27,27);opacity: 0.8;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  height: 80px;
-  width: 100%;
+  background-color: rgba(27, 27, 27, 0.4);
+  border-bottom-left-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
+  height: 5em;
+  width: calc((var(--main-width)- 2em)/2);
   bottom: 0px;
+  padding: 0.7em;
 }
 
 
-.examplebar .barText {
-  position: absolute;
-  font-size: 12px;
-  bottom: 30px;
-  left: 150px;
-  z-index: 1;
-}
-
-.tag{
-    padding: 0.3em;
-    margin-right: 0.3em;
-    margin-bottom: 0.3em;
-    border-width: 0;
-    border-radius: 1.2em;
-    background-color: var(--color-highlight-background);
-    font-size: 0.8em;
-    text-transform: lowercase;
-    color: var(--color-background);
-}
-
-.ellipse {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  bottom: 70px;
-  left: 20px;
-  border-radius: 50%;
-  background-color: white;
-  display: inline-block;
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(159, 159, 159, 0.901042) 0.01%, rgba(255, 255, 255, 0) 100%);
-  visibility: hidden;
+.bar-container .bar-details .bar-name {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
 }
 
 .ellipse .barlogo img {
@@ -97,15 +77,12 @@ h1{
   .wrapper {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-column-gap: 30px;
   }
 
-  .examplebar {
+  .bar-container {
     display: grid;
     grid-template-columns: 20% 60% 20%;
     align-content: space-around;
-    margin-right: 90px;
-    margin-left: 60px;
   }
 
 }

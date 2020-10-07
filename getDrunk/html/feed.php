@@ -62,19 +62,9 @@
           }
             echo '
         <a href="barView.php?barID=' . $elem[0] . '">
-            <div class="examplebar" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%), url(' . $elem[2] . ')">
-                <div class="barText">
-                    <h1>' . $elem[1] . '</h1>
-                </div>
-                <div class="ellipse">
-                <!--
-                    <div class="barlogo">
-                        <img src="http://www.heidisbierbar.no/media/heidisbierbar_finallogo.png" alt="Bar Logo">
-                    </div>
-                    -->
-                </div>
-
-                <span class="barTags">
+            <div class="bar-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%), url(' . $elem[2] . ')">
+                <span class="bar-details">
+                    <h1 class="bar-name">' . $elem[1] . '</h1>
                 ';
                 foreach ($tags as $i) {
                   if ($i[0] == $elem[0]){
