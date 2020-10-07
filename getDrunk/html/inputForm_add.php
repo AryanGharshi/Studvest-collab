@@ -60,10 +60,6 @@ if(isset($_POST['add_drink'])) {
     $price = $_POST['price'];
     $volume = $_POST['vol'];
 
-    # Add new drink to drink table
-    $sql = "INSERT INTO drink(name)
-                        VALUES('$drink')
-                        ON DUPLICATE KEY UPDATE id=id;";
 
     # Add new drink type to drink_type table
     $sql = "INSERT INTO drink_type(name)
@@ -72,13 +68,15 @@ if(isset($_POST['add_drink'])) {
     $conn->query($sql);
 
     # Connect drink name to drink_type ID
-    $sql = "INSERT INTO drink(name, drink_type_id)
-                        VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type'));";
+    $sql = "INSERT INTO drink(id, name, drink_type_id)
+                        VALUES ((SELECT id FROM drink WHERE name='$drink'), '$drink', (SELECT id FROM drink_type WHERE name='$drink_type'))
+                        ON DUPLICATE KEY UPDATE id=id;";
     $conn->query($sql);
 
     # Connect drink table to drink_relationship table
-    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, size)
+    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, drink_type, price, size)
                         VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$drink_type', '$price', '$volume');";
+                        echo $sql;
     $conn->query($sql);
 }
 
@@ -182,6 +180,7 @@ if (isset($barID)) {
                        WHERE drink_relationship.bar_id=$barID
                        ORDER BY drink_type, menu, drink_name";
             $result_drinks = ($conn->query($sql_drinks));
+            echo $sql_drinks;
         }
 
         # Load and store the pictures of the bar
