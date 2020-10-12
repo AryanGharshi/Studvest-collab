@@ -67,16 +67,19 @@ if(isset($_POST['add_drink'])) {
                         ON DUPLICATE KEY UPDATE id=id;";
     $conn->query($sql);
 
-    # Connect drink name to drink_type ID
-    $sql = "INSERT INTO drink(id, name, drink_type_id)
-                        VALUES ((SELECT id FROM drink WHERE name='$drink'), '$drink', (SELECT id FROM drink_type WHERE name='$drink_type'))
-                        ON DUPLICATE KEY UPDATE id=id;";
-    $conn->query($sql);
+    # Checks if drink is already in column. If yes: Update. If not: Add new and connect drink name to drink_type ID
+    $qry=mysqli_query($conn, "SELECT id, name FROM drink WHERE name='$drink' AND id=id");
+    $rowcheck=mysqli_num_rows($qry);
+      if ($rowcheck>0) {
+        $qry=mysqli_query($conn, "UPDATE drink SET name='$drink' WHERE name='$drink'");
+      }
+      else {
+        $qry=mysqli_query($conn, "INSERT INTO drink(name, drink_type_id) VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type')) ON DUPLICATE KEY UPDATE id=id");
+      }
 
     # Connect drink table to drink_relationship table
-    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, drink_type, price, size)
+    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, size)
                         VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$drink_type', '$price', '$volume');";
-                        echo $sql;
     $conn->query($sql);
 }
 
