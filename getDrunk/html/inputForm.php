@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 </head>
 
-<body>
+<body id="body-main">
 <?php
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
-    function addDataEntry($section, $name) {
+    /*function addDataEntry($section, $name) {
         return "INSERT INTO $section (name) VALUES ('$name') ON DUPLICATE KEY UPDATE name='$name'";
     }
     $conn -> query(addDataEntry('bar', 'test_bar1'));
@@ -23,7 +23,7 @@
     $conn -> query(addDataEntry('drink', 'test_drink1'));
     $conn -> query(addDataEntry('drink', 'test_drink2'));
     $conn -> query(addDataEntry('drink_type', 'test_type1'));
-    $conn -> query(addDataEntry('drink_type', 'test_type2'));
+    $conn -> query(addDataEntry('drink_type', 'test_type2'));*/
 
     # Process POST-statements to delete/modify
     if(isset($_POST['del'])){
