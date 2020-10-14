@@ -160,11 +160,20 @@ if (isset($barID)) {
                 $info["location"] = $row["location"];
             }
 
-            # Load list of all drink types
+            # Load list of all drink types (not only the current bar)
             $sql_all_drink_types = "SELECT drink_type.name, id FROM drink_type;";
             $result_all_drink_types = ($conn->query($sql_all_drink_types));
 
-            # Load list of all drinks
+            # Load list of all existing menus for this bar
+            $sql_all_menus = "SELECT DISTINCT drink_relationship.menu AS name
+                              FROM drink_relationship
+                              LEFT JOIN drink ON drink_relationship.drink_id=drink.id
+                              LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
+                              WHERE drink_relationship.bar_id=$barID
+                              ORDER BY menu";
+            $result_all_menus = ($conn->query($sql_all_menus));
+
+            # Load list of all drinks (not only the current bar)
             $sql_all_drinks = "SELECT id, name FROM drink;";
             $result_all_drinks = ($conn->query($sql_all_drinks));
 
@@ -292,11 +301,23 @@ if (isset($_POST['barID'])) {
     echo '
                         </td>
                     </tr>
-                </table>
+                </table>';
 
+    echo       '<datalist id="drinkList">';
+    foreach ($result_all_drinks as $drink) { echo '<option value="'. $drink['name'] . '">'; }
+    echo       '</datalist>';
+    echo       '<datalist id="drinkTypeList">';
+    foreach ($result_all_drink_types as $drink_type) { echo '<option value="'. $drink_type['name'] . '">'; }
+    echo       '</datalist>';
+    echo       '<datalist id="menuList">';
+    foreach ($result_all_menus as $menu) { echo '<option value="'. $menu['name'] . '">'; }
+    echo       '</datalist>';
+
+    echo '
                 <table id="existingDrinks" class="aboutBar">
                     <tr>
                         <th>Drink</th>
+                        <th>Type</th>
                         <th>Menu</th>
                         <th>Volume (in ml)</th>
                         <th>Price (in kr)</th>
@@ -304,24 +325,9 @@ if (isset($_POST['barID'])) {
                         <th></th>
                     </tr>
                     <tr class="drinkInp">
-                        <td>
-                            <input type="text" id="drink" name="drink" placeholder="Drink" list="drinkList">
-                        </td>
-                        <datalist id="drinkList">';
-    foreach ($result_all_drinks as $drink) {
-       echo '               <option value="'. $drink['name'] . '">';
-    }
-
-    echo '              </datalist>
-                        <td>
-                            <input type="text" id="menu" name="menu" value="" placeholder="Menu" list="menuList">
-                        </td>
-                        <datalist id="menuList">';
-    foreach ($result_all_drink_types as $drink_type) {
-        echo '               <option value="'. $drink_type['name'] . '">';
-    }
-
-    echo '              </datalist>
+                        <td><input type="text" id="drink" name="drink" placeholder="Drink" list="drinkList"></td>
+                        <td><input type="text" id="drink_type" name="drink_type" value="" list="drinkTypeList"></td>
+                        <td><input type="select" id="menu" name="menu"></td>
                         <td><input type="number" id="vol" name="vol" placeholder="ml" min=2 step=1"></td>
                         <td><input type="number" id="price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
                         <td><button type="submit" class="add" name="add_drink" value="submit" formaction="">Add drink</button></td>
@@ -331,6 +337,7 @@ if (isset($_POST['barID'])) {
         echo "      <tr>
                         <td>" . $drink['drink_name'] . "</td>
                         <td>" . $drink['drink_type'] . "</td>
+                        <td>" . $drink['menu'] . "</td>
                         <td>" . $drink['volume'] . "</td>
                         <td>" . $drink['price'] . "</td>
                         <td><button type='button' class='modify'>edit</button></td>
