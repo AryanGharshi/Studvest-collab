@@ -150,7 +150,9 @@ $conn->close();
             <!-- GENERAL INFORMATION ABOUT BAR (NAME, DESCRIPTION, TAGS) -->
 
             <div class="bar-header">
-                <div id="name"><?php echo $info['name']?></div>
+                <div id="name"><?php echo $info['name']?>
+
+                </div>
                 <?php
                 if($info['location']!='') {
                     printf('<div class="btn" id="btn-location">');
@@ -218,7 +220,9 @@ $conn->close();
                 <div id="drinks">
                     <?php
 
-                    while ($drink = $result_drinks->fetch_assoc()) {
+                    $drink = $result_drinks->fetch_assoc();
+
+                    while ($drink != NULL) {
 
                         $tab_name = $drink['drink_type'];
 
@@ -263,7 +267,7 @@ $conn->close();
 
             <script>
 
-                show_drink_tab(<?php print($min_drink_id); ?>)
+                show_drink_tab(<?php echo $min_drink_id; ?>);
 
                 function show_drink_tab(id) {
 
