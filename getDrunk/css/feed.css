@@ -1,5 +1,5 @@
 :root {
-  --main-width: min(60em, 100vw);
+  --main-width: min(60em, 100%);
 }
 
 
@@ -22,13 +22,10 @@ h1{
 
 .wrapper {
   display: grid;
-  margin-top: 2em;
   grid-template-row: 50% 50%;
-  grid-column-gap: 2em;
-  grid-row-gap: 2em;
   width: var(--main-width);
-  margin-left: calc((100vw - var(--main-width))/2);
-  margin-right: calc((100vw - var(--main-width))/2);
+  margin: auto;
+  margin-top: 2em;
 }
 
 .bar-container {
@@ -38,15 +35,16 @@ h1{
   background-position: center;
   border-radius: 0.3em;
   box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
+  margin: 1em;
 }
 
 .bar-container .bar-details{
   position: absolute;
-  background-color: rgba(27, 27, 27, 0.4);
+  background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 50%);
   border-bottom-left-radius: 0.3em;
   border-bottom-right-radius: 0.3em;
   height: 5em;
-  width: calc((var(--main-width)- 2em)/2);
+  /*width: calc(var(--main-width) / 2 - 1.4em);*/
   bottom: 0px;
   padding: 0.7em;
 }
