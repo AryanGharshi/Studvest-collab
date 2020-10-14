@@ -45,17 +45,17 @@ body{
     margin-top: 0;
     border-bottom: solid #777777 1px;
     width:330px;
-    height: 35px;
+    height: 60px;
 }
 
 
 .modify, .delete, .add_btn, .tag{
     outline: none;
-    margin-top: 6px;
+    margin-top: 20px;
     margin-right:12px;
     border-radius: 3px;
     background-color: inherit;
-    font-size: inherit;
+    font-size: 16px;
     float:right;
     cursor: pointer;
 }
@@ -69,6 +69,7 @@ body{
 }
 
 .delete{
+  font-size: 16px;
     float:right;
     border: #CB1919 solid 1px;
     color:#CB1919;
@@ -76,8 +77,8 @@ body{
 
 .add_btn{
     display: none;
-    padding-left: 14.3px;
-    padding-right: 14.3px;
+    padding-left: 16.5px;
+    padding-right: 16.5px;
     color: green;
     border: 1px solid green;
     cursor: pointer;
@@ -95,12 +96,12 @@ body{
 
 .main .item input{
     margin: 0 auto;
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 0;
     float: left;
     width: auto;
     padding-bottom: 0;
-    margin-top: 6px;
+    margin-top: 20px;
     color: #777777;
     border-bottom: none;
     padding-left: 6px;
@@ -139,7 +140,6 @@ body{
 /************* pop_up ***********/
 .popup{
     margin: 0 auto;
-    width:448px;
     height: auto;
     border: 1px solid #222222;
     display:none;
@@ -148,7 +148,7 @@ body{
 .popup .content{
     margin: 0 auto;
     margin-top:180px;
-    width:440px;
+    width:520px;
     border: 1px solid #888888;
     border-radius: 5px;
     padding-top: 40px;
@@ -159,11 +159,12 @@ body{
     background: #222222;
     float:left;
     padding:0;
-    margin-left:40px;
+    margin-left:78px;
     margin-bottom: 5px;
     text-align: left;
 }
 .popup .content p{
+  font-size: 16px;
     text-align: left;
 }
 .popup .change input{
@@ -190,44 +191,48 @@ body{
 }
 
 #popup_1 .item{
-  width: 380px;
+  width: 510px;
+  /*width: 380px;*/
   height:60px;
 }
 
 #popup_1 .item input{
-  width: 174px;
+  width: 150px;
+  margin-left: 21px;
+font-size: 16px;
+margin-top: 20px;
 }
 
 #popup_1 .itemblock{
-  width: 420px;
+  width: 550px;
 }
 
 
 #popup_1 .content{
-  width: 490px;
+  width: 680px;
 }
 
 #popup_1 .content p{
   display: block;
-  width: 420px;
+  width: 550px;
 }
 
 #popup_1 .itemblock .item .drink{
-  width: 254px;
+  /*width:620px;*/
   height: 41px;
 /*  border: 1px solid grey;**/
   float: left;
 }
 #popup_1 .itemblock .item .button{
-  padding-top: 14px;
-  width: 126px;
+  font-size: 16px;
+  width: 150px;
   float: left;
   height: 41px;
   /*border: 1px solid grey;*/
 }
 
 #popup_1 h1 {
-  margin-left: 33px
+  margin-left: 64px
 }
 
 
@@ -254,7 +259,7 @@ body{
     padding-left: 18px;
     padding-right: 18px;
     color:#777777;
-
+    border: #777777 solid 2px;
 }
 
 @media only screen and (max-width: 580px){
