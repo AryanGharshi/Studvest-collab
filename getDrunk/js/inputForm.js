@@ -1,5 +1,3 @@
-
-
 document.addEventListener('click', function(e) {
     // event listener listens on every single object of the document
     console.log(e);
@@ -16,7 +14,23 @@ document.addEventListener('click', function(e) {
 
     if(clicked_object.matches('.close')) {                                       // checks if the clicked element is from class 'close'
       window.location.replace("http://i.studvest.no/barguide/html/inputForm.php")
-
-
     }
   })
+
+document.addEventListener('change', function(e) {
+    // event listener listens on every single object of the document
+    console.log(e);
+    let clicked_object = e.target;
+    // checks which element was clicked
+    if(clicked_object.matches('input#drink')) {       // checks if the clicked element is from class 'btn'
+        let target_object = document.getElementById('drink_type');
+        let drink_type = mapping_drinkTypeId_selectIdx[mapping_drink_drinkTypeId[clicked_object.value]];
+        if(drink_type!=null) {
+            target_object.selectedIndex = mapping_drinkTypeId_selectIdx[mapping_drink_drinkTypeId[clicked_object.value]];
+            target_object.disabled = true;
+        }
+        else {
+            target_object.disabled = false;
+        }
+    }
+})

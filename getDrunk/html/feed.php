@@ -85,5 +85,6 @@
     <div class="background">
       <img class="city" src="../media/pictures/CityStudout.png">
     </div>
+
 </body>
 </html>
