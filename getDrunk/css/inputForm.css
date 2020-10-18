@@ -40,7 +40,7 @@ body{
 }
 .main p{
     margin: 0 auto;
-    width:360px;
+    width:400px;
     margin-top: 34.56px;
     padding-bottom: 30px;
     margin-bottom: 0;
@@ -50,7 +50,7 @@ body{
     margin: 0 auto;
     margin-top: 0;
     border-bottom: solid #777777 1px;
-    width:330px;
+    width:390px;
     height: 60px;
 }
 
@@ -105,7 +105,7 @@ body{
     font-size: 16px;
     margin-bottom: 0;
     float: left;
-    width: auto;
+    width: 150px;
     padding-bottom: 0;
     margin-top: 20px;
     color: #777777;
@@ -118,7 +118,7 @@ body{
 
 #are .input{
     height:38vh;
-    width:360px;
+    width:400px;
     margin: 0 auto;
     overflow-y:scroll;
     border-bottom: solid #777777 2px;
@@ -165,13 +165,14 @@ body{
     background: #222222;
     float:left;
     padding:0;
-    margin-left:78px;
+    margin-left:59px;
     margin-bottom: 5px;
     text-align: left;
 }
 .popup .content p{
   font-size: 16px;
     text-align: left;
+    clear: both;
 }
 .popup .change input{
     clear: both;
@@ -191,13 +192,13 @@ body{
 .popup .itemblock{
     height:279px;
     overflow-y:scroll;
-    width: 360px;
+    width: 400px;
     margin:0 auto;
-    border-bottom:1px solid #888888;
+    border-bottom:2px solid #888888;
 }
 
 #popup_1 .item{
-  width: 510px;
+  width: 540px;
   /*width: 380px;*/
   height:60px;
 }
@@ -221,6 +222,7 @@ margin-top: 20px;
 #popup_1 .content p{
   display: block;
   width: 550px;
+  clear: both;
 }
 
 #popup_1 .itemblock .item .drink{
@@ -231,7 +233,7 @@ margin-top: 20px;
 }
 #popup_1 .itemblock .item .button{
   font-size: 16px;
-  width: 150px;
+  width: auto;
   float: left;
   height: 41px;
   /*border: 1px solid grey;*/
