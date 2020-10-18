@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
     <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 </head>

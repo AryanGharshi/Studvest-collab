@@ -3,6 +3,10 @@ body{
     position: fixed;
 }
 
+input[type="text"]:disabled, input[type="number"]:disabled {
+    opacity: 0.5;
+}
+
 #body-add {
     position: relative;
 }
@@ -65,9 +69,15 @@ body{
     float:right;
     cursor: pointer;
 }
+
+.modify:disabled, .delete:disabled, .add:disabled, .add_btn:disabled, .tag:disabled{
+    opacity: 0.2;
+}
+
 .add_btn{
     display:none;
 }
+
 .modify{
     float:right;
     border: #FFC700 solid 1px;

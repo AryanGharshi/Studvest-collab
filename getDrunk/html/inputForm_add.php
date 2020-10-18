@@ -97,35 +97,33 @@ if(isset($_POST['remove_image'])) {
 #Add drink to bar
 if(isset($_POST['add_drink'])) {
     $drink = $_POST['drink'];
-    $drink_type = $_POST['menu'];
+    $drink_type = $_POST['drink_type'];
+    $menu = $_POST['menu'];
     $price = $_POST['price'];
     $volume = $_POST['vol'];
 
-    # Add new drink type to drink_type table
-    $sql = "INSERT INTO drink_type(name)
-                        VALUES('$drink_type')
-                        ON DUPLICATE KEY UPDATE id=id;";
+    # Add new drink if it doesn't exist
+    $sql = "INSERT INTO drink(name, drink_type_id) 
+            VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type')) 
+            ON DUPLICATE KEY UPDATE id=id";
     $conn->query($sql);
 
-    # Checks if drink is already in column. If yes: Update. If not: Add new and connect drink name to drink_type ID
-    $qry=mysqli_query($conn, "SELECT id, name FROM drink WHERE name='$drink' AND id=id");
-    $rowcheck=mysqli_num_rows($qry);
-    if ($rowcheck>0) {
-        $qry=mysqli_query($conn, "UPDATE drink SET name='$drink' WHERE name='$drink'");
-    }
-    else {
-        $qry=mysqli_query($conn, "INSERT INTO drink(name, drink_type_id) VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type')) ON DUPLICATE KEY UPDATE id=id");
+    # If drink was modified, unassign old drink from bar before adding the new one.
+    if($_POST['add_drink']!="new") {
+        $sql = "DELETE FROM drink_relationship WHERE drink_id=" .$_POST['add_drink']. " AND bar_id=$barID;";
+        $conn->query($sql);
     }
 
-    # Connect drink table to drink_relationship table
+    # Assign new drink to bar
     $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, size)
-                        VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$drink_type', '$price', '$volume');";
+                        VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$menu', '$price', '$volume')
+                        ON DUPLICATE KEY UPDATE price=$price, size=$volume;";
     $conn->query($sql);
 
     # Jump back into input form
     echo '<script>
                   window.onload = function() {
-                       document.getElementById("drink").focus();
+                       document.getElementById("existingDrinks").focus();
                   }
               </script>';
 }
@@ -176,11 +174,15 @@ if (isset($barID)) {
             $result_all_menus = ($conn->query($sql_all_menus));
 
             # Load list of all drinks (not only the current bar)
-            $sql_all_drinks = "SELECT id, name, drink_type_id FROM drink;";
+            $sql_all_drinks = "SELECT drink.id AS drink, 
+                                      drink.name AS name, 
+                                      drink_type.name AS drink_type 
+                               FROM drink 
+                               LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id;";
             $result_all_drinks = ($conn->query($sql_all_drinks));
 
             # Load list of drinks
-            $sql_drinks = "SELECT drink.id,
+            $sql_drinks = "SELECT drink.id AS id,
                               drink.name AS drink_name,
                               CONCAT(drink_relationship.price, ',-') AS price,
                               CONCAT(drink_relationship.student_price, ',-') AS student_price,
@@ -231,6 +233,7 @@ $conn->close();
     } else {
       echo "Edit bar";
     } ?></title>
+    <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
     <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
 </head>
@@ -307,7 +310,7 @@ if (isset($_POST['barID'])) {
     echo       '<datalist id="drinkList">';
     foreach ($result_all_drinks as $drink) {
         echo '<option value="'. $drink['name'] . '">';
-        $mapping_drink_drinkTypeId[$drink['name']] = intval($drink['drink_type_id']);
+        $mapping_drink_drinkType[$drink['name']] = $drink['drink_type'];
     }
     echo       '</datalist>';
     echo       '<datalist id="menuList">';
@@ -326,33 +329,35 @@ if (isset($_POST['barID'])) {
                         <th></th>
                     </tr>
                     <tr class="drinkInp">
-                        <td><input type="text" id="drink" name="drink" placeholder="Drink" list="drinkList"></td>
+                        <td><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList"></td>
                         <td>
-                            <select id="drink_type" name="drink_type">';
+                            <select id="add-type" name="drink_type">
+                                <option disabled selected value></option>';
 
     foreach ($result_all_drink_types as $drink_type) {
         $i = (isset($i) ? $i+1 : 1);
         echo '<option value="'. $drink_type['name'] . '">' . $drink_type['name']  . '</option>';
-        $mapping_drinkTypeId_selectIdx[$drink_type['id']] = $i;
+        $mapping_drinkType_selectIdx[$drink_type['name']] = $i;
     }
     echo '                  </select>
                         </td>
-                        <td><input type="text" id="menu" name="menu" list="menuList"></td>
-                        <td><input type="number" id="vol" name="vol" placeholder="ml" min=2 step=1"></td>
-                        <td><input type="number" id="price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
-                        <td><button type="submit" class="add" name="add_drink" value="submit" formaction="">Add drink</button></td>
+                        <td><input type="text" id="add-menu" name="menu" list="menuList"></td>
+                        <td><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1"></td>
+                        <td><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td><button type="submit" class="add" id="add-submit" name="add_drink" value="new" formaction="">Add drink</button></td>
                         <td></td>
                     </tr>';
 
     foreach ($result_drinks as $drink) {
+        $id = $drink['id'];
         echo "      <tr>
-                        <td>" . $drink['drink_name'] . "</td>
-                        <td>" . $drink['drink_type'] . "</td>
-                        <td>" . $drink['menu'] . "</td>
-                        <td>" . $drink['volume'] . "</td>
-                        <td>" . $drink['price'] . "</td>
-                        <td><button type='button' class='modify'>edit</button></td>
-                        <td><button type='button' class='delete' name='delete_drink'>delete</button></td>
+                        <td id='drink-$id-name'>" . $drink['drink_name'] . "</td>
+                        <td id='drink-$id-type'>" . $drink['drink_type'] . "</td>
+                        <td id='drink-$id-menu'>" . $drink['menu'] . "</td>
+                        <td id='drink-$id-volume'>" . $drink['volume'] . "</td>
+                        <td id='drink-$id-price'>" . $drink['price'] . "</td>
+                        <td id='drink-$id-modify'><button type='button' class='modify' onclick ='modify($id)'>modify</button></td>
+                        <td id='drink-$id-delete'><button type='submit' class='delete' name='delete_drink' value=" . $drink['id'] . ">delete</button></td>
                     </tr>";
     }
 
@@ -381,8 +386,8 @@ else {
 </div>
 
 <script>
-    let mapping_drink_drinkTypeId = <?php echo json_encode($mapping_drink_drinkTypeId, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
-    let mapping_drinkTypeId_selectIdx = <?php echo json_encode($mapping_drinkTypeId_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
 </script>
 <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
 
