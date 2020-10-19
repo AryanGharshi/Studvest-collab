@@ -6,6 +6,7 @@
     --color-primary: #a0a0a0;
     --color-secondary: #666;
     --color-background: #1b1b1b;
+    --color-background-soft: #222222;
     --color-highlight-text: #3489a1;
     --color-highlight-background: #2c7090 ;
 }
@@ -78,7 +79,7 @@ a:active {
 }
 
 .tag{
-    padding: 0.3em;
+    padding: 0.3em 0.5em;
     margin-right: 0.3em;
     margin-bottom: 0.3em;
     border-width: 0;

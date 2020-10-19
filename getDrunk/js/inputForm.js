@@ -1,21 +1,4 @@
-document.addEventListener('click', function(e) {
-    // event listener listens on every single object of the document
-    console.log(e);
-    let clicked_object = e.target;
-                                                 // checks which element was clicked
-    if(clicked_object.matches('.btn') || clicked_object.matches('.add')) {       // checks if the clicked element is from class 'btn'
-        let target_popup_id = clicked_object.getAttribute('value')
-        console.log(target_popup_id);              // reads the id of the target popup from value attribute (<button type='button' class='btn' value="popup_1">)
-        let target_popup = document.getElementById(target_popup_id);             // retrieves the object with the respective id
-        target_popup.style.display='block';                                      // displays the popup
-        document.getElementById('are').style.display='none';           // hides the main div
-        document.getElementById('side_foot').style.display='none';     // hides the footer
-    }
 
-    if(clicked_object.matches('.close')) {                                       // checks if the clicked element is from class 'close'
-      window.location.replace("http://i.studvest.no/barguide/html/inputForm.php")
-    }
-  })
 
 document.addEventListener('change', function(e) {
 
@@ -53,13 +36,13 @@ function modify(drink_id) {
     let td_modify = document.getElementById('drink-'+drink_id+'-modify');
 
     // transform static text into dynamic input fields
-    td_name.innerHTML = "<input type='text'    id='mod-drink' name='drink' value='"+td_name.innerHTML+"' list='drinkList'>";
-    td_menu.innerHTML = "<input type='text'    id='mod-menu'  name='menu' value='"+td_menu.innerHTML+"' list='menuList'>";
-    td_vol.innerHTML = "<input type='number'   id='mod-vol'   name='vol'   value='"+td_vol.innerHTML.slice(0, -2)+"' min=2 step=1>";
-    td_price.innerHTML = "<input type='number' id='mod-price' name='price' value='"+td_price.innerHTML.slice(0, -2)+"' min=10 step=1>";
+    td_name.innerHTML = "<input type='text' class='input-drink' id='mod-drink' name='drink' value='"+td_name.innerHTML+"' list='drinkList'>";
+    td_menu.innerHTML = "<input type='text' class='input-menu' id='mod-menu'  name='menu' value='"+td_menu.innerHTML+"' list='menuList'>";
+    td_vol.innerHTML = "<input type='number' class='input-vol' id='mod-vol'   name='vol'   value='"+td_vol.innerHTML.slice(0, -2)+"' min=2 step=1>";
+    td_price.innerHTML = "<input type='number' class='input-price' id='mod-price' name='price' value='"+td_price.innerHTML.slice(0, -2)+"' min=10 step=1>";
 
     // add select box for drink types
-    let select_box = "<select id='mod-type' name='drink_type' disabled>";
+    let select_box = "<select class='input-type' id='mod-type' name='drink_type' disabled>";
     for (const key of Object.keys(mapping_drinkType_selectIdx)) {
         select_box += "<option value='"+key+"'>"+key+"</option>"
     }
@@ -80,4 +63,19 @@ function modify(drink_id) {
 
     // display add button
     td_modify.innerHTML = "<button type='submit' class='add' name='add_drink' value="+drink_id+" formaction=''>save</button>";
+}
+
+function req_modify(id, columns) {
+
+    // transform static text into dynamic input fields
+    columns.forEach(element => document.getElementById(element+id).disabled = false);
+
+
+    // disable all modify/delete buttons
+    document.querySelectorAll('.modify').forEach(function(button) { button.disabled = true; });
+    document.querySelectorAll('.delete').forEach(function(button) { button.disabled = true; });
+
+    // display save button
+    document.getElementById('add'+id).style.display = 'inline';
+    document.getElementById('mod'+id).style.display = 'none';
 }

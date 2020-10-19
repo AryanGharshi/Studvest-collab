@@ -241,99 +241,103 @@ $conn->close();
 <body id="body-add">
 
 <?php include('header.php'); ?>
-<div class="welcome">
-    <div class="mainEdit">
-        <div class="edit">
-            <h1>Edit Bar</h1>
 
-            <form id="editBar" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="barID" value=<?php echo($barID); ?>>
-                <table class="aboutBar">
-                    <tr>
-                        <td><label for="name">Name:</label></td>
-                        <td><input type="text" id="name" name="name" value="<?php echo($info["name"]); ?>" placeholder="Enter bar name"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="location">Location:</label></td>
-                        <td><input type="text" id="address" name="location" value="<?php echo($info["location"]); ?>" placeholder="Enter address"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="website">Website:</label></td>
-                        <td><input type="text" id="website" name="website" value="<?php echo($info["website"]); ?>" placeholder="Enter website"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="phone">Phone:</label></td>
-                        <td><input type="number" id="phone" name="phone" value="<?php echo($info["phone"]); ?>" placeholder="Enter phone"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="description">Description:</label></td>
-                        <td><textarea name="description" rows="8" cols="80" id="description" form="editBar" placeholder="Enter description"><?php echo($info["description"]); ?></textarea></td>
-                    </tr>
-
+<div id="wrapper">
+    <h1>Edit bar.</h1>
+    <div id="left-column">
+        <form id="editBar" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="barID" value=<?php echo($barID); ?>>
+            <table class="aboutBar">
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" name="name" value="<?php echo($info["name"]); ?>" placeholder="Enter bar name"></td>
+                </tr>
+                <tr>
+                    <td><label for="location">Location:</label></td>
+                    <td><input type="text" id="address" name="location" value="<?php echo($info["location"]); ?>" placeholder="Enter address"></td>
+                </tr>
+                <tr>
+                    <td><label for="website">Website:</label></td>
+                    <td><input type="text" id="website" name="website" value="<?php echo($info["website"]); ?>" placeholder="Enter website"></td>
+                </tr>
+                <tr>
+                    <td><label for="phone">Phone:</label></td>
+                    <td><input type="number" id="phone" name="phone" value="<?php echo($info["phone"]); ?>" placeholder="Enter phone"></td>
+                </tr>
+                <tr>
+                    <td><label for="description">Description:</label></td>
+                    <td><textarea name="description" rows="8" cols="80" id="description" form="editBar" placeholder="Enter description"><?php echo($info["description"]); ?></textarea></td>
+                </tr>
 <?php
 if (isset($_POST['barID'])) {
     echo '
-                    <tr>
-                        <td><label for="tags">Tags:</label></td>
-                        <td><input type="text" name="tag" value="" placeholder="Add new tag"><br></td>
-                        <td><button type="submit" class="add" name="add_tag" value="submit" formaction="">Add tag</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>';
+                <tr>
+                    <td><label for="tags">Tags:</label></td>
+                    <td><input type="text" name="tag" value="" placeholder="Add new tag"><br></td>
+                    <td><button type="submit" class="add" name="add_tag" value="submit" formaction="">add</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>';
                         if ($result_tags->num_rows > 0) {
                             while ($tag = $result_tags->fetch_assoc()) {
                                 printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] ."'>" . $tag['tag_name'] .  "  &#10006;</button>");
                             }
                         }
     echo '
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="images">Images:</label></td>
-                        <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
-                        <td><button type="submit" class="add" name="add_image" value="submit" formaction="">Upload picture</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>';
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="images">Images:</label></td>
+                    <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
+                    <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>';
                         if ($result_pictures->num_rows > 0) {
                             while ($picture = $result_pictures->fetch_assoc()) {
                                 printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  "  &#10006;</button>");
                             }
                         }
     echo '
-                        </td>
-                    </tr>
-                </table>';
+                    </td>
+                </tr>'?>
+            </table>
+        </form>
+    </div>
 
-    echo       '<datalist id="drinkList">';
+    <div id="right-column" class="list">
+        <form id="editBar" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="barID" value=<?php echo($barID); ?>>
+
+            <?php
+    echo '   <datalist id="drinkList">';
     foreach ($result_all_drinks as $drink) {
         echo '<option value="'. $drink['name'] . '">';
         $mapping_drink_drinkType[$drink['name']] = $drink['drink_type'];
     }
-    echo       '</datalist>';
-    echo       '<datalist id="menuList">';
+    echo    '</datalist>';
+    echo    '<datalist id="menuList">';
     foreach ($result_all_menus as $menu) { echo '<option value="'. $menu['name'] . '">'; }
-    echo       '</datalist>';
+    echo    '</datalist>';
 
     echo '
-                <table id="existingDrinks" class="aboutBar">
-                    <tr>
-                        <th>Drink</th>
-                        <th>Main Menu</th>
-                        <th>Sub menu</th>
-                        <th>Volume (in ml)</th>
-                        <th>Price (in kr)</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr class="drinkInp">
-                        <td><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList"></td>
-                        <td>
-                            <select id="add-type" name="drink_type">
-                                <option disabled selected value></option>';
-
+             <table id="existingDrinks">
+                  <tr>
+                      <th>Drink</th>
+                      <th>Main Menu</th>
+                      <th>Sub menu</th>
+                      <th>Volume (in ml)</th>
+                      <th>Price (in kr)</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+                  <tr class="drinkInp">
+                      <td><input type="text" class="input-drink" id="add-drink" name="drink" placeholder="Drink" list="drinkList"></td>
+                      <td>
+                          <select class="input-type" id="add-type" name="drink_type">
+                              <option disabled selected value></option>';
     foreach ($result_all_drink_types as $drink_type) {
         $i = (isset($i) ? $i+1 : 1);
         echo '<option value="'. $drink_type['name'] . '">' . $drink_type['name']  . '</option>';
@@ -341,10 +345,10 @@ if (isset($_POST['barID'])) {
     }
     echo '                  </select>
                         </td>
-                        <td><input type="text" id="add-menu" name="menu" list="menuList"></td>
-                        <td><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1"></td>
-                        <td><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
-                        <td><button type="submit" class="add" id="add-submit" name="add_drink" value="new" formaction="">Add drink</button></td>
+                        <td><input type="text" class="input-menu" id="add-menu" name="menu" list="menuList"></td>
+                        <td><input type="number" class="input-vol" id="add-vol" name="vol" placeholder="ml" min=2 step=1"></td>
+                        <td><input type="number" class="input-price" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td><button type="submit" class="add" id="add-submit" name="add_drink" value="new" formaction="">add</button></td>
                         <td></td>
                     </tr>';
 
@@ -357,40 +361,28 @@ if (isset($_POST['barID'])) {
                         <td id='drink-$id-volume'>" . $drink['volume'] . "</td>
                         <td id='drink-$id-price'>" . $drink['price'] . "</td>
                         <td id='drink-$id-modify'><button type='button' class='modify' onclick ='modify($id)'>modify</button></td>
-                        <td id='drink-$id-delete'><button type='submit' class='delete' name='delete_drink' value=" . $drink['id'] . ">delete</button></td>
+                        <td id='drink-$id-delete'><button type='submit' class='delete' name='delete_drink' value=$id>delete</button></td>
                     </tr>";
     }
 
     echo '      </table>
-                <div class="saveBtn">
-                    <button type="submit" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
-                </div>';
+                <center><button type="submit" class="btn-nav" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button></center>';
 }
 
 else {
-    echo '
-                    <tr>
-                        <td></td>
-                        <td>
-                        <div class="saveBtn">
-                            <button type="submit" name="create_bar" value="submit" formaction="">Create bar</button>
-                        </div>
-                        </td>
-                    </tr>
-                </table>';
+    echo '  <tr><td></td><td>  
+            <button type="submit" class="btn-nav" name="create_bar" value="submit" formaction="">Create bar</button></td></table>';
 }
 ?>
-            </form>
-        </div>
+        </form>
     </div>
 </div>
 
-<script>
-    let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
-    let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
-</script>
-<script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
-
+    <script>
+        let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+        let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    </script>
+    <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
 
 </body>
 </html>

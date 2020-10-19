@@ -10,29 +10,20 @@
 </head>
 
 <body id="body-main">
+
+<!-- SQL COMMANDS -->
 <?php
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
-    /*function addDataEntry($section, $name) {
-        return "INSERT INTO $section (name) VALUES ('$name') ON DUPLICATE KEY UPDATE name='$name'";
-    }
-    $conn -> query(addDataEntry('bar', 'test_bar1'));
-    $conn -> query(addDataEntry('bar', 'test_bar2'));
-    $conn -> query(addDataEntry('tag', 'test_tag1'));
-    $conn -> query(addDataEntry('tag', 'test_tag2'));
-    $conn -> query(addDataEntry('drink', 'test_drink1'));
-    $conn -> query(addDataEntry('drink', 'test_drink2'));
-    $conn -> query(addDataEntry('drink_type', 'test_type1'));
-    $conn -> query(addDataEntry('drink_type', 'test_type2'));*/
-
-    # Process POST-statements to delete/modify
+    # Delete Drinks / Drink Types / Tags / Bars
     if(isset($_POST['del'])){
         $id = (int) $_POST['del'];
         $section = $_POST['section'];
         $sql_del = "DELETE FROM $section WHERE id=$id";
         $conn->query($sql_del);
 
+        # When deleting a bar, also unlink all the images
         if($section=='bar') {
             $picture_directory = "../media/pictures/$id/";
             if(is_dir($picture_directory)) {
@@ -45,224 +36,244 @@
         }
     }
 
+    # Add Drinks / Drink Types / Tags
     if(isset($_POST['add'])){
-        $newName = $_POST['name'];
         $section = $_POST['section'];
+        $newName = $_POST['name'];
         $id = $_POST['add'];
-        $sql_regi = "UPDATE $section
+        if($section == 'drink') {
+            $sql = "UPDATE drink
+                    SET name='$newName', drink_type_id=" . $_POST['drink_type'] . "
+                    WHERE id=$id";
+            $conn->query($sql);
+        }
+        elseif($section == 'drink_type') {
+            $sql = "UPDATE drink_type
+                    SET name='$newName', img_url_inactive='".$_POST['img_url_inactive']."', img_url_active='".$_POST['img_url_active']."'
+                    WHERE id=$id";
+            $conn->query($sql);
+        }
+        elseif($section == 'tag') {
+            $sql = "UPDATE $section
                     SET $section.name='$newName'
                     WHERE $section.id=$id";
-        print($sql_regi);
-        $conn->query($sql_regi);
+            $conn->query($sql);
+        }
     }
 
-    # Process POST-statements to delete/modify
-    if(isset($_POST['update_bar'])){
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $website = $_POST['website'];
-        $phone = $_POST['phone'];
-        $location = $_POST['location'];
-        $id = $_POST['barID'];
-        $sql = "UPDATE bar
-                SET name='$name',
-                    description='$description',
-                    website='$website',
-                    phone=$phone,
-                    location='$location'
-                WHERE id=$id";
-        $conn->query($sql);
-    }
-
-    # Retrieve data from the database
+    # Load Data from the Database
     $sql_bar = "SELECT * FROM bar";
     $result_bar = ($conn->query($sql_bar));
     $sql_drink_type = "SELECT * FROM drink_type";
     $result_drink_types = ($conn->query($sql_drink_type));
+    $options_all_drink_types='';
+    foreach($result_drink_types as $drink_type) {
+        $options_all_drink_types .= "<option value='" . $drink_type["id"] . "'>" . $drink_type["name"] . "</option>";
+    }
+    $result_drink_types = ($conn->query($sql_drink_type));
     $sql_tags = "SELECT * FROM tag";
     $result_tags = ($conn->query($sql_tags));
-    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, drink_type.name AS drink_type FROM drink INNER JOIN drink_type ON drink.drink_type_id = drink_type.id";
+    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, drink_type.name AS drink_type 
+                   FROM drink 
+                   INNER JOIN drink_type ON drink.drink_type_id = drink_type.id";
     $result_drinks = ($conn->query($sql_drinks));
 
     $conn->close();
 ?>
-<div class="welcome" >
-    <?php include('header.php'); ?>
-    <div class="main" id='addBar' >
-        <div id="are">
+
+<!-- LOAD HEADER -->
+<?php include('header.php'); ?>
+
+    <div id="main">
+        <div class="above-list">
             <h1>Welcome back.</h1>
-            <a href="inputForm_add.php" class="add" id='addNewBar'>Add new bar</a>
-            <p class="change">Modify the information for an existing bar</p>
-            <div class="input">
-            <?php
-            while($currentRow = mysqli_fetch_array($result_bar)) {
-                $name = $currentRow['name'];
-                $id = $currentRow['id'];
-                $n = 'barname'.$id;
-                $input = 'barinput'.$id;
-                echo "<div class='item' id='$n' >
-                      <form action='' method='post' onsubmit='return sub(".'"barinput"'.",$id,$input)'>
-                          <input name='barName' value='$name' id='$input' disabled=false/>
-                          <input type='hidden' name='barID' value='$id' id='$input'>
-                          <input type='hidden' name='section' value='bar'>
-                          <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
-                          <button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button>
-                      </form>
-                      </div> ";
-            }
-            ?>
-            </div>
-          </div>
-
-        <div id="popup_1" class="popup">
-          <div  class="content">
-            <h1>Manage drinks</h1>
-            <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-            <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink.</p>
-            <div class='itemblock'>
-            <?php
-            while($currentRow = mysqli_fetch_array($result_drinks)) {
-                $name = $currentRow['name'];
-                $id=$currentRow['id'];
-                $type=$currentRow['drink_type'];
-                $n='drinks'.$id;
-                $input = 'drinksinput'.$id;
-                $typeofinput = 'typeofdrinksinput'.$id;
-                echo "<div class='item' id='$n'>
-                      <form action='' method='post'>
-                      <div class='drink'>
-                      <input name='name' value='$name' id='$input' disabled=false/>
-                      <input class='type' name='name' value='$type' id='$typeofinput' disabled=false/>
-                      <input type='hidden' name='section' value='drink'>
-                      </div>
-                      <div class='button'>
-                      <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
-                      <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"drinksinput"'.",$id,$input,$n,".'"typeofdrinksinput"'.")'>modify</button>
-                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
-                      </div>
-                      </form>
-                      </div>";
-            }
-            ?>
-            </div>
-          </div>
+            <a href="inputForm_add.php">
+                <button class="btn-nav" id='addNewBar'>Create new bar</button>
+            </a>
         </div>
 
-        <div id="popup_2" class="popup">
-          <div  class="content">
-            <h1>Mange tags</h1>
-            <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-            <p class="change">Please be careful! Your changes will affect all bars that have this tag assigned.</p>
-            <div class='itemblock'>
-            <?php
-            while($currentRow = mysqli_fetch_array($result_tags)) {
-                $name = $currentRow['name'];
-                $id=$currentRow['id'];
-                $n='tags'.$id;
-                $type=$currentRow['drink_type'];
-                $input = 'tagsinput'.$id;
-                echo "<div class='item' id='$n'>
-                      <form action='' method='post'>
-                      <input name='name' value='$name' id='$input' disabled=false/>
-                      <input type='hidden' name='section' value='tag'>
-                      <button type='submit' class='delete' id='delete$input' name='req_del' value=$id>delete</button>
-                      <button type='button' class='modify' id='modify$input' onclick ='reg(".'"tagsinput"'.",$id,$input,$n,2)'>modify</button>
-                      <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
-                      </form>
-                      </div>";
-            }
-            ?>
-            </div>
-          </div>
-        </div>
-
-        <div id="popup_3" class="popup">
-            <div  class="content">
-              <h1 >Mange types of drinks</h1>
-              <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-              <p class="change">Please be careful! Your changes will affect all bars.</p>
-              <div class='itemblock'>
-              <?php
-              while($currentRow = mysqli_fetch_array($result_drink_types)) {
-                  $name = $currentRow['name'];
-                  $id=$currentRow['id'];
-                  $n='menus'.$id;
-                  $input = 'menusinput'.$id;
-                  echo "<div class='item' id='$n'>
-                        <form action='' method='post'>
-                        <input name='name' value='$name' id='$input' disabled=false/>
-                        <input type='hidden' name='section' value='drink_type'>
-                        <button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button>
-                        <button type='button' class='modify' name='regi' id='modify$input' onclick ='reg(".'"menusinput"'.",$id,$input,$n,1)'>modify</button>
-                        <button type='submit' class='add_btn' name='add' value=$id id='submit$input'>add</button>
-
-                        </form>
-                        </div>";
-              }
-              ?>
-              </div>
-            </div>
-        </div>
-
-        <div id="popup_confirmation" class="popup">
-            <div  class="content">
-                <h1>Are you sure?</h1>
-                <img src="../media/icons/exit_white.png" alt="cancel" class="close" id="close">
-                <p class="change">This action cannot be undone. Do you really want to delete this item?.</p>
+        <div class="list">
+            <p>Modify the information for an existing bar:</p>
+            <table>
                 <?php
-                $id = (int) $_POST['req_del'];
-                $section = $_POST['section'];
-                echo "<form action='' method='post'>
-                          <input type='hidden' name='section' value='$section'>
-                          <button type='submit' class='delete' name='del' value=$id>delete</button>
-                          <button type='submit' class='modify' name='keep'>keep</button>
-                      </form>";
+                while($currentRow = mysqli_fetch_array($result_bar)) {
+                    $name = $currentRow['name'];
+                    $id = $currentRow['id'];
+                    $n = 'barname'.$id;
+                    $input = 'barinput'.$id;
+                    echo "
+                <tr id='$n'>
+                    <form action='' method='post' onsubmit='return sub(".'"barinput"'.",$id,$input)'>
+                        <td>$name</td>
+                        <input type='hidden' name='barID' value='$id' id='$input'>
+                        <input type='hidden' name='section' value='bar'>
+                        <td><button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button></td>
+                        <td><button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button></td>
+                    </form>
+                </tr>";
+                }
                 ?>
-
-            </div>
+            </table>
         </div>
 
-        <div class='side_foot' id='side_foot'>
-            <button type='button' class='btn' section="drinks" value="popup_1">Mange drinks</button>
-            <button type='button' class='btn' section="tags" value="popup_2">Mange tags</button>
-            <button type='button' class='btn' section="drink_type" value="popup_3">Mange types of drink</button>
+        <div class='footer'>
+            <form action='' method='post'>
+                <button type='submit' class='btn-nav' name='section' value='drink'>Manage drinks</button>
+                <button type='submit' class='btn-nav' name='section' value='tag'>Manage tags</button>
+                <button type='submit' class='btn-nav' name='section' value='drink_type'>Manage main menus</button>
+            </form>
         </div>
     </div>
-</div>
-  <?php
-      if($_POST['section']=='tag') {
-          echo "<script>
-                  document.getElementById('are').style.display='none';           // hides the main div
-                  document.getElementById('side_foot').style.display='none';     // hides the footer
-                  let target_popup = document.getElementById('popup_2');         // retrieves the object with the respective id
-                  target_popup.style.display='block';
-                 </script>";
-      }
 
-      elseif ($_POST['section']=='drink_type') {
-          echo "<script>
-                  document.getElementById('are').style.display='none';           // hides the main div
-                  document.getElementById('side_foot').style.display='none';     // hides the footer
-                  let target_popup = document.getElementById('popup_3');             // retrieves the object with the respective id
-                  target_popup.style.display='block';
-                 </script>";
-      }
-      elseif ($_POST['section']=='drink') {
-          echo "<script>
-                  document.getElementById('are').style.display='none';           // hides the main div
-                  document.getElementById('side_foot').style.display='none';     // hides the footer
-                  let target_popup = document.getElementById('popup_1');             // retrieves the object with the respective id
-                  target_popup.style.display='block';
-                 </script>";
-      }
-      if(isset($_POST['req_del'])){
-          echo "<script>
-                  document.getElementById('are').style.display='none';           // hides the main div
-                  document.getElementById('side_foot').style.display='none';     // hides the footer
+    <div id="popup_drink" class="popup">
+        <h1>Manage drinks</h1>
+        <form action='' method='post'><input type="image" name="submit" src="../media/icons/exit_white.png" alt="submit" class="btn-close"></form>
+        <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink. Changes cannot be undone.</p>
+        <div class="list">
+            <table>
+                <tr>
+                    <th>Drink</th>
+                    <th>Main menu</th>
+                    <th></th>
+                </tr>
+                <?php
+                while($currentRow = mysqli_fetch_array($result_drinks)) {
+                    $name = $currentRow['name'];
+                    $id=$currentRow['id'];
+                    $type=$currentRow['drink_type'];
+                    $columns = json_encode(['name', 'drink_type']);
+                    echo "
+                <tr id='$n'>
+                    <form action='' method='post'>
+                        <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
+                        <td><select id='drink_type$id' name='drink_type' disabled>" . str_replace(">".$type, "selected='selected'>".$type, $options_all_drink_types) . "</select></td>
+                        <input type='hidden' name='section' value='drink'>
+                        <td>
+                            <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
+                            <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
+                        </td>
+                        <td>
+                            <button type='submit' id='del$id' name='req_del' class='delete' value=$id>delete</button>
+                        </td>
+                    </form>
+                </tr>";
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+
+    <div id="popup_tag" class="popup">
+        <h1>Manage tags</h1>
+        <form action='' method='post'><input type="image" name="submit" src="../media/icons/exit_white.png" alt="submit" class="btn-close"></form>
+        <p>Please be careful! Your changes will affect all bars that have this tag assigned. Changes cannot be undone.</p>
+        <div class="list">
+            <table>
+                <tr>
+                    <th>Tag name</th>
+                    <th></th>
+                </tr>
+                <?php
+                while($currentRow = mysqli_fetch_array($result_tags)) {
+                    $name = $currentRow['name'];
+                    $id=$currentRow['id'];
+                    $n='tags'.$id;
+                    $type=$currentRow['drink_type'];
+                    $input = 'tagsinput'.$id;
+                    $columns = json_encode(['name']);
+                    echo "
+                <tr id='$n'>
+                    <form action='' method='post'>
+                        <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
+                        <input type='hidden' name='section' value='tag'>
+                        <td>
+                            <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
+                            <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
+                        </td>
+                        <td>
+                            <button type='submit' id='del$id' name='req_del' class='delete' value=$id>delete</button>
+                        </td>
+                    </form>
+                </tr>";
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+
+    <div id="popup_drink_type" class="popup">
+        <h1>Manage main menus</h1>
+        <form action='' method='post'><input type="image" name="submit" src="../media/icons/exit_white.png" alt="submit" class="btn-close"></form>
+        <p>Please be careful! Your changes will affect all bars. Changes cannot be undone.</p>
+        <div class="list">
+            <table>
+                <tr>
+                    <th>Main menu</th>
+                    <th>Icon (grey)</th>
+                    <th>Icon (blue)</th>
+                    <th></th>
+                </tr>
+                <?php
+                while($currentRow = mysqli_fetch_array($result_drink_types)) {
+                    $name = $currentRow['name'];
+                    $id=$currentRow['id'];
+                    $img_url_inactive=$currentRow['img_url_inactive'];
+                    $img_url_active=$currentRow['img_url_active'];
+                    $n='menus'.$id;
+                    $input = 'menusinput'.$id;
+                    $columns = json_encode(['name', 'img_url_inactive', 'img_url_active']);
+                    echo "
+                    <tr id='$n'>
+                        <form action='' method='post'>
+                            <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
+                            <td><input type='text' id='img_url_inactive$id' name='img_url_inactive' value='$img_url_inactive' disabled></td>
+                            <td><input type='text' id='img_url_active$id' name='img_url_active' value='$img_url_active' disabled></td>
+                            <input type='hidden' name='section' value='drink_type'>
+                            <td>
+                                <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
+                                <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
+                            </td>
+                            <td>
+                                <button type='submit' id='del$id' name='req_del' class='delete' value=$id>delete</button>
+                            </td>
+                        </form>
+                    </tr>";
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+
+    <div id="popup_confirmation" class="popup">
+        <h1>Are you sure?</h1>
+        <p>This action cannot be undone. Do you really want to delete this item?.</p>
+        <?php
+        $id = (int) $_POST['req_del'];
+        $section = $_POST['section'];
+        echo "
+        <form action='' method='post'>
+            <input type='hidden' name='section' value='$section'>
+            <button type='submit' class='delete' name='del' value=$id>delete</button>
+            <button type='submit' class='modify' name='keep'>keep</button>
+        </form>";
+        ?>
+    </div>
+
+<?php
+    if(isset($_POST['section'])) {
+        echo "<script>
+                  target_popup = document.getElementById('popup_" . $_POST['section'] . "').style.display='block';
+                  document.getElementById('main').style.opacity = '0.3';
+              </script>";
+    }
+
+    if(isset($_POST['req_del'])){
+        echo "<script>
                   document.getElementById('popup_confirmation').style.display='block';
-                </script>";
-      }
-  ?>
+                  document.getElementById('main').style.opacity = '0.3';
+              </script>";
+    }
+    ?>
 
   <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
   <script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>
