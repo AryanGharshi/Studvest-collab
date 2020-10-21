@@ -47,7 +47,7 @@ if ($result_barInfos->num_rows > 0) {
                           drink.name AS drink_name,
                           CONCAT(drink_relationship.price, ',-') AS price,
                           CONCAT(drink_relationship.student_price, ',-') AS student_price,
-                          CONCAT(drink_relationship.size, 'l') AS volume,
+                          drink_relationship.size AS volume,
                           drink_relationship.menu AS menu,
                           drink_type.name AS drink_type,
                           drink_type.id AS drink_type_id
@@ -106,7 +106,9 @@ $conn->close();
 
     <!-- TITLE BAR -->
 
-    <?php include('header.php'); ?>
+    <a href="feed.php">
+        <?php include('header.php'); ?>
+    </a>
 
     <div class="main">
 
@@ -247,6 +249,9 @@ $conn->close();
                             echo("</tr>");
 
                             while ($menu_name === $drink['menu']) {
+
+                                // Change the number format
+                                $drink[volume] = $drink[volume] >= 100 ? $drink[volume]/1000 . 'l' : $drink[volume]/10 . 'cl';
 
                                 echo("<tr>");
                                 echo("<td class='col-drink'>$drink[drink_name]</td>");

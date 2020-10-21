@@ -11,6 +11,7 @@ body{
 
 #body-main {
     position: fixed;
+    width: 100%;
     text-align: center;
 }
 
@@ -27,6 +28,13 @@ h1{
     font-weight: normal;
 }
 
+
+
+/** HEADER **/
+
+.header {
+    background-color: grey;
+}
 
 
 

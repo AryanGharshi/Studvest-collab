@@ -228,19 +228,17 @@ $conn->close();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
-    <title><?php if (isset($info["name"])) {
-      echo $info["name"];
-    } else {
-      echo "Edit bar";
-    } ?></title>
+    <title><?php echo (isset($info["name"])) ? $info["name"] : "Create bar";?></title>
     <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
-    <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
+    <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
 </head>
 
 <body id="body-add">
 
-<?php include('header.php'); ?>
+<a href="inputForm.php">
+    <?php include('header.php'); ?>
+</a>
 
 <div id="wrapper">
     <h1>Edit bar.</h1>

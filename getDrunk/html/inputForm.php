@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
-    <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
+    <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
 </head>
 
 <body id="body-main">
@@ -82,7 +82,10 @@
 ?>
 
 <!-- LOAD HEADER -->
-<?php include('header.php'); ?>
+
+    <a href="inputForm.php">
+        <?php include('header.php'); ?>
+    </a>
 
     <div id="main">
         <div class="above-list">

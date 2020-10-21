@@ -50,10 +50,9 @@
 
 
 <body>
-    <?php include('header.php'); ?>
-    <div class="title">
-
-    </div>
+    <a href="feed.php">
+        <?php include('header.php'); ?>
+    </a>
     <div class="wrapper">
         <?php
         foreach ($bars as $elem) {
