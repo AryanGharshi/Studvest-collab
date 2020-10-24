@@ -100,6 +100,7 @@ if(isset($_POST['add_drink'])) {
     $drink_type = $_POST['drink_type'];
     $menu = $_POST['menu'];
     $price = $_POST['price'];
+    $student_price = $_POST['student-price'];
     $volume = $_POST['vol'];
 
     # Add new drink if it doesn't exist
@@ -110,20 +111,20 @@ if(isset($_POST['add_drink'])) {
 
     # If drink was modified, unassign old drink from bar before adding the new one.
     if($_POST['add_drink']!="new") {
-        $sql = "DELETE FROM drink_relationship WHERE drink_id=" .$_POST['add_drink']. " AND bar_id=$barID;";
+        $sql = "DELETE FROM drink_relationship WHERE drink_id=" .$_POST['add_drink']. " AND menu=$menu AND bar_id=$barID;";
         $conn->query($sql);
     }
 
     # Assign new drink to bar
-    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, size)
-                        VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$menu', '$price', '$volume')
-                        ON DUPLICATE KEY UPDATE price=$price, size=$volume;";
+    $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, student_price, size)
+                        VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$menu', '$price', '$student_price', '$volume')
+                        ON DUPLICATE KEY UPDATE menu='$menu', price=$price, student_price=$student_price, size=$volume;";
     $conn->query($sql);
 
     # Jump back into input form
     echo '<script>
                   window.onload = function() {
-                       document.getElementById("existingDrinks").focus();
+                       document.getElementById("add-drink").focus();
                   }
               </script>';
 }
@@ -186,7 +187,7 @@ if (isset($barID)) {
                               drink.name AS drink_name,
                               CONCAT(drink_relationship.price, ',-') AS price,
                               CONCAT(drink_relationship.student_price, ',-') AS student_price,
-                              CONCAT(drink_relationship.size, 'ml') AS volume,
+                              CONCAT(drink_relationship.size, ' ml') AS volume,
                               drink_relationship.menu AS menu,
                               drink_type.name AS drink_type,
                               drink_type.id AS drink_type_id
@@ -194,7 +195,7 @@ if (isset($barID)) {
                        LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                        LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                        WHERE drink_relationship.bar_id=$barID
-                       ORDER BY drink_type, menu, drink_name";
+                       ORDER BY drink_name";
             $result_drinks = ($conn->query($sql_drinks));
         }
 
@@ -240,9 +241,9 @@ $conn->close();
     <?php include('header.php'); ?>
 </a>
 
-<div id="wrapper">
-    <h1>Edit bar.</h1>
+<div id="main">
     <div id="left-column">
+        <h1>General Information</h1>
         <form id="editBar" method="post" enctype="multipart/form-data">
             <input type="hidden" name="barID" value=<?php echo($barID); ?>>
             <table class="aboutBar">
@@ -305,10 +306,12 @@ if (isset($_POST['barID'])) {
         </form>
     </div>
 
+    <h1 id="drink-menu-title">Drink Menu</h1>
+    <button type="submit" class="btn-nav" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
     <div id="right-column" class="list">
+        <div style="float: left;  display: inline; height: 40px">
         <form id="editBar" method="post" enctype="multipart/form-data">
             <input type="hidden" name="barID" value=<?php echo($barID); ?>>
-
             <?php
     echo '   <datalist id="drinkList">';
     foreach ($result_all_drinks as $drink) {
@@ -321,20 +324,21 @@ if (isset($_POST['barID'])) {
     echo    '</datalist>';
 
     echo '
-             <table id="existingDrinks">
+             <table id="drink-menu-table">
                   <tr>
                       <th>Drink</th>
                       <th>Main Menu</th>
                       <th>Sub menu</th>
-                      <th>Volume (in ml)</th>
-                      <th>Price (in kr)</th>
+                      <th>Volume</th>
+                      <th>Normal Price</th>
+                      <th>Student Price</th>
                       <th></th>
                       <th></th>
                   </tr>
                   <tr class="drinkInp">
-                      <td><input type="text" class="input-drink" id="add-drink" name="drink" placeholder="Drink" list="drinkList"></td>
-                      <td>
-                          <select class="input-type" id="add-type" name="drink_type">
+                      <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList"></td>
+                      <td class="td-drink-type">
+                          <select id="add-type" name="drink_type">
                               <option disabled selected value></option>';
     foreach ($result_all_drink_types as $drink_type) {
         $i = (isset($i) ? $i+1 : 1);
@@ -343,28 +347,28 @@ if (isset($_POST['barID'])) {
     }
     echo '                  </select>
                         </td>
-                        <td><input type="text" class="input-menu" id="add-menu" name="menu" list="menuList"></td>
-                        <td><input type="number" class="input-vol" id="add-vol" name="vol" placeholder="ml" min=2 step=1"></td>
-                        <td><input type="number" class="input-price" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
-                        <td><button type="submit" class="add" id="add-submit" name="add_drink" value="new" formaction="">add</button></td>
+                        <td class="td-menu"><input type="text" id="add-menu" name="menu" list="menuList"></td>
+                        <td class="td-vol"><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1"></td>
+                        <td class="td-price"><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td class="td-price"><input type="number" id="add-student-price" name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="add" value="new" formaction="">add</button></td>
                         <td></td>
                     </tr>';
 
     foreach ($result_drinks as $drink) {
         $id = $drink['id'];
         echo "      <tr>
-                        <td id='drink-$id-name'>" . $drink['drink_name'] . "</td>
-                        <td id='drink-$id-type'>" . $drink['drink_type'] . "</td>
-                        <td id='drink-$id-menu'>" . $drink['menu'] . "</td>
-                        <td id='drink-$id-volume'>" . $drink['volume'] . "</td>
-                        <td id='drink-$id-price'>" . $drink['price'] . "</td>
-                        <td id='drink-$id-modify'><button type='button' class='modify' onclick ='modify($id)'>modify</button></td>
-                        <td id='drink-$id-delete'><button type='submit' class='delete' name='delete_drink' value=$id>delete</button></td>
+                        <td id='drink-$id-name' class='td-drink'>" . $drink['drink_name'] . "</td>
+                        <td id='drink-$id-type' class='td-drink-type'>" . $drink['drink_type'] . "</td>
+                        <td id='drink-$id-menu' class='td-menu'>" . $drink['menu'] . "</td>
+                        <td id='drink-$id-volume' class='td-volume'>" . $drink['volume'] . "</td>
+                        <td id='drink-$id-price' class='td-price'>" . $drink['price'] . "</td>
+                        <td id='drink-$id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
+                        <td id='drink-$id-modify' class='td-submit'><button type='button' class='modify' onclick ='modify($id)'>modify</button></td>
+                        <td id='drink-$id-delete' class='td-submit'><button type='submit' class='delete' name='delete_drink' value=$id>delete</button></td>
                     </tr>";
     }
-
-    echo '      </table>
-                <center><button type="submit" class="btn-nav" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button></center>';
+    echo '      </table>';
 }
 
 else {
@@ -373,6 +377,7 @@ else {
 }
 ?>
         </form>
+        </div>
     </div>
 </div>
 

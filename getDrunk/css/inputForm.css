@@ -1,27 +1,26 @@
 /** BASIC SETTINGS **/
 
 :root {
-    --main-width: min(90em, 100vw);
+    --main-width: min(100em, 100vw);
     --main-width-popup: min(75em, 60vw);
 }
 
 body{
-    font-size: 0.9em;
+    font-size: 0.8em;
+    position: absolute;
+    width: 100%;
 }
 
 #body-main {
-    position: fixed;
-    width: 100%;
     text-align: center;
 }
 
 #body-add {
-    position: relative;
     text-align: left;
 }
 
 h1{
-    font-size: 2em;
+    font-size: 1.5em;
     color: #3895A9;
     margin-top: 0;
     font-style: normal;
@@ -42,10 +41,10 @@ h1{
 
 #main{
     width: var(--main-width);
-    height: 100vh;
+    height: calc(100vh - 3.5em - 2em - 2em); /** 3.5em is the height of the header, 2em the padding **/
     margin: 0 auto;
     background-color: var(--color-background-soft);
-    padding-top: 3em;
+    padding: 2em;
     z-index: -1;
 }
 
@@ -54,18 +53,18 @@ h1{
 }
 
 #left-column {
-    width: 30vw;
+    width: 30%;
+    height: 100%;
     float: left;
-    margin-right: 2em;
-    padding: 0;
+    margin: 0;
+    padding-right: 2em;
 }
 
 #right-column {
-    width: 63.5vw;
-    height: auto;
+    width: calc(70% - 2em);
+    height: calc(100% - 2.17em); /** 2.17em = Height header **/
     float: left;
     margin: 0;
-    padding: 0;
 }
 
 .footer {
@@ -82,7 +81,7 @@ h1{
 /** BUTTONS **/
 
 .modify, .delete, .add {
-    font-size: 0.9em;
+    font-size: 0.8em;
     outline: none;
     border-radius: 3px;
     background-color: inherit;
@@ -120,6 +119,11 @@ h1{
     color:#777777;
     border: #777777 solid 1px;
     cursor: pointer;
+}
+
+#btn-nav-save {
+    float: right;
+    margin: 0;
 }
 
 .btn-close {
@@ -160,6 +164,8 @@ h1{
 .list th {
     font-weight: bold;
     padding: 0.4em;
+    position: sticky;
+    top: 0;
 }
 
 
@@ -186,7 +192,12 @@ h1{
 
 /** FORM/SCROLL CONTROLS **/
 
-.list input[type="text"]:disabled, input[type="number"]:disabled, select:disabled {
+input, textarea, select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.list input:disabled, select:disabled {
     background-color: transparent;
     border: none;
     color: var(--color-primary);
@@ -194,7 +205,7 @@ h1{
     opacity: 1;
 }
 
-.list input[type="text"], input[type="number"], select {
+.list input, select {
     background-color: #dddddd;
     border: none;
     color: var(--color-background);
@@ -219,8 +230,12 @@ h1{
 
 /** BAR DETAILS**/
 
+.aboutBar {
+    font-size: inherit;
+    table-layout: fixed;
+}
+
 .aboutBar input, textarea {
-    width: 18vw;
     color: #dddddd;
     background: #292929;
     border: #292929;
@@ -240,14 +255,49 @@ h1{
 
 /** DRINK MENU **/
 
+#drink-menu-title {
+    display: inline;
+    float: left;
+}
+
 #drink-menu-table {
-    height: 70vh;
+    width: 100%;
+    border: none;
+    font-size: inherit;
 }
 
-.input-vol, .input-price, .input-type {
-    width: 7vw;
+#drink-menu-table tbody {
+    height: 10%; /** 2.17em = Height of header **/
+    display: block;
 }
 
-.input-menu, .input-drink  {
-    width: 13.75vw;
+#drink-menu-table td, th {
+    border: none;
 }
+
+#drink-menu-table tr:nth-child(even) {
+    background: #2A2A2A
+}
+
+#drink-menu-table .td-drink, .td-menu {
+    width: 30%;
+}
+
+#drink-menu-table .td-menu {
+    width: 20%;
+}
+
+#drink-menu-table .td-drink-type {
+    width: 15%;
+}
+
+#drink-menu-table .td-volume, .td-price {
+    width: 10%;
+}
+
+#drink-menu-table .td-submit {
+    padding-left: 0;
+    padding-right: 0;
+    width: min-content;
+}
+
