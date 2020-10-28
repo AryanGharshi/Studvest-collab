@@ -21,7 +21,7 @@ body{
 
 h1{
     font-size: 1.5em;
-    color: #3895A9;
+    color: var(--col-highlight);
     margin-top: 0;
     font-style: normal;
     font-weight: normal;
@@ -43,7 +43,7 @@ h1{
     width: var(--main-width);
     height: calc(100vh - 3.5em - 2em - 2em); /** 3.5em is the height of the header, 2em the padding **/
     margin: 0 auto;
-    background-color: var(--color-background-soft);
+    background-color: var(--col-background);
     padding: 2em;
     z-index: -1;
 }
@@ -92,18 +92,18 @@ h1{
 }
 
 .modify{
-    border: #FFC700 solid 1px;
-    color: #FFC700;
+    border: var(--col-yellow) solid 1px;
+    color: var(--col-yellow);
 }
 
 .delete{
-    border: #CB1919 solid 1px;
-    color:#CB1919;
+    border: var(--col-red) solid 1px;
+    color: var(--col-red);
 }
 
 .add{
-    color: #1C7D20;
-    border: #1C7D20 solid 1px;
+    color: var(--col-green);
+    border: var(--col-green) solid 1px;
 }
 
 .modify:disabled, .delete:disabled, .add:disabled {
@@ -116,8 +116,8 @@ h1{
     border-radius: 3px;
     background-color: transparent;
     padding: 0.3em 0.5em;
-    color:#777777;
-    border: #777777 solid 1px;
+    color: var(--col-secondary);
+    border: var(--col-secondary) solid 1px;
     cursor: pointer;
 }
 
@@ -151,11 +151,11 @@ h1{
     text-align: left;
     border-spacing: 0;
     border-collapse: collapse;
-    border-bottom: 1px solid var(--color-primary) ;
+    border-bottom: 1px solid var(--col-primary) ;
 }
 
 .list td {
-    border-top: 1px solid var(--color-primary) ;
+    border-top: 1px solid var(--col-primary) ;
     border-left: none;
     border-right: none;
     padding: 0.4em;
@@ -166,6 +166,7 @@ h1{
     padding: 0.4em;
     position: sticky;
     top: 0;
+    background-color: var(--col-background);
 }
 
 
@@ -181,9 +182,9 @@ h1{
     position: absolute;
     top: 0;
     bottom: 0;
-    background-color: var(--color-background-soft);
+    background-color: var(--col-background);
     z-index: 1;
-    border: 1px solid #888888;
+    border: 1px solid var(--col-primary);
     border-radius: 5px;
     padding: 1.5em;
 }
@@ -200,15 +201,15 @@ input, textarea, select {
 .list input:disabled, select:disabled {
     background-color: transparent;
     border: none;
-    color: var(--color-primary);
+    color: var(--col-primary);
     padding: 0;
     opacity: 1;
 }
 
 .list input, select {
-    background-color: #dddddd;
+    background-color: var(--col-primary);
     border: none;
-    color: var(--color-background);
+    color: var(--col-background-dark);
     padding: 0.2em;
 }
 
@@ -236,9 +237,9 @@ input, textarea, select {
 }
 
 .aboutBar input, textarea {
-    color: #dddddd;
-    background: #292929;
-    border: #292929;
+    color: var(--col-primary);
+    background: var(--col-background-dark);
+    border: var(--col-background-dark);
     border-radius: 1px;
 }
 
@@ -276,7 +277,7 @@ input, textarea, select {
 }
 
 #drink-menu-table tr:nth-child(even) {
-    background: #2A2A2A
+    background-color: #2A2A2A
 }
 
 #drink-menu-table .td-drink, .td-menu {

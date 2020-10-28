@@ -43,7 +43,7 @@
   position:absolute;
   top:45%;
   left:50%;
-  border-bottom:4px solid #2c7090;
+  border-bottom:4px solid var(--col-highlight);
   width:0%;
   text-align:center;
   animation: line 1s linear forwards;

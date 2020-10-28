@@ -37,15 +37,15 @@ function modify(drink_id) {
     let td_modify        = document.getElementById('drink-'+drink_id+'-modify');
 
     // transform static text into dynamic input fields
-    td_name.innerHTML = "<input type='text' class='input-drink' id='mod-drink' name='drink' value='"+td_name.innerHTML+"' list='drinkList'>";
+    td_name.innerHTML = "<input type='text' class='input-drink' id='mod-drink' name='drink' value='"+td_name.innerHTML+"' list='drinkList' required>";
     td_menu.innerHTML = "<input type='text' class='input-menu' id='mod-menu'  name='menu' value='"+td_menu.innerHTML+"' list='menuList'>";
-    td_vol.innerHTML = "<input type='number' class='input-vol' id='mod-vol'   name='vol'   value='"+td_vol.innerHTML.slice(0, -3)+"' min=2 step=1>";
-    td_price.innerHTML = "<input type='number' class='input-price' id='mod-price' name='price' value='"+td_price.innerHTML.slice(0, -2)+"' min=10 step=1>";
+    td_vol.innerHTML = "<input type='number' class='input-vol' id='mod-vol'   name='vol'   value='"+td_vol.innerHTML.slice(0, -3)+"' min=2 step=1 required>";
+    td_price.innerHTML = "<input type='number' class='input-price' id='mod-price' name='price' value='"+td_price.innerHTML.slice(0, -2)+"' min=10 step=1 required>";
     td_student_price.innerHTML = "<input type='number' class='input-price' id='mod-student-price' name='student-price' value='"+td_student_price.innerHTML.slice(0, -2)+"' min=10 step=1>";
 
 
     // add select box for drink types
-    let select_box = "<select class='input-type' id='mod-type' name='drink_type' disabled>";
+    let select_box = "<select class='input-type' id='mod-type' name='drink_type' disabled required>";
     for (const key of Object.keys(mapping_drinkType_selectIdx)) {
         select_box += "<option value='"+key+"'>"+key+"</option>"
     }

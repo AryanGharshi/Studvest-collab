@@ -13,6 +13,6 @@ button{
     padding-bottom: 7px;
     padding-left: 18px;
     padding-right: 18px;
-    color:#777777;
-    border: 1px solid #777777;
+    color: var(--col-secondary);
+    border: 1px solid var(--col-secondary);
 }

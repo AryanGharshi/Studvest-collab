@@ -17,7 +17,7 @@
 }
 
 h1{
-  color: #e3e3e3;
+  color: var(--col-primary);
 }
 
 .wrapper {
@@ -66,8 +66,8 @@ h1{
 
 .underline {
   position: relative;
-  border-bottom: thin solid #2C7090;
-  color: #CFCFCF;
+  border-bottom: thin solid var(--col-highlight);
+  color: var(--col-primary);
   margin-bottom: 40px;
 }
 

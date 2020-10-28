@@ -2,12 +2,6 @@
 define("MAGICKEY", "ugugUGu221KHJBD84");
 require "../inc/connection/conn.php";
 
-function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-}
-
 # Retrieve the barID if available
 if(isset($_POST['barID'])) {
     $barID = $_POST['barID'];
@@ -249,11 +243,11 @@ $conn->close();
             <table class="aboutBar">
                 <tr>
                     <td><label for="name">Name:</label></td>
-                    <td><input type="text" id="name" name="name" value="<?php echo($info["name"]); ?>" placeholder="Enter bar name"></td>
+                    <td><input type="text" id="name" name="name" value="<?php echo($info["name"]); ?>" placeholder="Enter bar name" required></td>
                 </tr>
                 <tr>
                     <td><label for="location">Location:</label></td>
-                    <td><input type="text" id="address" name="location" value="<?php echo($info["location"]); ?>" placeholder="Enter address"></td>
+                    <td><input type="text" id="address" name="location" value="<?php echo($info["location"]); ?>" placeholder="Enter address" required></td>
                 </tr>
                 <tr>
                     <td><label for="website">Website:</label></td>
@@ -265,14 +259,14 @@ $conn->close();
                 </tr>
                 <tr>
                     <td><label for="description">Description:</label></td>
-                    <td><textarea name="description" rows="8" cols="80" id="description" form="editBar" placeholder="Enter description"><?php echo($info["description"]); ?></textarea></td>
+                    <td><textarea name="description" rows="8" cols="80" id="description" form="editBar" placeholder="Enter description" required><?php echo($info["description"]); ?></textarea></td>
                 </tr>
 <?php
 if (isset($_POST['barID'])) {
     echo '
                 <tr>
                     <td><label for="tags">Tags:</label></td>
-                    <td><input type="text" name="tag" value="" placeholder="Add new tag"><br></td>
+                    <td><input type="text" name="tag" value="" placeholder="Add new tag" required><br></td>
                     <td><button type="submit" class="add" name="add_tag" value="submit" formaction="">add</button></td>
                 </tr>
                 <tr>
@@ -336,9 +330,9 @@ if (isset($_POST['barID'])) {
                       <th></th>
                   </tr>
                   <tr class="drinkInp">
-                      <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList"></td>
+                      <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList" required></td>
                       <td class="td-drink-type">
-                          <select id="add-type" name="drink_type">
+                          <select id="add-type" name="drink_type" required>
                               <option disabled selected value></option>';
     foreach ($result_all_drink_types as $drink_type) {
         $i = (isset($i) ? $i+1 : 1);
@@ -348,8 +342,8 @@ if (isset($_POST['barID'])) {
     echo '                  </select>
                         </td>
                         <td class="td-menu"><input type="text" id="add-menu" name="menu" list="menuList"></td>
-                        <td class="td-vol"><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1"></td>
-                        <td class="td-price"><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td class="td-vol"><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1" required></td>
+                        <td class="td-price"><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1" required></td>
                         <td class="td-price"><input type="number" id="add-student-price" name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
                         <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="add" value="new" formaction="">add</button></td>
                         <td></td>

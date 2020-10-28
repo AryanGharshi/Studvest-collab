@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
     margin-left: calc((100vw - var(--main-width))/2);
     margin-right: calc((100vw - var(--main-width))/2);
     box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
-    background-color: var(--color-background);
+    background-color: var(--col-background-dark);
 }
 
 
@@ -76,7 +76,7 @@ body::-webkit-scrollbar {
 .gallery .icon {
     width: 2em;
     height: 2em;
-    color: var(--color-primary);
+    color: var(--col-primary);
 }
 
 
@@ -102,14 +102,14 @@ body::-webkit-scrollbar {
 .bar-header #name {
     padding-top: 0.3em;
     padding-bottom: 0.2em;
-    color: var(--color-highlight-text);
+    color: var(--col-highlight);
     font-size: 2em;
     float: left;
 }
 
 .bar-header .btn {
     border-width: 0;
-    background-color: var(--color-highlight-background);
+    background-color: var(--col-background-highlight);
     float: right;
     width: 3em;
     height: 3em;
@@ -133,7 +133,7 @@ body::-webkit-scrollbar {
 
 .bar-info #desc {
     padding-top: 0.7em;
-    color: var(--color-primary);
+    color: var(--col-primary);
     font-size: 0.9em;
 }
 
@@ -150,8 +150,8 @@ body::-webkit-scrollbar {
 .menu #tabs table {
     font-size: 0.7em;
     table-layout: fixed;
-    border-top: thin solid #2A2A2A;
-    border-bottom: thin solid #2A2A2A;
+    border-top: thin solid var(--col-background);
+    border-bottom: thin solid var(--col-background);
     width: 100%;
     text-align: center;
     cursor: pointer;
@@ -169,7 +169,7 @@ body::-webkit-scrollbar {
 }
 
 .menu #tabs .tab_cell {
-    color: var(--color-secondary);
+    color: var(--col-secondary);
 }
 
 .menu #drinks .menu-title {
@@ -186,7 +186,7 @@ body::-webkit-scrollbar {
 .menu #drinks th {
     vertical-align: bottom;
     font-size: 0.7em;
-    color:var(--color-secondary);
+    color:var(--col-secondary);
     text-align: center;
     font-weight: normal;
     padding: 0.3em;
@@ -197,25 +197,25 @@ body::-webkit-scrollbar {
 }
 
 .menu #drinks tr:nth-child(even) {
-    background: #2A2A2A
+    background: var(--col-background)
 }
 
 .menu #drinks .col-drink {
     width: 79em;
     text-align: left;
-    color: #838383;
+    color: var(--col-primary);
 }
 
 .menu #drinks .col-normal {
     width: 7em;
     text-align: center;
-    color: #838383;
+    color: var(--col-primary);
 }
 
 .menu #drinks .col-highlight {
     width: 7em;
     text-align: center;
-    color: var(--color-highlight-text);
+    color: var(--col-highlight);
 }
 
 

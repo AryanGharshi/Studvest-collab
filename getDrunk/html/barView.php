@@ -10,6 +10,12 @@
 define("MAGICKEY", "ugugUGu221KHJBD84");
 require "../inc/connection/conn.php";
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
+
 $barID = $_GET['barID'];
 
 # Get list of bar infos from database
@@ -248,7 +254,7 @@ $conn->close();
                             echo("<th>Normal</td>");
                             echo("</tr>");
 
-                            while ($menu_name === $drink['menu']) {
+                            while ($menu_name === $drink['menu'] && $tab_name === $drink['drink_type']) {
 
                                 // Change the number format
                                 $drink[volume] = $drink[volume] >= 100 ? $drink[volume]/1000 . 'l' : $drink[volume]/10 . 'cl';
@@ -283,14 +289,14 @@ $conn->close();
                     let all_tab_icons_inactive = document.getElementsByClassName("tab_icon_inactive");
 
                     for (let i = 0; i < all_tab_cells.length; i++) {
-                        all_tab_cells[i].style.color = 'var(--color-secondary)';
+                        all_tab_cells[i].style.color = 'var(--col-secondary)';
                         all_drink_tabs[i].style.display = 'none';
                         all_tab_icons_active[i].style.display = 'none';
                         all_tab_icons_inactive[i].style.display = 'inline';
                     }
 
                     // Highlight selected tab
-                    document.getElementById("tab_cell_"+id).style.color = 'var(--color-highlight-text)';
+                    document.getElementById("tab_cell_"+id).style.color = 'var(--col-highlight)';
                     document.getElementById("drinks_tab_"+id).style.display = 'inline';
                     document.getElementById("tab_icon_inactive_"+id).style.display = 'none';
                     document.getElementById("tab_icon_active_"+id).style.display = 'inline';
