@@ -61,6 +61,24 @@
         }
     }
 
+    # Process POST-statements to delete/modify
+    if(isset($_POST['update_bar'])){
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $website = $_POST['website'];
+        $phone = $_POST['phone'];
+        $location = $_POST['location'];
+        $id = $_POST['barID'];
+        $sql = "UPDATE bar
+                SET name='$name',
+                    description='$description',
+                    website='$website',
+                    phone=$phone,
+                    location='$location'
+                WHERE id=$id";
+        $conn->query($sql);
+    }
+
     # Load Data from the Database
     $sql_bar = "SELECT * FROM bar";
     $result_bar = ($conn->query($sql_bar));
@@ -73,8 +91,8 @@
     $result_drink_types = ($conn->query($sql_drink_type));
     $sql_tags = "SELECT * FROM tag";
     $result_tags = ($conn->query($sql_tags));
-    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, drink_type.name AS drink_type 
-                   FROM drink 
+    $sql_drinks = "SELECT drink.id AS id, drink.name AS name, drink_type.name AS drink_type
+                   FROM drink
                    INNER JOIN drink_type ON drink.drink_type_id = drink_type.id";
     $result_drinks = ($conn->query($sql_drinks));
 

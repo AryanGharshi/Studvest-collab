@@ -98,8 +98,8 @@ if(isset($_POST['add_drink'])) {
     $volume = $_POST['vol'];
 
     # Add new drink if it doesn't exist
-    $sql = "INSERT INTO drink(name, drink_type_id) 
-            VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type')) 
+    $sql = "INSERT INTO drink(name, drink_type_id)
+            VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type'))
             ON DUPLICATE KEY UPDATE id=id";
     $conn->query($sql);
 
@@ -169,10 +169,10 @@ if (isset($barID)) {
             $result_all_menus = ($conn->query($sql_all_menus));
 
             # Load list of all drinks (not only the current bar)
-            $sql_all_drinks = "SELECT drink.id AS drink, 
-                                      drink.name AS name, 
-                                      drink_type.name AS drink_type 
-                               FROM drink 
+            $sql_all_drinks = "SELECT drink.id AS drink,
+                                      drink.name AS name,
+                                      drink_type.name AS drink_type
+                               FROM drink
                                LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id;";
             $result_all_drinks = ($conn->query($sql_all_drinks));
 
@@ -266,7 +266,7 @@ if (isset($_POST['barID'])) {
     echo '
                 <tr>
                     <td><label for="tags">Tags:</label></td>
-                    <td><input type="text" name="tag" value="" placeholder="Add new tag" required><br></td>
+                    <td><input type="text" name="tag" value="" placeholder="Add new tag"><br></td>
                     <td><button type="submit" class="add" name="add_tag" value="submit" formaction="">add</button></td>
                 </tr>
                 <tr>
@@ -295,13 +295,14 @@ if (isset($_POST['barID'])) {
                         }
     echo '
                     </td>
-                </tr>'?>
+                </tr>'
+                ?>
             </table>
-        </form>
     </div>
 
     <h1 id="drink-menu-title">Drink Menu</h1>
     <button type="submit" class="btn-nav" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
+    </form>
     <div id="right-column" class="list">
         <div style="float: left;  display: inline; height: 40px">
         <form id="editBar" method="post" enctype="multipart/form-data">
@@ -366,7 +367,7 @@ if (isset($_POST['barID'])) {
 }
 
 else {
-    echo '  <tr><td></td><td>  
+    echo '  <tr><td></td><td>
             <button type="submit" class="btn-nav" name="create_bar" value="submit" formaction="">Create bar</button></td></table>';
 }
 ?>

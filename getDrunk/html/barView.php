@@ -163,15 +163,17 @@ $conn->close();
                 </div>
                 <?php
                 if($info['location']!='') {
+                    $url = preg_replace("(^https?://)", "", $info['location'] );
                     printf('<div class="btn" id="btn-location">');
-                    printf('<a href="'.$info["loaction"].'">');
+                    printf('<a href="//'.$url.'">');
                     printf('<img class="icon" src="../media/icons/location_black.png"><br>');
                     printf('</a>');
                     printf('</div>');
                 }
                 if($info['website']!='') {
+                    $url = preg_replace("(^https?://)", "", $info['website'] );
                     printf('<div class="btn" id="btn-website">');
-                    printf('<a href="'.$info["website"].'">');
+                    printf('<a href="//'.$url.'">');
                     printf('<img class="icon" src="../media/icons/web_black.png"><br>');
                     printf('</a>');
                     printf('</div>');
