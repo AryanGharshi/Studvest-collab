@@ -73,7 +73,7 @@
                 SET name='$name',
                     description='$description',
                     website='$website',
-                    phone=$phone,
+                    phone='$phone',
                     location='$location'
                 WHERE id=$id";
         $conn->query($sql);
