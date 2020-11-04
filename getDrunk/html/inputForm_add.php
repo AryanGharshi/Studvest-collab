@@ -10,8 +10,6 @@ if(isset($_POST['barID'])) {
 # Create a new bar into the database
 if(isset($_POST['create_bar'])) {
 
-    echo "new bar";
-
     # Load information from the input form
     $name = $_POST['name'];
     $description = $_POST['description'];
@@ -236,9 +234,9 @@ $conn->close();
 </a>
 
 <div id="main">
-    <div id="left-column">
-        <h1>General Information</h1>
-        <form id="editBar" method="post" enctype="multipart/form-data">
+    <form id="editBar" method="post" enctype="multipart/form-data">
+        <div id="left-column">
+            <h1>General Information</h1>
             <input type="hidden" name="barID" value=<?php echo($barID); ?>>
             <table class="aboutBar">
                 <tr>
@@ -272,11 +270,11 @@ if (isset($_POST['barID'])) {
                 <tr>
                     <td></td>
                     <td>';
-                        if ($result_tags->num_rows > 0) {
-                            while ($tag = $result_tags->fetch_assoc()) {
-                                printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] ."'>" . $tag['tag_name'] .  "  &#10006;</button>");
-                            }
-                        }
+    if ($result_tags->num_rows > 0) {
+        while ($tag = $result_tags->fetch_assoc()) {
+            printf("<button type='submit' class='tag' name='remove_tag' value='" . $tag['tag_id'] . "'>" . $tag['tag_name'] . "  &#10006;</button>");
+        }
+    }
     echo '
                     </td>
                 </tr>
@@ -288,110 +286,118 @@ if (isset($_POST['barID'])) {
                 <tr>
                     <td></td>
                     <td>';
-                        if ($result_pictures->num_rows > 0) {
-                            while ($picture = $result_pictures->fetch_assoc()) {
-                                printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] ."'>" . basename($picture['path']) .  "  &#10006;</button>");
-                            }
-                        }
+    if ($result_pictures->num_rows > 0) {
+        while ($picture = $result_pictures->fetch_assoc()) {
+            printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] . "'>" . basename($picture['path']) . "  &#10006;</button>");
+        }
+    }
     echo '
                     </td>
-                </tr>'
-                ?>
+                </tr>';
+}
+else {
+    echo '      <tr>
+                    <td></td>
+                    <td><button type="submit" class="btn-nav" name="create_bar" value="submit" formaction="">Create bar</button></td>
+                </tr>';
+}
+?>
             </table>
-    </div>
-
-    <h1 id="drink-menu-title">Drink Menu</h1>
-    <button type="submit" class="btn-nav" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
+        </div>
     </form>
+
+<?php
+if (isset($_POST['barID'])) {
+    echo '
     <div id="right-column" class="list">
-        <div style="float: left;  display: inline; height: 40px">
-        <form id="editBar" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="barID" value=<?php echo($barID); ?>>
-            <?php
-    echo '   <datalist id="drinkList">';
+        <h1 id="drink-menu-title">Drink Menu</h1>
+        <button type="submit" class="btn-nav" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>';
+
+    // Generate datalists
+    $datalist_drinkList = '<datalist id="drinkList">';
     foreach ($result_all_drinks as $drink) {
-        echo '<option value="'. $drink['name'] . '">';
+        $datalist_drinkList .= '<option value="'. $drink['name'] . '">';
         $mapping_drink_drinkType[$drink['name']] = $drink['drink_type'];
     }
-    echo    '</datalist>';
-    echo    '<datalist id="menuList">';
-    foreach ($result_all_menus as $menu) { echo '<option value="'. $menu['name'] . '">'; }
-    echo    '</datalist>';
+    $datalist_drinkList .= '</datalist>';
+    $datalist_menuList = '<datalist id="menuList">';
+    foreach ($result_all_menus as $menu) { $datalist_menuList .= '<option value="'. $menu['name'] . '">'; }
+    $datalist_menuList .= '</datalist>';
 
     echo '
-             <table id="drink-menu-table">
-                  <tr>
-                      <th>Drink</th>
-                      <th>Main Menu</th>
-                      <th>Sub menu</th>
-                      <th>Volume</th>
-                      <th>Normal Price</th>
-                      <th>Student Price</th>
-                      <th></th>
-                      <th></th>
-                  </tr>
-                  <tr class="drinkInp">
-                      <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList" required></td>
-                      <td class="td-drink-type">
-                          <select id="add-type" name="drink_type" required>
-                              <option disabled selected value></option>';
+            <form id="editBar" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="barID" value=' . $barID .'>';
+    echo $datalist_drinkList;
+    echo $datalist_menuList;
+        echo '  <table class="drink-menu-table">
+                    <tr>
+                        <th>Drink</th>
+                        <th>Main Menu</th>
+                        <th>Sub menu</th>
+                        <th>Volume</th>
+                        <th>Normal Price</th>
+                        <th>Student Price</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList" required></td>
+                        <td class="td-drink-type">
+                            <select id="add-type" name="drink_type" required>
+                                <option disabled selected value></option>';
     foreach ($result_all_drink_types as $drink_type) {
         $i = (isset($i) ? $i+1 : 1);
-        echo '<option value="'. $drink_type['name'] . '">' . $drink_type['name']  . '</option>';
-        $mapping_drinkType_selectIdx[$drink_type['name']] = $i;
-    }
-    echo '                  </select>
+        echo '                  <option value="'. $drink_type['name'] . '">' . $drink_type['name']  . '</option>';
+            $mapping_drinkType_selectIdx[$drink_type['name']] = $i;
+        }
+    echo '                </select>
                         </td>
                         <td class="td-menu"><input type="text" id="add-menu" name="menu" list="menuList"></td>
                         <td class="td-vol"><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1" required></td>
                         <td class="td-price"><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1" required></td>
                         <td class="td-price"><input type="number" id="add-student-price" name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
                         <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="add" value="new" formaction="">add</button></td>
-                        <td></td>
-                    </tr>';
-
+                        <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="transparent" value="new" formaction="">clear</button></td>
+                    </tr>
+                </table>
+        </form> 
+        
+        <div id="drink-menu" class="list">   
+            <form id="editBar" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="barID" value=' . $barID . '>
+                <table class="drink-menu-table">';
+    echo $datalist_drinkList;
+    echo $datalist_menuList;
     foreach ($result_drinks as $drink) {
         $id = $drink['id'];
         echo "      <tr>
                         <td id='drink-$id-name' class='td-drink'>" . $drink['drink_name'] . "</td>
                         <td id='drink-$id-type' class='td-drink-type'>" . $drink['drink_type'] . "</td>
                         <td id='drink-$id-menu' class='td-menu'>" . $drink['menu'] . "</td>
-                        <td id='drink-$id-volume' class='td-volume'>" . $drink['volume'] . "</td>
+                        <td id='drink-$id-volume' class='td-vol'>" . $drink['volume'] . "</td>
                         <td id='drink-$id-price' class='td-price'>" . $drink['price'] . "</td>
                         <td id='drink-$id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
                         <td id='drink-$id-modify' class='td-submit'><button type='button' class='modify' onclick ='modify($id)'>modify</button></td>
                         <td id='drink-$id-delete' class='td-submit'><button type='submit' class='delete' name='delete_drink' value=$id>delete</button></td>
                     </tr>";
     }
-    echo '      </table>';
-}
-
-else {
-    echo '  <tr><td></td><td>
-            <button type="submit" class="btn-nav" name="create_bar" value="submit" formaction="">Create bar</button></td></table>';
+    echo '      </table>
+            </form>
+        </div>
+    </div>';
 }
 ?>
-        </form>
-        </div>
-    </div>
-
     <div id="popup_add">
         <h1>This website have form with long menu items,<br> please use laptop to fill in information</h1>
         <input type="image" src="../media/icons/exit_white.png" alt="submit" class="btn-close">
     </div>
-
 </div>
 
-
-
-
-
-
-    <script>
-        let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
-        let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
-    </script>
-    <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
+<script>
+    let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+</script>
+<script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
 
 
 </body>
