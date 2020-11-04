@@ -387,11 +387,6 @@ if (isset($_POST['barID'])) {
     </div>';
 }
 ?>
-
-    <div id="popup_add">
-        <h1>This website have form with long menu items,<br> please use laptop to fill in information</h1>
-        <input type="image" src="../media/icons/exit_white.png" alt="submit" class="btn-close">
-    </div>
 </div>
 
 <div id="popup_add">
