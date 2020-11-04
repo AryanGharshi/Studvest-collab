@@ -337,5 +337,17 @@ input, textarea, select {
   .blur{
     filter: blur(6px);
   }
+  .btn{
+    display: block;
+    width: 98px;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 60px;
+    font-size: 22px;
+    border-radius: 8px;
+    background-color: var(--col-primary);
+    color: white;
+
+  }
 
 }
