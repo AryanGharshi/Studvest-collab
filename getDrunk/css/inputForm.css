@@ -62,8 +62,18 @@ h1{
 
 #right-column {
     width: calc(70% - 2em);
-    height: calc(100% - 2.17em); /** 2.17em = Height header **/
+    height: 100%;
     float: left;
+    margin: 0;
+}
+
+#right-column h1 {
+    float: left;
+}
+
+#right-column #drink-menu {
+    height: calc(100% - 11em);
+    display: inline-block;
     margin: 0;
 }
 
@@ -80,7 +90,7 @@ h1{
 
 /** BUTTONS **/
 
-.modify, .delete, .add {
+.modify, .delete, .add, .transparent {
     font-size: 0.8em;
     outline: none;
     border-radius: 3px;
@@ -104,6 +114,11 @@ h1{
 .add{
     color: var(--col-green);
     border: var(--col-green) solid 1px;
+}
+
+.transparent{
+    color: transparent;
+    border: transparent;
 }
 
 .modify:disabled, .delete:disabled, .add:disabled {
@@ -257,50 +272,47 @@ input, textarea, select {
 
 /** DRINK MENU **/
 
-#drink-menu-title {
+.drink-menu-table {
     display: inline;
     float: left;
 }
 
-#drink-menu-table {
-    width: 100%;
+.drink-menu-table table {
     border: none;
-    font-size: inherit;
 }
 
-#drink-menu-table tbody {
+.drink-menu-table tbody {
     height: 10%; /** 2.17em = Height of header **/
     display: block;
 }
 
-#drink-menu-table td, th {
+.drink-menu-table td, th {
     border: none;
 }
 
-#drink-menu-table tr:nth-child(even) {
+.drink-menu-table tr:nth-child(even) {
     background-color: var(--col-background-dark);
 }
 
-#drink-menu-table .td-drink, .td-menu {
+.drink-menu-table .td-drink, .td-menu {
     width: 30%;
 }
 
-#drink-menu-table .td-menu {
+.drink-menu-table .td-menu {
     width: 20%;
 }
 
-#drink-menu-table .td-drink-type {
+.drink-menu-table .td-drink-type {
     width: 15%;
 }
 
-#drink-menu-table .td-volume, .td-price {
+.drink-menu-table .td-vol, .td-price {
     width: 10%;
 }
 
-#drink-menu-table .td-submit {
+.drink-menu-table .td-submit {
     padding-left: 0;
     padding-right: 0;
-    width: min-content;
 }
 
 #popup_add {
