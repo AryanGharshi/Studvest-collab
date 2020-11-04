@@ -374,13 +374,23 @@ else {
         </form>
         </div>
     </div>
+    <div class="popup" id="add">
+        <h1>Manage tags</h1>
+        <input type="image" src="../media/icons/exit_white.png" alt="submit" class="btn-close">
+    </div>
 </div>
+
+
+
+
+
 
     <script>
         let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
         let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
     </script>
     <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
+
 
 </body>
 </html>
