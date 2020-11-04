@@ -345,7 +345,8 @@ input, textarea, select {
     margin-top: 60px;
     font-size: 22px;
     border-radius: 8px;
-    background-color: var(--col-primary);
+    background-color: #222222;
+    border-color: white;
     color: white;
 
   }
