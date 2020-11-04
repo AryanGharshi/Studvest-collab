@@ -3,15 +3,15 @@
 :root {
 
     /* Default background colors*/
-    --col-highlight: #3489a1;
-    --col-primary: #a0a0a0;
-    --col-secondary: #666;
-    --col-dark: #1b1b1b;
-    --col-green: #1C7D20;
-    --col-yellow: #FFC700;
-    --col-red: #CB1919;
+    --col-highlight: #1e9ac9;
+    --col-primary: #aaa;
+    --col-secondary: #999;
+    --col-dark: #000000;
+    --col-green: #4fc963;
+    --col-yellow: #ffe240;
+    --col-red: #FF3B3B;
     --col-background: #222222;
-    --col-background-highlight: #2c7090 ;
+    --col-background-highlight: #1382ab ;
     --col-background-dark: #1b1b1b;
     --col-background-light: #333333;
 }
@@ -92,7 +92,7 @@ a:active {
     background-color: var(--col-background-highlight);
     font-size: 0.8em;
     text-transform: lowercase;
-    color: var(--col-background-dark);
+    color: var(--col-dark);
 }
 
 

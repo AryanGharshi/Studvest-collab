@@ -63,8 +63,18 @@ h1{
 
 #right-column {
     width: calc(70% - 2em);
-    height: calc(100% - 2.17em); /** 2.17em = Height header **/
+    height: 100%;
     float: left;
+    margin: 0;
+}
+
+#right-column h1 {
+    float: left;
+}
+
+#right-column #drink-menu {
+    height: calc(100% - 11em);
+    display: inline-block;
     margin: 0;
 }
 
@@ -81,7 +91,7 @@ h1{
 
 /** BUTTONS **/
 
-.modify, .delete, .add {
+.modify, .delete, .add, .transparent {
     font-size: 0.8em;
     outline: none;
     border-radius: 3px;
@@ -105,6 +115,11 @@ h1{
 .add{
     color: var(--col-green);
     border: var(--col-green) solid 1px;
+}
+
+.transparent{
+    color: transparent;
+    border: transparent;
 }
 
 .modify:disabled, .delete:disabled, .add:disabled {
@@ -274,50 +289,51 @@ input, textarea, select {
 
 /** DRINK MENU **/
 
-#drink-menu-title {
+.drink-menu-table {
     display: inline;
     float: left;
 }
 
-#drink-menu-table {
-    width: 100%;
+.drink-menu-table table {
     border: none;
-    font-size: inherit;
 }
 
-#drink-menu-table tbody {
+.drink-menu-table tbody {
     height: 10%; /** 2.17em = Height of header **/
     display: block;
 }
 
-#drink-menu-table td, th {
+.drink-menu-table td, th {
     border: none;
 }
 
-#drink-menu-table tr:nth-child(even) {
-    background-color: #2A2A2A
+.drink-menu-table tr:nth-child(even) {
+    background-color: var(--col-background-dark);
 }
 
-#drink-menu-table .td-drink, .td-menu {
+.drink-menu-table .td-drink, .td-menu {
     width: 30%;
 }
 
-#drink-menu-table .td-menu {
+.drink-menu-table .td-menu {
     width: 20%;
 }
 
-#drink-menu-table .td-drink-type {
+.drink-menu-table .td-drink-type {
     width: 15%;
 }
 
-#drink-menu-table .td-volume, .td-price {
+.drink-menu-table .td-vol, .td-price {
     width: 10%;
 }
 
-#drink-menu-table .td-submit {
+.drink-menu-table .td-submit {
     padding-left: 0;
     padding-right: 0;
-    width: min-content;
+}
+
+#popup_add {
+  display:none;
 }
 
 @media only screen and (max-width:1000px){
@@ -329,12 +345,27 @@ input, textarea, select {
   #right-column{
     width: 85%;
   }
-
+  .btn{
+    display: block;
+    width: 98px;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 60px;
+    font-size: 22px;
+    border-radius: 8px;
+    background-color: #222222;
+    border-color: white;
+    color: white;
+    margin-bottom: 15px;
+    bottom: 11px;
+  }
   #popup_add {
-    height: 50vh;
+    display:block;
+    position:relative;
+    margin-top: 25vw;
     width: calc(var(--main-width-popup) - 3em);
+    height: 26vw;
     margin-left: calc((100% - var(--main-width-popup)) / 2);
-    margin-top: 25vh;
     display: block;
     position: absolute;
     top: 0;
@@ -346,5 +377,23 @@ input, textarea, select {
     padding: 1.5em;
   }
 
+  #popup_add h1 {
+    margin-top: 4vw;
+    font-size: 22px;
+  }
+
+  .blur{
+    position: absolute;
+    filter: blur(6px);
+  }
+
 
 }
+
+@media only screen and (max-width:711px)
+  {
+      #popup_add{
+        height: 35vh;
+      }
+
+  }

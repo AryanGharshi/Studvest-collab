@@ -83,3 +83,15 @@ function req_modify(id, columns) {
     document.getElementById('add'+id).style.display = 'inline';
     document.getElementById('mod'+id).style.display = 'none';
 }
+
+
+
+
+
+// popup to notice users to use loptop to fill informatiob
+
+var popup_add = document.getElementsByClassName("btn")[0];
+popup_add.addEventListener("click", function() {
+  document.getElementById("popup_add").style.display="none";
+  document.getElementsByClassName("blur")[0].style.filter="none";
+});
