@@ -277,7 +277,7 @@ input, textarea, select {
 }
 
 #drink-menu-table tr:nth-child(even) {
-    background-color: #2A2A2A
+    background-color: var(--col-background-dark);
 }
 
 #drink-menu-table .td-drink, .td-menu {
