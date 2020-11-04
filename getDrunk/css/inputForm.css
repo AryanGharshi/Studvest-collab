@@ -324,12 +324,26 @@ input, textarea, select {
   #right-column{
     width: 85%;
   }
-
+  .btn{
+    display: block;
+    width: 98px;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 60px;
+    font-size: 22px;
+    border-radius: 8px;
+    background-color: #222222;
+    border-color: white;
+    color: white;
+    margin-bottom: 15px;
+    bottom: 11px;
+  }
   #popup_add {
-    height: 50vh;
+    position:relative;
+    margin-top: 25vw;
     width: calc(var(--main-width-popup) - 3em);
+    height: 26vw;
     margin-left: calc((100% - var(--main-width-popup)) / 2);
-    margin-top: 25vh;
     display: block;
     position: absolute;
     top: 0;
@@ -339,6 +353,16 @@ input, textarea, select {
     border: 1px solid red;
     border-radius: 5px;
     padding: 1.5em;
+  }
+
+  #popup_add h1 {
+    margin-top: 4vw;
+    font-size: 22px;
+  }
+
+  .blur{
+    position: absolute;
+    filter: blur(6px);
   }
 
 
