@@ -10,6 +10,8 @@ if(isset($_POST['barID'])) {
 # Create a new bar into the database
 if(isset($_POST['create_bar'])) {
 
+    echo "new bar";
+
     # Load information from the input form
     $name = $_POST['name'];
     $description = $_POST['description'];
@@ -372,13 +374,25 @@ else {
         </form>
         </div>
     </div>
+
+    <div id="popup_add">
+        <h1>This website have form with long menu items,<br> please use laptop to fill in information</h1>
+        <input type="image" src="../media/icons/exit_white.png" alt="submit" class="btn-close">
+    </div>
+
 </div>
+
+
+
+
+
 
     <script>
         let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
         let mapping_drinkType_selectIdx = <?php echo json_encode($mapping_drinkType_selectIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
     </script>
     <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
+
 
 </body>
 </html>

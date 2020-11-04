@@ -173,7 +173,7 @@ h1{
 
 /** POPUPS **/
 
-.popup {
+.popup{
     height: 50vh;
     width: calc(var(--main-width-popup) - 3em);
     margin-left: calc((100% - var(--main-width-popup)) / 2);
@@ -188,7 +188,6 @@ h1{
     border-radius: 5px;
     padding: 1.5em;
 }
-
 
 
 
@@ -278,7 +277,7 @@ input, textarea, select {
 }
 
 #drink-menu-table tr:nth-child(even) {
-    background-color: var(--col-background-dark);
+    background-color: #2A2A2A
 }
 
 #drink-menu-table .td-drink, .td-menu {
@@ -303,31 +302,3 @@ input, textarea, select {
     width: min-content;
 }
 
-@media only screen and (max-width:1000px){
-  #left-column{
-    width: 90%;
-    height: auto;
-    margin-bottom: 51px;
-  }
-  #right-column{
-    width: 85%;
-  }
-
-  #popup_add {
-    height: 50vh;
-    width: calc(var(--main-width-popup) - 3em);
-    margin-left: calc((100% - var(--main-width-popup)) / 2);
-    margin-top: 25vh;
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: var(--col-background);
-    z-index: 1;
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 1.5em;
-  }
-
-
-}
