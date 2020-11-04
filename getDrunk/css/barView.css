@@ -96,29 +96,34 @@ body::-webkit-scrollbar {
 
 .bar-header {
     padding-top: 0.5em;
-    padding-bottom: 0.7em;
+    padding-bottom: 0.5em;
+    display: block;
 }
 
 .bar-header #name {
     padding-top: 0.3em;
-    padding-bottom: 0.2em;
+    padding-right: 0.4em;
     color: var(--col-highlight);
     font-size: 2em;
-    float: left;
+    overflow: hidden;
 }
 
-.bar-header .btn {
+.bar-header #buttons {
+    float: right;
+}
+
+.bar-header #buttons .btn {
     border-width: 0;
     background-color: var(--col-background-highlight);
-    float: right;
     width: 3em;
     height: 3em;
     border-radius: 3em;
     box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
     margin: 0.25em;
+    display: inline-block;
 }
 
-.bar-header .icon {
+.bar-header #buttons .icon {
     width: 100%;
     height: 100%;
 }
@@ -128,6 +133,7 @@ body::-webkit-scrollbar {
 /* BAR NAME & DESCRIPTION */
 
 .bar-info {
+    width: 100%;
     display: inline-block;
 }
 

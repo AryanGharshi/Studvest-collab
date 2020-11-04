@@ -10,8 +10,6 @@ if(isset($_POST['barID'])) {
 # Create a new bar into the database
 if(isset($_POST['create_bar'])) {
 
-    echo "new bar";
-
     # Load information from the input form
     $name = $_POST['name'];
     $description = $_POST['description'];
