@@ -314,10 +314,10 @@ input, textarea, select {
   }
 
   #popup_add {
-    height: 50vh;
+    height: 25vh;
+    margin-top: 25vh;
     width: calc(var(--main-width-popup) - 3em);
     margin-left: calc((100% - var(--main-width-popup)) / 2);
-    margin-top: 25vh;
     display: block;
     position: absolute;
     top: 0;
@@ -329,5 +329,13 @@ input, textarea, select {
     padding: 1.5em;
   }
 
+  #popup_add h1 {
+    margin-top: 8vh;
+    font-size: 22px;
+  }
+
+  .blur{
+    filter: blur(6px);
+  }
 
 }
