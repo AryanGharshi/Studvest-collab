@@ -3,6 +3,7 @@
 :root {
     --main-width: min(100em, 100vw);
     --main-width-popup: min(75em, 60vw);
+
 }
 
 body{
@@ -189,7 +190,23 @@ h1{
     padding: 1.5em;
 }
 
-
+#popup_confirmation {
+    height: 20vh;
+    width: 40vh;
+    margin-left: calc((100% - var(--main-width-popup)) / 2);
+    margin-top: 25vh;
+    display:none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: var(--col-background);
+    z-index: 1;
+    border: 1px solid var(--col-primary);
+    border-radius: 5px;
+    padding: 1.5em;
+}
 
 
 /** FORM/SCROLL CONTROLS **/
