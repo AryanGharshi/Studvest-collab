@@ -10,6 +10,8 @@ if(isset($_POST['barID'])) {
 # Create a new bar into the database
 if(isset($_POST['create_bar'])) {
 
+    echo "new bar";
+
     # Load information from the input form
     $name = $_POST['name'];
     $description = $_POST['description'];
@@ -372,10 +374,12 @@ else {
         </form>
         </div>
     </div>
-    <div class="popup" id="add">
-        <h1>Manage tags</h1>
+
+    <div id="popup_add">
+        <h1>This website have form with long menu items,<br> please use laptop to fill in information</h1>
         <input type="image" src="../media/icons/exit_white.png" alt="submit" class="btn-close">
     </div>
+
 </div>
 
 

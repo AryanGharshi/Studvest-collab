@@ -189,20 +189,7 @@ h1{
     padding: 1.5em;
 }
 
-#add {
-  height: 50vh;
-  width: calc(var(--main-width-popup) - 3em);
-  margin-left: calc((100% - var(--main-width-popup)) / 2);
-  margin-top: 25vh;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  background-color: var(--col-background);
-  z-index: 1;
-  border: 1px solid red;
-  border-radius: 5px;
-  padding: 1.5em;
-}
+
 
 
 /** FORM/SCROLL CONTROLS **/
@@ -324,6 +311,22 @@ input, textarea, select {
   }
   #right-column{
     width: 85%;
+  }
+
+  #popup_add {
+    height: 50vh;
+    width: calc(var(--main-width-popup) - 3em);
+    margin-left: calc((100% - var(--main-width-popup)) / 2);
+    margin-top: 25vh;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: var(--col-background);
+    z-index: 1;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 1.5em;
   }
 
 
