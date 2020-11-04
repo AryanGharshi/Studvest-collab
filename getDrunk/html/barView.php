@@ -158,34 +158,36 @@ $conn->close();
             <!-- GENERAL INFORMATION ABOUT BAR (NAME, DESCRIPTION, TAGS) -->
 
             <div class="bar-header">
-                <div id="name"><?php echo $info['name']?>
-
+                <div id="buttons">
+                    <?php
+                    if($info['location']!='') {
+                        $url = preg_replace("(^https?://)", "", $info['location'] );
+                        printf('<div class="btn" id="btn-location">');
+                        printf('<a href="//'.$url.'">');
+                        printf('<img class="icon" src="../media/icons/location_black.png"><br>');
+                        printf('</a>');
+                        printf('</div>');
+                    }
+                    if($info['website']!='') {
+                        $url = preg_replace("(^https?://)", "", $info['website'] );
+                        printf('<div class="btn" id="btn-website">');
+                        printf('<a href="//'.$url.'">');
+                        printf('<img class="icon" src="../media/icons/web_black.png"><br>');
+                        printf('</a>');
+                        printf('</div>');
+                    }
+                    if($info['phone']!='') {
+                        printf('<div class="btn" id="btn-call">');
+                        printf('<a href="tel:+47'.$info["phone"].'">');
+                        printf('<img class="icon" src="../media/icons/call_black.png"><br>');
+                        printf('</a>');
+                        printf('</div>');
+                    }
+                    ?>
                 </div>
-                <?php
-                if($info['location']!='') {
-                    $url = preg_replace("(^https?://)", "", $info['location'] );
-                    printf('<div class="btn" id="btn-location">');
-                    printf('<a href="//'.$url.'">');
-                    printf('<img class="icon" src="../media/icons/location_black.png"><br>');
-                    printf('</a>');
-                    printf('</div>');
-                }
-                if($info['website']!='') {
-                    $url = preg_replace("(^https?://)", "", $info['website'] );
-                    printf('<div class="btn" id="btn-website">');
-                    printf('<a href="//'.$url.'">');
-                    printf('<img class="icon" src="../media/icons/web_black.png"><br>');
-                    printf('</a>');
-                    printf('</div>');
-                }
-                if($info['phone']!='') {
-                    printf('<div class="btn" id="btn-call">');
-                    printf('<a href="tel:+47'.$info["phone"].'">');
-                    printf('<img class="icon" src="../media/icons/call_black.png"><br>');
-                    printf('</a>');
-                    printf('</div>');
-                }
-                ?>
+                <div id="name">
+                    <?php echo $info['name']?>
+                </div>
             </div>
 
             <!-- GENERAL INFORMATION ABOUT BAR (DESCRIPTION, TAGS) -->
