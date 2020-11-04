@@ -312,11 +312,23 @@ input, textarea, select {
   #right-column{
     width: 85%;
   }
-
+  .btn{
+    display: block;
+    width: 98px;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 60px;
+    font-size: 22px;
+    border-radius: 8px;
+    background-color: #222222;
+    border-color: white;
+    color: white;
+    margin-bottom: 15px;
+  }
   #popup_add {
-    height: 25vh;
-    margin-top: 25vh;
+    margin-top: 25vw;
     width: calc(var(--main-width-popup) - 3em);
+    height: 21vh;
     margin-left: calc((100% - var(--main-width-popup)) / 2);
     display: block;
     position: absolute;
@@ -337,18 +349,6 @@ input, textarea, select {
   .blur{
     filter: blur(6px);
   }
-  .btn{
-    display: block;
-    width: 98px;
-    margin: 0 auto;
-    padding: 5px;
-    margin-top: 60px;
-    font-size: 22px;
-    border-radius: 8px;
-    background-color: #222222;
-    border-color: white;
-    color: white;
 
-  }
 
 }

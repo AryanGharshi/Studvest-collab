@@ -378,8 +378,7 @@ else {
 
 </div>
 <div id="popup_add">
-    <h1>This website have form with long menu items,please use laptop to fill in information</h1>
-    <input type="image" src="../media/icons/exit_white.png" alt="submit" class="btn-close">
+    <h1>The website have form with long menu items, please use a laptop to fill in information</h1>
     <button type="button" name="button" class="btn">Close</button>
 </div>
 
