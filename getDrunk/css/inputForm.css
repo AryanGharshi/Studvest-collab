@@ -303,6 +303,10 @@ input, textarea, select {
     width: min-content;
 }
 
+#popup_add {
+  display:none;
+}
+
 @media only screen and (max-width:1000px){
   #left-column{
     width: 90%;
@@ -327,6 +331,7 @@ input, textarea, select {
     bottom: 11px;
   }
   #popup_add {
+    display:block;
     position:relative;
     margin-top: 25vw;
     width: calc(var(--main-width-popup) - 3em);
@@ -355,3 +360,11 @@ input, textarea, select {
 
 
 }
+
+@media only screen and (max-width:711px)
+  {
+      #popup_add{
+        height: 35vh;
+      }
+
+  }
