@@ -265,7 +265,7 @@
         </div>
     </div>
 
-    <div id="popup_confirmation" class="popup">
+    <div id="popup_confirmation" class="popupdel">
         <h1>Are you sure?</h1>
         <p>This action cannot be undone. Do you really want to delete this item?.</p>
         <?php
