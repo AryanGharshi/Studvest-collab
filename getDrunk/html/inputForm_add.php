@@ -311,7 +311,7 @@ if (isset($_POST['barID'])) {
     echo '
     <div id="right-column" class="list">
         <h1 id="drink-menu-title">Drink Menu</h1>
-        <button type="submit" class="btn-nav" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>';
+        <button type="submit" class="btn-nav detail" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>';
 
     // Generate datalists
     $datalist_drinkList = '<datalist id="drinkList">';
@@ -331,18 +331,18 @@ if (isset($_POST['barID'])) {
     echo $datalist_menuList;
         echo '  <table class="drink-menu-table">
                     <tr>
-                        <th>Drink</th>
-                        <th>Main Menu</th>
-                        <th>Sub menu</th>
-                        <th>Volume</th>
-                        <th>Normal Price</th>
-                        <th>Student Price</th>
-                        <th></th>
-                        <th></th>
+                        <th class ="col_drink" style="padding-rigt:3.5em;">Drink</th>
+                        <th class = "detail" >Main Menu</th>
+                        <th class = "detail" >Sub menu</th>
+                        <th class = "col_vol">Volume</th>
+                        <th class = "col_normal">Normal Price</th>
+                        <th class = "col_student">Student Price</th>
+                        <th class = "detail"></th>
+                        <th class = "detail"></th>
                     </tr>
                     <tr>
-                        <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList" required></td>
-                        <td class="td-drink-type">
+                        <td class="td-drink"><input type="text" id="add-drink" class="detail" name="drink" placeholder="Drink" list="drinkList" required></td>
+                        <td class="td-drink-type detail">
                             <select id="add-type" name="drink_type" required>
                                 <option disabled selected value></option>';
     foreach ($result_all_drink_types as $drink_type) {
@@ -352,17 +352,17 @@ if (isset($_POST['barID'])) {
         }
     echo '                </select>
                         </td>
-                        <td class="td-menu"><input type="text" id="add-menu" name="menu" list="menuList"></td>
-                        <td class="td-vol"><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1" required></td>
-                        <td class="td-price"><input type="number" id="add-price" name="price" value="" placeholder="in kr" min=10 step=1" required></td>
-                        <td class="td-price"><input type="number" id="add-student-price" name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
-                        <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="add" value="new" formaction="">add</button></td>
-                        <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="transparent" value="new" formaction="">clear</button></td>
+                        <td class="td-menu detail"><input type="text" id="add-menu" name="menu" list="menuList"></td>
+                        <td class="td-vol"><input type="number" id="add-vol" class="detail" name="vol" placeholder="ml" min=2 step=1" required></td>
+                        <td class="td-price"><input type="number" id="add-price"  class="detail" name="price" value="" placeholder="in kr" min=10 step=1" required></td>
+                        <td class="td-price"><input type="number" id="add-student-price"  class="detail" name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td class="td-submit detail"><button type="submit" id="add-submit" name="add_drink" class="add detail" value="new" formaction="">add</button></td>
+                        <td class="td-submit detail"><button type="submit" id="add-submit" name="add_drink" class="transparent" value="new" formaction="">clear</button></td>
                     </tr>
                 </table>
-        </form> 
-        
-        <div id="drink-menu" class="list">   
+        </form>
+
+        <div id="drink-menu" class="list">
             <form id="editBar" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="barID" value=' . $barID . '>
                 <table class="drink-menu-table">';
@@ -372,13 +372,13 @@ if (isset($_POST['barID'])) {
         $id = $drink['id'];
         echo "      <tr>
                         <td id='drink-$id-name' class='td-drink'>" . $drink['drink_name'] . "</td>
-                        <td id='drink-$id-type' class='td-drink-type'>" . $drink['drink_type'] . "</td>
-                        <td id='drink-$id-menu' class='td-menu'>" . $drink['menu'] . "</td>
+                        <td id='drink-$id-type' class='td-drink-type detail'>" . $drink['drink_type'] . "</td>
+                        <td id='drink-$id-menu' class='td-menu detail'>" . $drink['menu'] . "</td>
                         <td id='drink-$id-volume' class='td-vol'>" . $drink['volume'] . "</td>
                         <td id='drink-$id-price' class='td-price'>" . $drink['price'] . "</td>
                         <td id='drink-$id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
-                        <td id='drink-$id-modify' class='td-submit'><button type='button' class='modify' onclick ='modify($id)'>modify</button></td>
-                        <td id='drink-$id-delete' class='td-submit'><button type='submit' class='delete' name='delete_drink' value=$id>delete</button></td>
+                        <td id='drink-$id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($id)'>modify</button></td>
+                        <td id='drink-$id-delete' class='td-submit detail'><button type='submit' class='delete detail' name='delete_drink' value=$id>delete</button></td>
                     </tr>";
     }
     echo '      </table>

@@ -85,9 +85,3 @@ function check(n) {
     return result;
   }
 }
-
-var close = document.getElementsByClassName("btn")[0];
-close.addeventaddEventListener("click", function() {
-  document.getElementById("popup_add").style.display="none";
-  document.getElementsByClassName("blur")[0].style.blur="none";
-});

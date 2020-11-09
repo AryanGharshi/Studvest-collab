@@ -320,13 +320,19 @@ input, textarea, select {
 }
 
 @media only screen and (max-width:1000px){
+  datalist{
+    width:211px;
+  }
+  .detail{
+    display:none;
+  }
   #left-column{
     width: 90%;
     height: auto;
     margin-bottom: 51px;
   }
   #right-column{
-    width: 85%;
+    width: 91vw;
   }
   .btn{
     display: block;
@@ -370,8 +376,44 @@ input, textarea, select {
     filter: blur(6px);
   }
 
+.list table{
+  width:85vw;
+}
+.drink-menu-table td, th{
+  border: 1px solid white;
+}
+.drink-menu-table tr{
+  width:100%;
+}
+
+.drink-menu-table th{
+  width:18vw;
+}
+
+
+.drink-menu-table .td-drink, .td-menu {
+    width: auto;
+}
+
+td .td-drink {
+    padding-right: 3.4em;
+}
+.drink-menu-table th{
+  padding: 0.4em;
+}
+
+th .col_drink{
+  width: 27vw;
+  padding-right: 5em;
+}
+
+.drink-menu-table tbody{
+  width:83vw;
+}
 
 }
+
+
 
 @media only screen and (max-width:711px)
   {
