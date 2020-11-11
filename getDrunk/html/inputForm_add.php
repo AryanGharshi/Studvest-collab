@@ -258,7 +258,7 @@ $conn->close();
     <?php include('header.php'); ?>
 </a>
 
-<div id="main" class="blur">
+<div id="main" class="main">
     <div id="left-column">
         <h1>General Information</h1>
         <form id="editBar" method="post" enctype="multipart/form-data">
@@ -334,7 +334,7 @@ else {
 <?php
 if (isset($barID)) {
     echo '
-        <div id="right-column" class="list">
+        <div id="right-column">
             <h1 id="drink-menu-title">Drink Menu</h1>
             <button type="submit" class="btn-nav detail" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
     </form>';
@@ -351,8 +351,9 @@ if (isset($barID)) {
     $datalist_menuList .= '</datalist>';
 
     echo '
-    <form id="editBar" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="barID" value=' . $barID .'>';
+        <div class="drink-menu list">
+            <form id="editBar" method="post" enctype="multipart/form-data">    
+                <input type="hidden" name="barID" value=' . $barID .'>';
     echo $datalist_drinkList;
     echo $datalist_menuList;
         echo '  <table class="drink-menu-table">
@@ -385,10 +386,11 @@ if (isset($barID)) {
                         <td class="td-submit detail"><button type="submit" id="add-submit" name="add_drink" class="add detail" value="new" formaction="">add</button></td>
                         <td class="td-submit detail"><button type="submit" id="add-submit" name="add_drink" class="transparent" value="new" formaction="">clear</button></td>
                     </tr>
-                </table>
-        </form>
-
-        <div id="drink-menu" class="list">
+                </table>   
+            </form>
+        </div>
+        
+        <div class="drink-menu list">        
             <form id="editBar" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="barID" value=' . $barID . '>
                 <table class="drink-menu-table">';
@@ -407,7 +409,7 @@ if (isset($barID)) {
                         <td id='drink-$drink_relationship_id-price' class='td-price'>" . $drink['price'] . "</td>
                         <td id='drink-$drink_relationship_id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
                         <td id='drink-$drink_relationship_id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($drink_relationship_id)'>modify</button></td>
-                        <td id='drink-$drink_relationship_id-delete' class='td-submit detail'><button type='button' class='delete detail' onclick ='req_delete($drink_relationship_id, \"drink_relationship\")'>delete</button></td>
+                        <td id='drink-$drink_relationship_id-delete' class='td-submit detail'><button type='button' class='delete detail' onclick ='req_delete($drink_relationship_id, \"drink_relationship\" , \"main\")'>delete</button></td>
                     </tr>";
     }
     echo '      </table>
@@ -423,14 +425,15 @@ if (isset($barID)) {
     <button type="button" name="button" class="btn">Close</button>
 </div>
 
-<div id="popup_confirmation" class="popupdel">
+<div id="popup_confirmation" class="popup">
     <h1>Are you sure?</h1>
     <p>This action cannot be undone. Do you really want to delete this item?.</p>
     <form action='' method='post'>
         <input type='hidden' id='confirm-section' name='section' value=''>
         <input type="hidden" name="barID" value=<?php echo($barID); ?>>
+        <input type='hidden' id='popup_confirmation-source' value=''>
         <button type='submit' id='confirm-delete' class='delete' name='delete_drink' value=''>delete</button>
-        <button type='button' id='confirm-keep' class='modify' onclick='keep()'>keep</button>
+        <button type='button' id='confirm-keep' class='modify' onclick='close_popup("popup_confirmation", null)'>keep</button>
     </form>
 </div>
 

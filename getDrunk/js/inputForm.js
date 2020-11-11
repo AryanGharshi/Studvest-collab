@@ -85,29 +85,24 @@ function req_modify(id, columns) {
 }
 
 // When user clicks "delete" button
-function req_delete(id, section) {
-    document.getElementById('popup_confirmation').style.display='block';
+function req_delete(id, section, source) {
     document.getElementById('confirm-delete').value = id;
     document.getElementById('confirm-section').value = section;
+    document.getElementById('popup_confirmation-source').value = source;
+    open_popup("popup_confirmation", source)
 }
 
-// When user clicks "keep" button
-function keep() {
-    document.getElementById('popup_confirmation').style.display='none';
+function open_popup(target, source) {
+    document.getElementById(target).style.display ='block';
+    document.getElementById(source).style.filter ='blur(6px)';
 }
 
-// When user wants to open one of the three popups on inputForm.php
-function load_popup(popup_id) {
-    document.getElementById('main').style.opacity = '0.3';
-    document.getElementById(popup_id).style.display='block';
-}
-
-// When user wants to close one of the popups
-function close_popup(popup_id) {
-    document.getElementById('main').style.opacity = '1';
-    document.getElementById(popup_id).style.display='none';
-    document.querySelectorAll('.modify').forEach(function(button) { button.disabled = false; });
-    document.querySelectorAll('.delete').forEach(function(button) { button.disabled = false; });
+function close_popup(source, target) {
+    console.log(source);
+    console.log(document.getElementById(source));
+    document.getElementById(source).style.display ='none';
+    target = (target!=null) ? target : document.getElementById(source+"-source").value;
+    document.getElementById(target).style.filter ='none';
 }
 
 // popup to notice users to use loptop to fill information

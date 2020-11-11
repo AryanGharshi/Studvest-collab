@@ -74,16 +74,18 @@ table {
     float: left;
 }
 
-#right-column #drink-menu {
-    height: calc(100% - 11em);
+#right-column .drink-menu {
+    max-height: calc(100% - 11em);
+    width: 100%;
     display: inline-block;
     margin: 0;
+    overflow-y: scroll;
 }
 
 .footer {
     position: absolute;
     z-index: 10;
-    top: 90vh;
+    bottom: 5vh;
     width: var(--main-width);
     text-align: center;
 }
@@ -159,9 +161,9 @@ table {
 /** LISTS **/
 
 .list {
-    margin: 2em 0em;
+    margin-top: 2em;
     overflow-y:scroll;
-    height: calc(50vh - 1.5em - 1.5em - 6em);
+    max-height: calc(50vh - 1.5em - 1.5em - 6em);
 }
 
 .list table {
@@ -172,13 +174,6 @@ table {
     border-bottom: 1px solid var(--col-primary) ;
 }
 
-.list td {
-    border-top: 1px solid var(--col-primary) ;
-    border-left: none;
-    border-right: none;
-    padding: 0.4em;
-}
-
 .list th {
     font-weight: bold;
     padding: 0.4em;
@@ -187,19 +182,32 @@ table {
     background-color: var(--col-background);
 }
 
+.list td {
+    border-top: 1px solid var(--col-primary) ;
+    border-left: none;
+    border-right: none;
+    padding: 0.4em;
+}
+
+.list .td-submit {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 
 
 /** POPUPS **/
 
 .popup {
-    height: 50vh;
-    width: calc(var(--main-width-popup) - 3em);
-    margin-left: calc((100% - var(--main-width-popup)) / 2);
-    margin-top: 25vh;
-    display:none;
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    display: none;
     position: absolute;
     top: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     background-color: var(--col-background);
     z-index: 1;
     border: 1px solid var(--col-primary);
@@ -207,23 +215,6 @@ table {
     padding: 1.5em;
 }
 
-#popup_confirmation {
-    height: 20vh;
-    width: 40vh;
-    margin-left: calc((100% - var(--main-width-popup)));
-    margin-top: 35vh;
-    display:none;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: var(--col-background);
-    z-index: 1;
-    border: 1px solid var(--col-primary);
-    border-radius: 5px;
-    padding: 1.5em;
-}
 
 /** FORM/SCROLL CONTROLS **/
 
@@ -231,6 +222,8 @@ input, textarea, select {
     width: 100%;
     box-sizing: border-box;
 }
+
+
 
 .list input:disabled, select:disabled {
     background-color: transparent;
@@ -246,6 +239,10 @@ input, textarea, select {
     color: var(--col-background-dark);
     padding: 0.2em;
 }
+
+
+
+
 
 ::-webkit-scrollbar{
     width:7px;
@@ -324,11 +321,6 @@ input, textarea, select {
 
 .drink-menu-table .td-vol, .td-price {
     width: 10%;
-}
-
-.drink-menu-table .td-submit {
-    padding-left: 0;
-    padding-right: 0;
 }
 
 #popup_add {
@@ -445,7 +437,7 @@ datalist {
     width: 30%;
 }
 
-#right-column #drink-menu{
+#right-column .drink-menu{
   height: 451px;
 }
 

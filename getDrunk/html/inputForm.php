@@ -48,9 +48,9 @@
             $conn->query($sql);
         }
         elseif($section == 'drink_type') {
-            $sql = "UPDATE drink_type
-                    SET name='$newName', img_url_inactive='".$_POST['img_url_inactive']."', img_url_active='".$_POST['img_url_active']."'
-                    WHERE id=$id";
+            $sql = "INSERT INTO drink_type(id, name, img_url_inactive, img_url_active) 
+                    VALUES('$id', '$newName', '".$_POST['img_url_inactive']."','".$_POST['img_url_active']."') 
+                    ON DUPLICATE KEY UPDATE id=id, name='$newName', img_url_inactive='".$_POST['img_url_inactive']."', img_url_active='".$_POST['img_url_active']."';";
             $conn->query($sql);
         }
         elseif($section == 'tag') {
@@ -128,8 +128,8 @@
                         <td>$name</td>
                         <input type='hidden' name='barID' value='$id' id='$input'>
                         <input type='hidden' name='section' value='bar'>
-                        <td><button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button></td>
-                        <td><button type='button' id='del$id' class='delete' onclick='req_delete($id, \"bar\")'>delete</button></td>
+                        <td class='td-submit'><button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button></td>
+                        <td class='td-submit'><button type='button' id='del$id' class='delete' onclick='req_delete($id, \"bar\", \"main\")'>delete</button></td>
                     </form>
                 </tr>";
                 }
@@ -139,22 +139,23 @@
 
         <div class='footer'>
             <form action='' method='post'>
-                <button type='button' class='btn-nav' onclick='load_popup("popup_drink")'>Manage drinks</button>
-                <button type='button' class='btn-nav' onclick='load_popup("popup_tag")'>Manage tags</button>
-                <button type='button' class='btn-nav' onclick='load_popup("popup_drink_type")'>Manage main menus</button>
+                <button type='button' class='btn-nav' onclick='open_popup("popup_drink", "main")'>Manage drinks</button>
+                <button type='button' class='btn-nav' onclick='open_popup("popup_tag", "main")'>Manage tags</button>
+                <button type='button' class='btn-nav' onclick='open_popup("popup_drink_type", "main")'>Manage main menus</button>
             </form>
         </div>
     </div>
 
     <div id="popup_drink" class="popup">
         <h1>Manage drinks</h1>
-        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_drink')">
-        <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink. Changes cannot be undone.</p>
+        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_drink', 'main')">
+        <p>Modifying or deleting drinks will affect all bars offering that drink.<br>So please be careful, the Changes cannot be undone.</p>
         <div class="list">
             <table>
                 <tr>
                     <th>Drink</th>
                     <th>Main menu</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 <?php
@@ -169,12 +170,12 @@
                         <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
                         <td><select id='drink_type$id' name='drink_type' disabled>" . str_replace(">".$type, "selected='selected'>".$type, $options_all_drink_types) . "</select></td>
                         <input type='hidden' name='section' value='drink'>
-                        <td>
+                        <td class='td-submit'>
                             <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
                             <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                         </td>
-                        <td>
-                            <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"drink\")'>delete</button>
+                        <td class='td-submit'>
+                            <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"drink\", \"popup_drink\")'>delete</button>
                         </td>
                     </form>
                 </tr>";
@@ -186,12 +187,13 @@
 
     <div id="popup_tag" class="popup">
         <h1>Manage tags</h1>
-        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_tag')">
-        <p>Please be careful! Your changes will affect all bars that have this tag assigned. Changes cannot be undone.</p>
+        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_tag', 'main')">
+        <p>Be careful, changing a tag here will change it for all venues.<br>If you want to change a tag for one venue only,<br>you can do this by selecting the particular venue on the main view.</p>
         <div class="list">
             <table>
                 <tr>
                     <th>Tag name</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 <?php
@@ -207,12 +209,12 @@
                     <form action='' method='post'>
                         <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
                         <input type='hidden' name='section' value='tag'>
-                        <td>
+                        <td class='td-submit'>
                             <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
                             <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                         </td>
-                        <td>
-                            <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"tag\")'>delete</button>
+                        <td class='td-submit'>
+                            <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"tag\", \"popup_tag\")'>delete</button>
                         </td>
                     </form>
                 </tr>";
@@ -224,8 +226,8 @@
 
     <div id="popup_drink_type" class="popup">
         <h1>Manage main menus</h1>
-        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_drink_type')">
-        <p>Please be careful! Your changes will affect all bars. Changes cannot be undone.</p>
+        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_drink_type', 'main')">
+        <p>Please be very careful with the main menu. Those should only be managed by one of the editors.<br>Deleting a menu will delete all drinks across all bars that are attached to it.</p>
         <div class="list">
             <table>
                 <tr>
@@ -233,6 +235,17 @@
                     <th>Icon (grey)</th>
                     <th>Icon (blue)</th>
                     <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <form action='' method='post'>
+                        <input type='hidden' name='section' value='drink_type'>
+                        <td><input type='text' name='name'></td>
+                        <td><input type='text' name='img_url_inactive'></td>
+                        <td><input type='text' name='img_url_active'></td>
+                        <td class="td-submit"><button type='submit' class='add' name='add' value=''>add</button></td>
+                        <td></td>
+                    </form>
                 </tr>
                 <?php
                 while($currentRow = mysqli_fetch_array($result_drink_types)) {
@@ -250,12 +263,12 @@
                             <td><input type='text' id='img_url_inactive$id' name='img_url_inactive' value='$img_url_inactive' disabled></td>
                             <td><input type='text' id='img_url_active$id' name='img_url_active' value='$img_url_active' disabled></td>
                             <input type='hidden' name='section' value='drink_type'>
-                            <td>
+                            <td class='td-submit'>
                                 <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
                                 <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                             </td>
-                            <td>
-                                <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"drink_type\")'>delete</button>
+                            <td class='td-submit'>
+                                <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"drink_type\", \"popup_drink_type\")'>delete</button>
                             </td>
                         </form>
                     </tr>";
@@ -271,16 +284,17 @@
            to delete this item?.</p>
         <form action='' method='post'>
             <input type='hidden' id='confirm-section' name='section' value=''>
+            <input type='hidden' id='popup_confirmation-source' value=''>
+            <button type='button' id='confirm-keep' class='modify' onclick='close_popup("popup_confirmation", null)'>keep</button>
             <button type='submit' id='confirm-delete' class='delete' name='del' value=''>delete</button>
-            <button type='button' id='confirm-keep' class='modify' onclick='keep()'>keep</button>
         </form>
     </div>
 
-    <!-- Open popup-->
-    <?php if(isset($_POST['section'])) { echo "<script>load_popup('popup_" . $_POST['section'] . "')</script>"; }?>
+    <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
+    <script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>
 
-  <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
-  <script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>
+    <!-- Open popup-->
+    <?php if(isset($_POST['section'])) { echo "<script>open_popup('popup_" . $_POST['section'] . "', 'main')</script>"; }?>
 
 </body>
 </html>
