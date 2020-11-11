@@ -25,16 +25,16 @@ document.addEventListener('change', function(e) {
 })
 
 // When user clicks "modify" button on inputForm_add.php
-function modify(drink_id) {
+function modify(drink_relationship_id) {
 
     // access the columns from the drinks list
-    let td_name          = document.getElementById('drink-'+drink_id+'-name');
-    let td_type          = document.getElementById('drink-'+drink_id+'-type');
-    let td_menu          = document.getElementById('drink-'+drink_id+'-menu');
-    let td_vol           = document.getElementById('drink-'+drink_id+'-volume');
-    let td_price         = document.getElementById('drink-'+drink_id+'-price');
-    let td_student_price = document.getElementById('drink-'+drink_id+'-student-price');
-    let td_modify        = document.getElementById('drink-'+drink_id+'-modify');
+    let td_name          = document.getElementById('drink-'+drink_relationship_id+'-name');
+    let td_type          = document.getElementById('drink-'+drink_relationship_id+'-type');
+    let td_menu          = document.getElementById('drink-'+drink_relationship_id+'-menu');
+    let td_vol           = document.getElementById('drink-'+drink_relationship_id+'-volume');
+    let td_price         = document.getElementById('drink-'+drink_relationship_id+'-price');
+    let td_student_price = document.getElementById('drink-'+drink_relationship_id+'-student-price');
+    let td_modify        = document.getElementById('drink-'+drink_relationship_id+'-modify');
 
     // transform static text into dynamic input fields
     td_name.innerHTML = "<input type='text' class='input-drink' id='mod-drink' name='drink' value='"+td_name.innerHTML+"' list='drinkList' required>";
@@ -66,7 +66,7 @@ function modify(drink_id) {
     document.getElementById('add-submit').disabled = true;
 
     // display add button
-    td_modify.innerHTML = "<button type='submit' class='add' name='add_drink' value="+drink_id+" formaction=''>save</button>";
+    td_modify.innerHTML = "<button type='submit' class='add' name='add_drink' value="+drink_relationship_id+" formaction=''>save</button>";
 }
 
 // When user clicks "modify" butoon on inputForm.php

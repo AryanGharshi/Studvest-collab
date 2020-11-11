@@ -107,7 +107,8 @@ if(isset($_POST['remove_image'])) {
 
 #Add drink to bar
 if(isset($_POST['add_drink'])) {
-    $drink = $_POST['drink'];
+    $drink_relationship_id=$_POST['add_drink'];
+    $drink_name = $_POST['drink'];
     $drink_type = $_POST['drink_type'];
     $menu = $_POST['menu'];
     $price = $_POST['price'];
@@ -116,19 +117,19 @@ if(isset($_POST['add_drink'])) {
 
     # Add new drink if it doesn't exist
     $sql = "INSERT INTO drink(name, drink_type_id)
-            VALUES ('$drink', (SELECT id FROM drink_type WHERE name='$drink_type'))
+            VALUES ('$drink_name', (SELECT id FROM drink_type WHERE name='$drink_type'))
             ON DUPLICATE KEY UPDATE id=id";
     $conn->query($sql);
 
     # If drink was modified, unassign old drink from bar before adding the new one.
     if($_POST['add_drink']!="new") {
-        $sql = "DELETE FROM drink_relationship WHERE drink_id=" .$_POST['add_drink']. " AND menu=$menu AND bar_id=$barID;";
+        $sql = "DELETE FROM drink_relationship WHERE drink_relationship.id=$drink_relationship_id;";
         $conn->query($sql);
     }
 
     # Assign new drink to bar
     $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, student_price, size)
-                        VALUES((SELECT id FROM drink WHERE name='$drink'), '$barID', '$menu', '$price', '$student_price', '$volume')
+                        VALUES((SELECT id FROM drink WHERE name='$drink_name'), '$barID', '$menu', '$price', '$student_price', '$volume')
                         ON DUPLICATE KEY UPDATE menu='$menu', price=$price, student_price=$student_price, size=$volume;";
     $conn->query($sql);
 
@@ -404,7 +405,7 @@ if (isset($barID)) {
                         <td id='drink-$drink_relationship_id-volume' class='td-vol'>" . $drink['volume'] . "</td>
                         <td id='drink-$drink_relationship_id-price' class='td-price'>" . $drink['price'] . "</td>
                         <td id='drink-$drink_relationship_id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
-                        <td id='drink-$drink_relationship_id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($id)'>modify</button></td>
+                        <td id='drink-$drink_relationship_id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($drink_relationship_id)'>modify</button></td>
                         <td id='drink-$drink_relationship_id-delete' class='td-submit detail'><button type='button' class='delete detail' onclick ='req_delete($drink_relationship_id, \"drink_relationship\")'>delete</button></td>
                     </tr>";
     }
