@@ -2,6 +2,12 @@
 define("MAGICKEY", "ugugUGu221KHJBD84");
 require "../inc/connection/conn.php";
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
+
 # Retrieve the barID if available
 if(isset($_POST['barID'])) {
     $barID = $_POST['barID'];
@@ -23,6 +29,8 @@ if(isset($_POST['create_bar'])) {
             VALUES ('$name', '$description', '$website', $phone, '$location')";
     $conn->query($sql);
     $barID = $conn->insert_id;
+
+    console_log("New bar was added to the database.");
 }
 
 # Add tags
@@ -40,14 +48,19 @@ if(isset($_POST['add_tag'])) {
                          VALUES($barID, (SELECT id FROM tag WHERE name='$tag'))
                          ON DUPLICATE KEY UPDATE bar_id=bar_id;";
     $conn->query($sql);
+
+    console_log("Tag got assigned");
 }
 
 #Remove drink
 if(isset($_POST['delete_drink'])) {
-  $drinkID = $_POST['delete_drink'];
+  $drinkRelationshipID = $_POST['delete_drink'];
   $sql = "DELETE FROM drink_relationship
-          WHERE drink_id=$drinkID AND bar_id=$barID;";
+          WHERE drink_relationship.id=$drinkRelationshipID";
   $conn->query($sql);
+
+
+    console_log("Drink got removed");
 }
 
 # Remove tag
@@ -56,6 +69,8 @@ if(isset($_POST['remove_tag'])) {
     $sql = "DELETE FROM tag_relationship
             WHERE bar_id=$barID AND tag_id=$tagID;";
     $conn->query($sql);
+
+    console_log("Tag got removed");
 }
 
 # Add images
@@ -73,6 +88,8 @@ if(isset($_POST['add_image']) and $_FILES['uploaddatei']['name'] <> "") {
                          VALUES($barID, '$target_file')
                          ON DUPLICATE KEY UPDATE bar_id=bar_id;";
     $conn->query($sql);
+
+    console_log("Image was uploaded");
 }
 
 # Remove image
@@ -84,6 +101,8 @@ if(isset($_POST['remove_image'])) {
     $sql = "DELETE FROM picture
             WHERE bar_id=$barID AND path='$target_file'";
     $conn->query($sql);
+
+    console_log("Image got removed.");
 }
 
 #Add drink to bar
@@ -119,6 +138,8 @@ if(isset($_POST['add_drink'])) {
                        document.getElementById("add-drink").focus();
                   }
               </script>';
+
+    console_log("Drink got added");
 }
 
 # Load the bar information, if there a barID is defined
@@ -182,7 +203,8 @@ if (isset($barID)) {
                               CONCAT(drink_relationship.size, ' ml') AS volume,
                               drink_relationship.menu AS menu,
                               drink_type.name AS drink_type,
-                              drink_type.id AS drink_type_id
+                              drink_type.id AS drink_type_id,
+                              drink_relationship.id AS drink_relationship_id
                        FROM drink_relationship
                        LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                        LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
@@ -212,6 +234,8 @@ if (isset($barID)) {
         #header("Location: 404.php");
         #die;
     }
+
+    console_log("Bar data was loaded successfully");
 }
 $conn->close();
 ?>
@@ -260,7 +284,7 @@ $conn->close();
                     <td><textarea name="description" rows="8" cols="80" id="description" form="editBar" placeholder="Enter description" required><?php echo($info["description"]); ?></textarea></td>
                 </tr>
 <?php
-if (isset($_POST['barID'])) {
+if (isset($barID)) {
     echo '
                 <tr>
                     <td><label for="tags">Tags:</label></td>
@@ -307,7 +331,7 @@ else {
     </form>
 
 <?php
-if (isset($_POST['barID'])) {
+if (isset($barID)) {
     echo '
     <div id="right-column" class="list">
         <h1 id="drink-menu-title">Drink Menu</h1>
@@ -370,15 +394,18 @@ if (isset($_POST['barID'])) {
     echo $datalist_menuList;
     foreach ($result_drinks as $drink) {
         $id = $drink['id'];
+        $drink_relationship_id = $drink["drink_relationship_id"];
+
+        $delete_parameters = array("drink_relationship_id" => $drink["drink_relationship_id"], "section" => "drink");
         echo "      <tr>
-                        <td id='drink-$id-name' class='td-drink'>" . $drink['drink_name'] . "</td>
-                        <td id='drink-$id-type' class='td-drink-type detail'>" . $drink['drink_type'] . "</td>
-                        <td id='drink-$id-menu' class='td-menu detail'>" . $drink['menu'] . "</td>
-                        <td id='drink-$id-volume' class='td-vol'>" . $drink['volume'] . "</td>
-                        <td id='drink-$id-price' class='td-price'>" . $drink['price'] . "</td>
-                        <td id='drink-$id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
-                        <td id='drink-$id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($id)'>modify</button></td>
-                        <td id='drink-$id-delete' class='td-submit detail'><button type='submit' class='delete detail' name='delete_drink' value=$id>delete</button></td>
+                        <td id='drink-$drink_relationship_id-name' class='td-drink'>" . $drink['drink_name'] . "</td>
+                        <td id='drink-$drink_relationship_id-type' class='td-drink-type detail'>" . $drink['drink_type'] . "</td>
+                        <td id='drink-$drink_relationship_id-menu' class='td-menu detail'>" . $drink['menu'] . "</td>
+                        <td id='drink-$drink_relationship_id-volume' class='td-vol'>" . $drink['volume'] . "</td>
+                        <td id='drink-$drink_relationship_id-price' class='td-price'>" . $drink['price'] . "</td>
+                        <td id='drink-$drink_relationship_id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
+                        <td id='drink-$drink_relationship_id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($id)'>modify</button></td>
+                        <td id='drink-$drink_relationship_id-delete' class='td-submit detail'><button type='button' class='delete detail' onclick ='req_delete($drink_relationship_id, \"drink_relationship\")'>delete</button></td>
                     </tr>";
     }
     echo '      </table>
@@ -392,6 +419,17 @@ if (isset($_POST['barID'])) {
 <div id="popup_add">
     <h1>The website have form with long menu items, please use a laptop to fill in information</h1>
     <button type="button" name="button" class="btn">Close</button>
+</div>
+
+<div id="popup_confirmation" class="popupdel">
+    <h1>Are you sure?</h1>
+    <p>This action cannot be undone. Do you really want to delete this item?.</p>
+    <form action='' method='post'>
+        <input type='hidden' id='confirm-section' name='section' value=''>
+        <input type="hidden" name="barID" value=<?php echo($barID); ?>>
+        <button type='submit' id='confirm-delete' class='delete' name='delete_drink' value=''>delete</button>
+        <button type='button' id='confirm-keep' class='modify' onclick='keep()'>keep</button>
+    </form>
 </div>
 
 <script>

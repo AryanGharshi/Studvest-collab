@@ -128,8 +128,8 @@
                         <td>$name</td>
                         <input type='hidden' name='barID' value='$id' id='$input'>
                         <input type='hidden' name='section' value='bar'>
-                        <td><button type='submit' class='delete' name='req_del' id='delete$input' value=$id>delete</button></td>
                         <td><button type='submit' class='modify' value='submit' formaction='inputForm_add.php'>modify</button></td>
+                        <td><button type='button' id='del$id' class='delete' onclick='req_delete($id, \"bar\")'>delete</button></td>
                     </form>
                 </tr>";
                 }
@@ -139,16 +139,16 @@
 
         <div class='footer'>
             <form action='' method='post'>
-                <button type='submit' class='btn-nav' name='section' value='drink'>Manage drinks</button>
-                <button type='submit' class='btn-nav' name='section' value='tag'>Manage tags</button>
-                <button type='submit' class='btn-nav' name='section' value='drink_type'>Manage main menus</button>
+                <button type='button' class='btn-nav' onclick='load_popup("popup_drink")'>Manage drinks</button>
+                <button type='button' class='btn-nav' onclick='load_popup("popup_tag")'>Manage tags</button>
+                <button type='button' class='btn-nav' onclick='load_popup("popup_drink_type")'>Manage main menus</button>
             </form>
         </div>
     </div>
 
     <div id="popup_drink" class="popup">
         <h1>Manage drinks</h1>
-        <form action='' method='post'><input type="image" name="submit" src="../media/icons/exit_white.png" alt="submit" class="btn-close"></form>
+        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_drink')">
         <p>Please be careful. If you modify or delete a drink, it will affect all bars offering that drink. Changes cannot be undone.</p>
         <div class="list">
             <table>
@@ -174,7 +174,7 @@
                             <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                         </td>
                         <td>
-                            <button type='submit' id='del$id' name='req_del' class='delete' value=$id>delete</button>
+                            <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"drink\")'>delete</button>
                         </td>
                     </form>
                 </tr>";
@@ -186,7 +186,7 @@
 
     <div id="popup_tag" class="popup">
         <h1>Manage tags</h1>
-        <form action='' method='post'><input type="image" name="submit" src="../media/icons/exit_white.png" alt="submit" class="btn-close"></form>
+        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_tag')">
         <p>Please be careful! Your changes will affect all bars that have this tag assigned. Changes cannot be undone.</p>
         <div class="list">
             <table>
@@ -212,7 +212,7 @@
                             <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                         </td>
                         <td>
-                            <button type='submit' id='del$id' name='req_del' class='delete' value=$id>delete</button>
+                            <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"tag\")'>delete</button>
                         </td>
                     </form>
                 </tr>";
@@ -224,7 +224,7 @@
 
     <div id="popup_drink_type" class="popup">
         <h1>Manage main menus</h1>
-        <form action='' method='post'><input type="image" name="submit" src="../media/icons/exit_white.png" alt="submit" class="btn-close"></form>
+        <img class="btn-close" src="../media/icons/exit_white.png" onclick="close_popup('popup_drink_type')">
         <p>Please be careful! Your changes will affect all bars. Changes cannot be undone.</p>
         <div class="list">
             <table>
@@ -255,7 +255,7 @@
                                 <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                             </td>
                             <td>
-                                <button type='submit' id='del$id' name='req_del' class='delete' value=$id>delete</button>
+                                <button type='button' id='del$id' class='delete' onclick='req_delete($id, \"drink_type\")'>delete</button>
                             </td>
                         </form>
                     </tr>";
@@ -265,37 +265,19 @@
         </div>
     </div>
 
-    <div id="popup_confirmation" class="popupdel">
+    <div id="popup_confirmation" class="popup">
         <h1>Are you sure?</h1>
         <p>This action cannot be undone. Do you really want
            to delete this item?.</p>
-        <?php
-        $id = (int) $_POST['req_del'];
-        $section = $_POST['section'];
-        echo "
         <form action='' method='post'>
-            <input type='hidden' name='section' value='$section'>
-            <button type='submit' class='delete' name='del' value=$id>delete</button>
-            <button type='submit' class='modify' name='keep'>keep</button>
-        </form>";
-        ?>
+            <input type='hidden' id='confirm-section' name='section' value=''>
+            <button type='submit' id='confirm-delete' class='delete' name='del' value=''>delete</button>
+            <button type='button' id='confirm-keep' class='modify' onclick='keep()'>keep</button>
+        </form>
     </div>
 
-<?php
-    if(isset($_POST['section'])) {
-        echo "<script>
-                  target_popup = document.getElementById('popup_" . $_POST['section'] . "').style.display='block';
-                  document.getElementById('main').style.opacity = '0.3';
-              </script>";
-    }
-
-    if(isset($_POST['req_del'])){
-        echo "<script>
-                  document.getElementById('popup_confirmation').style.display='block';
-                  document.getElementById('main').style.opacity = '0.3';
-              </script>";
-    }
-    ?>
+    <!-- Open popup-->
+    <?php if(isset($_POST['section'])) { echo "<script>load_popup('popup_" . $_POST['section'] . "')</script>"; }?>
 
   <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
   <script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>

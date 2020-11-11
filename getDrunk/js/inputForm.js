@@ -1,5 +1,4 @@
-
-
+// Auto-fill drink_type when user enters known drink
 document.addEventListener('change', function(e) {
 
     console.log(e);
@@ -25,6 +24,7 @@ document.addEventListener('change', function(e) {
     }
 })
 
+// When user clicks "modify" button on inputForm_add.php
 function modify(drink_id) {
 
     // access the columns from the drinks list
@@ -69,11 +69,11 @@ function modify(drink_id) {
     td_modify.innerHTML = "<button type='submit' class='add' name='add_drink' value="+drink_id+" formaction=''>save</button>";
 }
 
+// When user clicks "modify" butoon on inputForm.php
 function req_modify(id, columns) {
 
     // transform static text into dynamic input fields
     columns.forEach(element => document.getElementById(element+id).disabled = false);
-
 
     // disable all modify/delete buttons
     document.querySelectorAll('.modify').forEach(function(button) { button.disabled = true; });
@@ -84,12 +84,33 @@ function req_modify(id, columns) {
     document.getElementById('mod'+id).style.display = 'none';
 }
 
+// When user clicks "delete" button
+function req_delete(id, section) {
+    document.getElementById('popup_confirmation').style.display='block';
+    document.getElementById('confirm-delete').value = id;
+    document.getElementById('confirm-section').value = section;
+}
 
+// When user clicks "keep" button
+function keep() {
+    document.getElementById('popup_confirmation').style.display='none';
+}
 
+// When user wants to open one of the three popups on inputForm.php
+function load_popup(popup_id) {
+    document.getElementById('main').style.opacity = '0.3';
+    document.getElementById(popup_id).style.display='block';
+}
 
+// When user wants to close one of the popups
+function close_popup(popup_id) {
+    document.getElementById('main').style.opacity = '1';
+    document.getElementById(popup_id).style.display='none';
+    document.querySelectorAll('.modify').forEach(function(button) { button.disabled = false; });
+    document.querySelectorAll('.delete').forEach(function(button) { button.disabled = false; });
+}
 
-// popup to notice users to use loptop to fill informatiob
-
+// popup to notice users to use loptop to fill information
 var popup_add = document.getElementsByClassName("btn")[0];
 popup_add.addEventListener("click", function() {
   document.getElementById("popup_add").style.display="none";
