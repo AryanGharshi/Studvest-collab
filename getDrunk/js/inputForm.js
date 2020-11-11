@@ -104,10 +104,3 @@ function close_popup(source, target) {
     target = (target!=null) ? target : document.getElementById(source+"-source").value;
     document.getElementById(target).style.filter ='none';
 }
-
-// popup to notice users to use loptop to fill information
-var popup_add = document.getElementsByClassName("btn")[0];
-popup_add.addEventListener("click", function() {
-  document.getElementById("popup_add").style.display="none";
-  document.getElementsByClassName("blur")[0].style.filter="none";
-});

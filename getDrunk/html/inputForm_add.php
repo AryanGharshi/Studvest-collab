@@ -336,7 +336,7 @@ if (isset($barID)) {
     echo '
         <div id="right-column">
             <h1 id="drink-menu-title">Drink Menu</h1>
-            <button type="submit" class="btn-nav detail" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
+            <button type="submit" class="btn-nav" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
     </form>';
 
     // Generate datalists
@@ -358,18 +358,18 @@ if (isset($barID)) {
     echo $datalist_menuList;
         echo '  <table class="drink-menu-table">
                     <tr>
-                        <th class ="col_drink" style="padding-rigt:3.5em;">Drink</th>
-                        <th class = "detail" >Main Menu</th>
-                        <th class = "detail" >Sub menu</th>
-                        <th class = "col_vol">Volume</th>
-                        <th class = "col_normal">Normal Price</th>
-                        <th class = "col_student">Student Price</th>
-                        <th class = "detail"></th>
-                        <th class = "detail"></th>
+                        <th class ="td-drink" style="padding-rigt:3.5em;">Drink</th>
+                        <th class ="td-drink_type" >Main Menu</th>
+                        <th class ="td-menu" >Sub menu</th>
+                        <th class ="td-vol">Volume</th>
+                        <th class ="td-normal">Normal Price</th>
+                        <th class ="td-student">Student Price</th>
+                        <th class ="td-submit"></th>
+                        <th class ="td-submit"></th>
                     </tr>
                     <tr>
-                        <td class="td-drink"><input type="text" id="add-drink" class="detail" name="drink" placeholder="Drink" list="drinkList" required></td>
-                        <td class="td-drink-type detail">
+                        <td class="td-drink"><input type="text" id="add-drink" name="drink" placeholder="Drink" list="drinkList" required></td>
+                        <td class="td-drink-type">
                             <select id="add-type" name="drink_type" required>
                                 <option disabled selected value></option>';
     foreach ($result_all_drink_types as $drink_type) {
@@ -379,12 +379,12 @@ if (isset($barID)) {
         }
     echo '                </select>
                         </td>
-                        <td class="td-menu detail"><input type="text" id="add-menu" name="menu" list="menuList"></td>
-                        <td class="td-vol"><input type="number" id="add-vol" class="detail" name="vol" placeholder="ml" min=2 step=1" required></td>
-                        <td class="td-price"><input type="number" id="add-price"  class="detail" name="price" value="" placeholder="in kr" min=10 step=1" required></td>
-                        <td class="td-price"><input type="number" id="add-student-price"  class="detail" name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
-                        <td class="td-submit detail"><button type="submit" id="add-submit" name="add_drink" class="add detail" value="new" formaction="">add</button></td>
-                        <td class="td-submit detail"><button type="submit" id="add-submit" name="add_drink" class="transparent" value="new" formaction="">clear</button></td>
+                        <td class="td-menu"><input type="text" id="add-menu" name="menu" list="menuList"></td>
+                        <td class="td-vol"><input type="number" id="add-vol" name="vol" placeholder="ml" min=2 step=1" required></td>
+                        <td class="td-price"><input type="number" id="add-price"  name="price" value="" placeholder="in kr" min=10 step=1" required></td>
+                        <td class="td-price"><input type="number" id="add-student-price"  name="student-price" value="" placeholder="in kr" min=10 step=1"></td>
+                        <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="add" value="new" formaction="">add</button></td>
+                        <td class="td-submit"><button type="submit" id="add-submit" name="add_drink" class="transparent" value="new" formaction="">clear</button></td>
                     </tr>
                 </table>   
             </form>
@@ -403,13 +403,13 @@ if (isset($barID)) {
         $delete_parameters = array("drink_relationship_id" => $drink["drink_relationship_id"], "section" => "drink");
         echo "      <tr>
                         <td id='drink-$drink_relationship_id-name' class='td-drink'>" . $drink['drink_name'] . "</td>
-                        <td id='drink-$drink_relationship_id-type' class='td-drink-type detail'>" . $drink['drink_type'] . "</td>
-                        <td id='drink-$drink_relationship_id-menu' class='td-menu detail'>" . $drink['menu'] . "</td>
+                        <td id='drink-$drink_relationship_id-type' class='td-drink-type'>" . $drink['drink_type'] . "</td>
+                        <td id='drink-$drink_relationship_id-menu' class='td-menu'>" . $drink['menu'] . "</td>
                         <td id='drink-$drink_relationship_id-volume' class='td-vol'>" . $drink['volume'] . "</td>
                         <td id='drink-$drink_relationship_id-price' class='td-price'>" . $drink['price'] . "</td>
                         <td id='drink-$drink_relationship_id-student-price' class='td-price'>" . $drink['student_price'] . "</td>
-                        <td id='drink-$drink_relationship_id-modify' class='td-submit detail'><button type='button' class='modify detail' onclick ='modify($drink_relationship_id)'>modify</button></td>
-                        <td id='drink-$drink_relationship_id-delete' class='td-submit detail'><button type='button' class='delete detail' onclick ='req_delete($drink_relationship_id, \"drink_relationship\" , \"main\")'>delete</button></td>
+                        <td id='drink-$drink_relationship_id-modify' class='td-submit'><button type='button' class='modify' onclick ='modify($drink_relationship_id)'>modify</button></td>
+                        <td id='drink-$drink_relationship_id-delete' class='td-submit'><button type='button' class='delete' onclick ='req_delete($drink_relationship_id, \"drink_relationship\" , \"main\")'>delete</button></td>
                     </tr>";
     }
     echo '      </table>
@@ -420,9 +420,9 @@ if (isset($barID)) {
 ?>
 </div>
 
-<div id="popup_add">
-    <h1>The website have form with long menu items, please use a laptop to fill in information</h1>
-    <button type="button" name="button" class="btn">Close</button>
+<div id="popup_resolution_warning" class="popup">
+    <h1>Sorry, your resolution is too low.</h1>
+    <p>This form contains tables that are more usable on a larger screen.</p>
 </div>
 
 <div id="popup_confirmation" class="popup">

@@ -203,7 +203,7 @@ table {
     width: max-content;
     margin: auto;
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -323,131 +323,106 @@ input, textarea, select {
     width: 10%;
 }
 
-#popup_add {
-  display:none;
-}
+@media only screen and (max-width: 100em) {
 
-@media only screen and (max-width:1000px){
-  #left-column{
-    width: 90%;
-    height: auto;
-    margin-bottom: 51px;
-  }
-  #right-column{
-    width: 85%;
-  }
-  .btn{
-    display: block;
-    width: 98px;
-    margin: 0 auto;
-    padding: 5px;
-    margin-top: 60px;
-    border-radius: 8px;
-    background-color: #222222;
-    border-color: white;
-    color: white;
-    margin-bottom: 15px;
-    bottom: 11px;
-  }
-  #popup_add {
-    display:block;
-    position:relative;
-    margin-top: 25vw;
-    width: calc(var(--main-width-popup) - 3em);
-    height: 26vw;
-    margin-left: calc((100% - var(--main-width-popup)) / 2);
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: var(--col-background);
-    z-index: 1;
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 1.5em;
-  }
+    #left-column {
+        width: 90%;
+        height: auto;
+        margin-bottom: 51px;
+    }
 
-  .blur{
-    position: absolute;
-    filter: blur(6px);
-  }
+    #right-column {
+        width: 85%;
+    }
 
-/*
-  .list th {
-      padding: 0;
-  }*/
+    .btn {
+        display: block;
+        width: 98px;
+        margin: 0 auto;
+        padding: 5px;
+        margin-top: 60px;
+        border-radius: 8px;
+        background-color: #222222;
+        border-color: white;
+        color: white;
+        margin-bottom: 15px;
+        bottom: 11px;
+    }
 
-.detail{
-  display: none;
-}
-.drink-menu-table td, th {
-    /*border: 1px solid white;*/
-}
-#right-column {
-  /*  border: red solid;*/
-    width: 91vw;
-}
-.drink-menu-table {
-    width: 85vw;
-    margin: 0 auto;
-    text-align: left;
-    /*border: yellow solid;*/
-    border-spacing: 0;
-    border-collapse: collapse;
-    border-bottom: 1px solid var(--col-primary);
-}
+    #popup_resolution_warning {
+        display: block;
+    }
 
-.drink-menu-table tbody {
-    height: 10%;
-    /* width: 83vw; */
-    display: block;
-    block-size: blue solid;
-}
-.drink-menu-table tr {
-    width: 100%;
-}
+    .main {
+        filter: blur(6px);
+    }
 
 
+    .btn-nav, .td-submit, .td-drink_type, .td-menu {
+        display: none;
+    }
 
-.col_vol, .col_normal , .col_student{
-    padding: .4em;
-    width: 22vw;
-}
+    .drink-menu-table td, th {
+        /*border: 1px solid white;*/
+    }
 
-.drink-menu-table .col_drink {
-  width:27vw;
-  padding-right: 3.5em;
-}
+    #right-column {
+        /*  border: red solid;*/
+        width: 91vw;
+    }
 
-datalist {
-    width: 811px;
-}
+    .drink-menu-table {
+        width: 85vw;
+        margin: 0 auto;
+        text-align: left;
+        /*border: yellow solid;*/
+        border-spacing: 0;
+        border-collapse: collapse;
+        border-bottom: 1px solid var(--col-primary);
+    }
+
+    .drink-menu-table tbody {
+        height: 10%;
+        /* width: 83vw; */
+        display: block;
+        block-size: blue solid;
+    }
+
+    .drink-menu-table tr {
+        width: 100%;
+    }
 
 
-.drink-menu-table tr {
-    width: 100%;
-}
+    .td-vol, .td-price, .td-price {
+        padding: .4em;
+        width: 22vw;
+    }
 
-.drink-menu-table .td-drink, .td-menu {
-    width: auto;
-    padding-right: 4em;
-}
+    .drink-menu-table .td-drink {
+        width: 27vw;
+        padding-right: 3.5em;
+    }
 
-.drink-menu-table .td-vol, .td-price {
-    width: 30%;
-}
+    datalist {
+        width: 811px;
+    }
 
-#right-column .drink-menu{
-  height: 451px;
-}
 
+    .drink-menu-table tr {
+        width: 100%;
+    }
+
+    .drink-menu-table .td-drink, .td-menu {
+        width: auto;
+        padding-right: 4em;
+    }
+
+    .drink-menu-table .td-vol, .td-price {
+        width: 30%;
+    }
+
+    #right-column .drink-menu {
+        height: 451px;
+    }
 
 }
-
-@media only screen and (max-width:711px)
-  {
-      #popup_add{
-        height: 35vh;
-      }
-
-  }
