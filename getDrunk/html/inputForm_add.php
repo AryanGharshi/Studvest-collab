@@ -261,7 +261,7 @@ $conn->close();
 <div id="main" class="blur">
     <div id="left-column">
         <h1>General Information</h1>
-        <form id="editBar" method="post" enctype="multipart/form-data"
+        <form id="editBar" method="post" enctype="multipart/form-data">
             <input type="hidden" name="barID" value=<?php echo($barID); ?>>
             <table class="aboutBar">
                 <tr>
@@ -329,14 +329,15 @@ else {
 ?>
             </table>
         </div>
-    </form>
+
 
 <?php
 if (isset($barID)) {
     echo '
-    <div id="right-column" class="list">
-        <h1 id="drink-menu-title">Drink Menu</h1>
-        <button type="submit" class="btn-nav detail" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>';
+        <div id="right-column" class="list">
+            <h1 id="drink-menu-title">Drink Menu</h1>
+            <button type="submit" class="btn-nav detail" id="btn-nav-save" name="update_bar" value="submit" formaction="inputForm.php">Save & close</button>
+    </form>';
 
     // Generate datalists
     $datalist_drinkList = '<datalist id="drinkList">';
@@ -350,8 +351,8 @@ if (isset($barID)) {
     $datalist_menuList .= '</datalist>';
 
     echo '
-            <form id="editBar" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="barID" value=' . $barID .'>';
+    <form id="editBar" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="barID" value=' . $barID .'>';
     echo $datalist_drinkList;
     echo $datalist_menuList;
         echo '  <table class="drink-menu-table">
