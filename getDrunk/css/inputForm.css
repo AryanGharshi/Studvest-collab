@@ -1,5 +1,5 @@
 :root {
-    --main-width: min(100em, 100vw);
+    --main-width: min(100em, calc(100vw - 2em - 2em));
     --main-width-popup: min(75em, 60vw);
 
 }
@@ -7,7 +7,8 @@
 body{
     font-size: 0.9em;
     position: absolute;
-    width: 100%;
+    width: 100vw;
+    overflow-y: hidden;
 }
 
 #body-main {
@@ -56,18 +57,24 @@ table {
 }
 
 #left-column {
-    width: 30%;
-    height: 100%;
+    width: 30em;
     float: left;
     margin: 0;
     padding-right: 2em;
 }
 
 #right-column {
-    width: calc(70% - 2em);
+    width: calc(100% - 2em - 30em);
     height: 100%;
     float: left;
     margin: 0;
+}
+
+@media only screen and (max-width: 80em) {
+
+    #left-column, #right-column {
+        width: 100%;
+    }
 }
 
 #right-column h1 {
@@ -201,6 +208,7 @@ table {
 .popup {
     height: max-content;
     width: max-content;
+    max-width: calc(100vw - 4em);
     margin: auto;
     display: none;
     position: fixed;
@@ -323,7 +331,7 @@ input, textarea, select {
     width: 10%;
 }
 
-@media only screen and (max-width: 100em) {
+@media only screen and (max-width: 50em) {
 
     #left-column {
         width: 90%;

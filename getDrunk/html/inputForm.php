@@ -105,7 +105,7 @@
         <?php include('header.php'); ?>
     </a>
 
-    <div id="main">
+    <div id="main" class="main">
         <div class="above-list">
             <h1>Welcome back.</h1>
             <a href="inputForm_add.php">
@@ -288,6 +288,11 @@
             <button type='button' id='confirm-keep' class='modify' onclick='close_popup("popup_confirmation", null)'>keep</button>
             <button type='submit' id='confirm-delete' class='delete' name='del' value=''>delete</button>
         </form>
+    </div>
+
+    <div id="popup_resolution_warning" class="popup">
+        <h1>Sorry, your resolution is too low.</h1>
+        <p>This form contains tables that are more usable on a larger screen.</p>
     </div>
 
     <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
