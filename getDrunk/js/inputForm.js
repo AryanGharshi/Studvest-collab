@@ -32,7 +32,7 @@ function req_modify(parent, id, columns) {
 
     // transform static text into dynamic input fields
     columns.forEach(element => parent_div.querySelector("#"+element+id).disabled = false);
-    document.getElementById('row'+id).querySelectorAll(".unit").forEach(function(button) { classList.add("unit-active") });
+    document.getElementById('row'+id).querySelectorAll(".unit").forEach(function(element) { element.classList.add("unit-active") });
 
     // Disable input fields in first row
     try {

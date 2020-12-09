@@ -74,22 +74,28 @@ if(isset($_POST['remove_tag'])) {
 }
 
 # Add images
-if(isset($_POST['add_image']) and $_FILES['uploaddatei']['name'] <> "") {
+$uploadfile = $_FILES['uploadfile'."-".$_POST['add_image']];
+if(isset($_POST['add_image']) and ($uploadfile['name'] <> "")) {
+    $is_cover = $_POST['add_image']=='cover';
+
     #Create directory if not exists
     $target_directory = "../media/pictures/$barID/";
     if (!is_dir($target_directory)) {
         mkdir($target_directory);
     }
-    $target_file = $target_directory . $_FILES['uploaddatei']['name'];
+    $target_file = $target_directory . $uploadfile['name'];
     # Store file on the server
-    move_uploaded_file ($_FILES['uploaddatei']['tmp_name'] , $target_file);
+    move_uploaded_file ($uploadfile['tmp_name'] , $target_file);
     # Update the database
-    $sql = "INSERT INTO picture(bar_id, path)
-                         VALUES($barID, '$target_file')
+    $sql = "INSERT INTO picture(bar_id, path, is_cover)
+                         VALUES($barID, '$target_file', '$is_cover')
                          ON DUPLICATE KEY UPDATE bar_id=bar_id;";
-    $conn->query($sql);
+    $res = $conn->query($sql);
 
-    console_log("Image was uploaded");
+    # Delete previous cover photo, if new cover photo was uploaded
+    if($is_cover and isset($_POST['cover-path'])) {
+        $_POST['remove_image'] = $_POST['cover-path'];
+    }
 }
 
 # Remove image
@@ -221,9 +227,10 @@ if (isset($barID)) {
         }
 
         # Load and store the pictures of the bar
-        $sql_pictures = "SELECT id, bar_id, path
+        $sql_pictures = "SELECT id, bar_id, path, is_cover
                          FROM picture
-                         WHERE bar_id=$barID";
+                         WHERE bar_id=$barID
+                         ORDER BY is_cover DESC";
         $result_pictures = ($conn->query($sql_pictures));
 
         # Load tags
@@ -311,13 +318,34 @@ if (isset($barID)) {
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="images">Images:</label></td>
-                    <td><input type="file" name="uploaddatei" size="60" maxlength="255"><br></td>
-                    <td><button type="submit" class="add" name="add_image" value="submit" formaction="">upload</button></td>
+                    <td><label for="cover">Cover photo:</label></td>
+                    <td><input type="file" name="uploadfile-cover" size="60" maxlength="255"><br></td>
+                    <td><button type="submit" class="add" name="add_image" value="cover" formaction="">upload</button></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>';
+    if ($result_pictures->num_rows > 0) {
+        $picture = $result_pictures->fetch_assoc();
+        if($picture['is_cover']) {
+            printf("<input type='hidden' name='cover-path' value='" . $picture['path'] . "'>
+                    <button type='submit' class='tag' name='remove_image' value='" . $picture['path'] . "'>" . basename($picture['path']) . "  &#10006;</button>");
+        }
+    }
+    echo '
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="images">More pictures:</label></td>
+                    <td><input type="file" name="uploadfile-normal" size="60" maxlength="255"><br></td>
+                    <td><button type="submit" class="add" name="add_image" value="normal" formaction="">upload</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>';
+    if($picture['is_cover'] == 0) {
+        printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] . "'>" . basename($picture['path']) . "  &#10006;</button>");
+    }
     if ($result_pictures->num_rows > 0) {
         while ($picture = $result_pictures->fetch_assoc()) {
             printf("<button type='submit' class='tag' name='remove_image' value='" . $picture['path'] . "'>" . basename($picture['path']) . "  &#10006;</button>");
