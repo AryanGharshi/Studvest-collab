@@ -112,6 +112,7 @@ if(isset($_POST['add_drink'])) {
     $drink_type = $_POST['drink_type'];
     $menu = $_POST['menu'];
     $price = $_POST['price'];
+    $student_price = $_POST['student_price'];
     if ($student_price=='') {$student_price='Null';}
     $volume = $_POST['vol'];
 
@@ -266,6 +267,7 @@ $conn->close();
 <div id="main" class="main">
     <div id="left-column">
         <h1>General Information</h1>
+        <form id="editBar" method="post" enctype="multipart/form-data">
         <form id="editBar" method="post" enctype="multipart/form-data">
             <input type="hidden" name="barID" value=<?php echo($barID); ?>>
             <table class="aboutBar">

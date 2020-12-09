@@ -45,7 +45,7 @@ if ($result_barInfos->num_rows > 0) {
                         LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                         LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                         WHERE drink_relationship.bar_id=$barID
-                        ORDER BY id, name";
+                        ORDER BY drink_type.rank";
     $result_drink_types = ($conn->query($sql_drink_types));
 
     # Load list of drinks
@@ -61,7 +61,7 @@ if ($result_barInfos->num_rows > 0) {
                    LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                    LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                    WHERE drink_relationship.bar_id=$barID
-                   ORDER BY drink_type, menu, drink_name";
+                   ORDER BY drink_type.rank, menu, drink_name";
     $result_drinks = ($conn->query($sql_drinks));
 
     # Load pictures of bar
