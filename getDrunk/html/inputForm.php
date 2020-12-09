@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Studout - Administration</title>
     <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/inputForm.css?version=<?= time() ?>">
@@ -124,7 +124,7 @@
                     $input = 'barinput'.$id;
                     echo "
                 <tr id='$n'>
-                    <form action='' method='post' onsubmit='return sub(".'"barinput"'.",$id,$input)'>
+                    <form action='' method='post'>
                         <td>$name</td>
                         <input type='hidden' name='barID' value='$id' id='$input'>
                         <input type='hidden' name='section' value='bar'>
@@ -171,7 +171,7 @@
                         <td><select id='drink_type$id' name='drink_type' disabled>" . str_replace(">".$type, "selected='selected'>".$type, $options_all_drink_types) . "</select></td>
                         <input type='hidden' name='section' value='drink'>
                         <td class='td-submit'>
-                            <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
+                            <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify(\"popup_drink\", $id, $columns)'>modify</button>
                             <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                         </td>
                         <td class='td-submit'>
@@ -210,7 +210,7 @@
                         <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
                         <input type='hidden' name='section' value='tag'>
                         <td class='td-submit'>
-                            <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
+                            <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify(\"popup_tag\", $id, $columns)'>modify</button>
                             <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                         </td>
                         <td class='td-submit'>
@@ -240,10 +240,10 @@
                 <tr>
                     <form action='' method='post'>
                         <input type='hidden' name='section' value='drink_type'>
-                        <td><input type='text' name='name'></td>
-                        <td><input type='text' name='img_url_inactive'></td>
-                        <td><input type='text' name='img_url_active'></td>
-                        <td class="td-submit"><button type='submit' class='add' name='add' value=''>add</button></td>
+                        <td><input type='text' id='name0' name='name'></td>
+                        <td><input type='text' id='img_url_inactive0' name='img_url_inactive'></td>
+                        <td><input type='text' id='img_url_active0' name='img_url_active'></td>
+                        <td class="td-submit"><button type='submit' class='add' id='add0' name='add' value=''>add</button></td>
                         <td></td>
                     </form>
                 </tr>
@@ -264,7 +264,7 @@
                             <td><input type='text' id='img_url_active$id' name='img_url_active' value='$img_url_active' disabled></td>
                             <input type='hidden' name='section' value='drink_type'>
                             <td class='td-submit'>
-                                <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify($id, $columns)'>modify</button>
+                                <button type='button' id='mod$id' name='req_mod' class='modify' onclick ='req_modify(\"popup_drink_type\", $id, $columns)'>modify</button>
                                 <button type='submit' id='add$id' name='add' class='add' value=$id style='display: none'>save</button>
                             </td>
                             <td class='td-submit'>
@@ -296,7 +296,6 @@
     </div>
 
     <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
-    <script type='text/javascript' src='../js/input_del.js?version=<?= time() ?>'></script>
 
     <!-- Open popup-->
     <?php if(isset($_POST['section'])) { echo "<script>open_popup('popup_" . $_POST['section'] . "', 'main')</script>"; }?>

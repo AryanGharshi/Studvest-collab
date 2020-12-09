@@ -24,67 +24,33 @@ document.addEventListener('change', function(e) {
     }
 })
 
-// When user clicks "modify" button on inputForm_add.php
-function modify(drink_relationship_id) {
+// When user clicks "modify" button on inputForm.php
+function req_modify(parent, id, columns) {
 
-    // access the columns from the drinks list
-    let td_name          = document.getElementById('drink-'+drink_relationship_id+'-name');
-    let td_type          = document.getElementById('drink-'+drink_relationship_id+'-type');
-    let td_menu          = document.getElementById('drink-'+drink_relationship_id+'-menu');
-    let td_vol           = document.getElementById('drink-'+drink_relationship_id+'-volume');
-    let td_price         = document.getElementById('drink-'+drink_relationship_id+'-price');
-    let td_student_price = document.getElementById('drink-'+drink_relationship_id+'-student-price');
-    let td_modify        = document.getElementById('drink-'+drink_relationship_id+'-modify');
+    // Identify parent div
+    let parent_div = document.getElementById(parent);
 
     // transform static text into dynamic input fields
-    td_name.innerHTML = "<input type='text' class='input-drink' id='mod-drink' name='drink' value='"+td_name.innerHTML+"' list='drinkList' required>";
-    td_menu.innerHTML = "<input type='text' class='input-menu' id='mod-menu'  name='menu' value='"+td_menu.innerHTML+"' list='menuList'>";
-    td_vol.innerHTML = "<input type='number' class='input-vol' id='mod-vol'   name='vol'   value='"+td_vol.innerHTML.slice(0, -3)+"' min=2 step=1 required>";
-    td_price.innerHTML = "<input type='number' class='input-price' id='mod-price' name='price' value='"+td_price.innerHTML.slice(0, -2)+"' min=10 step=1 required>";
-    td_student_price.innerHTML = "<input type='number' class='input-price' id='mod-student-price' name='student-price' value='"+td_student_price.innerHTML.slice(0, -2)+"' min=10 step=1>";
+    columns.forEach(element => parent_div.querySelector("#"+element+id).disabled = false);
+    document.getElementById('row'+id).querySelector(".unit").classList.add("unit-active");
 
-
-    // add select box for drink types
-    let select_box = "<select class='input-type' id='mod-type' name='drink_type' disabled required>";
-    for (const key of Object.keys(mapping_drinkType_selectIdx)) {
-        select_box += "<option value='"+key+"'>"+key+"</option>"
+    // Disable input fields in first row
+    try {
+        columns.forEach(element => parent_div.querySelector("#"+element+"0").disabled = true);
+        parent_div.querySelector('#add'+0).disabled = true;
     }
-    select_box += "</select>";
-    td_type.innerHTML = select_box;
+    catch(err) { console.log("Note: Grid doesn't seem to have a dedicated row to add new items"); }
 
-    // disable all modify/delete buttons
-    document.querySelectorAll('.modify').forEach(function(button) { button.disabled = true; });
-    document.querySelectorAll('.delete').forEach(function(button) { button.disabled = true; });
-
-    // disable input forms
-    document.getElementById('add-drink').disabled = true;
-    document.getElementById('add-type').disabled = true;
-    document.getElementById('add-menu').disabled = true;
-    document.getElementById('add-price').disabled = true;
-    document.getElementById('add-student-price').disabled = true;
-    document.getElementById('add-vol').disabled = true;
-    document.getElementById('add-submit').disabled = true;
-
-    // display add button
-    td_modify.innerHTML = "<button type='submit' class='add' name='add_drink' value="+drink_relationship_id+" formaction=''>save</button>";
-}
-
-// When user clicks "modify" butoon on inputForm.php
-function req_modify(id, columns) {
-
-    // transform static text into dynamic input fields
-    columns.forEach(element => document.getElementById(element+id).disabled = false);
-
-    // disable all modify/delete buttons
-    document.querySelectorAll('.modify').forEach(function(button) { button.disabled = true; });
-    document.querySelectorAll('.delete').forEach(function(button) { button.disabled = true; });
+    // disable all other add/modify/delete buttons
+    parent_div.querySelectorAll('.modify').forEach(function(button) { button.disabled = true; });
+    parent_div.querySelectorAll('.delete').forEach(function(button) { button.disabled = true; });
 
     // display save button
-    document.getElementById('add'+id).style.display = 'inline';
-    document.getElementById('mod'+id).style.display = 'none';
+    parent_div.querySelector('#add'+id).style.display = 'inline';
+    parent_div.querySelector('#mod'+id).style.display = 'none';
 }
 
-// When user clicks "delete" button
+// When user clicks "delete" button, confirmation check should appear
 function req_delete(id, section, source) {
     document.getElementById('confirm-delete').value = id;
     document.getElementById('confirm-section').value = section;
@@ -92,11 +58,13 @@ function req_delete(id, section, source) {
     open_popup("popup_confirmation", source)
 }
 
+// Open a popup window
 function open_popup(target, source) {
     document.getElementById(target).style.display ='block';
     document.getElementById(source).style.filter ='blur(6px)';
 }
 
+// Close a popup window
 function close_popup(source, target) {
     console.log(source);
     console.log(document.getElementById(source));
@@ -104,3 +72,4 @@ function close_popup(source, target) {
     target = (target!=null) ? target : document.getElementById(source+"-source").value;
     document.getElementById(target).style.filter ='none';
 }
+

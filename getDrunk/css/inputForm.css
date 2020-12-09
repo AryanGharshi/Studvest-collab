@@ -231,13 +231,12 @@ input, textarea, select {
     box-sizing: border-box;
 }
 
-
-
 .list input:disabled, select:disabled {
     background-color: transparent;
     border: none;
     color: var(--col-primary);
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     opacity: 1;
 }
 
@@ -245,12 +244,15 @@ input, textarea, select {
     background-color: var(--col-primary);
     border: none;
     color: var(--col-background-dark);
-    padding: 0.2em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
 }
 
-
-
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 ::-webkit-scrollbar{
     width:7px;
@@ -330,6 +332,21 @@ input, textarea, select {
 .drink-menu-table .td-vol, .td-price {
     width: 10%;
 }
+
+.drink-menu-table .input-vol, .input-price {
+    text-align: right;
+    padding-right: 1.5em;
+    z-index:-1
+}
+
+.drink-menu-table .unit {
+    margin-left: -1.65em;
+}
+
+.drink-menu-table .unit-active {
+    color: var(--col-background-dark);
+}
+
 
 @media only screen and (max-width: 50em) {
 
@@ -415,7 +432,6 @@ input, textarea, select {
         width: 811px;
     }
 
-
     .drink-menu-table tr {
         width: 100%;
     }
@@ -432,5 +448,4 @@ input, textarea, select {
     #right-column .drink-menu {
         height: 451px;
     }
-
 }
