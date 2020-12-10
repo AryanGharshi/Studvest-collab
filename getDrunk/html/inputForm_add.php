@@ -27,6 +27,7 @@ if(isset($_POST['create_bar'])) {
     # Add bar into the database
     $sql = "INSERT INTO bar (name, description, website, phone, location)
             VALUES ('$name', '$description', '$website', $phone, '$location')";
+    console_log($sql);
     $conn->query($sql);
     $barID = $conn->insert_id;
 
@@ -79,7 +80,7 @@ if(isset($_POST['add_image']) and ($uploadfile['name'] <> "")) {
     $is_cover = $_POST['add_image']=='cover';
 
     #Create directory if not exists
-    $target_directory = "../media/pictures/$barID/";
+    $target_directory = "../media/pictures/$barID/$is_cover/";
     if (!is_dir($target_directory)) {
         mkdir($target_directory);
     }
@@ -119,7 +120,9 @@ if(isset($_POST['add_drink'])) {
     $menu = $_POST['menu'];
     $price = $_POST['price'];
     $student_price = $_POST['student_price'];
+    console_log($student_price);
     if ($student_price=='') {$student_price='Null';}
+    console_log($student_price);
     $volume = $_POST['vol'];
 
     # Add new drink if it doesn't exist
@@ -202,6 +205,7 @@ if (isset($barID)) {
             $sql_all_drinks = "SELECT drink.id AS drink,
                                       drink.name AS name,
                                       drink_type.name AS drink_type
+                                      drink_type.rank AS rank
                                FROM drink
                                LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id;";
             $result_all_drinks = ($conn->query($sql_all_drinks));
@@ -414,7 +418,7 @@ if (isset($barID)) {
                         <td class='td-menu'><input type='text' id='drink-menu0' name='menu' list='menuList'></td>
                         <td class='td-vol'><input type='number' id='drink-volume0' name='vol' min=2 step=1' required><span class='unit unit-active'>ml</span></td>
                         <td class='td-price'><input type='number' id='drink-price0'  name='price' value='' min=10 step=1' required><span class='unit unit-active'>,-</span></td>
-                        <td class='td-price'><input type='number' id='drink-student-price0'  name='student-price' value='' min=10 step=1 ><span class='unit unit-active'>,-</span></td>
+                        <td class='td-price'><input type='number' id='drink-student-price0'  name='student_price' value='' min=10 step=1 ><span class='unit unit-active'>,-</span></td>
                         <td class='td-submit'><button type='submit' id='add0' name='add_drink' class='add' value='new' formaction=''>add</button></td>
                         <td class='td-submit'><button type='submit' id='clear0' name='add_drink' class='transparent' value='new' formaction=''>clear</button></td>
                     </tr>
@@ -452,7 +456,7 @@ if (isset($barID)) {
                             <span class='unit'>,-</span>
                         </td>
                         <td id='drink-$drink_relationship_id-student-price' class='td-price'>
-                            <input type='number' class='input-price' id='drink-student-price$drink_relationship_id' name='price' value='" . $drink['student_price'] . "' min=10 step=1 disabled>
+                            <input type='number' class='input-price' id='drink-student-price$drink_relationship_id' name='student_price' value='" . $drink['student_price'] . "' min=10 step=1 disabled>
                             <span class='unit'>,-</span>
                         </td>
                         <td class='td-submit'>

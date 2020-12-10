@@ -95,14 +95,14 @@ function console_log( $data ){
 
         if($direction=="down") {
             $sql = "UPDATE drink_type AS dt1 JOIN (select MIN(rank) AS rank_next FROM drink_type WHERE rank>'$id') AS dt2
-                    SET dt1.rank = (case when dt1.rank = '$id' then dt2.rank_next else '$id' end)
+                    SET dt1.rank = (case when (dt1.rank = '$id' and dt2.rank_next!=0) then dt2.rank_next else '$id' end)
                     WHERE dt1.rank in ('$id', dt2.rank_next)";
             console_log($sql);
             $conn->query($sql);
         }
         else {
             $sql = "UPDATE drink_type AS dt1 JOIN (select MAX(rank) AS rank_prev FROM drink_type WHERE rank<'$id') AS dt2
-                    SET dt1.rank = (case when dt1.rank = '$id' then dt2.rank_prev else '$id' end)
+                    SET dt1.rank = (case when (dt1.rank = '$id' and dt2.rank_prev!=0) then dt2.rank_prev else '$id' end)
                     WHERE dt1.rank in ('$id', dt2.rank_prev)";
             console_log($sql);
             $conn->query($sql);
