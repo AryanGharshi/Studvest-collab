@@ -26,10 +26,8 @@ function console_log( $data ){
 <?php
     # Delete Drinks / Drink Types / Tags / Bars
     if(isset($_POST['del'])){
-        $id = (int) $_POST['del'];
         $section = $_POST['section'];
-        $sql_del = "DELETE FROM $section WHERE id=$id";
-        $conn->query($sql_del);
+        $id = (int) $_POST['del'];
 
         # When deleting a bar, also unlink all the images
         if($section=='bar') {
@@ -42,6 +40,16 @@ function console_log( $data ){
                 rmdir($picture_directory);
             }
         }
+
+        # When deleting a section, adjust the ranks
+        if($section=='drink_type') {
+            $sql = "UPDATE drink_type as dt1 JOIN (SELECT rank AS delete_rank FROM drink_type WHERE id=$id) as dt2 SET dt1.rank=dt1.rank-1 WHERE rank>dt2.delete_rank";
+            $conn->query($sql);
+        }
+
+        # Delete the item
+        $sql_del = "DELETE FROM $section WHERE id=$id";
+        $conn->query($sql_del);
     }
 
     # Add Drinks / Drink Types / Tags

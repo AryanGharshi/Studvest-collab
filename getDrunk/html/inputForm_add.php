@@ -25,11 +25,16 @@ if(isset($_POST['create_bar'])) {
     $location = $_POST['location'];
 
     # Add bar into the database
-    $sql = "INSERT INTO bar (name, description, website, phone, location)
+    $sql = "INSERT IGNORE INTO bar (name, description, website, phone, location)
             VALUES ('$name', '$description', '$website', $phone, '$location')";
-    console_log($sql);
     $conn->query($sql);
     $barID = $conn->insert_id;
+
+    # Check if duplicate bar name
+    if ($barID==0) {
+        $barID = null;
+        $error_message = "Another bar with the name you have entered, already exists. Please enter a different name.";
+    }
 
     console_log("New bar was added to the database.");
 }
@@ -189,7 +194,7 @@ if (isset($barID)) {
             }
 
             # Load list of all drink types (not only the current bar)
-            $sql_all_drink_types = "SELECT drink_type.name, id FROM drink_type;";
+            $sql_all_drink_types = "SELECT drink_type.name, id FROM drink_type ORDER BY drink_type.rank;";
             $result_all_drink_types = ($conn->query($sql_all_drink_types));
 
             # Load list of all existing menus for this bar
@@ -204,8 +209,8 @@ if (isset($barID)) {
             # Load list of all drinks (not only the current bar)
             $sql_all_drinks = "SELECT drink.id AS drink,
                                       drink.name AS name,
-                                      drink_type.name AS drink_type
-                                      drink_type.rank AS rank
+                                      drink_type.name AS drink_type,
+                                      drink_type.rank AS drink_type_rank
                                FROM drink
                                LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id;";
             $result_all_drinks = ($conn->query($sql_all_drinks));
@@ -247,10 +252,7 @@ if (isset($barID)) {
         $result_tags = ($conn->query($sql_tags));
     }
     else {
-        echo "error";
-        # If bar with passed bar_id does not exist, forward to error page
-        #header("Location: 404.php");
-        #die;
+        console_log("ERROR: No bar with that ID exists");
     }
 
     console_log("Bar data was loaded successfully");
@@ -278,6 +280,11 @@ $conn->close();
 <div id="main" class="main">
     <div id="left-column">
         <h1>General Information</h1>
+        <?php
+            if($error_message != null) {
+                echo $error_message;
+            }
+        ?>
         <form id="editBar" method="post" enctype="multipart/form-data">
         <form id="editBar" method="post" enctype="multipart/form-data">
             <input type="hidden" name="barID" value=<?php echo($barID); ?>>
@@ -382,7 +389,7 @@ if (isset($barID)) {
     $datalist_drinkList = '<datalist id="drinkList">';
     foreach ($result_all_drinks as $drink) {
         $datalist_drinkList .= '<option value="'. $drink['name'] . '">';
-        $mapping_drink_drinkType[$drink['name']] = $drink['drink_type'];
+        $mapping_drink_drinkType[$drink['name']] = $drink['drink_type_rank'];
     }
     $datalist_drinkList .= '</datalist>';
 
@@ -413,8 +420,8 @@ if (isset($barID)) {
                         <th class ='td-submit'></th>
                     </tr>
                     <tr id='row0'>
-                        <td class='td-drink'><input type='text' id='drink-name0' name='drink' placeholder='Drink' list='drinkList' required></td>
-                        <td class='td-drink-type'><select id='drink-type0' name='drink_type' required>". str_replace("<option disabled value>", "<option disabled value selected>", $datalist_drinkTypeList). "</select></td>
+                        <td class='td-drink'><input type='text' id='drink-name0' class='drink-name' name='drink' placeholder='Drink' list='drinkList' required></td>
+                        <td class='td-drink-type'><select id='drink-type0' class='drink-type' name='drink_type' required>". str_replace("<option disabled value>", "<option disabled value selected>", $datalist_drinkTypeList). "</select></td>
                         <td class='td-menu'><input type='text' id='drink-menu0' name='menu' list='menuList'></td>
                         <td class='td-vol'><input type='number' id='drink-volume0' name='vol' min=2 step=1' required><span class='unit unit-active'>ml</span></td>
                         <td class='td-price'><input type='number' id='drink-price0'  name='price' value='' min=10 step=1' required><span class='unit unit-active'>,-</span></td>
@@ -437,12 +444,13 @@ if (isset($barID)) {
         $id = $drink['id'];
         $drink_relationship_id = $drink["drink_relationship_id"];
         $delete_parameters = array("drink_relationship_id" => $drink["drink_relationship_id"], "section" => "drink");
+        $columns_inactive = json_encode(['drink-type']);
         echo "      <tr id='row$drink_relationship_id'>
                         <td id='drink-$drink_relationship_id-name' class='td-drink'>
-                            <input type='text' class='input-drink' id='drink-name$drink_relationship_id' name='drink' value='" . $drink['drink_name'] . "' list='drinkList' required disabled>
+                            <input type='text' class='input-drink' id='drink-name$drink_relationship_id' class='drink-name' name='drink' value='" . $drink['drink_name'] . "' list='drinkList' required disabled>
                         </td>
                         <td id='drink-$drink_relationship_id-type' class='td-drink-type'>
-                            <select class='input-type' id='drink-type$drink_relationship_id'  name='drink_type' required disabled>".str_replace('>' . $drink['drink_type'], 'selected >' . $drink['drink_type'], $datalist_drinkTypeList)."</select>
+                            <select class='input-type' id='drink-type$drink_relationship_id' class='drink-type' name='drink_type' required disabled>".str_replace('>' . $drink['drink_type'], 'selected >' . $drink['drink_type'], $datalist_drinkTypeList)."</select>
                         </td>
                         <td id='drink-$drink_relationship_id-menu' class='td-menu'>
                             <input type='text' class='input-menu' id='drink-menu$drink_relationship_id'  name='menu' value='" . $drink['menu'] . "' list='menuList' disabled>
@@ -460,7 +468,7 @@ if (isset($barID)) {
                             <span class='unit'>,-</span>
                         </td>
                         <td class='td-submit'>
-                            <button id='mod$drink_relationship_id' type='button' class='modify' onclick ='req_modify(\"right-column\", $drink_relationship_id, $columns)'>modify</button>
+                            <button id='mod$drink_relationship_id' type='button' class='modify' onclick ='req_modify(\"right-column\", $drink_relationship_id, $columns, $columns_inactive)'>modify</button>
                             <button id='add$drink_relationship_id' type='submit' class='add' name='add_drink' value='$drink_relationship_id' formaction='' style='display: none'>save</button>
                         </td>
                         <td id='drink-$drink_relationship_id-delete' class='td-submit'><button type='button' class='delete' onclick ='req_delete($drink_relationship_id, \"drink_relationship\" , \"main\")'>delete</button></td>

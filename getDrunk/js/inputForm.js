@@ -5,17 +5,24 @@ document.addEventListener('change', function(e) {
 
     // Determine clicked and target object
     let clicked_object = e.target;
-    let target_object = clicked_object.matches('input#add-drink') ? document.getElementById('add-type')
-                      : clicked_object.matches('input#mod-drink') ? document.getElementById('mod-type')
-                      : null;
+
+    console.log(clicked_object.matches('.input-drink'));
+    console.log(clicked_object.id.replace("drink-name", "drink-type"));
+
+    let target_object = clicked_object.matches('.input-drink')
+                        ? document.getElementById(clicked_object.id.replace("drink-name", "drink-type"))
+                        : null;
 
     console.log(target_object);
 
     // checks which element was clicked
     if(target_object != null) {
-        let prefilled_drink_type = mapping_drinkType_selectIdx[mapping_drink_drinkType[clicked_object.value]];
+
+        console.log(mapping_drink_drinkType);
+        console.log(clicked_object.value);
+        let prefilled_drink_type = mapping_drink_drinkType[clicked_object.value];
         if(prefilled_drink_type!=null) {
-            target_object.selectedIndex = mapping_drinkType_selectIdx[mapping_drink_drinkType[clicked_object.value]];
+            target_object.selectedIndex = mapping_drink_drinkType[clicked_object.value];
             target_object.disabled = true;
         }
         else {
@@ -25,13 +32,14 @@ document.addEventListener('change', function(e) {
 })
 
 // When user clicks "modify" button on inputForm.php
-function req_modify(parent, id, columns) {
+function req_modify(parent, id, columns, columns_inactivate=[]) {
 
     // Identify parent div
     let parent_div = document.getElementById(parent);
 
     // transform static text into dynamic input fields
     columns.forEach(element => parent_div.querySelector("#"+element+id).disabled = false);
+    columns_inactivate.forEach(element => parent_div.querySelector("#"+element+id).disabled = true);
     document.getElementById('row'+id).querySelectorAll(".unit").forEach(function(element) { element.classList.add("unit-active") });
 
     // Disable input fields in first row
