@@ -201,6 +201,14 @@ table {
     padding-right: 0;
 }
 
+/** LOG OUT BUTTON **/
+
+.logout {
+  position: absolute;
+  bottom: 30px;
+  width: 60px;
+}
+
 
 
 /** POPUPS **/

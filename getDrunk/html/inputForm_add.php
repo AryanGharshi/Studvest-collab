@@ -2,6 +2,21 @@
 define("MAGICKEY", "ugugUGu221KHJBD84");
 require "../inc/connection/conn.php";
 
+session_start();
+
+
+if(!isset($_SESSION['username'])|| time() - $_SESSION['login_time'] > 1800) {
+  session_unset();
+  session_destroy();
+  echo "<script> alert('Your session has expired. Please log in again.');
+  window.location.href='login.php';
+  </script>";
+
+} else {
+  echo "<br><a href='logout.php'><input type=button class=logout value=logout name=logout></a>";
+
+}
+
 function console_log( $data ){
     echo '<script>';
     echo 'console.log('. json_encode( $data ) .')';
@@ -204,6 +219,7 @@ if (isset($barID)) {
                               LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                               WHERE drink_relationship.bar_id=$barID
                               ORDER BY menu";
+            console_log($sql_all_menus);
             $result_all_menus = ($conn->query($sql_all_menus));
 
             # Load list of all drinks (not only the current bar)
@@ -404,7 +420,7 @@ if (isset($barID)) {
 
     echo "
         <div class='drink-menu list'>
-            <form id='editBar' method='post' enctype='multipart/form-data'>    
+            <form id='editBar' method='post' enctype='multipart/form-data'>
                 <input type='hidden' name='barID' value=$barID>
                 $datalist_drinkList
                 $datalist_menuList
@@ -429,11 +445,11 @@ if (isset($barID)) {
                         <td class='td-submit'><button type='submit' id='add0' name='add_drink' class='add' value='new' formaction=''>add</button></td>
                         <td class='td-submit'><button type='submit' id='clear0' name='add_drink' class='transparent' value='new' formaction=''>clear</button></td>
                     </tr>
-                </table>   
+                </table>
             </form>
         </div>
-        
-        <div class='drink-menu list'>        
+
+        <div class='drink-menu list'>
             <form id='editBar' method='post' enctype='multipart/form-data'>
                 <input type='hidden' name='barID' value=$barID>
                 <table class='drink-menu-table'>

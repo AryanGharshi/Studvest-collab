@@ -1,0 +1,26 @@
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+table {
+  margin-top: 150px;
+  border: 1px solid;
+  background-color: #eee;
+}
+
+td {
+  border: 0px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+}
+
+th {
+  border-bottom: 1px solid;
+  background-color: #ddd;
+}
+
+.login_box {
+  color: black;
+}
