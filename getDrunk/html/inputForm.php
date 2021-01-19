@@ -13,7 +13,7 @@ if(!isset($_SESSION['username'])|| time() - $_SESSION['login_time'] > 1800) {
   </script>";
 
 } else {
-  echo "<br><a href='logout.php'><input type=button class=logout value=logout name=logout></a>";
+  echo "<br><a href='logout.php'><input type='button' class='logout' value='Log out' name='logout'></a>";
 
 }
 

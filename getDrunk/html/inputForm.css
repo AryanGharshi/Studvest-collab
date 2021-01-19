@@ -1,15 +1,13 @@
 :root {
-    --main-width: min(100em, calc(100vw - 2em - 2em));
+    --main-width: min(100em, 100vw);
     --main-width-popup: min(75em, 60vw);
 
 }
 
-body {
-  font-size: 0.9em;
-  position: absolute;
-  width: 100vw;
-  overflow-y: hidden;
-  margin-top: -19px;
+body{
+    font-size: 0.9em;
+    position: absolute;
+    width: 100%;
 }
 
 #body-main {
@@ -58,24 +56,18 @@ table {
 }
 
 #left-column {
-    width: 30em;
+    width: 30%;
+    height: 100%;
     float: left;
     margin: 0;
     padding-right: 2em;
 }
 
 #right-column {
-    width: calc(100% - 2em - 30em);
+    width: calc(70% - 2em);
     height: 100%;
     float: left;
     margin: 0;
-}
-
-@media only screen and (max-width: 80em) {
-
-    #left-column, #right-column {
-        width: 100%;
-    }
 }
 
 #right-column h1 {
@@ -202,16 +194,6 @@ table {
     padding-right: 0;
 }
 
-/** LOG OUT BUTTON **/
-
-.logout {
-  position: absolute;
-  z-index: 2;
-  width: 60px;
-  left: 30px;
-  top: 33px;
-  }
-
 
 
 /** POPUPS **/
@@ -219,7 +201,6 @@ table {
 .popup {
     height: max-content;
     width: max-content;
-    max-width: calc(100vw - 4em);
     margin: auto;
     display: none;
     position: fixed;
@@ -242,12 +223,13 @@ input, textarea, select {
     box-sizing: border-box;
 }
 
+
+
 .list input:disabled, select:disabled {
     background-color: transparent;
     border: none;
     color: var(--col-primary);
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
     opacity: 1;
 }
 
@@ -255,15 +237,12 @@ input, textarea, select {
     background-color: var(--col-primary);
     border: none;
     color: var(--col-background-dark);
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    padding: 0.2em;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+
+
+
 
 ::-webkit-scrollbar{
     width:7px;
@@ -344,22 +323,7 @@ input::-webkit-inner-spin-button {
     width: 10%;
 }
 
-.drink-menu-table .input-vol, .input-price {
-    text-align: right;
-    padding-right: 1.5em;
-    z-index:-1
-}
-
-.drink-menu-table .unit {
-    margin-left: -1.65em;
-}
-
-.drink-menu-table .unit-active {
-    color: var(--col-background-dark);
-}
-
-
-@media only screen and (max-width: 50em) {
+@media only screen and (max-width: 100em) {
 
     #left-column {
         width: 90%;
@@ -443,6 +407,7 @@ input::-webkit-inner-spin-button {
         width: 811px;
     }
 
+
     .drink-menu-table tr {
         width: 100%;
     }
@@ -459,4 +424,5 @@ input::-webkit-inner-spin-button {
     #right-column .drink-menu {
         height: 451px;
     }
+
 }
