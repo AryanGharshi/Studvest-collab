@@ -2,6 +2,22 @@
 define("MAGICKEY", "ugugUGu221KHJBD84");
 require "../inc/connection/conn.php";
 
+session_start();
+
+
+if(!isset($_SESSION['username'])|| time() - $_SESSION['login_time'] > 1800) {
+  session_unset();
+  session_destroy();
+  echo "<script> alert('Your session has expired. Please log in again.');
+  window.location.href='login.php';
+  </script>";
+
+} else {
+  echo "<br><a href='logout.php'><input type='button' class='logout' value='Log out' name='logout'></a>";
+
+}
+
+
 function console_log( $data ){
     echo '<script>';
     echo 'console.log('. json_encode( $data ) .')';
@@ -64,7 +80,7 @@ function console_log( $data ){
             $conn->query($sql);
         }
         elseif($section == 'drink_type') {
-            $sql = "INSERT INTO drink_type(id, name, rank, img_url_inactive, img_url_active) 
+            $sql = "INSERT INTO drink_type(id, name, rank, img_url_inactive, img_url_active)
                     SELECT '$id', '$newName', MAX(rank)+1, '".$_POST['img_url_inactive']."','".$_POST['img_url_active']."' FROM drink_type
                     ON DUPLICATE KEY UPDATE id=id, rank=rank, name='Test3', img_url_inactive='t', img_url_active='t';";
             $conn->query($sql);
