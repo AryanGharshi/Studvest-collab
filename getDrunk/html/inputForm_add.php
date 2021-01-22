@@ -160,8 +160,8 @@ if(isset($_POST['add_drink'])) {
 
     # Assign new drink to bar
     $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, student_price, size)
-                        VALUES((SELECT id FROM drink WHERE name='$drink_name'), '$barID', '$menu', '$price', $student_price, '$volume')
-                        ON DUPLICATE KEY UPDATE menu='$menu', price=$price, student_price=$student_price, size=$volume;";
+                        VALUES((SELECT id FROM drink WHERE name='$drink_name'), '$barID', '$menu', '$price', '$student_price', $volume*(SELECT milliliters FROM volume_units WHERE unit='$volume_unit'))
+                        ON DUPLICATE KEY UPDATE menu='$menu', price=$price, student_price=$student_price, size=$volume*(SELECT milliliters FROM volume_units WHERE unit='$volume_unit');";
     $conn->query($sql);
     console_log($sql);
 
@@ -235,9 +235,9 @@ if (isset($barID)) {
             # Load list of drinks
             $sql_drinks = "SELECT drink.id AS id,
                               drink.name AS drink_name,
-                              CONCAT(drink_relationship.price) AS price,
-                              CONCAT(drink_relationship.student_price) AS student_price,
-                              CONCAT(drink_relationship.size) AS volume,
+                              drink_relationship.price AS price,
+                              drink_relationship.student_price AS student_price,
+                              (drink_relationship.size/volume_units.milliliters) AS volume,
                               drink_relationship.menu AS menu,
                               drink_type.name AS drink_type,
                               drink_type.volume_unit AS volume_unit,
@@ -246,6 +246,7 @@ if (isset($barID)) {
                        FROM drink_relationship
                        LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                        LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
+                       LEFT JOIN volume_units ON drink_type.volume_unit=volume_units.unit
                        WHERE drink_relationship.bar_id=$barID
                        ORDER BY drink_name";
             $result_drinks = ($conn->query($sql_drinks));
@@ -420,7 +421,7 @@ if (isset($barID)) {
         $mapping_drinkTypeIdx_volumeUnit[$drink_type['rank']] = $drink_type['volume_unit'];
     };
 
-    $columns = json_encode(['drink-name', 'drink-type', 'drink-menu', 'drink-volume', 'drink-price', 'drink-student-price']);
+    $columns = json_encode(['drink-name', 'drink-type', 'drink-menu', 'drink-volume', 'drink-volume-unit', 'drink-price', 'drink-student-price']);
 
     echo "
         <div class='drink-menu list'>
@@ -444,7 +445,7 @@ if (isset($barID)) {
                         <td class='td-drink-type'><select id='drink-type0' class='input-type' name='drink_type' required>". str_replace("<option disabled value>", "<option disabled value selected>", $datalist_drinkTypeList). "</select></td>
                         <td class='td-menu'><input type='text' id='drink-menu0' name='menu' list='menuList'></td>
                         <td class='td-vol'>
-                            <input type='number' id='drink-volume0' name='vol' min=2 step=1' required>
+                            <input type='number' id='drink-volume0' name='vol' min=0 step=0.01 required>
                             <input type='hidden' id='drink-volume-unit0' name='volume_unit' value='ml'>
                             <span class='unit unit-active' id='volume-unit0'>ml</span>
                         </td>
@@ -481,7 +482,7 @@ if (isset($barID)) {
                         </td>
                         <td id='drink-$drink_relationship_id-volume' class='td-vol'>
                             <input type='number' class='input-vol' id='drink-volume$drink_relationship_id' name='vol' value='" . $drink['volume'] ."' min=0 step=0.01 required disabled>
-                            <input type='hidden' id='drink-volume-unit$drink_relationship_id' name='volume_unit' value='" . $drink['volume_unit'] ."'>
+                            <input type='hidden' id='drink-volume-unit$drink_relationship_id' name='volume_unit' value='" . $drink['volume_unit'] ."' disabled>
                             <span class='unit' id='volume-unit$drink_relationship_id'>" . $drink['volume_unit'] ."</span>
                         </td>
                         <td id='drink-$drink_relationship_id-price' class='td-price'>

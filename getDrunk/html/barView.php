@@ -53,14 +53,15 @@ if ($result_barInfos->num_rows > 0) {
                           drink.name AS drink_name,
                           CONCAT(drink_relationship.price, ',-') AS price,
                           CONCAT(drink_relationship.student_price, ',-') AS student_price,
-                          drink_relationship.size AS volume,
+                          drink_type.volume_unit AS volume_unit,
+                          (drink_relationship.size/volume_units.milliliters) AS volume,
                           drink_relationship.menu AS menu,
                           drink_type.name AS drink_type,
-                          drink_type.volume_unit AS volume_unit,
                           drink_type.id AS drink_type_id
                    FROM drink_relationship
                    LEFT JOIN drink ON drink_relationship.drink_id=drink.id
                    LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
+                   LEFT JOIN volume_units ON drink_type.volume_unit=volume_units.unit
                    WHERE drink_relationship.bar_id=$barID
                    ORDER BY drink_type.rank, menu, drink_name";
     $result_drinks = ($conn->query($sql_drinks));

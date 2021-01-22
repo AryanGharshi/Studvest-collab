@@ -1,9 +1,7 @@
 // Auto-fill drink_type when user enters known drink
 function autoFillDrinkType(clicked_object) {
     let target_object = document.getElementById(clicked_object.id.replace("drink-name", "drink-type"));
-    console.log(target_object);
     let drink_type_rank = mapping_drink_drinkTypeIdx[clicked_object.value];
-    console.log(drink_type_rank);
     if(drink_type_rank!=null) {
         target_object.selectedIndex = drink_type_rank;
         target_object.disabled = true;
@@ -11,15 +9,12 @@ function autoFillDrinkType(clicked_object) {
     else {
         target_object.disabled = false;
     }
-    console.log(target_object.disabled);
     return drink_type_rank;
 }
 
 // Auto-fill volume unit when user changed the drink type
 function autoFillVolumeUnit(target_object_id, drink_type_rank) {
     let volume_unit = mapping_drinkTypeIdx_volumeUnit[drink_type_rank];
-    console.log(mapping_drinkTypeIdx_volumeUnit)
-    console.log(mapping_drinkTypeIdx_volumeUnit[drink_type_rank])
     volume_unit = volume_unit!=null ? volume_unit : "ml";
     document.getElementById(target_object_id).innerText = volume_unit;
     document.getElementById('drink-'+target_object_id).value = volume_unit;
@@ -90,8 +85,6 @@ function open_popup(target, source) {
 
 // Close a popup window
 function close_popup(source, target) {
-    console.log(source);
-    console.log(document.getElementById(source));
     document.getElementById(source).style.display ='none';
     target = (target!=null) ? target : document.getElementById(source+"-source").value;
     document.getElementById(target).style.filter ='none';
