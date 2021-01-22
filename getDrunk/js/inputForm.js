@@ -1,4 +1,30 @@
 // Auto-fill drink_type when user enters known drink
+function autoFillDrinkType(clicked_object) {
+    let target_object = document.getElementById(clicked_object.id.replace("drink-name", "drink-type"));
+    console.log(target_object);
+    let drink_type_rank = mapping_drink_drinkTypeIdx[clicked_object.value];
+    console.log(drink_type_rank);
+    if(drink_type_rank!=null) {
+        target_object.selectedIndex = drink_type_rank;
+        target_object.disabled = true;
+    }
+    else {
+        target_object.disabled = false;
+    }
+    console.log(target_object.disabled);
+    return drink_type_rank;
+}
+
+// Auto-fill volume unit when user changed the drink type
+function autoFillVolumeUnit(target_object_id, drink_type_rank) {
+    let volume_unit = mapping_drinkTypeIdx_volumeUnit[drink_type_rank];
+    console.log(mapping_drinkTypeIdx_volumeUnit)
+    console.log(mapping_drinkTypeIdx_volumeUnit[drink_type_rank])
+    volume_unit = volume_unit!=null ? volume_unit : "ml";
+    document.getElementById(target_object_id).innerText = volume_unit;
+    document.getElementById('drink-'+target_object_id).value = volume_unit;
+}
+
 document.addEventListener('change', function(e) {
 
     console.log(e);
@@ -6,28 +32,18 @@ document.addEventListener('change', function(e) {
     // Determine clicked and target object
     let clicked_object = e.target;
 
-    console.log(clicked_object.matches('.drink-name'));
-    console.log(clicked_object.id.replace("drink-name", "drink-type"));
+    if(clicked_object.matches('.input-drink')) {
+        let drink_type_rank = autoFillDrinkType(clicked_object);
+        let target_object_id = clicked_object.id.replace("drink-name", "volume-unit")
+        console.log(target_object_id);
+        autoFillVolumeUnit(target_object_id, drink_type_rank);
+    }
 
-    let target_object = clicked_object.matches('.drink-name')
-                        ? document.getElementById(clicked_object.id.replace("drink-name", "drink-type"))
-                        : null;
-
-    console.log(target_object);
-
-    // checks which element was clicked
-    if(target_object != null) {
-
-        console.log(mapping_drink_drinkType);
-        console.log(clicked_object.value);
-        let prefilled_drink_type = mapping_drink_drinkType[clicked_object.value];
-        if(prefilled_drink_type!=null) {
-            target_object.selectedIndex = mapping_drink_drinkType[clicked_object.value];
-            target_object.disabled = true;
-        }
-        else {
-            target_object.disabled = false;
-        }
+    // Auto-fill unit
+    if(clicked_object.matches('.input-type')) {
+        let target_object_id = clicked_object.id.replace("drink-type", "volume-unit")
+        let drink_type_rank = clicked_object.selectedIndex;
+        autoFillVolumeUnit(target_object_id, drink_type_rank);
     }
 })
 

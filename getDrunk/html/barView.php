@@ -56,6 +56,7 @@ if ($result_barInfos->num_rows > 0) {
                           drink_relationship.size AS volume,
                           drink_relationship.menu AS menu,
                           drink_type.name AS drink_type,
+                          drink_type.volume_unit AS volume_unit,
                           drink_type.id AS drink_type_id
                    FROM drink_relationship
                    LEFT JOIN drink ON drink_relationship.drink_id=drink.id
@@ -260,12 +261,9 @@ $conn->close();
 
                             while ($menu_name === $drink['menu'] && $tab_name === $drink['drink_type']) {
 
-                                // Change the number format
-                                $drink[volume] = $drink[volume] >= 100 ? $drink[volume]/1000 . 'l' : $drink[volume]/10 . 'cl';
-
                                 echo("<tr>");
                                 echo("<td class='col-drink'>$drink[drink_name]</td>");
-                                echo("<td class='col-normal'>$drink[volume]</td>");
+                                echo("<td class='col-normal'>$drink[volume]$drink[volume_unit]</td>");
                                 echo("<td class='col-normal'>$drink[student_price]</td>");
                                 echo("<td class='col-highlight'>$drink[price]</td>");
                                 echo("</tr>");

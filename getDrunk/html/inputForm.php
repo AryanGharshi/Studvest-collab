@@ -80,9 +80,12 @@ function console_log( $data ){
             $conn->query($sql);
         }
         elseif($section == 'drink_type') {
-            $sql = "INSERT INTO drink_type(id, name, rank, img_url_inactive, img_url_active)
-                    SELECT '$id', '$newName', MAX(rank)+1, '".$_POST['img_url_inactive']."','".$_POST['img_url_active']."' FROM drink_type
-                    ON DUPLICATE KEY UPDATE id=id, rank=rank, name='Test3', img_url_inactive='t', img_url_active='t';";
+            $img_url_active = $_POST['img_url_active'];
+            $img_url_inactive = $_POST['img_url_inactive'];
+            $volume_unit = $_POST['volume_unit'];
+            $sql = "INSERT INTO drink_type(id, name, volume_unit, rank, img_url_inactive, img_url_active)
+                    SELECT '$id', '$newName', '$volume_unit', MAX(rank)+1, '$img_url_inactive', '$img_url_active' FROM drink_type
+                    ON DUPLICATE KEY UPDATE volume_unit='$volume_unit', rank=rank, name='$newName', img_url_inactive='$img_url_inactive', img_url_active='$img_url_active';";
             $conn->query($sql);
             console_log($sql);
         }
@@ -149,6 +152,11 @@ function console_log( $data ){
                    FROM drink
                    INNER JOIN drink_type ON drink.drink_type_id = drink_type.id";
     $result_drinks = ($conn->query($sql_drinks));
+
+    $options_all_volume_units = "<option value='l'>l</option>
+                                 <option value='cl'>cl</option>
+                                 <option value='ml'>ml</option>
+                                 <option value='dl'>dl</option>";
 
     $conn->close();
 ?>
@@ -286,6 +294,7 @@ function console_log( $data ){
             <table>
                 <tr>
                     <th>Main menu</th>
+                    <th>Volume unit</th>
                     <th>Icon (grey)</th>
                     <th>Icon (blue)</th>
                     <th></th>
@@ -295,6 +304,7 @@ function console_log( $data ){
                     <form action='' method='post'>
                         <input type='hidden' name='section' value='drink_type'>
                         <td><input type='text' id='name0' name='name'></td>
+                        <td><select id='volume_unit0' name='volume_unit'><?php echo $options_all_volume_units?></select></td>
                         <td><input type='text' id='img_url_inactive0' name='img_url_inactive'></td>
                         <td><input type='text' id='img_url_active0' name='img_url_active'></td>
                         <td class="td-submit"><button type='submit' class='add' id='add0' name='add' value=''>add</button></td>
@@ -309,15 +319,17 @@ function console_log( $data ){
                     $rank=$currentRow['rank'];
                     $img_url_inactive=$currentRow['img_url_inactive'];
                     $img_url_active=$currentRow['img_url_active'];
+                    $volume_unit=$currentRow['volume_unit'];
                     $n='menus'.$id;
                     $input = 'menusinput'.$id;
-                    $columns = json_encode(['name', 'img_url_inactive', 'img_url_active']);
+                    $columns = json_encode(['name', 'volume_unit', 'img_url_inactive', 'img_url_active']);
                     echo "
                     <tr id='row$id'>
                         <form action='' method='post'>
                             <input type='hidden' name='section' value='drink_type'>
                             <input type='hidden' name='current_rank' value='$rank'>
                             <td><input type='text' id='name$id' name='name' value='$name' disabled></td>
+                            <td><select id='volume_unit$id' name='volume_unit' disabled>". str_replace("<option value='$volume_unit'>", "<option value='$volume_unit' selected>", $options_all_volume_units). "</select></td>
                             <td><input type='text' id='img_url_inactive$id' name='img_url_inactive' value='$img_url_inactive' disabled></td>
                             <td><input type='text' id='img_url_active$id' name='img_url_active' value='$img_url_active' disabled></td>
                             <td>

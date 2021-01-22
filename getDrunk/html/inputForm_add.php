@@ -140,10 +140,9 @@ if(isset($_POST['add_drink'])) {
     $menu = $_POST['menu'];
     $price = $_POST['price'];
     $student_price = $_POST['student_price'];
-    console_log($student_price);
     if ($student_price=='') {$student_price='Null';}
-    console_log($student_price);
     $volume = $_POST['vol'];
+    $volume_unit = $_POST['volume_unit'];
 
     # Add new drink if it doesn't exist
     $sql = "INSERT INTO drink(name, drink_type_id)
@@ -209,7 +208,7 @@ if (isset($barID)) {
             }
 
             # Load list of all drink types (not only the current bar)
-            $sql_all_drink_types = "SELECT drink_type.name, id FROM drink_type ORDER BY drink_type.rank;";
+            $sql_all_drink_types = "SELECT drink_type.name, id, rank, volume_unit FROM drink_type ORDER BY drink_type.rank;";
             $result_all_drink_types = ($conn->query($sql_all_drink_types));
 
             # Load list of all existing menus for this bar
@@ -226,6 +225,7 @@ if (isset($barID)) {
             $sql_all_drinks = "SELECT drink.id AS drink,
                                       drink.name AS name,
                                       drink_type.name AS drink_type,
+                                      drink_type.volume_unit AS volume_unit,
                                       drink_type.rank AS drink_type_rank
                                FROM drink
                                LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id;";
@@ -240,6 +240,7 @@ if (isset($barID)) {
                               CONCAT(drink_relationship.size) AS volume,
                               drink_relationship.menu AS menu,
                               drink_type.name AS drink_type,
+                              drink_type.volume_unit AS volume_unit,
                               drink_type.id AS drink_type_id,
                               drink_relationship.id AS drink_relationship_id
                        FROM drink_relationship
@@ -405,7 +406,7 @@ if (isset($barID)) {
     $datalist_drinkList = '<datalist id="drinkList">';
     foreach ($result_all_drinks as $drink) {
         $datalist_drinkList .= '<option value="'. $drink['name'] . '">';
-        $mapping_drink_drinkType[$drink['name']] = $drink['drink_type_rank'];
+        $mapping_drink_drinkTypeIdx[$drink['name']] = $drink['drink_type_rank'];
     }
     $datalist_drinkList .= '</datalist>';
 
@@ -414,7 +415,10 @@ if (isset($barID)) {
     $datalist_menuList .= '</datalist>';
 
     $datalist_drinkTypeList = "<option disabled value></option>";
-    foreach ($result_all_drink_types as $drink_type) { $datalist_drinkTypeList .= "<option value='" . $drink_type['name'] . "'>" . $drink_type['name']  . "</option>"; };
+    foreach ($result_all_drink_types as $drink_type) {
+        $datalist_drinkTypeList .= "<option value='" . $drink_type['name'] . "'>" . $drink_type['name']  . "</option>";
+        $mapping_drinkTypeIdx_volumeUnit[$drink_type['rank']] = $drink_type['volume_unit'];
+    };
 
     $columns = json_encode(['drink-name', 'drink-type', 'drink-menu', 'drink-volume', 'drink-price', 'drink-student-price']);
 
@@ -436,10 +440,14 @@ if (isset($barID)) {
                         <th class ='td-submit'></th>
                     </tr>
                     <tr id='row0'>
-                        <td class='td-drink'><input type='text' id='drink-name0' class='drink-name' name='drink' placeholder='Drink' list='drinkList' required></td>
-                        <td class='td-drink-type'><select id='drink-type0' class='drink-type' name='drink_type' required>". str_replace("<option disabled value>", "<option disabled value selected>", $datalist_drinkTypeList). "</select></td>
+                        <td class='td-drink'><input type='text' id='drink-name0' class='input-drink' name='drink' placeholder='Drink' list='drinkList' required></td>
+                        <td class='td-drink-type'><select id='drink-type0' class='input-type' name='drink_type' required>". str_replace("<option disabled value>", "<option disabled value selected>", $datalist_drinkTypeList). "</select></td>
                         <td class='td-menu'><input type='text' id='drink-menu0' name='menu' list='menuList'></td>
-                        <td class='td-vol'><input type='number' id='drink-volume0' name='vol' min=2 step=1' required><span class='unit unit-active'>ml</span></td>
+                        <td class='td-vol'>
+                            <input type='number' id='drink-volume0' name='vol' min=2 step=1' required>
+                            <input type='hidden' id='drink-volume-unit0' name='volume_unit' value='ml'>
+                            <span class='unit unit-active' id='volume-unit0'>ml</span>
+                        </td>
                         <td class='td-price'><input type='number' id='drink-price0'  name='price' value='' min=10 step=1' required><span class='unit unit-active'>,-</span></td>
                         <td class='td-price'><input type='number' id='drink-student-price0'  name='student_price' value='' min=10 step=1 ><span class='unit unit-active'>,-</span></td>
                         <td class='td-submit'><button type='submit' id='add0' name='add_drink' class='add' value='new' formaction=''>add</button></td>
@@ -472,8 +480,9 @@ if (isset($barID)) {
                             <input type='text' class='input-menu' id='drink-menu$drink_relationship_id'  name='menu' value='" . $drink['menu'] . "' list='menuList' disabled>
                         </td>
                         <td id='drink-$drink_relationship_id-volume' class='td-vol'>
-                            <input type='number' class='input-vol' id='drink-volume$drink_relationship_id' name='vol' value='" . $drink['volume'] ."' min=2 step=1 required disabled>
-                            <span class='unit'>ml</span>
+                            <input type='number' class='input-vol' id='drink-volume$drink_relationship_id' name='vol' value='" . $drink['volume'] ."' min=0 step=0.01 required disabled>
+                            <input type='hidden' id='drink-volume-unit$drink_relationship_id' name='volume_unit' value='" . $drink['volume_unit'] ."'>
+                            <span class='unit' id='volume-unit$drink_relationship_id'>" . $drink['volume_unit'] ."</span>
                         </td>
                         <td id='drink-$drink_relationship_id-price' class='td-price'>
                             <input type='number' class='input-price' id='drink-price$drink_relationship_id' name='price' value='" . $drink['price'] . "' min=10 step=1 required disabled>
@@ -517,7 +526,8 @@ if (isset($barID)) {
 </div>
 
 <script>
-    let mapping_drink_drinkType = <?php echo json_encode($mapping_drink_drinkType, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    let mapping_drink_drinkTypeIdx = <?php echo json_encode($mapping_drink_drinkTypeIdx, JSON_HEX_TAG); ?>; // Don't forget the extra semicolon!
+    let mapping_drinkTypeIdx_volumeUnit = <?php echo json_encode($mapping_drinkTypeIdx_volumeUnit, JSON_HEX_TAG); ?>;
 </script>
 <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
 

@@ -346,12 +346,13 @@ input::-webkit-inner-spin-button {
 
 .drink-menu-table .input-vol, .input-price {
     text-align: right;
-    padding-right: 1.5em;
+    padding-right: 1.65em;
     z-index:-1
 }
 
 .drink-menu-table .unit {
     margin-left: -1.65em;
+    text-align: right;
 }
 
 .drink-menu-table .unit-active {
