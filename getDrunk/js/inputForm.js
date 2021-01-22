@@ -6,10 +6,10 @@ document.addEventListener('change', function(e) {
     // Determine clicked and target object
     let clicked_object = e.target;
 
-    console.log(clicked_object.matches('.input-drink'));
+    console.log(clicked_object.matches('.drink-name'));
     console.log(clicked_object.id.replace("drink-name", "drink-type"));
 
-    let target_object = clicked_object.matches('.input-drink')
+    let target_object = clicked_object.matches('.drink-name')
                         ? document.getElementById(clicked_object.id.replace("drink-name", "drink-type"))
                         : null;
 

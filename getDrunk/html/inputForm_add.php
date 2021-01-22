@@ -204,6 +204,7 @@ if (isset($barID)) {
                               LEFT JOIN drink_type ON drink.drink_type_id=drink_type.id
                               WHERE drink_relationship.bar_id=$barID
                               ORDER BY menu";
+            console_log($sql_all_menus);
             $result_all_menus = ($conn->query($sql_all_menus));
 
             # Load list of all drinks (not only the current bar)
