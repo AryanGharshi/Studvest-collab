@@ -174,7 +174,7 @@ $conn->close();
                         $url = preg_replace("(^https?://)", "", $info['website'] );
                         printf('<div class="btn" id="btn-website">');
                         printf('<a href="//'.$url.'">');
-                        printf('<img class="icon" src="../media/icons/web_black.png"><br>');
+                        printf('<img class="icon" src="../media/icons/websiteicon.png"><br>');
                         printf('</a>');
                         printf('</div>');
                     }
