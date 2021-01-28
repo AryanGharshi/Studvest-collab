@@ -28,6 +28,11 @@ h1{
   margin-top: 2em;
 }
 
+.filter-box {
+  grid-column-start:1;
+  grid-column-end:3;
+}
+
 .bar-container {
   height: 18em;
   position: relative;

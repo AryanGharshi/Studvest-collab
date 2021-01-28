@@ -118,16 +118,16 @@
         <?php include("header.php"); ?>
     </a>
 
-    <div>
-        <form action='' method='post'>
-            <select id="select_tags" name="select_tags[]"  placeholder="Search for a tag" multiple> <?php echo $options_tags; ?> </select>
-            <select id="select_bars" name="select_bars[]"  placeholder="Search for a bar" multiple> <?php echo $options_bars; ?> </select>
-            <button type='submit' id='submit_filter' name='submit_filter' value=''>Show results</button>
-            <button type='submit' id='submit_filter' name='reset_filter' value=''>Reset filter</button>
-        </form>
-    </div>
+    <div class="wrapper">
+        <div class="filter-box">
+            <form action='' method='post'>
+                <select id="select_tags" name="select_tags[]"  placeholder="Search for a tag" multiple> <?php echo $options_tags; ?> </select>
+                <select id="select_bars" name="select_bars[]"  placeholder="Search for a bar" multiple> <?php echo $options_bars; ?> </select>
+                <button type='submit' id='submit_filter' name='submit_filter' value=''>Show results</button>
+                <button type='submit' id='submit_filter' name='reset_filter' value=''>Reset filter</button>
+            </form>
 
-    <div class="wrapper"
+        </div>
 
         <?php
         foreach ($bars as $elem) {
