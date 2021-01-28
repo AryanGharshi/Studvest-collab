@@ -532,6 +532,5 @@ if (isset($barID)) {
 </script>
 <script type='text/javascript' src='../js/inputForm.js?version=<?= time() ?>'> </script>
 
-
 </body>
 </html>

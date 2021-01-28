@@ -57,7 +57,7 @@ a:active {
 
 /* HEADER */
 
-.header {
+.header_line {
     position: sticky;
     position: -webkit-sticky; /* Safari */
     top: 0;
@@ -70,16 +70,16 @@ a:active {
     box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
 }
 
-.header .container{
+.header_line .container{
     float: left;
     height: 100%;
 }
 
-.header #app-logo {
+.header_line #app-logo {
     width: calc(100vw - 2.5em*2 - 0.5em*2);
 }
 
-.header #btn-back {
+.header_line #btn-back {
     width: 2.5em;
 }
 
