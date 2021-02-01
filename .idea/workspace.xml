@@ -25,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -40,6 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -68,7 +70,8 @@
       <workItem from="1607887927080" duration="8553000" />
       <workItem from="1608030923241" duration="283000" />
       <workItem from="1611309110666" duration="16952000" />
-      <workItem from="1611852366060" duration="14408000" />
+      <workItem from="1611852366060" duration="14473000" />
+      <workItem from="1612193005191" duration="807000" />
     </task>
     <servers />
   </component>
