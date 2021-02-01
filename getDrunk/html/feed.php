@@ -6,12 +6,12 @@
     <title>StudOut</title>
 
 
-    <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
 
     <link rel="stylesheet" href="../css/main.css?version=<?= time() ?>">
     <link rel="stylesheet" href="../css/feed.css?version=<?= time() ?>">
+    <link rel="stylesheet" href="../css/choices.min.css?version=<?= time() ?>">
     <link rel='icon' href='../media/favicons/studvest.png' type='image/x-icon'/ >
 </head>
 
