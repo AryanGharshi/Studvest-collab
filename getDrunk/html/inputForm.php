@@ -5,12 +5,13 @@ require "../inc/connection/conn.php";
 session_start();
 
 
-if(!isset($_SESSION['username'])|| time() - $_SESSION['login_time'] > 1800) {
+if(!isset($_SESSION['username'])|| time() - $_SESSION['login_time'] > 5400) {
   session_unset();
   session_destroy();
-  echo "<script> alert('Your session has expired. Please log in again.');
-  window.location.href='login.php';
-  </script>";
+
+  header("location: login.php");
+  exit;
+  echo "Session timed out";
 
 } else {
   echo "<br><a href='logout.php'><input type='button' class='logout' value='Log out' name='logout'></a>";

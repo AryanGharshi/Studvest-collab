@@ -1,26 +1,63 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  width: 100vw;
+  overflow-y: hidden;
+  margin-top: -19px;
+}
+
+th h2 {
+  font-size: 1.7em;
+  color: #1e9ac9;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 14px;
+  margin-top: 14px;
 }
 
 table {
   margin-top: 150px;
-  border: 1px solid;
-  background-color: #eee;
+  background-color: #222;
+  padding: 80px;
+  border-radius: 10px;
 }
 
 td {
-  border: 0px;
   padding: 10px;
   font-family: 'Roboto', sans-serif;
-  color: black;
-}
-
-th {
+  color: #aaa;
   border-bottom: 1px solid;
-  background-color: #ddd;
 }
 
-.login_box {
-  color: black;
+
+td .logininput {
+  border: black;
+  height: 20px;
+  background-color: inherit;
+  color: white;
+}
+
+.loginbutton {
+  background-color: inherit;
+  border: 1px solid #1e9ac9;
+  cursor: pointer;
+  color: #1e9ac9;
+  border-radius: 3px;
+  width: 120px;
+  height: 27px;
+  margin-top: 25px;
+}
+
+.loginsection {
+  border-bottom: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #222222 inset !important;
+    -webkit-text-fill-color: white !important;
 }
