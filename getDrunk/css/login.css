@@ -6,6 +6,7 @@ body {
   width: 100vw;
   overflow-y: hidden;
   margin-top: -19px;
+  background-color: #222222;
 }
 
 th h2 {
@@ -19,9 +20,10 @@ th h2 {
 
 table {
   margin-top: 150px;
-  background-color: #222;
+  background-color: #1b1b1b;
   padding: 80px;
   border-radius: 10px;
+  border: 1px solid #aaa;
 }
 
 td {
@@ -58,6 +60,6 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #222222 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #1b1b1b inset !important;
     -webkit-text-fill-color: white !important;
 }
