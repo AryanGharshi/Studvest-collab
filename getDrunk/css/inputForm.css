@@ -365,7 +365,6 @@ input::-webkit-inner-spin-button {
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
-  display: none;
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
@@ -379,14 +378,37 @@ input::-webkit-inner-spin-button {
 
 
 /* Position and style the close button (top right corner) */
-#mySidenav .closebtn {
+.sidenav .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
-  font-size: 90px;
+  font-size: 40px;
   margin-left: 50px;
 }
 
+.sidenav {
+  background-color: var(--col-background-dark);
+  z-index: 11;
+}
+
+.sidenav_content h1{
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.sidenav_content{
+  margin: 30px;
+  text-align: left;
+}
+.openicon {
+  height: 30px;
+  width: 30px;
+  margin-right: 1500px;
+}
+
+.helpimg{
+  box-shadow: 10px 10px 5px black;
+}
 
 @media only screen and (max-width: 50em) {
 

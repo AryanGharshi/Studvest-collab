@@ -169,18 +169,34 @@ function console_log( $data ){
         <?php include('header.php'); ?>
     </a>
 
-    <!-- Info page -->
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-        officia deserunt mollit anim id est laborum.</p>
-    </div>
 
-  <span onclick="openNav()">(OPEN)</span>
     <div id="main" class="main">
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="sidenav_content">
+          <h1>Instructions</h1>
+
+          <h4>Create New Bar</h4>
+
+          <h5>Location</h5>
+          <ul class="a">
+            <li>When creating a new bar a location from Google Maps can be linked by searching the bar address in Google Maps and then copying the link found under the button “Share” into the location field in “Create new bar”. </li>
+          </ul>
+          <img class="helpimg" src="../media/pictures/locationhelp.png" alt="" height="300" width="450">
+
+          <h4>Manage Drinks</h4>
+
+          <h4>Manage Tags</h4>
+
+          <h4>Manage Main Menus</h4>
+
+
+
+        </div>
+      </div>
+
+    <img src="../media/icons/help.png" class="openicon" onclick="openNav()">
+
         <div class="above-list">
             <h1>Welcome back.</h1>
             <a href="inputForm_add.php">
