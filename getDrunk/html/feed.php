@@ -123,8 +123,10 @@
             <form action='' method='post'>
                 <select id="select_tags" name="select_tags[]"  placeholder="Search for a tag" multiple> <?php echo $options_tags; ?> </select>
                 <select id="select_bars" name="select_bars[]"  placeholder="Search for a bar" multiple> <?php echo $options_bars; ?> </select>
-                <button type='submit' id='submit_filter' name='submit_filter' value=''>Show results</button>
-                <button type='submit' id='submit_filter' name='reset_filter' value=''>Reset filter</button>
+                <div class="choice">
+                <button type='submit' id='submit_filter' class='btn-confirm' name='submit_filter' value=''>Confirm</button>
+                <button type='submit' id='submit_filter' class='btn-reset' name='reset_filter' value=''>Reset</button>
+                </div>
             </form>
 
         </div>
