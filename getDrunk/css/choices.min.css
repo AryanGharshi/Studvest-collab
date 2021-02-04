@@ -122,13 +122,32 @@
     display: inline-block;
     vertical-align: top;
     width: 100%;
-    background-color: #f9f9f9;
+    background-color:rgba(196, 196, 196, 0.22);
     padding: 7.5px 7.5px 3.75px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     border-radius: 2.5px;
     font-size: 14px;
-    min-height: 44px;
+    min-height: 24px;
     overflow: hidden
+}
+
+ .choice{
+    width:255px;
+    margin:0 auto;
+    height:32px;
+    margin-bottom: 24px;;
+}
+
+.btn-confirm{
+    background-color:#25BC22;
+    color:white;
+    border: none;
+}
+
+.btn-reset{
+    background-color: rgba(196, 196, 196, 0.22);
+    border: none;
+    color:red;
 }
 
 .is-focused .choices__inner, .is-open .choices__inner {
@@ -330,7 +349,7 @@
 .choices__input {
     display: inline-block;
     vertical-align: baseline;
-    background-color: #f9f9f9;
+    background-color:rgba(196, 196, 196, 0);
     font-size: 14px;
     margin-bottom: 5px;
     border: 0;
@@ -354,4 +373,12 @@
 
 .choices[data-type*=select-multiple] .choices__input.is-hidden, .choices[data-type*=select-one] .choices__input.is-hidden, .choices__input.is-hidden {
     display: none
+}
+
+button#submit_filter {
+    border-radius: 20px;
+    float: right;
+    width: 111px;
+    height: 35px;
+    margin-left: 15px;
 }
