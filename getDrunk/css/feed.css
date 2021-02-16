@@ -22,7 +22,7 @@ h1{
 
 .wrapper {
   display: grid;
-  grid-template-row: 50% 50%;
+  grid-template-columns: 50% 50%;
   width: var(--main-width);
   margin: auto;
   margin-top: 2em;
@@ -76,10 +76,15 @@ h1{
   margin-bottom: 40px;
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (max-width: 750px) {
   .wrapper {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 100%;
+  }
+
+  .filter-box {
+    grid-column-start: inherit;
+    grid-column-end: inherit;
   }
 
   .bar-container {

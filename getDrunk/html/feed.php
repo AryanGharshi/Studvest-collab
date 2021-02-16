@@ -21,9 +21,7 @@
         echo 'console.log('. json_encode( $data ) .')';
         echo '</script>';
     }
-?>
 
-<?php
     define("MAGICKEY", "ugugUGu221KHJBD84");
     require "../inc/connection/conn.php";
 
@@ -46,7 +44,7 @@
             foreach ($bars_selected as &$item) {
                 $where_clause .= "bar.id=$item OR ";
             }
-            $where_clause .= "FALSE)";
+            $where_clause .= "FALSE))";
         }
     }
 
@@ -110,7 +108,6 @@
 
     $conn->close();
 ?>
-
 
 
 <body>
