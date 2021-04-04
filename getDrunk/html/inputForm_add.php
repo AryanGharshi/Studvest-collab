@@ -103,7 +103,7 @@ if(isset($_POST['add_image']) and ($uploadfile['name'] <> "")) {
     #Create directory if not exists
     $target_directory = "../media/pictures/$barID/$is_cover/";
     if (!is_dir($target_directory)) {
-        mkdir($target_directory);
+        mkdir($target_directory, 0777, true);
     }
     $target_file = $target_directory . $uploadfile['name'];
     # Store file on the server
@@ -161,7 +161,7 @@ if(isset($_POST['add_drink'])) {
 
     # Assign new drink to bar
     $sql = "INSERT INTO drink_relationship(drink_id, bar_id, menu, price, student_price, size)
-                        VALUES((SELECT id FROM drink WHERE name='$drink_name'), '$barID', '$menu', '$price', '$student_price', $volume*(SELECT milliliters FROM volume_units WHERE unit='$volume_unit'))
+                        VALUES((SELECT id FROM drink WHERE name='$drink_name'), '$barID', '$menu', '$price', $student_price, $volume*(SELECT milliliters FROM volume_units WHERE unit='$volume_unit'))
                         ON DUPLICATE KEY UPDATE menu='$menu', price=$price, student_price=$student_price, size=$volume*(SELECT milliliters FROM volume_units WHERE unit='$volume_unit');";
     $conn->query($sql);
     console_log($sql);
