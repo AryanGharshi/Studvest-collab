@@ -187,14 +187,16 @@ function console_log( $data ){
           <ul>
             <li> Insert the photo you want to display for the bar in the feed.</li>
           </ul>
-          <h5>More pictures</h5>
+          <h3>More pictures</h5>
           <ul>
             <li>Here you can add more pictures for your bar, they will be displayed once the user clicks the bar in a picture carousell.</li>
           </ul>
-          <h5>Drink menu</h5>
+          <h3>Drink menu</h5>
           <ul>
             <li>In the drink menu you can insert the drink (name of the drink), the main menu (this is the categories displayed inside the feed bar), sub menu which is categories of types of drinks inside one category (wine - white wine, red wine..).</li>
           </ul>
+
+          <h2>Manage</h2>
 
           <h3>Manage Drinks</h4>
             <ul>
@@ -213,7 +215,8 @@ function console_log( $data ){
               <li>Here you can manage main menus (these are the categories displayed with icons in the bar view for users.) If you want to rename a category click modify, and delete to completely remove a category.</li>
               <li>The main menus should only be managed by one of the editors.</li>
             </ul>
-            <a href="https://docs.google.com/document/d/1zevghs4wtIxRtjFtiZSW_w_7LM40hciB78S3tPJPc0s/edit?usp=sharing">Information for developers</a>
+            <br>
+            <a style="text-decoration:underline" href="https://docs.google.com/document/d/1zevghs4wtIxRtjFtiZSW_w_7LM40hciB78S3tPJPc0s/edit?usp=sharing"></a>
             <br>
             <br>
             <br>
