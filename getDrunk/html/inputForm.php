@@ -176,21 +176,45 @@ function console_log( $data ){
         <div class="sidenav_content">
           <h1>Instructions</h1>
 
-          <h4>Create New Bar</h4>
+          <h2>Create New Bar</h4>
 
-          <h5>Location</h5>
+          <h3>Location</h5>
           <ul class="a">
             <li>When creating a new bar a location from Google Maps can be linked by searching the bar address in Google Maps and then copying the link found under the button “Share” into the location field in “Create new bar”. </li>
           </ul>
           <img class="helpimg" src="../media/pictures/locationhelp.png" alt="" height="300" width="450">
 
-          <h4>Manage Drinks</h4>
+          <h5>Cover photo</h5>
+          <ul>
+            <li> Insert the photo you want to display for the bar in the feed.</li>
+          </ul>
+          <h5>More pictures</h5>
+          <ul>
+            <li>Here you can add more pictures for your bar, they will be displayed once the user clicks the bar in a picture carousell.</li>
+          </ul>
+          <h5>Drink menu</h5>
+          <ul>
+            <li>In the drink menu you can insert the drink (name of the drink), the main menu (this is the categories displayed inside the feed bar), sub menu which is categories of types of drinks inside one category (wine - white wine, red wine..).</li>
+          </ul>
 
-          <h4>Manage Tags</h4>
+          <h5>Manage Drinks</h4>
+            <ul>
+              <li>Clicking on the "manage drinks" button you will be able to change a drink across several bars. Be careful here because all drinks of the type you change will be affected in the bars that contain this drink. Changing Peroni to Peroni Beer will change it in all bars. To manage individual drinks go to the bar you want to and change the drink name there.</li>
+              <li>Here you can also delete drinks across all bars containing a spesific drink.</li>
+            </ul>
 
-          <h4>Manage Main Menus</h4>
+          <h5>Manage Tags</h4>
+            <ul>
+              <li>Here you can change tags across all bars, changing a tag here will effect all bars that contain that spesific tag. To change individual tags go to the particular bar you want to change.</li>
+              <li>You can also delete tags completely here.</li>
+            </ul>
 
-
+          <h5>Manage Main Menus</h4>
+            <ul>
+              <li>Here you can manage main menus (these are the categories displayed with icons in the bar view for users.) If you want to rename a category click modify, and delete to completely remove a category.</li>
+              <li>The main menus should only be managed by one of the editors.</li>
+            </ul>
+            <a href="https://docs.google.com/document/d/1zevghs4wtIxRtjFtiZSW_w_7LM40hciB78S3tPJPc0s/edit?usp=sharing">Information for developers</a>
 
         </div>
       </div>
