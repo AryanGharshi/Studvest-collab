@@ -154,9 +154,17 @@
         }
         ?>
 
+    <div class='footer'>
+        Created by Arian Garshi,
+        <a href="mailto:Kornelijako@hotmail.com">Kornelija Kojelyte</a>,
+        <a href="mailto:larsgholth3@gmail.com">Lars Holth</a>,
+        <a href="mailto:lucas.schneider@mail.de">Lucas Schneider</a> &
+        <a href="mailto:yiwjia23@163.com">Yiwen Jiang</a>
+    </div>
+
     </div>
     <div class="background">
-      <img class="city" src="../media/pictures/CityStudout.png">
+        <img class="city" src="../media/CityStudout.png">
     </div>
 
     <script type='text/javascript' src='../js/feed.js?version=<?= time() ?>'></script>

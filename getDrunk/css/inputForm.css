@@ -90,14 +90,6 @@ table {
     overflow-y: scroll;
 }
 
-.footer {
-    position: absolute;
-    z-index: 10;
-    bottom: 5vh;
-    width: var(--main-width);
-    text-align: center;
-}
-
 
 
 

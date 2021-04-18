@@ -310,7 +310,7 @@ $conn->close();
         </div>
     </div>
     <div class="background">
-        <img class="city" src="../media/pictures/CityStudout.png">
+        <img class="city" src="../media/CityStudout.png">
     </div>
 </body>
 </html>

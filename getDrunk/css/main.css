@@ -32,7 +32,6 @@ body {
 
 a:link {
     color: inherit;
-    text-decoration: none;
     cursor: pointer;
 
 }
@@ -93,6 +92,20 @@ a:active {
     font-size: 0.8em;
     text-transform: lowercase;
     color: var(--col-dark);
+}
+
+
+.footer {
+    position: absolute;
+    z-index: 10;
+    bottom: 5vh;
+    width: var(--main-width);
+    text-align: center;
+    color: var(--col-background);
+}
+
+.a:link {
+    text-decoration: underline;
 }
 
 
